@@ -1,7 +1,10 @@
 apache2:
-  pkg: 
+{% if grains['os_family'] == 'Debian' %}
+  pkg:
     - installed
-  service: 
+{% endif %}
+  service:
     - running
+    - endable: True
     - require:
-      - pkg: apache2 
+      - pkg: apache2
