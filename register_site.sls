@@ -1,4 +1,4 @@
-{% if 'apache' in pillar 'register-site' in pillar['apache'] %} #BEGIN: ['apache']['register-site']
+{% if 'apache' in pillar and 'register-site' in pillar['apache'] %} #BEGIN: ['apache']['register-site']
 {% for site in pillar['apache']['register-site'] %}
 
 #BEGIN: Call apache a2ensite
