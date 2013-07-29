@@ -1,6 +1,6 @@
 include:
-  - core.apt
-  - core.apache2.register_site
+  - apt
+  - apache2.register_site
 
 {% if grains['os']=="Ubuntu" %}
 
