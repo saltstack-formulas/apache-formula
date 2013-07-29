@@ -9,6 +9,7 @@ apache:
     - name: apache2
     - order: 175
   service.running:
+    - name: apache2
     - enable: True
     - order: 455
 
