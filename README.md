@@ -2,10 +2,12 @@ apache
 ======
 DEPENDENCIES:
   These salt-states are required:
+
 	1) apt
 
 POSSIBLE DEPENDENCIES
   These salt-states may be required depending on what your doing:
+
 	1) php
 
 ORDERING:
