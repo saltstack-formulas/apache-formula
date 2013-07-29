@@ -18,10 +18,10 @@ a2enmod php5:
     - watch_in:
       - cmd: apache-restart
 
-{% if 'apache-php-ini' in pillar %}
+{% if 'apache' in pillar and 'php-ini' in pillar['apache'] %}
 /etc/php5/apache2/php.ini:
   file.managed:
-    - source: {{ pillar['apache-php-ini'] }}
+    - source: {{ pillar['apache']['php-ini'] }}
     - order: 225
     - watch_in:
       - cmd: apache-restart

@@ -1,42 +1,42 @@
-{% if 'apache-register-site' in pillar %} #BEGIN: apache-register-site
-{% for site in pillar['apache-register-site'] %}
+{% if 'apache' in pillar 'register-site' in pillar['apache'] %} #BEGIN: ['apache']['register-site']
+{% for site in pillar['apache']['register-site'] %}
 
 #BEGIN: Call apache a2ensite
 ##########################################
-{% if 'name' in pillar['apache-register-site'][site] and 'state' in pillar['apache-register-site'][site] %}
+{% if 'name' in pillar['apache']['register-site'][site] and 'state' in pillar['apache']['register-site'][site] %}
 
-{% if pillar['apache-register-site'][site]['state'] == 'enabled' %}
-a2ensite {{ pillar['apache-register-site'][site]['name'] }}:
+{% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
+a2ensite {{ pillar['apache']['register-site'][site]['name'] }}:
 {% else %}
-a2dissite {{ pillar['apache-register-site'][site]['name'] }}:
+a2dissite {{ pillar['apache']['register-site'][site]['name'] }}:
 {% endif %}
   cmd.run:
-{% if pillar['apache-register-site'][site]['state'] == 'enabled' %}
-    - unless: ls /etc/apache2/sites-enabled/{{ pillar['apache-register-site'][site]['name'] }}
+{% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
+    - unless: ls /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
 {% else %}
-    - onlyif: ls /etc/apache2/sites-enabled/{{ pillar['apache-register-site'][site]['name'] }}
+    - onlyif: ls /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
 {% endif %}
     - order: 230
     - require:
       - pkg: apache
-      - file: /etc/apache2/sites-available/{{ pillar['apache-register-site'][site]['name'] }}
+      - file: /etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}
 
 {% endif %}
 ##########################################
 
 #BEGIN: Manage apache site config
 ##########################################
-{% if 'name' in pillar['apache-register-site'][site] and 'path' in pillar['apache-register-site'][site] %}
+{% if 'name' in pillar['apache']['register-site'][site] and 'path' in pillar['apache']['register-site'][site] %}
 
-/etc/apache2/sites-available/{{ pillar['apache-register-site'][site]['name'] }}:
+/etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}:
   file.managed:
-    - source: {{ pillar['apache-register-site'][site]['path'] }}
+    - source: {{ pillar['apache']['register-site'][site]['path'] }}
     - order: 225
     - user: root
     - group: root
     - mode: 775
     - watch_in:
-      - cmd: a2ensite {{ pillar['apache-register-site'][site]['name'] }}
+      - cmd: a2ensite {{ pillar['apache']['register-site'][site]['name'] }}
       - cmd: apache-reload
 
 {% endif %}
