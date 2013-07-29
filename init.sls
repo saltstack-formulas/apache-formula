@@ -1,10 +1,10 @@
 include:
   - apt
-  - apache2.register_site
+  - apache.register_site
 
 {% if grains['os']=="Ubuntu" %}
 
-apache2:
+apache:
   pkg.installed:
     - name: apache2
     - order: 175
@@ -17,16 +17,16 @@ a2dissite 000-default:
     - order: 225
     - onlyif: ls /etc/apache2/sites-enabled/000-default
     - watch_in:
-      - cmd: apache2-reload
+      - cmd: apache-reload
     - require:
-      - pkg: apache2
+      - pkg: apache
 
-apache2-reload:
+apache-reload:
   cmd.wait:
     - name: service apache2 reload
     - order: 420
 
-apache2-restart:
+apache-restart:
   cmd.wait:
     - name: service apache2 restart
     - order: 425
@@ -35,12 +35,12 @@ apache2-restart:
   file.absent:
     - order: 230
     - require:
-      - pkg: apache2
+      - pkg: apache
 
 /etc/apache2/sites-available/default-ssl:
   file.absent:
     - order: 230
     - require:
-      - pkg: apache2
+      - pkg: apache
 
 {% endif %} #END: os = ubuntu

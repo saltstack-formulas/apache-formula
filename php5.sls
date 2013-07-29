@@ -8,7 +8,7 @@ mod-php5:
     - name: libapache2-mod-php5
     - order: 180
     - require:
-      - pkg: apache2
+      - pkg: apache
 
 a2enmod php5:
   cmd.run:
@@ -16,7 +16,7 @@ a2enmod php5:
     - require:
       - pkg: mod-php5
     - watch_in:
-      - cmd: apache2-restart
+      - cmd: apache-restart
 
 {% if 'apache2-php-ini' in pillar %}
 /etc/php5/apache2/php.ini:
@@ -24,9 +24,9 @@ a2enmod php5:
     - source: {{ pillar['apache2-php-ini'] }}
     - order: 225
     - watch_in:
-      - cmd: apache2-restart
+      - cmd: apache-restart
     - require:
-      - pkg: apache2
+      - pkg: apache
       - pkg: php5
 {% endif %}
 

@@ -18,7 +18,7 @@ a2dissite {{ pillar['apache2-register-site'][site]['name'] }}:
 {% endif %}
     - order: 230
     - require:
-      - pkg: apache2
+      - pkg: apache
       - file: /etc/apache2/sites-available/{{ pillar['apache2-register-site'][site]['name'] }}
 
 {% endif %}
@@ -37,7 +37,7 @@ a2dissite {{ pillar['apache2-register-site'][site]['name'] }}:
     - mode: 775
     - watch_in:
       - cmd: a2ensite {{ pillar['apache2-register-site'][site]['name'] }}
-      - cmd: apache2-reload
+      - cmd: apache-reload
 
 {% endif %}
 ##########################################
