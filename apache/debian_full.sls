@@ -1,17 +1,15 @@
 include:
   - apt
+  - apache
   - apache.register_site
 
 {% if grains['os']=="Ubuntu" %}
-
-apache:
-  pkg.installed:
-    - name: apache2
-    - order: 175
-  service.running:
-    - name: apache2
-    - enable: True
-    - order: 455
+extend:
+  apache:
+    pkg:
+      - order: 175
+    service:
+      - order: 455
 
 a2dissite 000-default:
   cmd.run:
