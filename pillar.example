@@ -1,0 +1,10 @@
+# Example for the apache.debian_full formula:
+
+apache:
+  php-ini: 'salt://path/to/file/php.ini'
+  register-site:
+    # any name as an array index, and you can duplicate this section
+    {{UNQIUE}}:
+      name: 'my name'
+      path: 'salt://path/to/sites-available/conf/file'
+      state: 'enabled'
