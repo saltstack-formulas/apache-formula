@@ -1,7 +1,7 @@
+{% if grains['os_family']=="Debian" %}
+
 include:
   - apt
-
-{% if grains['os']=="Ubuntu" %}
 
 a2enmod rewrite:
   cmd.run:

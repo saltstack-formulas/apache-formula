@@ -1,9 +1,10 @@
+{% if grains['os_family']=="Debian" %}
+
 include:
   - apt
   - apache
   - apache.register_site
 
-{% if grains['os']=="Ubuntu" %}
 extend:
   apache:
     pkg:
@@ -42,4 +43,4 @@ apache-restart:
     - require:
       - pkg: apache
 
-{% endif %} #END: os = ubuntu
+{% endif %} #END: os = debian

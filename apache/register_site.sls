@@ -1,3 +1,5 @@
+{% if grains['os_family']=="Debian" %}
+
 {% if 'apache' in pillar and 'register-site' in pillar['apache'] %} #BEGIN: ['apache']['register-site']
 {% for site in pillar['apache']['register-site'] %}
 
@@ -44,3 +46,4 @@ a2dissite {{ pillar['apache']['register-site'][site]['name'] }}:
 
 {% endfor %}
 {% endif %} #END: apache-register-site
+{% endif %} #END: grains['os_family'] == debian
