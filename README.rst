@@ -13,6 +13,8 @@ Available states
 
 ``apache``
     Installs the Apache package and starts the service.
+``apache.mod_wsgi``
+    Installs the mod_wsgi package and enables the Apache module.
 ``apache.debian_full``
     Installs and configures Apache on Debian and Ubuntu systems.
 
