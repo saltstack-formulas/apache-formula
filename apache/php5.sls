@@ -1,7 +1,7 @@
+{% if grains['os_family']=="Debian" %}
+
 include:
   - apt
-
-{% if grains['os']=="Ubuntu" %}
 
 mod-php5:
   pkg.installed:
