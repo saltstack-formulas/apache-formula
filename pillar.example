@@ -1,7 +1,11 @@
-# Example for the apache.debian_full formula:
-
+# ``apache`` formula configuration:
 apache:
-  php-ini: 'salt://path/to/file/php.ini'
+  server: apache2
+  service: apache2
+  conf: /etc/apache2/conf.d
+
+# ``apache.debian_full`` formula additional configuration:
+apache:
   register-site:
     # any name as an array index, and you can duplicate this section
     {{UNQIUE}}:

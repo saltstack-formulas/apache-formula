@@ -1,13 +1,10 @@
-{% set pkg = salt['grains.filter_by']({
-  'Debian': {'name': 'apache2'},
-  'RedHat': {'name': 'httpd'},
-}) %}
+{% from "apache/package-map.jinja" import apache with context %}
 
 apache:
   pkg:
     - installed
-    - name: {{ pkg.name }}
+    - name: {{ apache.server }}
   service:
     - running
-    - name: {{ pkg.name }}
+    - name: {{ apache.service }}
     - enable: True
