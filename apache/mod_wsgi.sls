@@ -1,12 +1,9 @@
-{% set pkg = salt['grains.filter_by']({
-  'Debian': {'name': 'libapache2-mod-wsgi'},
-  'RedHat': {'name': 'mod_wsgi'},
-}) %}
+{% from "apache/package-map.jinja" import apache with context %}
 
 mod_wsgi:
   pkg:
     - installed
-    - name: {{ pkg.name }}
+    - name: {{ apache.mod_wsgi }}
 
 {% if grains.get('os_family') == 'RedHat' %}
 /etc/httpd/conf.d/wsgi.conf:

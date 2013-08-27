@@ -3,6 +3,7 @@ apache:
   server: apache2
   service: apache2
   conf: /etc/apache2/conf.d
+  mod_wsgi: mod_wsgi
 
 # ``apache.debian_full`` formula additional configuration:
 apache:

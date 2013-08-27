@@ -3,10 +3,12 @@
         'server': 'apache2',
         'service': 'apache2',
         'conf': '/etc/apache2/conf.d',
+        'mod_wsgi': 'libapache2-mod-wsgi',
     },
     'RedHat': {
         'server': 'httpd',
         'service': 'httpd',
         'conf': '/etc/httpd/conf.d',
+        'mod_wsgi': 'mod_wsgi',
     },
 }, merge=salt['pillar.get']('apache:lookup')) %}
