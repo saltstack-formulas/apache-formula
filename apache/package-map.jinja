@@ -2,13 +2,23 @@
     'Debian': {
         'server': 'apache2',
         'service': 'apache2',
-        'conf': '/etc/apache2/conf.d',
+
         'mod_wsgi': 'libapache2-mod-wsgi',
+
+        'vhostdir': '/etc/apache2/sites-available',
+        'confdir': '/etc/apache2/conf.d',
+        'logdir': '/var/log/apache2',
+        'wwwdir': '/srv',
     },
     'RedHat': {
         'server': 'httpd',
         'service': 'httpd',
-        'conf': '/etc/httpd/conf.d',
+
         'mod_wsgi': 'mod_wsgi',
+
+        'vhostdir': '/etc/httpd/conf.d',
+        'confdir': '/etc/httpd/conf.d',
+        'logdir': '/var/log/httpd',
+        'wwwdir': '/var/www',
     },
 }, merge=salt['pillar.get']('apache:lookup')) %}
