@@ -10,10 +10,10 @@ apache:
     - enable: True
 
 apache-reload:
-  cmd.wait:
-    - name: service apache2 reload
+  module.wait:
+    - name: service.reload {{ apache.service }}
 
 apache-restart:
-  cmd.wait:
-    - name: service apache2 restart
+  module.wait:
+    - name: service.restart {{ apache.service }}
 
