@@ -2,6 +2,7 @@
 
 include:
   - apt
+  - apache
 
 mod-php5:
   pkg.installed:
