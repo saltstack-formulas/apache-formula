@@ -21,14 +21,12 @@ a2dissite 000-default:
     - require:
       - pkg: apache
 
-apache-reload:
-  cmd.wait:
-    - name: service apache2 reload
+extend:
+  apache-reload:
     - order: 420
 
-apache-restart:
-  cmd.wait:
-    - name: service apache2 restart
+extend:
+  apache-restart:
     - order: 425
 
 /etc/apache2/sites-available/default:
