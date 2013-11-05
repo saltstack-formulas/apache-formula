@@ -4,9 +4,9 @@ include:
   - apt
   - apache
 
-a2enmod rewrite:
+a2enmod vhost_alias:
   cmd.run:
-    - unless: ls /etc/apache2/mods-enabled/rewrite.load
+    - unless: ls /etc/apache2/mods-enabled/vhost_alias.load
     - order: 225
     - require:
       - pkg: apache
