@@ -25,7 +25,7 @@ Installs the Apache package and starts the service.
 
 Installs the mod_wsgi package and enables the Apache module.
 
-``apache.vhost.standard``
+``apache.vhosts.standard``
 -------------------------
 
 Configures Apache name-based virtual hosts using data from Pillar.
