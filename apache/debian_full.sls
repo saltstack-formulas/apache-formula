@@ -23,11 +23,13 @@ a2dissite 000-default:
 
 extend:
   apache-reload:
-    - order: 420
+    module.wait:
+      - order: 420
 
 extend:
   apache-restart:
-    - order: 425
+    module.wait:
+      - order: 425
 
 /etc/apache2/sites-available/default:
   file.absent:
