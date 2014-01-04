@@ -17,7 +17,7 @@ a2dissite 000-default:
     - order: 225
     - onlyif: ls /etc/apache2/sites-enabled/000-default
     - watch_in:
-      - cmd: apache-reload
+      - module: apache-reload
     - require:
       - pkg: apache
 
