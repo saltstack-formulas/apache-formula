@@ -13,6 +13,6 @@ a2enmod proxy_http:
       - pkg: apache
       - cmd: a2enmod proxy
     - watch_in:
-      - cmd: apache-restart
+      - module: apache-restart
 
 {% endif %}
