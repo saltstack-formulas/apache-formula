@@ -11,6 +11,6 @@ a2enmod vhost_alias:
     - require:
       - pkg: apache
     - watch_in:
-      - cmd: apache-restart
+      - module: apache-restart
 
 {% endif %}
