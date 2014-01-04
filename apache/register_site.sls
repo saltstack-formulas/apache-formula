@@ -39,7 +39,7 @@ a2dissite {{ pillar['apache']['register-site'][site]['name'] }}:
     - mode: 775
     - watch_in:
       - cmd: a2ensite {{ pillar['apache']['register-site'][site]['name'] }}
-      - cmd: apache-reload
+      - module: apache-reload
 
 {% endif %}
 ##########################################

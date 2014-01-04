@@ -18,7 +18,7 @@ include:
     - require:
       - pkg: apache
     - watch_in:
-      - cmd: apache-reload
+      - module: apache-reload
 
 {% if grains.os_family == 'Debian' %}
 a2ensite {{ id }}:
