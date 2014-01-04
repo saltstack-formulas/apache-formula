@@ -20,6 +20,16 @@ Available states
 
 Installs the Apache package and starts the service.
 
+``apache.mod_proxy``
+-------------------
+
+Enables the Apache module mod_proxy.
+
+``apache.mod_proxy_http``
+-------------------
+
+Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled.
+
 ``apache.mod_wsgi``
 -------------------
 
