@@ -14,9 +14,9 @@ a2enmod fcgid:
   cmd.run:
     - order: 225
     - unless: ls /etc/apache2/mods-enabled/fcgid.load
-    - require: 
+    - require:
       - pkg: mod-fcgid
     - watch_in:
-      - cmd: apache-restart
+      - module: apache-restart
 
 {% endif %}

@@ -27,7 +27,7 @@ a2ensite {{ id }}:
     - require:
       - file: {{ id }}
     - watch_in:
-      - cmd: apache-reload
+      - module: apache-reload
 {% endif %}
 
 {% endfor %}

@@ -11,6 +11,6 @@ a2enmod rewrite:
     - require:
       - pkg: apache
     - watch_in:
-      - cmd: apache-restart
+      - module: apache-restart
 
 {% endif %}
