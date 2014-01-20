@@ -1,7 +1,7 @@
 {% if grains['os_family']=="Debian" %}
 
 include:
-  - apt
+  - apache
 
 mod-fcgid:
   pkg.installed:
