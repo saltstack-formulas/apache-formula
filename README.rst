@@ -108,7 +108,7 @@ Dependencies:
 
 Optional dependencies:
 
-1) `php <https://github.com/saltstack-formulas/php-formula>`_
+* `php <https://github.com/saltstack-formulas/php-formula>`_
 
 Example Pillar:
 
