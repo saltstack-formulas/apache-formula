@@ -21,4 +21,15 @@
         'logdir': '/var/log/httpd',
         'wwwdir': '/var/www',
     },
+    'FreeBSD': {
+        'server': 'apache22',
+        'service': 'apache22',
+
+        'mod_wsgi': 'ap22-mod_wsgi3',
+
+        'vhostdir': '/usr/local/etc/apache22/Includes',
+        'confdir': '/usr/local/etc/apache22/Includes',
+        'logdir': '/var/log/',
+        'wwwdir': '/usr/local/www/apache22/',
+    },
 }, merge=salt['pillar.get']('apache:lookup')) %}
