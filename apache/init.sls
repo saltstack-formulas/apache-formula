@@ -18,3 +18,11 @@ apache-restart:
   module.wait:
     - name: service.restart
     - m_name: {{ apache.service }}
+
+{{ apache.home }}:
+    file.directory:
+        - user: root
+        - group: root
+        - recurse:
+            - user
+            - group
