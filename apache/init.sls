@@ -23,6 +23,8 @@ apache-restart:
     file.directory:
         - user: root
         - group: root
+        - dir_mode: 755
         - recurse:
             - user
             - group
+            - mode
