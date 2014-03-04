@@ -10,11 +10,13 @@ apache:
     - enable: True
 
 apache-reload:
-  module.wait:
+  module:
+    - wait
     - name: service.reload
     - m_name: {{ apache.service }}
 
 apache-restart:
-  module.wait:
+  module:
+    - wait
     - name: service.restart
     - m_name: {{ apache.service }}
