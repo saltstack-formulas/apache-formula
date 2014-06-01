@@ -117,7 +117,7 @@ Example Pillar:
     apache:
       register-site:
         # any name as an array index, and you can duplicate this section
-        {{UNQIUE}}:
+        {{UNIQUE}}:
           name: 'my name'
           path: 'salt://path/to/sites-available/conf/file'
           state: 'enabled'
