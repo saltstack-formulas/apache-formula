@@ -46,41 +46,8 @@ Example Pillar:
 
     apache:
       sites:
-        # Default values below are used unless disabled by setting to 'None'.
         example.com: # must be unique; used as an ID declaration in Salt; also passed to the template context as {{ id }}
           template_file: salt://apache/vhosts/standard.tmpl
-          template_engine: jinja
-
-          interface: '*'
-          port: '80'
-
-          ServerName: {{ id }} # uses the unique ID above unless specified
-          ServerAlias: www.{{ id }}
-
-          ServerAdmin: webmaster@{{ id }}
-
-          LogLevel: warn
-          ErrorLog: {{ logdir }}/{{ id }}-error.log # E.g.: /var/log/apache2/example.com-error.log
-          CustomLog: {{ logdir }}/{{ id }}-access.log # E.g.: /var/log/apache2/example.com-access.log
-
-          DocumentRoot: {{ wwwdir }}/{{ id }} # E.g., /var/www/example.com
-
-          Directory:
-            {{ wwwdir }}/{{ id }}: # E.g.: /var/www/example.com:
-              Options: -Indexes FollowSymLinks
-              Order: allow,deny
-              Allow: from all
-              AllowOverride: All
-              Formula_Append: |
-                Additional config as a
-                multi-line string here
-
-          Formula_Append: |
-            Additional config as a
-            multi-line string here
-
-        example.net:
-          template_file: salt://apache/vhosts/minimal.tmpl
 
 
 ``apache.debian_full``
