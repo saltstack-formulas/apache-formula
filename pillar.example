@@ -9,12 +9,10 @@ apache:
   logdir: /var/log/apache2
   wwwdir: /srv/apache2
 
-# ``apache.mod_wsgi`` formula additional configuration:
-apache:
+  # ``apache.mod_wsgi`` formula additional configuration:
   mod_wsgi: mod_wsgi
 
-# ``apache.vhosts`` formula additional configuration:
-apache:
+  # ``apache.vhosts`` formula additional configuration:
   sites:
     # Default values below are used unless disabled by setting to 'False'.
     example.com: # must be unique; used as an ID declaration in Salt; also passed to the template context as {{ id }}
@@ -52,8 +50,7 @@ apache:
     example.net:
       template_file: salt://apache/vhosts/minimal.tmpl
 
-# ``apache.debian_full`` formula additional configuration:
-apache:
+  # ``apache.debian_full`` formula additional configuration:
   register-site:
     # any name as an array index, and you can duplicate this section
     {{UNQIUE}}:
