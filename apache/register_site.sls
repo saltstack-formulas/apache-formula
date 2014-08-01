@@ -14,9 +14,9 @@ a2dissite {{ pillar['apache']['register-site'][site]['name'] }}:
 {% endif %}
   cmd.run:
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
-    - unless: ls /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
+    - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
 {% else %}
-    - onlyif: ls /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
+    - onlyif: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
 {% endif %}
     - order: 230
     - require:
