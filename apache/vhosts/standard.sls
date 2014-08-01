@@ -24,6 +24,7 @@ include:
 a2ensite {{ id }}:
   cmd:
     - run
+    - unless: ls /etc/apache2/sites-enabled/{{ id }}
     - require:
       - file: {{ id }}
     - watch_in:
