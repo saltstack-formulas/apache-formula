@@ -9,6 +9,8 @@ apache:
     - name: {{ apache.service }}
     - enable: True
 
+# The following states are inert by default and can be used by other states to
+# trigger a restart or reload as needed.
 apache-reload:
   module:
     - wait
