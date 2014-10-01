@@ -1,3 +1,5 @@
+{% from "apache/map.jinja" import apache with context %}
+
 {% if grains['os_family']=="Debian" %}
 
 include:
@@ -17,24 +19,21 @@ extend:
     module:
       - order: 425
 
-a2dissite 000-default:
+a2dissite 000-default{{ apache.confext }}:
   cmd.run:
-    - order: 225
-    - onlyif: ls /etc/apache2/sites-enabled/000-default
+    - onlyif: test -f /etc/apache2/sites-enabled/000-default{{ apache.confext }}
     - watch_in:
       - module: apache-reload
     - require:
       - pkg: apache
 
-/etc/apache2/sites-available/default:
+/etc/apache2/sites-available/{{ apache.default_site }}:
   file.absent:
-    - order: 230
     - require:
       - pkg: apache
 
-/etc/apache2/sites-available/default-ssl:
+/etc/apache2/sites-available/{{ apache.default_site_ssl }}:
   file.absent:
-    - order: 230
     - require:
       - pkg: apache
 
