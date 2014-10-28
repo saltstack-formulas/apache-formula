@@ -24,7 +24,7 @@
 
     'Directory_default': '{0}/{1}'.format(map.wwwdir, sitename),
     'Directory': {
-        'Options': '-Indexes FollowSymLinks',
+        'Options': '-Indexes +FollowSymLinks',
         'Order': 'allow,deny',
         'Allow': 'from all',
         'Require': 'all granted',
