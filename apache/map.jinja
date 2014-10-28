@@ -12,7 +12,7 @@
         'default_site_ssl': 'default-ssl',
         'logdir': '/var/log/apache2',
         'wwwdir': '/srv',
-        'require_all': False,
+        'use_require': False,
     },
     'RedHat': {
         'server': 'httpd',
@@ -27,7 +27,7 @@
         'default_site_ssl': 'default-ssl',
         'logdir': '/var/log/httpd',
         'wwwdir': '/var/www',
-        'require_all': False,
+        'use_require': False,
     },
     'FreeBSD': {
         'server': 'apache22',
@@ -42,15 +42,19 @@
         'default_site_ssl': 'default-ssl',
         'logdir': '/var/log/',
         'wwwdir': '/usr/local/www/apache22/',
-        'require_all': False,
+        'use_require': False,
     },
 }, merge=salt['grains.filter_by']({
     '14.04': {
         'confext': '.conf',
         'default_site': '000-default.conf',
         'default_site_ssl': 'default-ssl.conf',
-        'require_all': True,
+        'use_require': True,
+    },
+    '14.10': {
+        'confext': '.conf',
+        'default_site': '000-default.conf',
+        'default_site_ssl': 'default-ssl.conf',
+        'use_require': True,
     },
 }, grain='lsb_distrib_release', merge=salt['pillar.get']('apache:lookup'))) %}
-
-
