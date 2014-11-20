@@ -68,3 +68,10 @@ apache:
       name: 'my name'
       path: 'salt://path/to/sites-available/conf/file'
       state: 'enabled'
+
+  modules:
+    enabled:  # List modules to enable
+      - ldap
+      - ssl
+    disabled:  # List modules to disable
+      - rewrite
