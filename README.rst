@@ -20,6 +20,11 @@ Available states
 
 Installs the Apache package and starts the service.
 
+``apache.modules``
+------------------
+
+Enables and disables Apache modules.
+
 ``apache.mod_proxy``
 -------------------
 
