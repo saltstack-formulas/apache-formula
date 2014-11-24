@@ -21,11 +21,12 @@ include:
       - module: apache-reload
 
 {% if grains.os_family == 'Debian' %}
-a2ensite {{ id }}:
+a2ensite {{ id }}{{ apache.confext }}:
   cmd:
     - run
+    - unless: test -f /etc/apache2/sites-enabled/{{ id }}{{ apache.confext }}
     - require:
-      - file: {{ id }}
+      - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}
     - watch_in:
       - module: apache-reload
 {% endif %}

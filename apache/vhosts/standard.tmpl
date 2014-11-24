@@ -1,5 +1,7 @@
 {# Define default values here so the template below can just focus on layout #}
+{% from "apache/map.jinja" import apache with context %}
 {% set sitename = site.get('ServerName', id) %}
+
 {% set vals = {
     'interface': site.get('interface', '*'),
     'port': site.get('port', '80'),
@@ -22,9 +24,10 @@
 
     'Directory_default': '{0}/{1}'.format(map.wwwdir, sitename),
     'Directory': {
-        'Options': '-Indexes FollowSymLinks',
+        'Options': '-Indexes +FollowSymLinks',
         'Order': 'allow,deny',
         'Allow': 'from all',
+        'Require': 'all granted',
         'AllowOverride': 'None',
     },
 } %}
@@ -50,6 +53,7 @@
         'Options': dir.get('Options', vals.Directory.Options),
         'Order': dir.get('Order', vals.Directory.Order),
         'Allow': dir.get('Allow', vals.Directory.Allow),
+        'Require': dir.get('Require', vals.Directory.Require),
         'AllowOverride': dir.get('AllowOverride', vals.Directory.AllowOverride),
     } %}
 
@@ -57,8 +61,12 @@
 
     <Directory "{{ path }}">
         {% if dir.get('Options') != False %}Options {{ dvals.Options }}{% endif %}
+        {% if apache.use_require %}
+        {% if dir.get('Require') != False %}Require {{dvals.Require}}{% endif %}
+        {% else %}
         {% if dir.get('Order') != False %}Order {{ dvals.Order }}{% endif %}
         {% if dir.get('Allow') != False %}Allow {{ dvals.Allow }}{% endif %}
+        {% endif %}
         {% if dir.get('AllowOverride') != False %}AllowOverride {{ dvals.AllowOverride }}{% endif %}
 
         {% if dir.get('Formula_Append') %}
