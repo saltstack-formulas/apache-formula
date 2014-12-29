@@ -28,7 +28,7 @@ a2enmod php5:
       - module: apache-restart
     - require:
       - pkg: apache
-      - pkg: php5
+      - pkg: mod-php5
 {% endif %}
 
 {% endif %}
