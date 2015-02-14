@@ -57,6 +57,17 @@ apache:
             Additional config as a
             multi-line string here
 
+      # if template is 'redirect.tmpl'
+      # RedirectSource: '/'
+      # RedirectTarget: 'http://www.example.net'
+
+      # if template is 'proxy.tmpl'
+      # ProxyPreserveHost: 'On'
+      # ProxyPassSource: '/'
+      # ProxyPassTarget: 'http://www.example.net'
+      # ProxyPassReverseSource: '/'
+      # ProxyPassReverseTarget: 'http://www.example.net'
+
       Formula_Append: |
         Additional config as a
         multi-line string here
