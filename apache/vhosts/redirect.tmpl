@@ -1,0 +1,43 @@
+{# Define default values here so the template below can just focus on layout #}
+{% from "apache/map.jinja" import apache with context %}
+{% set sitename = site.get('ServerName', id) %}
+
+{% set vals = {
+    'interface': site.get('interface', '*'),
+    'port': site.get('port', '80'),
+
+    'ServerName': sitename,
+    'ServerAlias': site.get('ServerAlias', 'www.{0}'.format(sitename)),
+
+    'ServerAdmin': site.get('ServerAdmin', 'webmaster@{0}'.format(sitename)),
+
+    'UseCanonicalName': site.get('UseCanonicalName'),
+
+    'LogLevel': site.get('LogLevel', 'warn'),
+    'ErrorLog': site.get('ErrorLog', '{0}/{1}-error.log'.format(map.logdir, sitename)),
+    'LogFormat': site.get('LogFormat', '"%h %l %u %t \\\"%r\\\" %>s %O"'),
+    'CustomLog': site.get('CustomLog', '{0}/{1}-access.log'.format(map.logdir, sitename)),
+    
+    'RedirectSource': site.get('RedirectSource', '/'),
+    'RedirectTarget': site.get('RedirectTarget', 'https://{0}'.format(sitename)),
+
+} %}
+
+<VirtualHost {{ vals.interface }}:{{ vals.port }}>
+    ServerName {{ vals.ServerName }}
+    {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
+
+    {% if site.get('ServerAdmin') != False %}ServerAdmin {{ vals.ServerAdmin }}{% endif %}
+
+    {% if site.get('UseCanonicalName') %}UseCanonicalName {{ vals.UseCanonicalName }}{% endif %}
+
+    {% if site.get('LogLevel') != False %}LogLevel {{ vals.LogLevel }}{% endif %}
+    {% if site.get('ErrorLog') != False %}ErrorLog {{ vals.ErrorLog }}{% endif %}
+    {% if site.get('CustomLog') != False %}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
+
+    Redirect {{ vals.RedirectSource }} {{ vals.RedirectTarget }}
+
+    {% if site.get('Formula_Append') %}
+    {{ site.Formula_Append|indent(4) }}
+    {% endif %}
+</VirtualHost>

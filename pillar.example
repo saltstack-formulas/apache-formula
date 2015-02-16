@@ -18,7 +18,7 @@ apache:
       template_file: salt://apache/vhosts/minimal.tmpl
 
     example.com: # must be unique; used as an ID declaration in Salt.
-      template_file: salt://apache/vhosts/standard.tmpl
+      template_file: salt://apache/vhosts/standard.tmpl # or redirect.tmpl or proxy.tmpl
 
       ####################### DEFAULT VALUES BELOW ############################
       # NOTE: the values below are simply default settings that *can* be
@@ -56,6 +56,17 @@ apache:
           Formula_Append: |
             Additional config as a
             multi-line string here
+
+      # if template is 'redirect.tmpl'
+      # RedirectSource: '/'
+      # RedirectTarget: 'http://www.example.net'
+
+      # if template is 'proxy.tmpl'
+      # ProxyPreserveHost: 'On'
+      # ProxyPassSource: '/'
+      # ProxyPassTarget: 'http://www.example.net'
+      # ProxyPassReverseSource: '/'
+      # ProxyPassReverseTarget: 'http://www.example.net'
 
       Formula_Append: |
         Additional config as a
