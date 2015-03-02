@@ -74,14 +74,6 @@ are divided into the following number ranges:
 9)  apache WILL reserve 451-460 for service.running
 10) apache will reserve 461-500 for cmd requiring operational services
 
-Dependencies:
-
-* `apt <https://github.com/saltstack-formulas/apt-formula>`_
-
-Optional dependencies:
-
-* `php <https://github.com/saltstack-formulas/php-formula>`_
-
 Example Pillar:
 
 .. code:: yaml
