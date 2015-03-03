@@ -20,7 +20,7 @@ include:
     - watch_in:
       - module: apache-reload
 
-document_root:
+document_root_{{ id }}:
   file:
     - directory
     - name: {{ site.get('DocumentRoot', '{0}/{1}'.format(apache.wwwdir, id)) }}
