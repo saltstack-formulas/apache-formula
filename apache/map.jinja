@@ -62,6 +62,6 @@
         'confext': '.conf',
         'default_site': '000-default.conf',
         'default_site_ssl': 'default-ssl.conf',
-        'user_require': True,
+        'use_require': True,
     },
 }, grain='lsb_distrib_release', merge=salt['pillar.get']('apache:lookup'))) %}
