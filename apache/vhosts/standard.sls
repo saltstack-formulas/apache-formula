@@ -20,6 +20,15 @@ include:
     - watch_in:
       - module: apache-reload
 
+document_root_{{ id }}:
+  file:
+    - directory
+    - name: {{ site.get('DocumentRoot', '{0}/{1}'.format(apache.wwwdir, id)) }}
+    - require:
+      - pkg: apache
+    - watch_in:
+      - module: apache-reload
+
 {% if grains.os_family == 'Debian' %}
 a2ensite {{ id }}{{ apache.confext }}:
   cmd:
