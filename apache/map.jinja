@@ -29,6 +29,21 @@
         'wwwdir': '/var/www',
         'use_require': False,
     },
+    'Suse': {
+        'server': 'apache2',
+        'service': 'apache2',
+
+        'mod_wsgi': 'apache2-mod_wsgi',
+
+        'vhostdir': '/etc/apache2/vhosts.d',
+        'confdir': '/etc/httpd/conf.d',
+        'confext': '.conf',
+        'default_site': 'vhost.template',
+        'default_site_ssl': 'vhost-ssl.template',
+        'logdir': '/var/log/apache2',
+        'wwwdir': '/srv/www',
+        'use_require': True,
+    },
     'FreeBSD': {
         'server': 'apache22',
         'service': 'apache22',
