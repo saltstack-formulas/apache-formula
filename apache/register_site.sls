@@ -8,10 +8,11 @@
 {% if 'name' in pillar['apache']['register-site'][site] and 'state' in pillar['apache']['register-site'][site] %}
 
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
-a2ensite {{ pillar['apache']['register-site'][site]['name'] }}:
+{% set a2modid = "a2ensite " ~ pillar['apache']['register-site'][site]['name'] %}
 {% else %}
-a2dissite {{ pillar['apache']['register-site'][site]['name'] }}:
+{% set a2modid = "a2dissite " ~ pillar['apache']['register-site'][site]['name'] %}
 {% endif %}
+{{ a2modid }}:
   cmd.run:
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
     - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
@@ -38,7 +39,7 @@ a2dissite {{ pillar['apache']['register-site'][site]['name'] }}:
     - group: root
     - mode: 775
     - watch_in:
-      - cmd: a2ensite {{ pillar['apache']['register-site'][site]['name'] }}
+      - cmd: {{ a2modid }}
       - module: apache-reload
 
 {% endif %}
