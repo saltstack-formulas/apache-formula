@@ -60,23 +60,23 @@
         'use_require': False,
     },
 }, merge=salt['grains.filter_by']({
-    '14.04': {
+    'trusty': {
         'confext': '.conf',
         'default_site': '000-default.conf',
         'default_site_ssl': 'default-ssl.conf',
         'use_require': True,
     },
-    '14.10': {
+    'utopic': {
         'confext': '.conf',
         'default_site': '000-default.conf',
         'default_site_ssl': 'default-ssl.conf',
         'use_require': True,
     },
-    '8.0': {
+    'jessie': {
         'wwwdir': '/var/www',
         'confext': '.conf',
         'default_site': '000-default.conf',
         'default_site_ssl': 'default-ssl.conf',
         'use_require': True,
     },
-}, grain='lsb_distrib_release', merge=salt['pillar.get']('apache:lookup'))) %}
+}, grain='oscodename', merge=salt['pillar.get']('apache:lookup'))) %}
