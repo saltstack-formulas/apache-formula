@@ -63,10 +63,12 @@ apache:
 
       # if template is 'proxy.tmpl'
       # ProxyPreserveHost: 'On'
-      # ProxyPassSource: '/'
-      # ProxyPassTarget: 'http://www.example.net'
-      # ProxyPassReverseSource: '/'
-      # ProxyPassReverseTarget: 'http://www.example.net'
+      # ProxyRoute: 
+      #   my sample route:
+      #      ProxyPassSource: '/'
+      #      ProxyPassTarget: 'http://www.example.net'
+      #      ProxyPassReverseSource: '/'
+      #      ProxyPassReverseTarget: 'http://www.example.net'
 
       Formula_Append: |
         Additional config as a

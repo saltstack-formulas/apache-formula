@@ -19,11 +19,7 @@
     'CustomLog': site.get('CustomLog', '{0}/{1}-access.log'.format(map.logdir, sitename)),
     
     'ProxyPreserveHost': site.get('ProxyPreserveHost', 'On'),
-    'ProxyPassSource': site.get('ProxyPassSource', '/'),
-    'ProxyPassTarget': site.get('ProxyPassTarget', 'https://{0}'.format(sitename)),
-    'ProxyPassReverseSource': site.get('ProxyPassReverseSource', site.get('ProxyPassSource', '/')),
-    'ProxyPassReverseTarget': site.get('ProxyPassReverseTarget', site.get('ProxyPassTarget', 'https://{0}'.format(sitename))),
-
+    'ProxyRoute': site.get('ProxyRoute', {}),
 } %}
 
 <VirtualHost {{ vals.interface }}:{{ vals.port }}>
@@ -38,10 +34,18 @@
     {% if site.get('ErrorLog') != False %}ErrorLog {{ vals.ErrorLog }}{% endif %}
     {% if site.get('CustomLog') != False %}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
 
-    ProxyPreserveHost {{ vals.ProxyPreserveHost }}
-    ProxyPass               {{ vals.ProxyPassSource }} {{ vals.ProxyPassTarget }}
-    ProxyPassReverse        {{ vals.ProxyPassReverseSource }} {{ vals.ProxyPassReverseTarget }}
-
+    ProxyPreserveHost {{ vals.ProxyPreserveHost }}    
+    {% for proxy, proxyargs in reverse(vals.ProxyRoute.items()) %}
+    {% set proxyvals = {
+        'ProxyPassSource': proxyargs.get('ProxyPassSource', '/'),
+        'ProxyPassTarget': proxyargs.get('ProxyPassTarget', 'https://{0}'.format(sitename)),
+        'ProxyPassReverseSource': proxyargs.get('ProxyPassReverseSource', '/'),
+        'ProxyPassReverseTarget': proxyargs.get('ProxyPassReverseTarget', site.get('ProxyPassTarget', 'https://{0}'.format(sitename))),
+    } %}
+    ######### {{proxy}} #########
+    ProxyPass               {{ proxyvals.ProxyPassSource }} {{ proxyvals.ProxyPassTarget }}
+    ProxyPassReverse        {{ proxyvals.ProxyPassReverseSource }} {{ proxyvals.ProxyPassReverseTarget }}
+    {% endfor %}
     {% if site.get('Formula_Append') %}
     {{ site.Formula_Append|indent(4) }}
     {% endif %}
