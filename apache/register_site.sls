@@ -38,6 +38,13 @@
     - user: root
     - group: root
     - mode: 775
+{% if 'template' in pillar['apache']['register-site'][site] and 'defaults' in pillar['apache']['register-site'][site] %}
+    - template: jinja
+    - defaults:
+    {% for key, value in pillar['apache']['register-site'][site]['defaults'].iteritems() %}
+      {{ key }}: {{ value }}
+    {% endfor %}
+{% endif %}
     - watch_in:
       - cmd: {{ a2modid }}
       - module: apache-reload
