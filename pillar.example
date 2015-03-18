@@ -81,6 +81,10 @@ apache:
       name: 'my name'
       path: 'salt://path/to/sites-available/conf/file'
       state: 'enabled'
+      # Optional - use managed file as Jinja Template
+      #template: true
+      #defaults:
+      #  custom_var: "default value"
 
   modules:
     enabled:  # List modules to enable
