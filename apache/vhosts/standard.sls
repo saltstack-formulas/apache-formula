@@ -24,6 +24,7 @@ include:
   file.directory:
     - unless: test -d {{ site.get('DocumentRoot') }}
     - name: {{ site.get('DocumentRoot') }}
+    - makedirs: True
 
 {% if grains.os_family == 'Debian' %}
 a2ensite {{ id }}{{ apache.confext }}:
