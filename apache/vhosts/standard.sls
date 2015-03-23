@@ -19,6 +19,11 @@ include:
       - pkg: apache
     - watch_in:
       - module: apache-reload
+      
+{{ id }}-documentroot:
+  file.directory:
+    - unless: test -d {{ site.get('DocumentRoot') }}
+    - name: {{ site.get('DocumentRoot') }}
 
 {% if grains.os_family == 'Debian' %}
 a2ensite {{ id }}{{ apache.confext }}:
