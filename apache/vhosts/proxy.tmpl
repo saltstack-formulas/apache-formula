@@ -35,7 +35,7 @@
     {% if site.get('CustomLog') != False %}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
 
     ProxyPreserveHost {{ vals.ProxyPreserveHost }}    
-    {% for proxy, proxyargs in reverse(vals.ProxyRoute.items()) %}
+    {% for proxy, proxyargs in vals.ProxyRoute.items()|reverse %}
     {% set proxyvals = {
         'ProxyPassSource': proxyargs.get('ProxyPassSource', '/'),
         'ProxyPassTarget': proxyargs.get('ProxyPassTarget', 'https://{0}'.format(sitename)),
