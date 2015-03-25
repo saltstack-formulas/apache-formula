@@ -19,12 +19,14 @@ include:
       - pkg: apache
     - watch_in:
       - module: apache-reload
-      
+
+{% if 'DocumentRoot' in site %}
 {{ id }}-documentroot:
   file.directory:
     - unless: test -d {{ site.get('DocumentRoot') }}
     - name: {{ site.get('DocumentRoot') }}
     - makedirs: True
+{% endif %}
 
 {% if grains.os_family == 'Debian' %}
 a2ensite {{ id }}{{ apache.confext }}:
