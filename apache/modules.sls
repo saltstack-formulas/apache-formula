@@ -25,9 +25,7 @@ a2dismod {{ module }}:
       - module: apache-restart
 {% endfor %}
 
-{% endif %}
-
-{% if grains['os_family']=="RedHat" %}
+{% elif grains['os_family']=="RedHat" %}
 
 include:
   - apache
