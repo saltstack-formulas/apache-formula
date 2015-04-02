@@ -48,6 +48,14 @@
     {% if site.get('DocumentRoot') != False %}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
     {% if site.get('VirtualDocumentRoot') %}VirtualDocumentRoot {{ vals.VirtualDocumentRoot }}{% endif %}
 
+    {% if site.SSLCertificateFile is defined %}
+    SSLEngine on
+    SSLCertificateFile {{ site.SSLCertificateFile }}
+    {%   if site.SSLCertificateKeyFile is defined %}
+    SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}
+    {%   endif %}
+    {% endif %}
+
     {% for path, dir in site.get('Directory', {}).items() %}
     {% set dvals = {
         'Options': dir.get('Options', vals.Directory.Options),
