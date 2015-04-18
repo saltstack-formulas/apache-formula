@@ -6,7 +6,7 @@ include:
 {% for module in salt['pillar.get']('apache:modules:enabled', []) %}
 a2enmod {{ module }}:
   cmd.run:
-    - unless: ls /etc/apache2/mods-enabled/{{ module }}.load
+    - unless: a2query -q -m {{ module }}
     - order: 225
     - require:
       - pkg: apache
@@ -17,7 +17,7 @@ a2enmod {{ module }}:
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
 a2dismod {{ module }}:
   cmd.run:
-    - onlyif: ls /etc/apache2/mods-enabled/{{ module }}.load
+    - onlyif: a2query -q -m {{ module }}
     - order: 225
     - require:
       - pkg: apache

@@ -5,7 +5,7 @@ include:
 
 a2enmod proxy:
   cmd.run:
-    - unless: ls /etc/apache2/mods-enabled/proxy.load
+    - unless: a2query -q -m proxy
     - order: 225
     - require:
       - pkg: apache

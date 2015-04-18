@@ -5,7 +5,7 @@ include:
 
 a2enmod rewrite:
   cmd.run:
-    - unless: ls /etc/apache2/mods-enabled/rewrite.load
+    - unless: a2query -q -m rewrite
     - order: 225
     - require:
       - pkg: apache
