@@ -13,7 +13,7 @@ mod-fcgid:
 a2enmod fcgid:
   cmd.run:
     - order: 225
-    - unless: ls /etc/apache2/mods-enabled/fcgid.load
+    - unless: a2query -q -m fcgid
     - require:
       - pkg: mod-fcgid
     - watch_in:

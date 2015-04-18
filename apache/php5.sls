@@ -12,7 +12,7 @@ mod-php5:
 
 a2enmod php5:
   cmd.run:
-    - unless: ls /etc/apache2/mods-enabled/php5.load
+    - unless: a2query -q -m php5
     - order: 225
     - require:
       - pkg: mod-php5
