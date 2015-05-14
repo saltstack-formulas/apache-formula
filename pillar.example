@@ -44,8 +44,8 @@ apache:
 
       DocumentRoot: /path/to/www/dir/example.com # E.g., /var/www/example.com
 
-      SSLCertificateFile = /etc/ssl/mycert.pem # if ssl is desired
-      SSLCertificateKeyFile = /etc/ssl/mycert.pem.key # if key for cert is needed or in an extra file
+      SSLCertificateFile: /etc/ssl/mycert.pem # if ssl is desired
+      SSLCertificateKeyFile: /etc/ssl/mycert.pem.key # if key for cert is needed or in an extra file
 
       Directory:
         # "default" is a special case; Adds ``/path/to/www/dir/example.com``
