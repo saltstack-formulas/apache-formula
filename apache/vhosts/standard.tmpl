@@ -48,10 +48,10 @@
     {% if site.get('DocumentRoot') != False %}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
     {% if site.get('VirtualDocumentRoot') %}VirtualDocumentRoot {{ vals.VirtualDocumentRoot }}{% endif %}
 
-    {% if site.get('SSLCertificateFile') != False %}
+    {% if site.get('SSLCertificateFile') %}
     SSLEngine on
     SSLCertificateFile {{ site.SSLCertificateFile }}
-    {%   if site.get('SSLCertificateKeyFile') != False %}
+    {%   if site.get('SSLCertificateKeyFile') %}
     SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}
     {%   endif %}
     {% endif %}
