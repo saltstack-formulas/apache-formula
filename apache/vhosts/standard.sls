@@ -4,6 +4,7 @@ include:
   - apache
 
 {% for id, site in salt['pillar.get']('apache:sites', {}).items() %}
+{% set documentroot = site.get('DocumentRoot', '{0}/{1}'.format(apache.wwwdir, sitename)) %}
 
 {{ id }}:
   file:
@@ -20,13 +21,11 @@ include:
     - watch_in:
       - module: apache-reload
 
-{% if 'DocumentRoot' in site %}
 {{ id }}-documentroot:
   file.directory:
-    - unless: test -d {{ site.get('DocumentRoot') }}
-    - name: {{ site.get('DocumentRoot') }}
+    - unless: test -d {{ documentroot }}
+    - name: {{ documentroot }}
     - makedirs: True
-{% endif %}
 
 {% if grains.os_family == 'Debian' %}
 a2ensite {{ id }}{{ apache.confext }}:
