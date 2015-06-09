@@ -54,6 +54,9 @@
     {%   if site.get('SSLCertificateKeyFile') %}
     SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}
     {%   endif %}
+    {%   if site.get('SSLCertificateChainFile') %}
+    SSLCertificateChainFile {{ site.SSLCertificateChainFile}}
+    {%   endif %}
     {% endif %}
 
     {% for path, dir in site.get('Directory', {}).items() %}

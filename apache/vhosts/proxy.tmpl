@@ -34,6 +34,17 @@
     {% if site.get('ErrorLog') != False %}ErrorLog {{ vals.ErrorLog }}{% endif %}
     {% if site.get('CustomLog') != False %}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
 
+    {% if site.get('SSLCertificateFile') %}
+    SSLEngine on
+    SSLCertificateFile {{ site.SSLCertificateFile }}
+    {%   if site.get('SSLCertificateKeyFile') %}
+    SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}
+    {%   endif %}
+    {%   if site.get('SSLCertificateChainFile') %}
+    SSLCertificateChainFile {{ site.SSLCertificateChainFile}}
+    {%   endif %}
+    {% endif %}
+
     ProxyPreserveHost {{ vals.ProxyPreserveHost }}    
     {% for proxy, proxyargs in vals.ProxyRoute|dictsort|reverse %}
     {% set proxyvals = {
