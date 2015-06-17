@@ -43,7 +43,7 @@ Installs the mod_wsgi package and enables the Apache module.
 ``apache.vhosts.standard``
 -------------------------
 
-Configures Apache name-based virtual hosts using data from Pillar.
+Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
 
 Example Pillar:
 
