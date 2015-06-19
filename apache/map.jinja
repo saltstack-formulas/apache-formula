@@ -2,8 +2,11 @@
     'Debian': {
         'server': 'apache2',
         'service': 'apache2',
+        'configfile': '/etc/apache2/apache2.conf',
 
         'mod_wsgi': 'libapache2-mod-wsgi',
+        'mod_php5': 'libapache2-mod-php5',
+        'mod_fcgid': 'libapache2-mod-fcgid',
 
         'vhostdir': '/etc/apache2/sites-available',
         'confdir': '/etc/apache2/conf.d',
@@ -17,6 +20,7 @@
     'RedHat': {
         'server': 'httpd',
         'service': 'httpd',
+        'configfile': '/etc/httpd/conf/httpd.conf',
 
         'mod_wsgi': 'mod_wsgi',
 
@@ -32,8 +36,11 @@
     'Suse': {
         'server': 'apache2',
         'service': 'apache2',
+        'configfile': '/etc/apache2/httpd.conf',
 
         'mod_wsgi': 'apache2-mod_wsgi',
+        'mod_php5': 'apache2-mod_php5',
+        'mod_fcgid': 'apache2-mod_fcgid',
 
         'vhostdir': '/etc/apache2/vhosts.d',
         'confdir': '/etc/httpd/conf.d',
@@ -47,6 +54,7 @@
     'FreeBSD': {
         'server': 'apache22',
         'service': 'apache22',
+        'configfile': '/usr/local/etc/apache22/httpd.conf',
 
         'mod_wsgi': 'ap22-mod_wsgi3',
 
