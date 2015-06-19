@@ -1,15 +1,16 @@
-{% if grains['os_family']=="Debian" %}
+{% from "apache/map.jinja" import apache with context %}
 
 include:
   - apache
 
 mod-php5:
   pkg.installed:
-    - name: libapache2-mod-php5
+    - name: {{ apache.mod_php5 }}
     - order: 180
     - require:
       - pkg: apache
 
+{% if grains['os_family']=="Debian" %}
 a2enmod php5:
   cmd.run:
     - unless: ls /etc/apache2/mods-enabled/php5.load

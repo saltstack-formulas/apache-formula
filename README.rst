@@ -20,28 +20,73 @@ Available states
 
 Installs the Apache package and starts the service.
 
+``apache.config``
+-----------------
+
+Configures apache based on os_family
+
+``apache.mod_mpm``
+------------------
+
+Configures the apache mpm modules on Debian ``mpm_prefork``, ``mpm_worker`` or ``mpm_event`` (Debian Only)
+
 ``apache.modules``
 ------------------
 
 Enables and disables Apache modules.
 
+``apache.mod_rewrite``
+----------------------
+
+Enabled the Apache module mod_rewrite (Debian only)
+
 ``apache.mod_proxy``
 -------------------
 
-Enables the Apache module mod_proxy.
+Enables the Apache module mod_proxy. (Debian only)
 
 ``apache.mod_proxy_http``
--------------------
+-------------------------
 
-Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled.
+Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled. (Debian Only)
 
 ``apache.mod_wsgi``
 -------------------
 
 Installs the mod_wsgi package and enables the Apache module.
 
+``apache.mod_actions``
+----------------------
+
+Enables the Apache module mod_actions. (Debian Only)
+
+``apache.mod_headers``
+----------------------
+
+Enables the Apache module mod_headers. (Debian Only)
+
+``apache.mod_pagespeed``
+------------------------
+
+Installs and Enables the mod_pagespeed module. (Debian Only)
+
+``apache.mod_php5``
+-------------------
+
+Installs and enables the mod_php5 module
+
+``apache.mod_fcgid``
+--------------------
+
+Installs and enables the mod_fcgid module
+
+``apache.mod_vhost_alias``
+----------------------
+
+Enables the Apache module vhost_alias (Debian Only)
+
 ``apache.vhosts.standard``
--------------------------
+--------------------------
 
 Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
 

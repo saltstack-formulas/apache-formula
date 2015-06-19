@@ -1,15 +1,16 @@
-{% if grains['os_family']=="Debian" %}
+{% from "apache/map.jinja" import apache with context %}
 
 include:
   - apache
 
 mod-fcgid:
   pkg.installed:
-    - name: libapache2-mod-fcgid
+    - name: {{ apache.mod_fcgid }}
     - order: 180
     - require:
       - pkg: apache
 
+{% if grains['os_family']=="Debian" %}
 a2enmod fcgid:
   cmd.run:
     - order: 225
