@@ -87,4 +87,4 @@
         'default_site_ssl': 'default-ssl.conf',
         'use_require': True,
     },
-}, grain='oscodename', merge=salt['pillar.get']('apache:lookup'))) %}
+}, grain='oscodename', merge=salt['pillar.get']('apache'))) %}
