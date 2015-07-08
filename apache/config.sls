@@ -15,10 +15,10 @@ include:
 
 {% if grains['os_family']=="Debian" %}
 /etc/apache2/envvars:
-  file.managed
+  file.managed:
     - template: jinja
     - source:
-      - salt://apache/files/debian/envvars.jinja
+      - salt://apache/files/Debian/envvars.jinja
     - require:
       - pkg: apache
     - watch_in:
