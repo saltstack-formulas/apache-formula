@@ -13,6 +13,13 @@ include:
     - watch_in:
       - service: apache
 
+{{ apache.vhostdir }}:
+  file.directory:
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+
 {% if grains['os_family']=="Debian" %}
 /etc/apache2/envvars:
   file.managed:
