@@ -24,3 +24,12 @@ include:
     - watch_in:
       - service: apache
 {% endif %}
+
+{% if grains['os_family']=="RedHat" %}
+/etc/httpd/conf.d/welcome.conf:
+  file.absent:
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+{% endif %}
