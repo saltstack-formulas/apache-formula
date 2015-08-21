@@ -15,14 +15,14 @@
 {{ a2modid }}:
   cmd.run:
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
-    - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
+    - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}.conf
 {% else %}
-    - onlyif: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
+    - onlyif: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}.conf
 {% endif %}
     - order: 230
     - require:
       - pkg: apache
-      - file: /etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}
+      - file: /etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}.conf
 
 {% endif %}
 ##########################################
