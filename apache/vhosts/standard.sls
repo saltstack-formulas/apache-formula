@@ -28,10 +28,19 @@ include:
     - makedirs: True
 
 {% if grains.os_family == 'Debian' %}
+{% if site.get('enabled') %}
 a2ensite {{ id }}{{ apache.confext }}:
   cmd:
     - run
     - unless: test -f /etc/apache2/sites-enabled/{{ id }}{{ apache.confext }}
+    - require:
+      - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}
+    - watch_in:
+      - module: apache-reload
+{% else %}
+a2dissite {{ id }}{{ apache.confext }}:
+  cmd:
+    - run
     - require:
       - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}
     - watch_in:
