@@ -18,6 +18,7 @@ apache:
       template_file: salt://apache/vhosts/minimal.tmpl
 
     example.com: # must be unique; used as an ID declaration in Salt.
+      enabled: True
       template_file: salt://apache/vhosts/standard.tmpl # or redirect.tmpl or proxy.tmpl
 
       ####################### DEFAULT VALUES BELOW ############################
