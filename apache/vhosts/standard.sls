@@ -46,5 +46,6 @@ a2dissite {{ id }}{{ apache.confext }}:
     - watch_in:
       - module: apache-reload
 {% endif %}
+{% endif %}
 
 {% endfor %}
