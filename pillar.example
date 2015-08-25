@@ -11,6 +11,9 @@ apache:
     confext: .conf
     logdir: /var/log/apache2
     wwwdir: /srv/apache2
+  
+    # apache version (generally '2.2' or '2.4')
+    version: '2.2'
 
     # ``apache.mod_wsgi`` formula additional configuration:
     mod_wsgi: mod_wsgi
