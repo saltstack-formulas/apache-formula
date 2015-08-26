@@ -1,16 +1,19 @@
 # ``apache`` formula configuration:
 apache:
-  server: apache2
-  service: apache2
 
-  vhostdir: /etc/apache2/sites-available
-  confdir: /etc/apache2/conf.d
-  confext: .conf
-  logdir: /var/log/apache2
-  wwwdir: /srv/apache2
+  # lookup section overrides ``map.jinja`` values
+  lookup:
+    server: apache2
+    service: apache2
 
-  # ``apache.mod_wsgi`` formula additional configuration:
-  mod_wsgi: mod_wsgi
+    vhostdir: /etc/apache2/sites-available
+    confdir: /etc/apache2/conf.d
+    confext: .conf
+    logdir: /var/log/apache2
+    wwwdir: /srv/apache2
+
+    # ``apache.mod_wsgi`` formula additional configuration:
+    mod_wsgi: mod_wsgi
 
   # ``apache.vhosts`` formula additional configuration:
   sites:
