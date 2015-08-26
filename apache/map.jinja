@@ -1,3 +1,5 @@
+{% import_yaml "apache/osfingermap.yaml" as osfingermap %}
+
 {% set apache = salt['grains.filter_by']({
     'Debian': {
         'server': 'apache2',
@@ -88,4 +90,7 @@
         'default_site_ssl': 'default-ssl.conf',
         'use_require': True,
     },
-}, grain='oscodename', merge=salt['pillar.get']('apache:lookup'))) %}
+}, grain='oscodename', merge=salt['grains.filter_by'](
+    osfingermap
+, grain='osfinger', merge=salt['pillar.get']('apache:lookup')))) %}
+
