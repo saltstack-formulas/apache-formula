@@ -9,9 +9,9 @@
 {% if 'name' in pillar['apache']['register-site'][site] and 'state' in pillar['apache']['register-site'][site] %}
 
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
-{% set a2modid = "a2ensite " ~ pillar['apache']['register-site'][site]['name'] %}
+{% set a2modid = "a2ensite " ~ pillar['apache']['register-site'][site]['name'] ~ apache.confext %}
 {% else %}
-{% set a2modid = "a2dissite " ~ pillar['apache']['register-site'][site]['name'] %}
+{% set a2modid = "a2dissite " ~ pillar['apache']['register-site'][site]['name'] ~ apache.confext %}
 {% endif %}
 {{ a2modid }}:
   cmd.run:
