@@ -1,3 +1,4 @@
+{% from "apache/map.jinja" import apache with context %}
 {% if grains['os_family']=="Debian" %}
 
 {% if 'apache' in pillar and 'register-site' in pillar['apache'] %} #BEGIN: ['apache']['register-site']
@@ -15,14 +16,14 @@
 {{ a2modid }}:
   cmd.run:
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
-    - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}.conf
+    - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}
 {% else %}
-    - onlyif: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}.conf
+    - onlyif: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}
 {% endif %}
     - order: 230
     - require:
       - pkg: apache
-      - file: /etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}.conf
+      - file: /etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}
 
 {% endif %}
 ##########################################
