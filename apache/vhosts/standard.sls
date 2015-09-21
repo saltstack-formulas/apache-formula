@@ -21,11 +21,13 @@ include:
     - watch_in:
       - module: apache-reload
 
+{% if site.get('DocumentRoot') != False %}
 {{ id }}-documentroot:
   file.directory:
     - unless: test -d {{ documentroot }}
     - name: {{ documentroot }}
     - makedirs: True
+{% endif %}
 
 {% if grains.os_family == 'Debian' %}
 {% if site.get('enabled') %}
