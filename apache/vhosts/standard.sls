@@ -43,6 +43,7 @@ a2ensite {{ id }}{{ apache.confext }}:
 a2dissite {{ id }}{{ apache.confext }}:
   cmd:
     - run
+    - onlyif: test -f /etc/apache2/sites-enabled/{{ id }}{{ apache.confext }}
     - require:
       - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}
     - watch_in:
