@@ -32,7 +32,7 @@
 ##########################################
 {% if 'name' in pillar['apache']['register-site'][site] and 'path' in pillar['apache']['register-site'][site] %}
 
-/etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}:
+/etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}:
   file.managed:
     - source: {{ pillar['apache']['register-site'][site]['path'] }}
     - order: 225
