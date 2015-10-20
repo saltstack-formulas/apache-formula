@@ -33,7 +33,7 @@ include:
 {% for module in salt['pillar.get']('apache:modules:enabled', []) %}
 find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^#\)\(\s*LoadModule.{{ module }}_module\)/\2/g' {} \;:
   cmd.run:
-    - unless: httpd -M 2> /dev/null | grep '\s{{ module }}_module'
+    - unless: httpd -M 2> /dev/null | grep "[[:space:]]{{ module }}_module"
     - order: 225
     - require:
       - pkg: apache
@@ -44,7 +44,7 @@ find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^#\)\(\s*LoadModule
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
 find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^\s*LoadModule.{{ module }}_module\)/#\1/g' {} \;:
   cmd.run:
-    - onlyif: httpd -M 2> /dev/null | grep '\s{{ module }}_module'
+    - onlyif: httpd -M 2> /dev/null | grep "[[:space:]]{{ module }}_module"
     - order: 225
     - require:
       - pkg: apache
