@@ -30,7 +30,7 @@ include:
 {% endif %}
 
 {% if grains.os_family == 'Debian' %}
-{% if site.get('enabled') %}
+{% if site.get('enabled', True) %}
 a2ensite {{ id }}{{ apache.confext }}:
   cmd:
     - run
