@@ -27,6 +27,7 @@ include:
     - unless: test -d {{ documentroot }}
     - name: {{ documentroot }}
     - makedirs: True
+    - allow_symlink: True
 {% endif %}
 
 {% if grains.os_family == 'Debian' %}
