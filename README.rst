@@ -68,7 +68,7 @@ Enables the Apache module mod_headers. (Debian Only)
 ``apache.mod_pagespeed``
 ------------------------
 
-Installs and Enables the mod_pagespeed module. (Debian Only)
+Installs and Enables the mod_pagespeed module. (Debian and RedHat Only)
 
 ``apache.mod_php5``
 -------------------
