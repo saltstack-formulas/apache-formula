@@ -18,7 +18,6 @@ a2enmod pagespeed:
       - pkg: libapache2-mod-pagespeed
     - watch_in:
       - service: apache
-{% endif %}
 
 {% for dir in ['/var/cache/mod_pagespeed', '/var/log/pagespeed'] %}
 {{ dir }}:
@@ -33,7 +32,6 @@ a2enmod pagespeed:
       - group: {{ salt['pillar.get']('apache:group', 'www-data') }}
 {% endfor %}
 
-{% if grains['os_family']=="Debian" %}
 # Here we hardcode a logrotate entry to take care of the logs
 /etc/logrorate.d/pagespeed:
   file:
