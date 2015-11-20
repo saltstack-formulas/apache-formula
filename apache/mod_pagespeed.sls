@@ -1,4 +1,3 @@
-{% if grains['os_family']=="Debian" %}
 {% from "apache/map.jinja" import apache with context %}
 
 include:
@@ -8,9 +7,9 @@ libapache2-mod-pagespeed:
   pkg:
     - installed
     - sources:
-      - mod-pagespeed-stable: https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb
+      - mod-pagespeed-stable: {{ apache.mod_pagespeed_source }}
 
-
+{% if grains['os_family']=="Debian" %}
 a2enmod pagespeed:
   cmd.run:
     - unless: ls /etc/apache2/mods-enabled/pagespeed.load
@@ -19,7 +18,6 @@ a2enmod pagespeed:
       - pkg: libapache2-mod-pagespeed
     - watch_in:
       - service: apache
-
 
 {% for dir in ['/var/cache/mod_pagespeed', '/var/log/pagespeed'] %}
 {{ dir }}:
@@ -53,5 +51,4 @@ a2enmod pagespeed:
             fi;
           endscript
         }
-
 {% endif %}
