@@ -42,7 +42,7 @@
 {% if 'template' in pillar['apache']['register-site'][site] and 'defaults' in pillar['apache']['register-site'][site] %}
     - template: jinja
     - defaults:
-    {% for key, value in pillar['apache']['register-site'][site]['defaults'].iteritems() %}
+    {% for key, value in pillar['apache']['register-site'][site]['defaults'].items() %}
       {{ key }}: {{ value }}
     {% endfor %}
 {% endif %}
