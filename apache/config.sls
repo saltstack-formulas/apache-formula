@@ -7,11 +7,13 @@ include:
   file.managed:
     - template: jinja
     - source:
-      - salt://apache/files/{{ salt['grains.get']('os_family') }}/apache.config.jinja
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/apache-{{ apache.version }}.config.jinja
     - require:
       - pkg: apache
     - watch_in:
       - service: apache
+    - context:
+      apache: {{ apache }}
 
 {{ apache.vhostdir }}:
   file.directory:

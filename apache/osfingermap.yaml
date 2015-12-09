@@ -12,3 +12,7 @@ Oracle Linux Server-6:
   version: '2.2'
 Oracle Linux Server-7:
   version: '2.4'
+Amazon Linux AMI-2014:
+  version: '2.2'
+Amazon Linux AMI-2015:
+  version: '2.2'
