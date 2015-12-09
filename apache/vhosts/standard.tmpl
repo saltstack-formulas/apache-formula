@@ -30,6 +30,11 @@
         'Require': 'all granted',
         'AllowOverride': 'None',
     },
+    'Location': {
+        'Order': 'allow,deny',
+        'Allow': 'from all',
+        'Require': 'all granted',
+    },
 } %}
 
 <VirtualHost {{ vals.interface }}:{{ vals.port }}>
@@ -59,6 +64,10 @@
     {%   endif %}
     {% endif %}
 
+    {% for loc, path in site.get('Alias', {}).items() %}
+    Alias {{ loc }} {{ path }}
+    {% endfor %}
+
     {% for path, dir in site.get('Directory', {}).items() %}
     {% set dvals = {
         'Options': dir.get('Options', vals.Directory.Options),
@@ -66,24 +75,49 @@
         'Allow': dir.get('Allow', vals.Directory.Allow),
         'Require': dir.get('Require', vals.Directory.Require),
         'AllowOverride': dir.get('AllowOverride', vals.Directory.AllowOverride),
+        'Dav': dir.get('Dav', False),
     } %}
 
     {% if path == 'default' %}{% set path = vals.Directory_default %}{% endif %}
 
     <Directory "{{ path }}">
-        {% if dir.get('Options') != False %}Options {{ dvals.Options }}{% endif %}
+        {% if dvals.get('Options') != False %}Options {{ dvals.Options }}{% endif %}
         {% if apache.use_require %}
-        {% if dir.get('Require') != False %}Require {{dvals.Require}}{% endif %}
+        {% if dvals.get('Require') != False %}Require {{dvals.Require}}{% endif %}
         {% else %}
-        {% if dir.get('Order') != False %}Order {{ dvals.Order }}{% endif %}
-        {% if dir.get('Allow') != False %}Allow {{ dvals.Allow }}{% endif %}
+        {% if dvals.get('Order') != False %}Order {{ dvals.Order }}{% endif %}
+        {% if dvals.get('Allow') != False %}Allow {{ dvals.Allow }}{% endif %}
         {% endif %}
-        {% if dir.get('AllowOverride') != False %}AllowOverride {{ dvals.AllowOverride }}{% endif %}
+        {% if dvals.get('AllowOverride') != False %}AllowOverride {{ dvals.AllowOverride }}{% endif %}
+        {% if dvals.get('Dav') != False %}Dav On{% endif %}
 
         {% if dir.get('Formula_Append') %}
         {{ dir.Formula_Append|indent(8) }}
         {% endif %}
     </Directory>
+    {% endfor %}
+
+    {% for path, loc in site.get('Location', {}).items() %}
+    {% set lvals = {
+        'Order': loc.get('Order', vals.Location.Order),
+        'Allow': loc.get('Allow', vals.Location.Allow),
+        'Require': loc.get('Require', vals.Location.Require),
+        'Dav': loc.get('Dav', False),
+    } %}
+
+    <Location "{{ path }}">
+        {% if apache.use_require %}
+        {% if lvals.get('Require') != False %}Require {{lvals.Require}}{% endif %}
+        {% else %}
+        {% if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
+        {% if lvals.get('Allow') != False %}Allow {{ lvals.Allow }}{% endif %}
+        {% endif %}
+        {% if lvals.get('Dav') != False %}Dav On{% endif %}
+
+        {% if loc.get('Formula_Append') %}
+        {{ loc.Formula_Append|indent(8) }}
+        {% endif %}
+    </Location>
     {% endfor %}
 
     {% if site.get('Formula_Append') %}
