@@ -90,6 +90,11 @@ Enables the Apache module vhost_alias (Debian Only)
 
 Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
 
+``apache.own_default_vhost``
+--------------------------
+
+Replace default vhost with own version. By default, it's 503 code. (Debian Only)
+
 Example Pillar:
 
 .. code:: yaml
