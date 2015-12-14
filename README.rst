@@ -99,6 +99,10 @@ Example Pillar:
         example.com: # must be unique; used as an ID declaration in Salt; also passed to the template context as {{ id }}
           template_file: salt://apache/vhosts/standard.tmpl
 
+``apache.manage_security``
+--------------------------
+
+Configures Apache's security.conf options by reassinging them using data from Pillar.
 
 ``apache.debian_full``
 ----------------------
