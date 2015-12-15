@@ -18,6 +18,13 @@ apache:
     # ``apache.mod_wsgi`` formula additional configuration:
     mod_wsgi: mod_wsgi
 
+    # ``apache.mod_remoteip`` formula additional configuration:
+    mod_remoteip:
+      RemoteIPHeader: X-Forwarded-For
+      RemoteIPTrustedProxy:
+        - 10.0.8.0/24
+        - 127.0.0.1
+
   # ``apache.vhosts`` formula additional configuration:
   sites:
     example.net:
