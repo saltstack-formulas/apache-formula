@@ -119,4 +119,4 @@ apache:
   security:
     # can be Full | OS | Minimal | Minor | Major | Prod
     # where Full conveys the most information, and Prod the least.
-    ServerTokens: Prod
+    ServerTokens Prod
