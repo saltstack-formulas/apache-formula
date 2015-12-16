@@ -116,6 +116,10 @@ apache:
     disabled:  # List modules to disable
       - rewrite
 
+  # KeepAlive: Whether or not to allow persistent connections (more than
+  # one request per connection). Set to "Off" to deactivate.
+  keepalive: On
+
   security:
     # can be Full | OS | Minimal | Minor | Major | Prod
     # where Full conveys the most information, and Prod the least.
