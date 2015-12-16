@@ -85,6 +85,11 @@ Installs and enables the mod_fcgid module
 
 Enables the Apache module vhost_alias (Debian Only)
 
+``apache.mod_remoteip``
+----------------------
+
+Enables and configures the Apache module mod_remoteip using data from Pillar. (Debian Only)
+
 ``apache.vhosts.standard``
 --------------------------
 
