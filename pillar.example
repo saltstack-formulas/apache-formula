@@ -118,7 +118,7 @@ apache:
 
   # KeepAlive: Whether or not to allow persistent connections (more than
   # one request per connection). Set to "Off" to deactivate.
-  keepalive: On
+  keepalive: 'On'
 
   security:
     # can be Full | OS | Minimal | Minor | Major | Prod
