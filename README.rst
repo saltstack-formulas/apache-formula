@@ -80,6 +80,12 @@ Installs and enables the mod_php5 module
 
 Installs and enables the mod_fcgid module
 
+``apache.mod_dav_svn``
+--------------------
+
+Installs and enables the mod_dav_svn module (Debian only)
+
+
 ``apache.mod_vhost_alias``
 ----------------------
 
