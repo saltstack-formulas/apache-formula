@@ -37,6 +37,8 @@
     },
 } %}
 
+Listen {{ vals.interface }}:{{ vals.port }}
+
 <VirtualHost {{ vals.interface }}:{{ vals.port }}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
