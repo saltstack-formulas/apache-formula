@@ -96,15 +96,15 @@ Enables the Apache module vhost_alias (Debian Only)
 
 Enables and configures the Apache module mod_remoteip using data from Pillar. (Debian Only)
 
-``apache.vhosts.standard``
---------------------------
-
-Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
-
 ``apache.own_default_vhost``
 --------------------------
 
 Replace default vhost with own version. By default, it's 503 code. (Debian Only)
+
+``apache.vhosts.standard``
+--------------------------
+
+Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
 
 Example Pillar:
 
