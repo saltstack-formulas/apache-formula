@@ -1,8 +1,10 @@
-/etc/logrotate.d/apache2:
+{% from "apache/map.jinja" import apache with context %}
+
+{{ apache.logrotatedir }}:
   file:
     - managed
     - contents: |
-        /var/log/apache2/*.log {
+        {{ apache.logdir }}/*.log {
         	daily
         	missingok
         	rotate 14
@@ -12,8 +14,8 @@
         	create 640 root adm
         	sharedscripts
         	postrotate
-                        if /etc/init.d/apache2 status > /dev/null ; then \
-                            /etc/init.d/apache2 reload > /dev/null; \
+                        if /etc/init.d/{{ apache.service }} status > /dev/null ; then \
+                            /etc/init.d/{{ apache.service }} reload > /dev/null; \
                         fi;
         	endscript
         	prerotate
