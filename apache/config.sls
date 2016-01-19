@@ -42,3 +42,17 @@ include:
     - watch_in:
       - service: apache
 {% endif %}
+
+{% if grains['os_family']=="Suse" %}
+/etc/apache2/sysconfig.d/global.conf:
+  file.managed:
+    - template: jinja
+    - source:
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/global.config.jinja
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+    - context:
+      apache: {{ apache }}
+{% endif %}

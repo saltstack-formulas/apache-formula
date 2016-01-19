@@ -18,6 +18,11 @@ apache:
     # ``apache.mod_wsgi`` formula additional configuration:
     mod_wsgi: mod_wsgi
 
+  global:
+    # global apache directives
+    AllowEncodedSlashes: "On"
+
+
   # ``apache.vhosts`` formula additional configuration:
   sites:
     example.net:
