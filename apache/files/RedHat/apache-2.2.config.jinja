@@ -416,6 +416,10 @@ AddDefaultCharset UTF-8
 #EnableMMAP off
 EnableSendfile on
 
+{%- for directive, dvalue in salt['pillar.get']('apache:global', {}).items() %}
+{{ directive }} {{ dvalue }}
+{%- endfor %}
+
 # Supplemental configuration
 #
 # Load config files in the "/etc/httpd/conf.d" directory, if any.
