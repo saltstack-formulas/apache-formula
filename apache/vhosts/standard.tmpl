@@ -13,6 +13,7 @@
 
     'DirectoryIndex': site.get('DirectoryIndex'),
     'UseCanonicalName': site.get('UseCanonicalName'),
+    'AllowEncodedSlashes': site.get('AllowEncodedSlashes'),
 
     'LogLevel': site.get('LogLevel', 'warn'),
     'ErrorLog': site.get('ErrorLog', '{0}/{1}-error.log'.format(map.logdir, sitename)),
@@ -47,6 +48,7 @@ Listen {{ vals.interface }}:{{ vals.port }}
 
     {% if site.get('DirectoryIndex') %}DirectoryIndex {{ vals.DirectoryIndex }}{% endif %}
     {% if site.get('UseCanonicalName') %}UseCanonicalName {{ vals.UseCanonicalName }}{% endif %}
+    {% if site.get('AllowEncodedSlashes') != False %}AllowEncodedSlashes {{ vals.AllowEncodedSlashes }}{% endif %}
 
     {% if site.get('LogLevel') != False %}LogLevel {{ vals.LogLevel }}{% endif %}
     {% if site.get('ErrorLog') != False %}ErrorLog {{ vals.ErrorLog }}{% endif %}
