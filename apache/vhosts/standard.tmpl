@@ -38,10 +38,6 @@
     },
 } -%}
 
-{% for intf in vals.interfaces -%}
-Listen {{ intf }}:{{ vals.port }}
-{% endfor %}
-
 <VirtualHost {% for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}

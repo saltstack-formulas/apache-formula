@@ -34,6 +34,10 @@
 #   together by including all remaining configuration files when starting up the
 #   web server.
 #
+# * ports.conf is always included from the main configuration file. It is
+#   supposed to determine listening ports for incoming connections which can be
+#   customized anytime.
+#
 # * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/
 #   directories contain particular configuration snippets which manage modules,
 #   global configuration fragments, or virtual host configurations,
@@ -137,6 +141,9 @@ LogLevel warn
 # Include module configuration:
 IncludeOptional mods-enabled/*.load
 IncludeOptional mods-enabled/*.conf
+
+# Include list of ports to listen on
+Include ports.conf
 
 
 # Sets the default security model of the Apache2 HTTPD server. It does
