@@ -101,6 +101,11 @@ Enables and configures the Apache module mod_remoteip using data from Pillar. (D
 
 Replace default vhost with own version. By default, it's 503 code. (Debian Only)
 
+``apache.no_default_vhost``
+--------------------------
+
+Remove the default vhost. (Debian Only)
+
 ``apache.vhosts.standard``
 --------------------------
 
