@@ -3,7 +3,7 @@
 {% set sitename = site.get('ServerName', id) %}
 
 {% set vals = {
-    'interface': site.get('interface', '*'),
+    'interfaces': site.get('interface', '*').split(),
     'port': site.get('port', '80'),
 
     'ServerName': sitename,
@@ -22,9 +22,7 @@
     'ProxyRoute': site.get('ProxyRoute', {}),
 } %}
 
-Listen {{ vals.interface }}:{{ vals.port }}
-
-<VirtualHost {{ vals.interface }}:{{ vals.port }}>
+<VirtualHost {%- for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
 

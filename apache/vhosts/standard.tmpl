@@ -1,9 +1,9 @@
 {# Define default values here so the template below can just focus on layout #}
-{% from "apache/map.jinja" import apache with context %}
-{% set sitename = site.get('ServerName', id) %}
+{%- from "apache/map.jinja" import apache with context -%}
+{%- set sitename = site.get('ServerName', id) -%}
 
-{% set vals = {
-    'interface': site.get('interface', '*'),
+{%- set vals = {
+    'interfaces': site.get('interface', '*').split(),
     'port': site.get('port', '80'),
 
     'ServerName': sitename,
@@ -13,6 +13,7 @@
 
     'DirectoryIndex': site.get('DirectoryIndex'),
     'UseCanonicalName': site.get('UseCanonicalName'),
+    'AllowEncodedSlashes': site.get('AllowEncodedSlashes', 'Off'),
 
     'LogLevel': site.get('LogLevel', 'warn'),
     'ErrorLog': site.get('ErrorLog', '{0}/{1}-error.log'.format(map.logdir, sitename)),
@@ -38,46 +39,45 @@
         'Allow': 'from all',
         'Require': 'all granted',
     },
-} %}
+} -%}
 
-Listen {{ vals.interface }}:{{ vals.port }}
-
-<VirtualHost {{ vals.interface }}:{{ vals.port }}>
+<VirtualHost {% for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
 
-    {% if site.get('ServerAdmin') != False %}ServerAdmin {{ vals.ServerAdmin }}{% endif %}
+    {% if site.get('ServerAdmin') != False %}ServerAdmin {{ vals.ServerAdmin }}{% endif -%}
 
-    {% if site.get('DirectoryIndex') %}DirectoryIndex {{ vals.DirectoryIndex }}{% endif %}
-    {% if site.get('UseCanonicalName') %}UseCanonicalName {{ vals.UseCanonicalName }}{% endif %}
+    {% if site.get('DirectoryIndex') -%}DirectoryIndex {{ vals.DirectoryIndex }}{% endif %}
+    {% if site.get('UseCanonicalName') -%}UseCanonicalName {{ vals.UseCanonicalName }}{% endif %}
+    {% if site.get('AllowEncodedSlashes') != False -%}AllowEncodedSlashes {{ vals.AllowEncodedSlashes }}{% endif %}
 
-    {% if site.get('LogLevel') != False %}LogLevel {{ vals.LogLevel }}{% endif %}
-    {% if site.get('ErrorLog') != False %}ErrorLog {{ vals.ErrorLog }}{% endif %}
-    {% if site.get('CustomLog') != False %}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
+    {% if site.get('LogLevel') != False -%}LogLevel {{ vals.LogLevel }}{% endif %}
+    {% if site.get('ErrorLog') != False -%}ErrorLog {{ vals.ErrorLog }}{% endif %}
+    {% if site.get('CustomLog') != False -%}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
 
-    {% if site.get('DocumentRoot') != False %}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
-    {% if site.get('VirtualDocumentRoot') %}VirtualDocumentRoot {{ vals.VirtualDocumentRoot }}{% endif %}
+    {% if site.get('DocumentRoot') != False -%}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
+    {% if site.get('VirtualDocumentRoot') -%}VirtualDocumentRoot {{ vals.VirtualDocumentRoot }}{% endif %}
 
     {% if site.get('Timeout') != False %}Timeout {{ vals.Timeout }}{% endif %}
     {% if site.get('LimitRequestFields') %}LimitRequestFields {{ vals.LimitRequestFields }}{% endif %}
 
-    {% if site.get('SSLCertificateFile') %}
+    {%- if site.get('SSLCertificateFile') %}
     SSLEngine on
     SSLCertificateFile {{ site.SSLCertificateFile }}
-    {%   if site.get('SSLCertificateKeyFile') %}
+    {%-  if site.get('SSLCertificateKeyFile') %}
     SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}
-    {%   endif %}
-    {%   if site.get('SSLCertificateChainFile') %}
+    {%-   endif %}
+    {%-   if site.get('SSLCertificateChainFile') %}
     SSLCertificateChainFile {{ site.SSLCertificateChainFile}}
-    {%   endif %}
-    {% endif %}
+    {%-   endif %}
+    {%- endif %}
 
-    {% for loc, path in site.get('Alias', {}).items() %}
+    {%- for loc, path in site.get('Alias', {}).items() %}
     Alias {{ loc }} {{ path }}
-    {% endfor %}
+    {%- endfor %}
 
-    {% for path, dir in site.get('Directory', {}).items() %}
-    {% set dvals = {
+    {%- for path, dir in site.get('Directory', {}).items() -%}
+    {%- set dvals = {
         'Options': dir.get('Options', vals.Directory.Options),
         'Order': dir.get('Order', vals.Directory.Order),
         'Allow': dir.get('Allow', vals.Directory.Allow),
@@ -86,7 +86,7 @@ Listen {{ vals.interface }}:{{ vals.port }}
         'Dav': dir.get('Dav', False),
     } %}
 
-    {% if path == 'default' %}{% set path = vals.Directory_default %}{% endif %}
+    {%- if path == 'default' %}{% set path = vals.Directory_default %}{% endif %}
 
     <Directory "{{ path }}">
         {% if dvals.get('Options') != False %}Options {{ dvals.Options }}{% endif %}
@@ -103,10 +103,10 @@ Listen {{ vals.interface }}:{{ vals.port }}
         {{ dir.Formula_Append|indent(8) }}
         {% endif %}
     </Directory>
-    {% endfor %}
+    {%- endfor %}
 
-    {% for path, loc in site.get('Location', {}).items() %}
-    {% set lvals = {
+    {%- for path, loc in site.get('Location', {}).items() %}
+    {%- set lvals = {
         'Order': loc.get('Order', vals.Location.Order),
         'Allow': loc.get('Allow', vals.Location.Allow),
         'Require': loc.get('Require', vals.Location.Require),
@@ -114,21 +114,21 @@ Listen {{ vals.interface }}:{{ vals.port }}
     } %}
 
     <Location "{{ path }}">
-        {% if apache.use_require %}
-        {% if lvals.get('Require') != False %}Require {{lvals.Require}}{% endif %}
+        {%- if apache.use_require %}
+        {%- if lvals.get('Require') != False %}Require {{lvals.Require}}{% endif %}
         {% else %}
-        {% if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
-        {% if lvals.get('Allow') != False %}Allow {{ lvals.Allow }}{% endif %}
+        {%- if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
+        {%- if lvals.get('Allow') != False %}Allow {{ lvals.Allow }}{% endif %}
         {% endif %}
-        {% if lvals.get('Dav') != False %}Dav On{% endif %}
+        {%- if lvals.get('Dav') != False %}Dav On{% endif %}
 
-        {% if loc.get('Formula_Append') %}
+        {%- if loc.get('Formula_Append') %}
         {{ loc.Formula_Append|indent(8) }}
         {% endif %}
     </Location>
     {% endfor %}
 
-    {% if site.get('Formula_Append') %}
+    {%- if site.get('Formula_Append') %}
     {{ site.Formula_Append|indent(4) }}
     {% endif %}
 </VirtualHost>
