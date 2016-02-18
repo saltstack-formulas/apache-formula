@@ -108,7 +108,7 @@
     } %}
 
     <Location "{{ path }}">
-        {%- if apache.use_require %}
+        {% if apache.use_require %}
         {%- if lvals.get('Require') != False %}Require {{lvals.Require}}{% endif %}
         {% else %}
         {%- if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
