@@ -42,7 +42,7 @@
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
 
-    {% if site.get('ServerAdmin') != False %}ServerAdmin {{ vals.ServerAdmin }}{% endif -%}
+    {% if site.get('ServerAdmin') != False %}ServerAdmin {{ vals.ServerAdmin }}{% endif %}
 
     {% if site.get('DirectoryIndex') -%}DirectoryIndex {{ vals.DirectoryIndex }}{% endif %}
     {% if site.get('UseCanonicalName') -%}UseCanonicalName {{ vals.UseCanonicalName }}{% endif %}
