@@ -33,7 +33,7 @@ a2enmod pagespeed:
 {% endfor %}
 
 # Here we hardcode a logrotate entry to take care of the logs
-/etc/logrorate.d/pagespeed:
+/etc/logrotate.d/pagespeed:
   file:
     - managed
     - contents: |
