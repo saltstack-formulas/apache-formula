@@ -11,7 +11,7 @@ apache:
     confext: .conf
     logdir: /var/log/apache2
     wwwdir: /srv/apache2
-  
+
     # apache version (generally '2.2' or '2.4')
     version: '2.2'
 
@@ -64,7 +64,7 @@ apache:
         # "default" is a special case; Adds ``/path/to/www/dir/example.com``
         # E.g.: /var/www/example.com
         default:
-          Options: -Indexes FollowSymLinks
+          Options: -Indexes +FollowSymLinks
           Order: allow,deny    # For Apache < 2.4
           Allow: from all      # For apache < 2.4
           Require: all granted # For apache > 2.4.
@@ -79,7 +79,7 @@ apache:
 
       # if template is 'proxy.tmpl'
       # ProxyPreserveHost: 'On'
-      # ProxyRoute: 
+      # ProxyRoute:
       #   my sample route:
       #      ProxyPassSource: '/'
       #      ProxyPassTarget: 'http://www.example.net'
