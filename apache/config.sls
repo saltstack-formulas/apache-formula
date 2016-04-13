@@ -27,7 +27,7 @@ include:
   file.managed:
     - template: jinja
     - source:
-      - salt://apache/files/Debian/envvars.jinja
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/envvars-{{ apache.version }}.jinja
     - require:
       - pkg: apache
     - watch_in:

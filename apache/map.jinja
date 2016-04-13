@@ -76,6 +76,12 @@
         'use_require': False,
     },
 }, merge=salt['grains.filter_by']({
+    'precise': {
+        'confext': '',
+        'default_site': 'default',
+        'default_site_ssl': 'default-ssl',
+        'use_require': True,
+    },
     'trusty': {
         'confext': '.conf',
         'default_site': '000-default.conf',
