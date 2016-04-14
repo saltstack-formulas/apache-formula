@@ -23,6 +23,12 @@ apache:
     AllowEncodedSlashes: "On"
 
 
+  name_virtual_hosts:
+    - interface: *
+      port: 80
+    - interface: *
+      port: 443
+
   # ``apache.vhosts`` formula additional configuration:
   sites:
     example.net:
