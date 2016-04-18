@@ -28,3 +28,18 @@ Listen 80
     Listen 443
 </IfModule>
 {%- endif %}
+
+{%- if salt['pillar.get']('apache:name_virtual_hosts') is iterable %}
+    {%- set name_virtual_host_directives = [] %}
+
+    {%- for name_virtual_host in salt['pillar.get']('apache:name_virtual_hosts') %}
+        {%- set interface = name_virtual_host.get('interface', '*') %}
+        {%- set port = name_virtual_host.get('port', 80) %}
+        {%- set name_virtual_host_directive = interface ~ ':' ~ port %}
+        {%- do name_virtual_host_directives.append(name_virtual_host_directive) %}
+    {%- endfor %}
+
+    {%- for name_virtual_host in name_virtual_host_directives %}
+NameVirtualHost  {{ name_virtual_host }}
+    {%- endfor %}
+{%- endif -%}
