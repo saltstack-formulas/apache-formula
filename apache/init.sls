@@ -3,9 +3,11 @@
 apache:
   pkg.installed:
     - name: {{ apache.server }}
-  service.running:
+  service.{{apache.service_state}}:
     - name: {{ apache.service }}
-    - enable: True
+{% if apache.service_state in [ 'running', 'dead' ] %}
+    - enable: {{apache.service_enable}}
+{% endif %}
 
 # The following states are inert by default and can be used by other states to
 # trigger a restart or reload as needed.
@@ -15,6 +17,15 @@ apache-reload:
     - m_name: {{ apache.service }}
 
 apache-restart:
+{% if apache.service_state in ['running'] %}
   module.wait:
     - name: service.restart
     - m_name: {{ apache.service }}
+{% else %}
+# a bit hackish, but reload doesnt start apache when it is not running
+# needed when service_state is disabled but apache is controlled by a 
+# cluster manager like Pacemaker
+  module.wait:
+    - name: service.reload
+    - m_name: {{ apache.service }}
+{% endif %}
