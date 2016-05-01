@@ -1,2 +1,2 @@
-service_state: enabled
+service_state: running
 service_enable: True
