@@ -1,5 +1,4 @@
 {% from "apache/map.jinja" import apache with context %}
-{% set restart_command = 
 
 apache:
   pkg.installed:
