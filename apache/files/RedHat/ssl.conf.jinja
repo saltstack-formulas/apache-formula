@@ -1,10 +1,10 @@
+{%- from "apache/map.jinja" import apache with context -%}
 #
 # When we also provide SSL we have to listen to the 
 # the HTTPS port in addition.
 #
-{%- set standard_listen_directive_ssl = salt['pillar.get']('apache:standard_listen_directive_ssl', '443 https') %}
-{%- if standard_listen_directive_ssl %}
-Listen {{ standard_listen_directive_ssl }}
+{%- if apache.get('standard_listen_directive_ssl') != False %}
+Listen  {{ apache.standard_listen_directive_ssl|default('443 https') }}
 {%- endif %}
 
 ##

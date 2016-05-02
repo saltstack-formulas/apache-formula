@@ -1,3 +1,4 @@
+{%- from "apache/map.jinja" import apache with context -%}
 #
 # This is the main Apache HTTP server configuration file.  It contains the
 # configuration directives that give the server its instructions.
@@ -39,9 +40,8 @@ ServerRoot "/etc/httpd"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
-{%- set standard_listen_directive = salt['pillar.get']('apache:standard_listen_directive', '80') %}
-{%- if standard_listen_directive %}
-Listen  {{ standard_listen_directive }}
+{%- if apache.get('standard_listen_directive') != False %}
+Listen  {{ apache.standard_listen_directive|default('80') }}
 {%- endif %}
 
 #

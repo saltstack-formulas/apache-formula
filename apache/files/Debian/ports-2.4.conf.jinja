@@ -18,19 +18,17 @@
 Listen  {{ listen }}
     {%- endfor %}
 {%- else %}
-{%- set standard_listen_directive = salt['pillar.get']('apache:standard_listen_directive', '80') %}
-{%- if standard_listen_directive %}
-Listen  {{ standard_listen_directive }}
+{%- if apache.get('standard_listen_directive') != False %}
+Listen  {{ apache.standard_listen_directive|default('80') }}
 {%- endif %}
 
-{%- set standard_listen_directive_ssl = salt['pillar.get']('apache:standard_listen_directive_ssl', '443') %}
-{%- if standard_listen_directive_ssl %}
+{%- if apache.get('standard_listen_directive_ssl') != False %}
 <IfModule mod_ssl.c>
-    Listen {{ standard_listen_directive_ssl }}
+    Listen  {{ apache.standard_listen_directive_ssl|default('443') }}
 </IfModule>
 
 <IfModule mod_gnutls.c>
-    Listen {{ standard_listen_directive_ssl }}
+    Listen  {{ apache.standard_listen_directive_ssl|default('443') }}
 </IfModule>
 {%- endif %}
 {%- endif %}
