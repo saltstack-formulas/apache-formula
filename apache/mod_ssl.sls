@@ -1,8 +1,26 @@
-{% if grains['os_family']=="Debian" %}
 
 include:
   - apache
 
+{% if grains['os_family']=="RedHat" %}
+pkg_mod_ssl:
+  pkg.installed:
+    - name: mod_ssl
+    - watch_in:
+      - module: apache-reload
+file_mod_ssl:
+  file.managed:
+    - name: /etc/httpd/conf.d/ssl.conf
+    - source: salt://apache/files/RedHat/ssl.conf.jinja
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 0644
+    - watch_in:
+      - module: apache-reload
+
+{% endif %}
+{% if grains['os_family']=="Debian" %}
 a2enmod mod_ssl:
   cmd.run:
     - name: a2enmod ssl

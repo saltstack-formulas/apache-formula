@@ -3,6 +3,7 @@
 {%- set sitename = site.get('ServerName', id) -%}
 
 {%- set vals = {
+    'listens': site.get('listen', '*:80').split(),
     'interfaces': site.get('interface', '*').split(),
     'port': site.get('port', '80'),
 
@@ -37,7 +38,11 @@
         'Require': 'all granted',
     },
 } -%}
-
+{%- if site.get('listen') %}
+{%- for listen in vals.listens %}
+Listen {{ listen }}
+{%- endfor %}
+{%- endif %}
 <VirtualHost {% for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
