@@ -1,0 +1,81 @@
+# on master node load this pillar for calling the salt apache orchestration state
+apache:
+  lookup:
+    pcs:
+      node_ids: 
+        - node1.example.org
+        - node2.example.org
+        - node3.example.org
+      admin_node_id: node1.example.org
+
+# on minions load this pillar
+apache:
+  lookup:
+    # service must be disabled, because it's managed by Pacemaker
+    service_state: disabled
+    service_enable: False
+    # name conventions for resources match  pcs setting below
+    custom_reload_command: pcs resource show apache && (pcs resource cleanup apache && sleep 5 && pcs resource debug-start apache|grep "apache already running" && pcs resource restart apache-clone) || true
+    custom_restart_command: pcs resource show apache && (pcs resource cleanup apache && sleep 5 && pcs resource debug-start apache|grep "apache already running" && pcs resource restart apache-clone) || true
+
+    #with this settings apache listens on localhost:80 for http traffic only
+    standard_listen_directive: localhost:80
+    standard_listen_directive_ssl: False
+
+    pcs:
+      apache_cib: cib_for_apache
+      resources:
+        apache:
+          resource_type: "apache"
+          resource_options:
+            - "--clone"
+            - "interleave=true"
+
+      constraints:
+        # For keystone wsgi
+        #pcs constraint order start haproxy-clone then apache-clone
+        order-haproxy-clone-apache-clone-Optional:
+          constraint_type: "order"
+          constraint_options:
+            - "start"
+            - "haproxy-clone"
+            - "then"
+            - "apache-clone"
+            - "kind=Optional"
+
+        #pcs constraint order start rabbitmq-clone then apache-clone
+        order-rabbitmq-clone-apache-clone-Optional:
+          constraint_type: "order"
+          constraint_options:
+            - "start"
+            - "rabbitmq-clone"
+            - "then"
+            - "apache-clone"
+            - "kind=Optional"
+
+        #pcs constraint order start memcached-clone then apache-clone
+        order-memcached-clone-apache-clone-Optional:
+          constraint_type: "order"
+          constraint_options:
+            - "start"
+            - "memcached-clone"
+            - "then"
+            - "apache-clone"
+            - "kind=Optional"
+
+        #pcs constraint order promote galera-master then apache-clone
+        order-galera-master-apache-clone-mandatory:
+          constraint_type: "order"
+          constraint_options:
+            - "promote"
+            - "galera-master"
+            - "then"
+            - "apache-clone"
+            - "kind=Mandatory"
+
+  sites:
+    mysite.example.org:
+      template_file: salt://apache/vhosts/standard.tmpl
+      listen: "192.168.1.101:80 192.168.2.101:80"
+      interface: "192.168.1.101 192.168.2.101"
+      port: "80"
