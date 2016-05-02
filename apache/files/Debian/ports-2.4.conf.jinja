@@ -18,15 +18,18 @@
 Listen  {{ listen }}
     {%- endfor %}
 {%- else %}
-Listen 80
+{%- set standard_listen_directive = salt['pillar.get']('apache:standard_listen_directive', '*:80') %}
+{%- if standard_listen_directive %}
+Listen  {{ standard_listen_directive }}
+{%- endif %}
 
-<IfModule mod_ssl.c>
-    Listen 443
-</IfModule>
+#<IfModule mod_ssl.c>
+#    Listen 443
+#</IfModule>
 
-<IfModule mod_gnutls.c>
-    Listen 443
-</IfModule>
+#<IfModule mod_gnutls.c>
+#    Listen 443
+#</IfModule>
 {%- endif %}
 
 {%- if salt['pillar.get']('apache:name_virtual_hosts') is iterable %}
