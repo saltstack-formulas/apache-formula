@@ -18,7 +18,7 @@ apache-reload:
     - m_name: {{ apache.service }}
 {% else %}
     - name: cmd.run
-    - cmd: "ps -ef | grep {{ apache.service }} | grep -v grep && {{ apache.service }} -k graceful"
+    - cmd: "ps -ef | grep {{ apache.server }} | grep -v grep && {{ apache.service }} -k graceful"
     - python_shell: True
 {% endif %}
 
@@ -33,6 +33,6 @@ apache-restart:
 # cluster manager like Pacemaker
   module.wait:
     - name: cmd.run
-    - cmd: "ps -ef | grep {{ apache.service }} | grep -v grep && {{ apache.service }} -k graceful"
+    - cmd: "ps -ef | grep {{ apache.server }} | grep -v grep && {{ apache.service }} -k graceful"
     - python_shell: True
 {% endif %}
