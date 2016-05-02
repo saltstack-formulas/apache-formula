@@ -20,6 +20,6 @@ a2enmod remoteip:
     - require:
       - pkg: apache
     - watch_in:
-      - service: apache
+      - module: apache-restart
 
 {% endif %}

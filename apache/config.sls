@@ -11,7 +11,7 @@ include:
     - require:
       - pkg: apache
     - watch_in:
-      - service: apache
+      - module: apache-restart
     - context:
       apache: {{ apache }}
 
@@ -20,7 +20,7 @@ include:
     - require:
       - pkg: apache
     - watch_in:
-      - service: apache
+      - module: apache-restart
 
 {% if grains['os_family']=="Debian" %}
 /etc/apache2/envvars:
@@ -31,7 +31,7 @@ include:
     - require:
       - pkg: apache
     - watch_in:
-      - service: apache
+      - module: apache-restart
 
 {{ apache.portsfile }}:
   file.managed:
@@ -41,7 +41,7 @@ include:
     - require:
       - pkg: apache
     - watch_in:
-      - service: apache
+      - module: apache-restart
     - context:
       apache: {{ apache }}
 
@@ -53,7 +53,7 @@ include:
     - require:
       - pkg: apache
     - watch_in:
-      - service: apache
+      - module: apache-restart
 {% endif %}
 
 {% if grains['os_family']=="Suse" %}
@@ -65,7 +65,7 @@ include:
     - require:
       - pkg: apache
     - watch_in:
-      - service: apache
+      - module: apache-restart
     - context:
       apache: {{ apache }}
 {% endif %}

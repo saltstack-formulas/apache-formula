@@ -13,8 +13,13 @@ apache:
 # trigger a restart or reload as needed.
 apache-reload:
   module.wait:
+{% if apache.service_state in ['running'] %}
     - name: service.reload
     - m_name: {{ apache.service }}
+{% else %}
+    - name: cmd.run
+    - m_name: {{ apache.service }} -k graceful
+{% endif %}
 
 apache-restart:
 {% if apache.service_state in ['running'] %}
@@ -26,6 +31,6 @@ apache-restart:
 # needed when service_state is disabled but apache is controlled by a 
 # cluster manager like Pacemaker
   module.wait:
-    - name: service.reload
-    - m_name: {{ apache.service }}
+    - name: cmd.run
+    - m_name: {{ apache.service }} -k graceful
 {% endif %}

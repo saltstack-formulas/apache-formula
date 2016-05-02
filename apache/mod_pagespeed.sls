@@ -17,7 +17,7 @@ a2enmod pagespeed:
     - require:
       - pkg: libapache2-mod-pagespeed
     - watch_in:
-      - service: apache
+      - module: apache-restart
 
 {% for dir in ['/var/cache/mod_pagespeed', '/var/log/pagespeed'] %}
 {{ dir }}:
