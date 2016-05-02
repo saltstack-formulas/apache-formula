@@ -1,4 +1,5 @@
 {% from "apache/map.jinja" import apache with context %}
+{% set restart_command = 
 
 apache:
   pkg.installed:
@@ -18,7 +19,7 @@ apache-reload:
     - m_name: {{ apache.service }}
 {% else %}
     - name: cmd.run
-    - cmd: "ps -ef | grep {{ apache.server }} | grep -v grep && {{ apache.service }} -k graceful"
+    - cmd: {{apache.custom_reload_command|default('apachectl graceful')}}
     - python_shell: True
 {% endif %}
 
@@ -28,11 +29,8 @@ apache-restart:
     - name: service.restart
     - m_name: {{ apache.service }}
 {% else %}
-# a bit hackish, but reload doesnt start apache when it is not running
-# needed when service_state is disabled but apache is controlled by a 
-# cluster manager like Pacemaker
   module.wait:
     - name: cmd.run
-    - cmd: "ps -ef | grep {{ apache.server }} | grep -v grep && {{ apache.service }} -k graceful"
+    - cmd: {{apache.custom_restart_command|default('apachectl restart')}}
     - python_shell: True
 {% endif %}
