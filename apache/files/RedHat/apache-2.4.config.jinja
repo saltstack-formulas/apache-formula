@@ -39,7 +39,7 @@ ServerRoot "/etc/httpd"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
-{%- set standard_listen_directive = salt['pillar.get']('apache:standard_listen_directive', '*:80') %}
+{%- set standard_listen_directive = salt['pillar.get']('apache:standard_listen_directive', '80') %}
 {%- if standard_listen_directive %}
 Listen  {{ standard_listen_directive }}
 {%- endif %}
