@@ -1,0 +1,15 @@
+default:
+  crs_install: False
+  manage_config: False
+Debian:
+  crs_install: False
+  manage_config: False
+  package: libapache2-mod-security2
+  crs_package: modsecurity-crs
+  config_file: /etc/modsecurity/modsecurity.conf-recommended
+RedHat:
+  crs_install: False
+  manage_config: False
+  package: mod_security
+  crs_package: mod_security_crs
+  config_file: /etc/httpd/conf.d/mod_security.conf

@@ -1,0 +1,54 @@
+---
+driver:
+  name: vagrant
+
+platforms:
+  - name: debian-jessie64
+    driver_config:
+      box: ssplatt/salt-deb-8
+  - name: centos-7
+    driver_config:
+      box: rchrd/centos-7-x64-salt
+  - name: centos-6
+    driver_config:
+      box: rchrd/centos-6-x64-salt
+
+provisioner:
+  name: salt_solo
+  salt_version: 2015.8.8
+  data_path: test/shared
+  is_file_root: true
+  pillars:
+    top.sls:
+      base:
+        '*':
+          - apache
+    apache.sls:
+      apache:
+        mod_security:
+          crs_install: True
+          manage_config: True
+          sec_rule_engine: 'On'
+          sec_request_body_access: 'On'
+          sec_request_body_limit: '14000000'
+          sec_request_body_no_files_limit: '114002'
+          sec_request_body_in_memory_limit: '114002'
+          sec_request_body_limit_action: 'Reject'
+          sec_pcre_match_limit: '15000'
+          sec_pcre_match_limit_recursion: '15000'
+          sec_debug_log_level: '3'
+
+suites:
+  - name: apache
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - apache
+  - name: mod_security
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - apache
+            - apache.mod_security
