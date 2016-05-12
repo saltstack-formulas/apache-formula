@@ -1,4 +1,5 @@
 {% import_yaml "apache/osfingermap.yaml" as osfingermap %}
+{% import_yaml "apache/modsecurity.yaml" as modsec %}
 
 {% set apache = salt['grains.filter_by']({
     'Debian': {
@@ -116,3 +117,11 @@
 }, grain='oscodename', merge=salt['grains.filter_by'](
     osfingermap
 , grain='osfinger', merge=salt['pillar.get']('apache:lookup')))) %}
+
+{% set modsecurity = salt['grains.filter_by'](
+    modsec
+, grain='os_family', merge=salt['pillar.get']('apache:mod_security')) or {} %}
+
+{# merge the os family/codename mod_sec's specific data over the defaults #}
+{% do apache.update({ 'mod_security': modsecurity }) %}
+

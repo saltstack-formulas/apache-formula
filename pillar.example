@@ -18,15 +18,16 @@ apache:
     # ``apache.mod_wsgi`` formula additional configuration:
     mod_wsgi: mod_wsgi
 
+
   global:
     # global apache directives
-    AllowEncodedSlashes: "On"
+    AllowEncodedSlashes: 'On'
 
 
   name_virtual_hosts:
-    - interface: *
+    - interface: '*'
       port: 80
-    - interface: *
+    - interface: '*'
       port: 443
 
   # ``apache.vhosts`` formula additional configuration:
@@ -142,3 +143,19 @@ apache:
     RemoteIPTrustedProxy:
       - 10.0.8.0/24
       - 127.0.0.1
+
+  # ``apache.mod_security`` formula additional configuration:
+  mod_security:
+    crs_install: True
+    # If not set, default distro's configuration is installed as is
+    manage_config: True
+    sec_rule_engine: 'On'
+    sec_request_body_access: 'On'
+    sec_request_body_limit: '14000000'
+    sec_request_body_no_files_limit: '114002'
+    sec_request_body_in_memory_limit: '114002'
+    sec_request_body_limit_action: 'Reject'
+    sec_pcre_match_limit: '15000'
+    sec_pcre_match_limit_recursion: '15000'
+    sec_debug_log_level: '3'
+
