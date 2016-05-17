@@ -40,7 +40,35 @@ ServerRoot "/etc/httpd"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
+
+# Managed by saltstack
+
+{% if salt['pillar.get']('apache:sites') is mapping %}
+    {%- set listen_directives = [] %}
+    {%- for id, site in salt['pillar.get']('apache:sites').items() %}
+        {%- set interfaces = site.get('interface', '*').split() %}
+        {%- set port = site.get('port', 80) %}
+        {%- for interface in interfaces %}
+            {%- set listen_directive = interface ~ ':' ~ port %}
+            {%- if listen_directive not in listen_directives %}
+                {%- do listen_directives.append(listen_directive) %}
+            {%- endif %}
+        {%- endfor %}
+    {%- endfor %}
+    {%- for listen in listen_directives %}
+Listen  {{ listen }}
+    {%- endfor %}
+{%- else %}
 Listen 80
+
+<IfModule mod_ssl.c>
+    Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+    Listen 443
+</IfModule>
+{%- endif %}
 
 #
 # Dynamic Shared Object (DSO) Support
