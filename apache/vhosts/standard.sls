@@ -34,8 +34,7 @@ include:
 {% if grains.os_family == 'Debian' %}
 {% if site.get('enabled', True) %}
 a2ensite {{ id }}{{ apache.confext }}:
-  cmd:
-    - run
+  cmd.run:
     - unless: test -f /etc/apache2/sites-enabled/{{ id }}{{ apache.confext }}
     - require:
       - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}
@@ -43,8 +42,7 @@ a2ensite {{ id }}{{ apache.confext }}:
       - module: apache-reload
 {% else %}
 a2dissite {{ id }}{{ apache.confext }}:
-  cmd:
-    - run
+  cmd.run:
     - onlyif: test -f /etc/apache2/sites-enabled/{{ id }}{{ apache.confext }}
     - require:
       - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}

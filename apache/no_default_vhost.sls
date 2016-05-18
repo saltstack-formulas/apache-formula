@@ -6,8 +6,7 @@ include:
   - apache
 
 a2dissite 000-default.conf:
-  cmd:
-    - run
+  cmd.run:
     - unless: test ! -f /etc/apache2/sites-enabled/000-default.conf
     - require:
       - pkg: apache
