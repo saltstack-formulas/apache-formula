@@ -5,9 +5,10 @@
 include:
   - apache
 
-apache_no-default-vhost:
-  file.absent:
-    - name: {{ apache.vhostdir }}/000-default.conf
+a2dissite 000-default.conf:
+  cmd:
+    - run
+    - unless: test ! -f /etc/apache2/sites-enabled/000-default.conf
     - require:
       - pkg: apache
     - watch_in:
