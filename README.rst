@@ -93,6 +93,11 @@ using data from Pillar. (Debian and RedHat Only)
 
 Allows you to install the basic Core Rules (CRS) and some basic configuration for mod_security2
 
+``apache.mod_ssl``
+----------------------
+
+Installs and enables the mod_ssl module (Debian and RedHad only)
+
 ``apache.mod_vhost_alias``
 ----------------------
 
