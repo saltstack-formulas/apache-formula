@@ -50,11 +50,12 @@
     {% set proxyvals = {
         'ProxyPassSource': proxyargs.get('ProxyPassSource', '/'),
         'ProxyPassTarget': proxyargs.get('ProxyPassTarget', 'https://{0}'.format(sitename)),
+        'ProxyPassTargetOptions': proxyargs.get('ProxyPassTargetOptions', ''),
         'ProxyPassReverseSource': proxyargs.get('ProxyPassReverseSource', '/'),
         'ProxyPassReverseTarget': proxyargs.get('ProxyPassReverseTarget', site.get('ProxyPassTarget', 'https://{0}'.format(sitename))),
     } %}
     ######### {{proxy}} #########
-    ProxyPass               {{ proxyvals.ProxyPassSource }} {{ proxyvals.ProxyPassTarget }}
+    ProxyPass               {{ proxyvals.ProxyPassSource }} {{ proxyvals.ProxyPassTarget }} {{ proxyvals.ProxyPassTargetOptions }}
     ProxyPassReverse        {{ proxyvals.ProxyPassReverseSource }} {{ proxyvals.ProxyPassReverseTarget }}
     {% endfor %}
     {% if site.get('Formula_Append') %}

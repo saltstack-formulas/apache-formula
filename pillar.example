@@ -90,6 +90,7 @@ apache:
       #   my sample route:
       #      ProxyPassSource: '/'
       #      ProxyPassTarget: 'http://www.example.net'
+      #      ProxyPassTargetOptions: 'connectiontimeout=5 timeout=30'
       #      ProxyPassReverseSource: '/'
       #      ProxyPassReverseTarget: 'http://www.example.net'
 
