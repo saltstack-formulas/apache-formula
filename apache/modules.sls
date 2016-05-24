@@ -15,7 +15,7 @@ a2enmod {{ module }}:
 {% endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
-a2dismod {{ module }}:
+a2dismod -f {{ module }}:
   cmd.run:
     - onlyif: ls /etc/apache2/mods-enabled/{{ module }}.load
     - order: 225
