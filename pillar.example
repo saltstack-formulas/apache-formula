@@ -85,6 +85,7 @@ apache:
       # RedirectTarget: 'http://www.example.net'
 
       # if template is 'proxy.tmpl'
+      # ProxyRequests: 'On'
       # ProxyPreserveHost: 'On'
       # ProxyRoute:
       #   my sample route:
