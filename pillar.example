@@ -18,6 +18,8 @@ apache:
     # ``apache.mod_wsgi`` formula additional configuration:
     mod_wsgi: mod_wsgi
 
+    # Default value for AddDefaultCharset in RedHat configuration
+    default_charset: 'UTF-8'
 
   global:
     # global apache directives
