@@ -37,3 +37,7 @@ export LANG
 ## If you need a higher file descriptor limit, uncomment and adjust the
 ## following line (default is 8192):
 #APACHE_ULIMIT_MAX_FILES='ulimit -n 65536'
+
+{%- for envvar in salt['pillar.get']('apache:envvars', []) %}
+{{ envvar }}
+{%- endfor %}
