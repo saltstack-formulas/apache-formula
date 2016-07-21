@@ -54,6 +54,8 @@ apache:
       interface: '*'
       port: '80'
 
+      exclude_listen_directive: True # Do not add a Listen directive in httpd.conf
+
       ServerName: example.com # uses the unique ID above unless specified
       ServerAlias: www.example.com
 
