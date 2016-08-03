@@ -53,7 +53,7 @@
         'ProxyPassTarget': proxyargs.get('ProxyPassTarget', 'https://{0}'.format(sitename)),
         'ProxyPassTargetOptions': proxyargs.get('ProxyPassTargetOptions', ''),
         'ProxyPassReverseSource': proxyargs.get('ProxyPassReverseSource', '/'),
-        'ProxyPassReverseTarget': proxyargs.get('ProxyPassReverseTarget', site.get('ProxyPassTarget', 'https://{0}'.format(sitename))),
+        'ProxyPassReverseTarget': proxyargs.get('ProxyPassReverseTarget', proxyargs.get('ProxyPassTarget', 'https://{0}'.format(sitename))),
     } %}
     ######### {{proxy}} #########
     ProxyPass               {{ proxyvals.ProxyPassSource }} {{ proxyvals.ProxyPassTarget }} {{ proxyvals.ProxyPassTargetOptions }}
