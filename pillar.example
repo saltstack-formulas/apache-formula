@@ -18,6 +18,9 @@ apache:
     # ``apache.mod_wsgi`` formula additional configuration:
     mod_wsgi: mod_wsgi
 
+  # optionally define umask to be placed in envvars (Debian only)
+  umask: '022'
+
   global:
     # global apache directives
     AllowEncodedSlashes: "On"

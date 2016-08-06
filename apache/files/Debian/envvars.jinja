@@ -47,3 +47,8 @@ export LANG
 ## This will produce a verbose output on package installations of web server modules and web application
 ## installations which interact with Apache
 #export APACHE2_MAINTSCRIPT_DEBUG=1
+
+{% if salt['pillar.get']('apache:umask') %}
+# umask 002 to create files with 0664 and folders with 0775
+umask {{ salt['pillar.get']('apache:umask') }}
+{%- endif %}
