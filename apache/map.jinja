@@ -2,6 +2,24 @@
 {% import_yaml "apache/modsecurity.yaml" as modsec %}
 
 {% set apache = salt['grains.filter_by']({
+    'Gentoo': {
+        'server': 'www-servers/apache',
+        'service': 'apache2',
+        'configfile': '/etc/apache2/httpd.conf',
+
+        'mod_wsgi': 'www-apache/mod_wsgi',
+        'mod_fcgid': 'www-apache/mod_fcgid',
+
+        'vhostdir': '/etc/apache2/vhosts.d',
+        'confdir': '/etc/conf.d/apache2',
+        'confext': '.conf',
+        'default_site': 'default',
+        'default_site_ssl': 'default-ssl',
+        'logdir': '/var/log/apache2',
+        'logrotatedir': '/etc/logrotate.d/apache2',
+        'wwwdir': '/var/www',
+        'use_require': False,
+    },
     'Debian': {
         'server': 'apache2',
         'service': 'apache2',
