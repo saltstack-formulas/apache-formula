@@ -165,3 +165,19 @@ apache:
     sec_pcre_match_limit_recursion: '15000'
     sec_debug_log_level: '3'
 
+    rules:
+      enabled:
+      modsecurity_crs_10_setup.conf:
+        rule_set: ''
+        enabled: True
+      modsecurity_crs_20_protocol_violations.conf:
+        rule_set: 'base_rules'
+        enabled: False
+
+    custom_rule_files:
+      # any name as an array index, and you can duplicate this section
+      UNIQUE_VALUE_HERE:
+        file: 'my name'
+        path: 'salt://path/to/modsecurity/custom/file'
+        enabled: True
+  
