@@ -69,3 +69,17 @@ include:
     - context:
       apache: {{ apache }}
 {% endif %}
+
+{% if grains['os_family']=="FreeBSD" %}
+{{ apache.portsfile }}:
+  file.managed:
+    - template: jinja
+    - source:
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/ports-{{ apache.version }}.conf.jinja
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+    - context:
+      apache: {{ apache }}
+{% endif %}
