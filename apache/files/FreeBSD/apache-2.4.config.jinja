@@ -40,8 +40,6 @@ ServerRoot "/usr/local"
 #
 # Mutex default:/var/run
 
-Include {{ apache.portsfile }}
-
 #
 # Dynamic Shared Object (DSO) Support
 #
@@ -171,6 +169,8 @@ LoadModule alias_module libexec/apache24/mod_alias.so
 # Third party modules
 IncludeOptional etc/apache24/modules.d/[0-9][0-9][0-9]_*.conf
  
+Include {{ apache.portsfile }}
+
 <IfModule unixd_module>
 #
 # If you wish httpd to run as a different user or group, you must run

@@ -94,14 +94,20 @@ using data from Pillar. (Debian and RedHat Only)
 Allows you to install the basic Core Rules (CRS) and some basic configuration for mod_security2
 
 ``apache.mod_security.rules``
+-----------------------------
 
 This state can create symlinks based on basic Core Rules package. (Debian only)
 Or it can distribute a mod_security rule file and place it /etc/modsecurity/
 
+``mod_socache_shmcb``
+---------------------
+
+Enables mod_socache_shmcb. (FreeBSD only)
+
 ``apache.mod_ssl``
 ----------------------
 
-Installs and enables the mod_ssl module (Debian and RedHad only)
+Installs and enables the mod_ssl module (Debian, RedHat and FreeBSD only)
 
 ``apache.mod_vhost_alias``
 ----------------------
