@@ -230,13 +230,14 @@ ServerAdmin root@localhost
 # below.
 #
 
+{% if apache.global_document_root is defined and apache.global_document_root|length > 0 %}
 #
 # DocumentRoot: The directory out of which you will serve your
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "/usr/local/www/apache24/data"
-<Directory "/usr/local/www/apache24/data">
+DocumentRoot "{{ apache.global_document_root }}"
+<Directory "{{ apache.global_document_root }}">
     #
     # Possible values for the Options directive are "None", "All",
     # or any combination of:
@@ -263,6 +264,7 @@ DocumentRoot "/usr/local/www/apache24/data"
     #
     Require all granted
 </Directory>
+{% endif %}
 
 #
 # DirectoryIndex: sets the file that Apache will serve if a directory
