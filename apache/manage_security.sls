@@ -17,6 +17,10 @@ apache_security-block:
       - pkg: apache
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% for option, value in salt['pillar.get']('apache:security', {}).items() %}
 apache_manage-security-{{ option }}:

@@ -51,3 +51,8 @@ apache_pcs__cib_pushed_{{apache.apache_cib}}:
   pcs.cib_pushed:
     - cibname: {{apache.apache_cib}}
 {% endif %}
+
+apache_pcs__empty_sls_prevent_error:
+  cmd.run:
+    - name: true
+    - unless: true

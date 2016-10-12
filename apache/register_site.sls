@@ -49,6 +49,10 @@
     - watch_in:
       - cmd: {{ a2modid }}
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}
 ##########################################

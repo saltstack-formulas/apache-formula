@@ -12,6 +12,10 @@ a2enmod {{ mpm_module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
   file.managed:
     - name: /etc/apache2/mods-available/{{ mpm_module }}.conf
     - template: jinja
@@ -21,6 +25,10 @@ a2enmod {{ mpm_module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 # Deactivate the other mpm modules as a previous step
 {% for mod in ['mpm_prefork', 'mpm_worker', 'mpm_event'] if not mod == mpm_module %}
@@ -29,10 +37,13 @@ a2dismod {{ mod }}:
     - onlyif: test -e /etc/apache2/mods-enabled/{{ mod }}.load
     - require:
       - pkg: apache
-    - require_in:
-      - cmd: a2enmod {{ mpm_module }}
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - cmd: a2enmod {{ mpm_module }}
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% endif %}

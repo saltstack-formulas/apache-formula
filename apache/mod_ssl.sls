@@ -8,6 +8,10 @@ pkg_mod_ssl:
     - name: mod_ssl
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 file_mod_ssl:
   file.managed:
     - name: /etc/httpd/conf.d/ssl.conf
@@ -18,6 +22,10 @@ file_mod_ssl:
     - mode: 0644
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}
 {% if grains['os_family']=="Debian" %}
@@ -30,5 +38,9 @@ a2enmod mod_ssl:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}

@@ -24,6 +24,10 @@ a2dissite 000-default{{ apache.confext }}:
     - onlyif: test -f /etc/apache2/sites-enabled/000-default{{ apache.confext }}
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
     - require:
       - pkg: apache
 

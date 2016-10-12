@@ -13,5 +13,9 @@ a2enmod proxy_http:
       - cmd: a2enmod proxy
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}

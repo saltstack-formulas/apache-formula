@@ -21,6 +21,10 @@ include:
       - pkg: apache
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% if site.get('DocumentRoot') != False %}
 {{ id }}-documentroot:
@@ -41,6 +45,10 @@ a2ensite {{ id }}{{ apache.confext }}:
       - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% else %}
 a2dissite {{ id }}{{ apache.confext }}:
   cmd:
@@ -50,6 +58,10 @@ a2dissite {{ id }}{{ apache.confext }}:
       - file: /etc/apache2/sites-available/{{ id }}{{ apache.confext }}
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endif %}
 {% endif %}
 

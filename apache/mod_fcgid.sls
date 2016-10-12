@@ -19,5 +19,9 @@ a2enmod fcgid:
       - pkg: mod-fcgid
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}
