@@ -1,8 +1,8 @@
 {# Define default values here so the template below can just focus on layout #}
-{% from "apache/map.jinja" import apache with context %}
-{% set sitename = site.get('ServerName', id) %}
+{%- from "apache/map.jinja" import apache with context %}
+{%- set sitename = site.get('ServerName', id) %}
 
-{% set vals = {
+{%- set vals = {
     'interfaces': site.get('interface', '*').split(),
     'port': site.get('port', '80'),
 
@@ -19,8 +19,7 @@
     'CustomLog': site.get('CustomLog', '{0}/{1}-access.log'.format(map.logdir, sitename)),
     
     'RedirectSource': site.get('RedirectSource', '/'),
-    'RedirectTarget': site.get('RedirectTarget', 'https://{0}'.format(sitename)),
-
+    'RedirectTarget': site.get('RedirectTarget', 'https://{0}/'.format(sitename)),
 } %}
 
 <VirtualHost {%- for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
