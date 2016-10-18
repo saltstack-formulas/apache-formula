@@ -1,6 +1,7 @@
-{% if grains['os_family']=="Debian" %}
 {% from "apache/map.jinja" import apache with context %}
 {% set mpm_module = salt['pillar.get']('apache:mpm:module', 'mpm_prefork') %}
+
+{% if grains['os_family']=="Debian" %}
 
 include:
   - apache
@@ -34,5 +35,23 @@ a2dismod {{ mod }}:
     - watch_in:
       - module: apache-restart
 {% endfor %}
+
+{% endif %}
+
+{% if grains['os_family']=="RedHat" %}
+
+include:
+  - apache
+
+{{ apache.moddir }}/00-mpm-conf.conf:
+  file.managed:
+    - name: {{ apache.moddir }}/00-mpm.conf
+    - template: jinja
+    - source:
+      - salt://apache/files/RedHat/conf.modules.d/00-mpm.conf.jinja
+    - require:
+      - pkg: httpd
+    - watch_in:
+      - module: apache-restart
 
 {% endif %}
