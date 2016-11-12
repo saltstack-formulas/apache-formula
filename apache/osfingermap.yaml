@@ -18,3 +18,5 @@ Amazon Linux AMI-2014:
   version: '2.2'
 Amazon Linux AMI-2015:
   version: '2.2'
+Amazon Linux AMI-2016:
+  version: '2.2'
