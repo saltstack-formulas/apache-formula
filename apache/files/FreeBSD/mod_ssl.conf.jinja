@@ -91,8 +91,8 @@ SSLOptions +StrictRequire
 #   /usr/share/doc/apache2.2-common/README.Debian.gz for more info.
 #   If both key and certificate are stored in the same file, only the
 #   SSLCertificateFile directive is needed.
-SSLCertificateFile    /usr/local/etc/apache24/ssl/apache2-cert.pem
-SSLCertificateKeyFile /usr/local/etc/apache24/ssl/apache2-key.pem
+SSLCertificateFile    {{ salt['pillar.get']('apache:ssl:default_cert', '/usr/local/etc/apache24/server.crt') }}
+SSLCertificateKeyFile {{ salt['pillar.get']('apache:ssl:default_key', '/usr/local/etc/apache24/server.key') }}
 
 #   Server Certificate Chain:
 #   Point SSLCertificateChainFile at a file containing the
