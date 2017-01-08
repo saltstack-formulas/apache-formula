@@ -43,7 +43,7 @@ Enabled the Apache module mod_rewrite (Debian only)
 ``apache.mod_proxy``
 -------------------
 
-Enables the Apache module mod_proxy. (Debian only)
+Enables the Apache module mod_proxy. (Debian and FreeBSD only)
 
 ``apache.mod_proxy_http``
 -------------------------
