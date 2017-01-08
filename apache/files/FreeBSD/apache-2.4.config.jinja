@@ -519,5 +519,12 @@ SSLRandomSeed startup builtin
 SSLRandomSeed connect builtin
 </IfModule>
 
+# Default Values
+ServerTokens Prod
+ServerSignature Off
+TraceEnable Off
+# Well, IncludeOptional behaved lile Include
+IncludeOptional etc/apache24/extra/security.con[f]
+
 Include etc/apache24/Includes/*.conf
 
