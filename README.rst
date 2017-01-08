@@ -109,6 +109,11 @@ Enables mod_socache_shmcb. (FreeBSD only)
 
 Installs and enables the mod_ssl module (Debian, RedHat and FreeBSD only)
 
+``mod_suexec``
+---------------------
+
+Enables mod_suexec. (FreeBSD only)
+
 ``apache.mod_vhost_alias``
 ----------------------
 
