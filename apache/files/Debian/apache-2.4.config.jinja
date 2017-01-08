@@ -211,6 +211,10 @@ LogFormat "%{User-agent}i" agent
 LogFormat {{ log_format }}
 {%- endfor %}
 
+{%- for directive, dvalue in salt['pillar.get']('apache:global', {}).items() %}
+{{ directive }} {{ dvalue }}
+{%- endfor %}
+
 # Include of directories ignores editors' and dpkg's backup files,
 # see README.Debian for details.
 

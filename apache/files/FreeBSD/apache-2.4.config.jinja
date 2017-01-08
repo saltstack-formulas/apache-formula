@@ -230,6 +230,10 @@ ServerAdmin root@localhost
 # below.
 #
 
+{%- for directive, dvalue in salt['pillar.get']('apache:global', {}).items() %}
+{{ directive }} {{ dvalue }}
+{%- endfor %}
+
 {% if apache.global_document_root is defined and apache.global_document_root|length > 0 %}
 #
 # DocumentRoot: The directory out of which you will serve your
