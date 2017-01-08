@@ -38,7 +38,7 @@ Enables and disables Apache modules.
 ``apache.mod_rewrite``
 ----------------------
 
-Enabled the Apache module mod_rewrite (Debian only)
+Enabled the Apache module mod_rewrite (Debian and FreeBSD only)
 
 ``apache.mod_proxy``
 -------------------

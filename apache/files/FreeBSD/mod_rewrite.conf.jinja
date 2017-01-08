@@ -1,0 +1,3 @@
+{% from "apache/map.jinja" import apache with context %}
+
+LoadModule rewrite_module libexec/{{ apache.service }}/mod_rewrite.so
