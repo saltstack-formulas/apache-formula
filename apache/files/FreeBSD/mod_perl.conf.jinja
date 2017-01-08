@@ -1,0 +1,3 @@
+{% from "apache/map.jinja" import apache with context %}
+
+LoadModule perl_module libexec/{{ apache.service }}/mod_perl.so

@@ -70,6 +70,11 @@ Enables the Apache module mod_headers. (Debian Only)
 
 Installs and Enables the mod_pagespeed module. (Debian and RedHat Only)
 
+``apache.mod_perl2``
+-------------------
+
+Installs and enables the mod_perl2 module (Debian and FreeBSD only)
+
 ``apache.mod_php5``
 -------------------
 
