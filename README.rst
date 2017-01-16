@@ -80,6 +80,11 @@ Installs and enables the mod_perl2 module (Debian and FreeBSD only)
 
 Installs and enables the mod_php5 module
 
+``apache.mod_cgi``
+---------------------
+
+Enables mod_cgi. (FreeBSD only)
+
 ``apache.mod_fcgid``
 --------------------
 
@@ -114,7 +119,7 @@ Enables mod_socache_shmcb. (FreeBSD only)
 
 Installs and enables the mod_ssl module (Debian, RedHat and FreeBSD only)
 
-``mod_suexec``
+``apache.mod_suexec``
 ---------------------
 
 Enables mod_suexec. (FreeBSD only)
