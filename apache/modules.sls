@@ -1,9 +1,28 @@
 {% if grains['os_family']=="Debian" %}
+{%- set module_includes = [
+  'dav_svn', 'fcgid', 'mpm', 'pagespeed', 'php5', 'proxy_http', 'proxy',
+  'remoteips', 'security', 'ssl', 'wsgi',
+] -%}
 
 include:
   - apache
 {%- for module in salt['pillar.get']('apache:modules:enabled', []) %}
+{%- if module in module_includes %}
   - apache.mod_{{ module }}
+{%- endif %}
+{%- endfor %}
+
+{%- for module in salt['pillar.get']('apache:modules:enabled', []) %}
+{% if module not in module_includes %}
+a2enmod {{ module }}:
+  cmd.run:
+    - unless: ls /etc/apache2/mods-enabled/{{ module }}.load
+    - order: 225
+    - require:
+      - pkg: apache
+    - watch_in:
+      - module: apache-restart
+{%- endif %}
 {%- endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
