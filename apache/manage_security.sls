@@ -23,7 +23,7 @@ apache_manage-security-{{ option }}:
   file.accumulated:
     - filename: /etc/apache2/conf-available/security.conf
     - name: apache_manage-security-add-{{ option }}
-    - text: "{{ option }} {{ value }}"
+    - text: "{{ option }} {{ value }}\n"
     - require_in:
       - file: apache_security-block
 {% endfor %}
