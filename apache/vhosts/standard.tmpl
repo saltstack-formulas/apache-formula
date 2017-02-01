@@ -23,6 +23,9 @@
     'DocumentRoot': site.get('DocumentRoot', '{0}/{1}'.format(map.wwwdir, sitename)),
     'VirtualDocumentRoot': site.get('VirtualDocumentRoot'),
 
+    'Timeout': site.get('Timeout'),
+    'LimitRequestFields': site.get('LimitRequestFields'),
+
     'Directory_default': '{0}/{1}'.format(map.wwwdir, sitename),
     'Directory': {
         'Options': '-Indexes +FollowSymLinks',
@@ -54,6 +57,9 @@
 
     {% if site.get('DocumentRoot') != False -%}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
     {% if site.get('VirtualDocumentRoot') -%}VirtualDocumentRoot {{ vals.VirtualDocumentRoot }}{% endif %}
+
+    {% if site.get('Timeout') != False %}Timeout {{ vals.Timeout }}{% endif %}
+    {% if site.get('LimitRequestFields') %}LimitRequestFields {{ vals.LimitRequestFields }}{% endif %}
 
     {%- if site.get('SSLCertificateFile') %}
     SSLEngine on
