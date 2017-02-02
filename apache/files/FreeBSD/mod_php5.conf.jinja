@@ -1,0 +1,12 @@
+{% from "apache/map.jinja" import apache with context %}
+
+LoadModule php5_module /usr/local/libexec/{{ apache.service }}/libphp5.so
+
+DirectoryIndex index.html index.php
+
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+<FilesMatch "\.phps$">
+    SetHandler application/x-httpd-php-source
+</FilesMatch>

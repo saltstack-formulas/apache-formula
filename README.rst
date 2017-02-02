@@ -38,12 +38,12 @@ Enables and disables Apache modules.
 ``apache.mod_rewrite``
 ----------------------
 
-Enabled the Apache module mod_rewrite (Debian only)
+Enabled the Apache module mod_rewrite (Debian and FreeBSD only)
 
 ``apache.mod_proxy``
 -------------------
 
-Enables the Apache module mod_proxy. (Debian only)
+Enables the Apache module mod_proxy. (Debian and FreeBSD only)
 
 ``apache.mod_proxy_http``
 -------------------------
@@ -70,10 +70,20 @@ Enables the Apache module mod_headers. (Debian Only)
 
 Installs and Enables the mod_pagespeed module. (Debian and RedHat Only)
 
+``apache.mod_perl2``
+-------------------
+
+Installs and enables the mod_perl2 module (Debian and FreeBSD only)
+
 ``apache.mod_php5``
 -------------------
 
 Installs and enables the mod_php5 module
+
+``apache.mod_cgi``
+---------------------
+
+Enables mod_cgi. (FreeBSD only)
 
 ``apache.mod_fcgid``
 --------------------
@@ -94,14 +104,25 @@ using data from Pillar. (Debian and RedHat Only)
 Allows you to install the basic Core Rules (CRS) and some basic configuration for mod_security2
 
 ``apache.mod_security.rules``
+-----------------------------
 
 This state can create symlinks based on basic Core Rules package. (Debian only)
 Or it can distribute a mod_security rule file and place it /etc/modsecurity/
 
+``mod_socache_shmcb``
+---------------------
+
+Enables mod_socache_shmcb. (FreeBSD only)
+
 ``apache.mod_ssl``
 ----------------------
 
-Installs and enables the mod_ssl module (Debian and RedHad only)
+Installs and enables the mod_ssl module (Debian, RedHat and FreeBSD only)
+
+``apache.mod_suexec``
+---------------------
+
+Enables mod_suexec. (FreeBSD only)
 
 ``apache.mod_vhost_alias``
 ----------------------

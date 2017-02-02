@@ -28,6 +28,7 @@
 
         'mod_wsgi': 'libapache2-mod-wsgi',
         'mod_php5': 'libapache2-mod-php5',
+        'mod_perl2': 'libapache2-mod-perl2',
         'mod_fcgid': 'libapache2-mod-fcgid',
         'mod_pagespeed_source': 'https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb',
 
@@ -83,11 +84,17 @@
         'server': 'apache22',
         'service': 'apache22',
         'configfile': '/usr/local/etc/apache22/httpd.conf',
+        'portsfile': '/usr/local/etc/apache22/ports.conf',
 
+        'mod_php5': 'mod_php56',
+        'mod_perl2': 'ap22-mod_perl2',
         'mod_wsgi': 'ap22-mod_wsgi3',
 
         'vhostdir': '/usr/local/etc/apache22/Includes',
-        'confdir': '/usr/local/etc/apache22/Includes',
+        'confdir': '/usr/local/etc/apache22/extra',
+        'modulesdir': '/usr/local/etc/apache22/modules.d',
+        'global_document_root': '/usr/local/www/apache22/data',
+
         'confext': '',
         'default_site': 'default',
         'default_site_ssl': 'default-ssl',

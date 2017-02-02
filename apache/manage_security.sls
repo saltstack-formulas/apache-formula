@@ -1,9 +1,9 @@
-{% if grains['os_family']=="Debian" %}
-
 {% from "apache/map.jinja" import apache with context %}
 
 include:
   - apache
+
+{% if grains['os_family']=="Debian" %}
 
 {% if salt['file.file_exists' ]('/etc/apache2/conf-available/security.conf') %}
 apache_security-block:
@@ -30,4 +30,14 @@ apache_manage-security-{{ option }}:
 
 {% endif %}
 
+{% elif grains['os_family']=="FreeBSD" %}
+{{ apache.confdir }}/security.conf:
+  file.managed:
+    - source: salt://apache/files/{{ salt['grains.get']('os_family') }}/security.conf.jinja
+    - mode: 644
+    - template: jinja
+    - require:
+      - pkg: apache
+    - watch_in:
+      - module: apache-restart
 {% endif %}

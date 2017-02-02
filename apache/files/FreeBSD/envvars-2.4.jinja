@@ -1,0 +1,19 @@
+# Managed by saltstack
+
+# envvars - default environment variables for apache2ctl
+
+# this won't be correct after changing uid
+unset HOME
+
+APACHE_CONFDIR=/usr/local/etc/apache24
+
+export APACHE_RUN_USER={{ salt['pillar.get']('apache:user', 'www') }}
+export APACHE_RUN_GROUP={{ salt['pillar.get']('apache:group', 'www') }}
+export APACHE_RUN_DIR={{ salt['pillar.get']('apache:run_dir', '/var/run') }}
+
+## The locale used by some modules like mod_dav
+export LANG=en_US.UTF-8
+
+{%- for envvar in salt['pillar.get']('apache:envvars', []) %}
+{{ envvar }}
+{%- endfor %}
