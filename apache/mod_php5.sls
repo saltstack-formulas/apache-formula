@@ -45,3 +45,11 @@ a2enmod php5:
       - module: apache-restart
 
 {% endif %}
+
+{% if grains['os_family']=="Suse" %}
+/etc/sysconfig/apache2:
+  file.replace:
+    - unless: grep '^APACHE_MODULES=.*php5' /etc/sysconfig/apache2
+    - pattern: '^APACHE_MODULES=(.*)"'
+    - repl: 'APACHE_MODULES=\1 php5"'
+{% endif %}
