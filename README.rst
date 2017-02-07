@@ -50,6 +50,11 @@ Enables the Apache module mod_proxy. (Debian only)
 
 Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled. (Debian Only)
 
+``apache.mod_proxy_fcgi``
+-------------------------
+
+Enables the Apache module mod_proxy_fcgi and requires the Apache module mod_proxy to be enabled. (Debian Only)
+
 ``apache.mod_wsgi``
 -------------------
 
@@ -80,6 +85,11 @@ Installs and enables the mod_php5 module
 
 Installs and enables the mod_fcgid module
 
+``apache.mod_fastcgi``
+--------------------
+
+Installs and enables the mod_fastcgi module
+
 ``apache.mod_dav_svn``
 --------------------
 
@@ -107,6 +117,11 @@ Enables the Apache module vhost_alias (Debian Only)
 ----------------------
 
 Enables and configures the Apache module mod_remoteip using data from Pillar. (Debian Only)
+
+``apache.mod_xsendfile``
+----------------------
+
+Installs and enables mod_xsendfile module. (Debian Only)
 
 ``apache.own_default_vhost``
 --------------------------
