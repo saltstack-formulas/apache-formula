@@ -393,3 +393,7 @@ IncludeOptional {{ apache.confdir }}/*.conf
 IncludeOptional {{ apache.vhostdir }}/*.conf
 {% endif %}
 
+# Added for security enhancements
+TraceEnable off
+ServerSignature off
+ServerTokens Prod

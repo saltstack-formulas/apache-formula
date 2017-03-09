@@ -25,6 +25,11 @@ Installs the Apache package and starts the service.
 
 Configures apache based on os_family
 
+``apache.certificates``
+-----------------
+
+Deploy SSL certificates from pillars
+
 ``apache.mod_mpm``
 ------------------
 
@@ -74,6 +79,11 @@ Installs and Enables the mod_pagespeed module. (Debian and RedHat Only)
 -------------------
 
 Installs and enables the mod_perl2 module (Debian and FreeBSD only)
+
+``apache.mod_geoip``
+-------------------
+
+Installs and enables the mod_geoIP (RedHat only)
 
 ``apache.mod_php5``
 -------------------

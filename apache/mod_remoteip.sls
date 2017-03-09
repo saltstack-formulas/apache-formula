@@ -23,3 +23,21 @@ a2enmod remoteip:
       - service: apache
 
 {% endif %}
+
+
+{% if grains['os_family']=="RedHat" %}
+
+include:
+  - apache
+
+/etc/httpd/conf.d/remoteip.conf:
+  file.managed:
+    - template: jinja
+    - source:
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/remoteip.conf.jinja
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+
+{% endif %}

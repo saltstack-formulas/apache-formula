@@ -84,20 +84,152 @@ apache:
             Additional config as a
             multi-line string here
 
-      # if template is 'redirect.tmpl'
-      # RedirectSource: '/'
-      # RedirectTarget: 'http://www.example.net'
+    80-proxyexample.com:
+      template_file: salt://apache/vhosts/redirect.tmpl
+      ServerName: www.proxyexample.com
+      ServerAlias: www.proxyexample.com
+      RedirectSource: '/'
+      RedirectTarget: 'https://www.proxyexample.com/'
+      DocumentRoot: /var/www/proxy
 
-      # if template is 'proxy.tmpl'
-      # ProxyRequests: 'On'
-      # ProxyPreserveHost: 'On'
-      # ProxyRoute:
-      #   my sample route:
-      #      ProxyPassSource: '/'
-      #      ProxyPassTarget: 'http://www.example.net'
-      #      ProxyPassTargetOptions: 'connectiontimeout=5 timeout=30'
-      #      ProxyPassReverseSource: '/'
-      #      ProxyPassReverseTarget: 'http://www.example.net'
+    443-proxyexample.com:
+      template_file: salt://apache/vhosts/proxy.tmpl
+      ServerName: www.proxyexample.com
+      ServerAlias: www.proxyexample.com
+      interface: '*'
+      port: '443'
+      DocumentRoot: /var/www/proxy
+
+      Rewrite: |
+        RewriteRule ^/webmail$ /webmail/ [R]
+        RewriteRule ^/webmail(.*) http://mail.example.com$1 [P,L]
+        RewriteRule ^/vicescws(.*) http://svc.example.com:92$1 [P,L]
+
+      SSLCertificateFile: /etc/httpd/ssl/example.com.crt
+      SSLCertificateKeyFile: /etc/httpd/ssl/example.com.key
+      SSLCertificateChainFile: /etc/httpd/ssl/example.com.cer
+
+      SSLCertificateFile_content: |
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END CERTIFICATE-----
+
+      SSLCertificateKeyFile_content: |
+        -----BEGIN PRIVATE KEY-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END PRIVATE KEY-----
+
+      SSLCertificateChainFile_content: |
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END CERTIFICATE-----
+
+      ProxyRequests: 'Off'
+      ProxyPreserveHost: 'On'
+
+      ProxyRoute:
+        example prod proxy route:
+          ProxyPassSource: '/'
+          ProxyPassTarget: 'http://prod.example.com:85/'
+          ProxyPassTargetOptions: 'connectiontimeout=10 timeout=90'
+          ProxyPassReverseSource: '/'
+          ProxyPassReverseTarget: 'http://prod.example.com:85/'
+
+        example webmail proxy route:
+          ProxyPassSource: '/webmail/'
+          ProxyPassTarget: 'http://mail.example.com/'
+          ProxyPassTargetOptions: 'connectiontimeout=10 timeout=90'
+          ProxyPassReverseSource: '/webmail/'
+          ProxyPassReverseTarget: 'http://mail.example.com/'
+
+        example service proxy route:
+          ProxyPassSource: '/svc/'
+          ProxyPassTarget: 'http://svc.example.com:92/'
+          ProxyPassTargetOptions: 'connectiontimeout=10 timeout=90'
+          ProxyPassReverseSource: '/svc/'
+          ProxyPassReverseTarget: 'http://svc.example.com:92/'
+
+      Location:
+        /:
+          Require: False
+          Formula_Append: |
+            SecRuleRemoveById 981231
+            SecRuleRemoveById 981173
+
+        /error:
+          Require: 'all granted'
+
+      LocationMatch:
+        '^[.\\/]+([Ww][Ee][Bb][Mm][Aa][Ii][Ll])[.\\/]':
+          Require: False
+          Formula_Append: |
+            RequestHeader  set  Host  mail.example.com
+
+        '^[.\\/]+([Ss][Vv][Cc])[.\\/]':
+          Require: False
+          Formula_Append: |
+            Require ip 123.123.13.6 84.24.25.74
+
+      Proxy_control:
+        '*':
+          AllowAll: False
+          AllowCountry:
+            - DE
+          AllowIP:
+            - 12.5.25.32
+            - 12.5.25.33
+
 
       Alias:
         /docs: /usr/share/docs
