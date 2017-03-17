@@ -27,7 +27,7 @@
 #  |-- sysconfig.d/loadmodule.conf . . . . .  [*] load these modules
 #  |-- listen.conf . . . . . . . . . . . . .  IP adresses / ports to listen on
 #  |-- mod_log_config.conf . . . . . . . . .  define logging formats
-#  |-- sysconfig.d/global.conf . . . . . . .  [*] server-wide general settings
+#  |-- global.conf . . . . . . . . . . . . .  server-wide general settings
 #  |-- mod_status.conf . . . . . . . . . . .  restrict access to mod_status (server monitoring)
 #  |-- mod_info.conf . . . . . . . . . . . .  restrict access to mod_info
 #  |-- mod_usertrack.conf  . . . . . . . . .  defaults for cookie-based user tracking
@@ -121,8 +121,8 @@ Include /etc/apache2/listen.conf
 # predefined logging formats
 Include /etc/apache2/mod_log_config.conf
 
-# generated from global settings in /etc/sysconfig/apache2
-Include /etc/apache2/sysconfig.d/global.conf
+# global settings managed by salt
+Include /etc/apache2/global.conf
 
 # optional mod_status, mod_info
 Include /etc/apache2/mod_status.conf
