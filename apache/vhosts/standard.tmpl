@@ -17,7 +17,7 @@
 
     'LogLevel': site.get('LogLevel', 'warn'),
     'ErrorLog': site.get('ErrorLog', '{0}/{1}-error.log'.format(map.logdir, sitename)),
-    'LogFormat': site.get('LogFormat', '"%h %l %u %t \\\"%r\\\" %>s %O"'),
+    'LogFormat': site.get('LogFormat', '"%h %l %u %t \\\"%r\\\" %>s"'),
     'CustomLog': site.get('CustomLog', '{0}/{1}-access.log'.format(map.logdir, sitename)),
 
     'DocumentRoot': site.get('DocumentRoot', '{0}/{1}'.format(map.wwwdir, sitename)),
