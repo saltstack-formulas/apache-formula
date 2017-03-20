@@ -1,5 +1,4 @@
 {# Define default values here so the template below can just focus on layout #}
-{%- from "apache/map.jinja" import apache with context -%}
 {%- set sitename = site.get('ServerName', id) -%}
 
 {%- set vals = {
@@ -90,7 +89,7 @@
 
     <Directory "{{ path }}">
         {% if dvals.get('Options') != False %}Options {{ dvals.Options }}{% endif %}
-        {% if apache.use_require %}
+        {% if map.use_require %}
         {% if dvals.get('Require') != False %}Require {{dvals.Require}}{% endif %}
         {% else %}
         {% if dvals.get('Order') != False %}Order {{ dvals.Order }}{% endif %}
@@ -114,7 +113,7 @@
     } %}
 
     <Location "{{ path }}">
-        {% if apache.use_require %}
+        {% if map.use_require %}
         {%- if lvals.get('Require') != False %}Require {{lvals.Require}}{% endif %}
         {% else %}
         {%- if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
