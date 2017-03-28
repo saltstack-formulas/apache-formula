@@ -12,6 +12,15 @@ a2enmod remoteip:
     - watch_in:
       - module: apache-restart
 
+a2enconf remoteip:
+  cmd.run:
+    - unless: ls /etc/apache2/mods-enabled/remoteip.load
+    - order: 255
+    - require:
+      - pkg: apache
+    - watch_in:
+      - module: apache-reload
+
 /etc/apache2/conf-available/remoteip.conf:
   file.managed:
     - template: jinja
@@ -21,7 +30,6 @@ a2enmod remoteip:
       - pkg: apache
     - watch_in:
       - service: apache
-
 {% endif %}
 
 
