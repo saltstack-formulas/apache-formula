@@ -61,16 +61,15 @@
     {% if site.get('Timeout') != False and site.get('Timeout') != None %}Timeout {{ vals.Timeout }}{% endif %}
     {% if site.get('LimitRequestFields') %}LimitRequestFields {{ vals.LimitRequestFields }}{% endif %}
 
-    {%- if site.get('SSLCertificateFile') %}
-    SSLEngine on
+    {% if site.get('SSLCertificateFile') %}SSLEngine on
     SSLCertificateFile {{ site.SSLCertificateFile }}
-    {%-  if site.get('SSLCertificateKeyFile') %}
-    SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}
-    {%-   endif %}
-    {%-   if site.get('SSLCertificateChainFile') %}
-    SSLCertificateChainFile {{ site.SSLCertificateChainFile}}
-    {%-   endif %}
-    {%- endif %}
+    {% if site.get('SSLCertificateKeyFile') %}SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}{% endif %}
+    {% if site.get('SSLCertificateChainFile') %}SSLCertificateChainFile {{ site.SSLCertificateChainFile}}{% endif %}
+    {% endif %}
+    
+    {% if site.get('Rewrite') %}RewriteEngine on
+    {{ site.Rewrite }}
+    {%  endif %}
 
     {%- for loc, path in site.get('Alias', {}).items() %}
     Alias {{ loc }} {{ path }}
