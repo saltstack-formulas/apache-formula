@@ -3,7 +3,7 @@
 #
 # This is the main Apache server configuration file.  It contains the
 # configuration directives that give the server its instructions.
-# See <URL:http:///httpd.apache.org/docs/2.4/> for detailed information about
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information about
 # the directives.
 
 # Based upon the default apache configuration file that ships with apache,
@@ -27,7 +27,7 @@
 #  |-- sysconfig.d/loadmodule.conf . . . . .  [*] load these modules
 #  |-- listen.conf . . . . . . . . . . . . .  IP adresses / ports to listen on
 #  |-- mod_log_config.conf . . . . . . . . .  define logging formats
-#  |-- sysconfig.d/global.conf . . . . . . .  [*] server-wide general settings
+#  |-- global.conf . . . . . . . . . . . . .  server-wide general settings
 #  |-- mod_status.conf . . . . . . . . . . .  restrict access to mod_status (server monitoring)
 #  |-- mod_info.conf . . . . . . . . . . . .  restrict access to mod_info
 #  |-- mod_usertrack.conf  . . . . . . . . .  defaults for cookie-based user tracking
@@ -121,8 +121,8 @@ Include /etc/apache2/listen.conf
 # predefined logging formats
 Include /etc/apache2/mod_log_config.conf
 
-# generated from global settings in /etc/sysconfig/apache2
-Include /etc/apache2/sysconfig.d/global.conf
+# global settings managed by salt
+Include /etc/apache2/global.conf
 
 # optional mod_status, mod_info
 Include /etc/apache2/mod_status.conf
@@ -193,7 +193,7 @@ Include /etc/apache2/sysconfig.d/include.conf
 # IP addresses. This is indicated by the asterisks in the directives below.
 #
 # Please see the documentation at
-# <URL:http:///httpd.apache.org/docs/2.4/vhosts/>
+# <URL:http://httpd.apache.org/docs/2.4/vhosts/>
 # for further details before you try to setup virtual hosts.
 #
 # You may use the command line option '-S' to verify your virtual host
