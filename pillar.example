@@ -5,6 +5,8 @@ apache:
   lookup:
     server: apache2
     service: apache2
+    user: some_system_user
+    group: some_system_group
 
     vhostdir: /etc/apache2/sites-available
     confdir: /etc/apache2/conf.d

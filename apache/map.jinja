@@ -5,6 +5,8 @@
     'Gentoo': {
         'server': 'www-servers/apache',
         'service': 'apache2',
+        'user': 'apache',
+        'group': 'apache',
         'configfile': '/etc/apache2/httpd.conf',
 
         'mod_wsgi': 'www-apache/mod_wsgi',
@@ -23,6 +25,8 @@
     'Debian': {
         'server': 'apache2',
         'service': 'apache2',
+        'user': 'www-data',
+        'group': 'www-data',
         'configfile': '/etc/apache2/apache2.conf',
         'portsfile': '/etc/apache2/ports.conf',
 
@@ -45,6 +49,8 @@
     'RedHat': {
         'server': 'httpd',
         'service': 'httpd',
+        'user': 'apache',
+        'group': 'apache',
         'configfile': '/etc/httpd/conf/httpd.conf',
 
         'mod_wsgi': 'mod_wsgi',
@@ -65,6 +71,8 @@
     'Suse': {
         'server': 'apache2',
         'service': 'apache2',
+        'user': 'apache',
+        'group': 'apache',
         'configfile': '/etc/apache2/httpd.conf',
 
         'mod_wsgi': 'apache2-mod_wsgi',
@@ -83,6 +91,8 @@
     'FreeBSD': {
         'server': 'apache22',
         'service': 'apache22',
+        'user': 'www',
+        'group': 'www',
         'configfile': '/usr/local/etc/apache22/httpd.conf',
         'portsfile': '/usr/local/etc/apache22/ports.conf',
 

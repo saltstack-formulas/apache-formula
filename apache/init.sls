@@ -3,6 +3,13 @@
 apache:
   pkg.installed:
     - name: {{ apache.server }}
+  group.present:
+    - name: {{ apache.group }}
+    - system: True
+  user.present:
+    - name: {{ apache.user }}
+    - gid: {{ apache.group }}
+    - system: True
   service.running:
     - name: {{ apache.service }}
     - enable: True

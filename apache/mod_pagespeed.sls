@@ -24,12 +24,12 @@ a2enmod pagespeed:
   file:
     - directory
     - makedirs: true
-    - user: {{ salt['pillar.get']('apache:user', 'www-data') }}
-    - group: {{ salt['pillar.get']('apache:group', 'www-data') }}
+    - user: {{ apache.user }}
+    - group: {{ apache.group }}
     - require:
       - pkg: libapache2-mod-pagespeed
-      - user: {{ salt['pillar.get']('apache:user', 'www-data') }}
-      - group: {{ salt['pillar.get']('apache:group', 'www-data') }}
+      - user: {{ apache.user }}
+      - group: {{ apache.group }}
 {% endfor %}
 
 # Here we hardcode a logrotate entry to take care of the logs

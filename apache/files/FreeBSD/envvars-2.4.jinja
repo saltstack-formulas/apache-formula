@@ -1,3 +1,4 @@
+{%- from "apache/map.jinja" import apache with context -%}
 # Managed by saltstack
 
 # envvars - default environment variables for apache2ctl
@@ -7,8 +8,8 @@ unset HOME
 
 APACHE_CONFDIR=/usr/local/etc/apache24
 
-export APACHE_RUN_USER={{ salt['pillar.get']('apache:user', 'www') }}
-export APACHE_RUN_GROUP={{ salt['pillar.get']('apache:group', 'www') }}
+export APACHE_RUN_USER={{ apache.user }}
+export APACHE_RUN_GROUP={{ apache.group }}
 export APACHE_RUN_DIR={{ salt['pillar.get']('apache:run_dir', '/var/run') }}
 
 ## The locale used by some modules like mod_dav
