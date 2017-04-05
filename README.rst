@@ -188,6 +188,11 @@ Configures Apache's security.conf options by reassinging them using data from Pi
 
 Installs and configures Apache on Debian and Ubuntu systems.
 
+``apache.uninstall``
+----------
+
+Stops the Apache service and uninstalls the package.
+
 These states are ordered using the ``order`` declaration. Different stages
 are divided into the following number ranges:
 
