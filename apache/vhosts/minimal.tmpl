@@ -1,0 +1,30 @@
+{# Define default values here so the template below can just focus on layout #}
+{%- set sitename = site.get('ServerName', id) -%}
+
+{%- set vals = {
+    'interfaces': site.get('interface', '*').split(),
+    'port': site.get('port', '80'),
+
+    'ServerName': sitename,
+    'ServerAlias': site.get('ServerAlias', 'www.{0}'.format(sitename)),
+
+    'ServerAdmin': site.get('ServerAdmin', 'webmaster@{0}'.format(sitename)),
+
+    'LogLevel': site.get('LogLevel', 'warn'),
+    'ErrorLog': site.get('ErrorLog', '{0}/{1}-error.log'.format(map.logdir, sitename)),
+    'CustomLog': site.get('CustomLog', '{0}/{1}-access.log'.format(map.logdir, sitename)),
+
+    'DocumentRoot': site.get('DocumentRoot', '{0}/{1}'.format(map.wwwdir, sitename))
+} -%}
+
+<VirtualHost {% for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
+    ServerName {{ vals.ServerName }}
+    {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
+    {% if site.get('ServerAdmin') != False %}ServerAdmin {{ vals.ServerAdmin }}{% endif %}
+
+    {% if site.get('DocumentRoot') != False -%}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
+
+    {% if site.get('LogLevel') != False -%}LogLevel {{ vals.LogLevel }}{% endif %}
+    {% if site.get('ErrorLog') != False -%}ErrorLog {{ vals.ErrorLog }}{% endif %}
+    {% if site.get('CustomLog') != False -%}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
+</VirtualHost>
