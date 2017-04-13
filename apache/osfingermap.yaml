@@ -6,7 +6,7 @@ Red Hat Enterprise Linux Server-6:
   version: '2.2'
 Red Hat Enterprise Linux Server-7:
   version: '2.4'
-CentOS Linux-6:
+CentOS-6:
   version: '2.2'
 CentOS Linux-7:
   version: '2.4'
