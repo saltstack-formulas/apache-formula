@@ -14,14 +14,6 @@ apache:
     - name: {{ apache.service }}
     - enable: True
 
-{{ apache.vhostdir }}:
-  file.directory:
-    - makedirs: True
-    - require:
-      - pkg: apache
-    - watch_in:
-      - service: apache
-
 # The following states are inert by default and can be used by other states to
 # trigger a restart or reload as needed.
 apache-reload:
