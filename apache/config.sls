@@ -17,6 +17,7 @@ include:
 
 {{ apache.vhostdir }}:
   file.directory:
+    - makedirs: True
     - require:
       - pkg: apache
     - watch_in:
