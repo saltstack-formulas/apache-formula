@@ -55,6 +55,11 @@ Enables the Apache module mod_proxy. (Debian and FreeBSD only)
 
 Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled. (Debian Only)
 
+``apache.mod_proxy_fcgi``
+-------------------------
+
+Enables the Apache module mod_proxy_fcgi and requires the Apache module mod_proxy to be enabled. (Debian Only)
+
 ``apache.mod_wsgi``
 -------------------
 
@@ -100,6 +105,11 @@ Enables mod_cgi. (FreeBSD only)
 
 Installs and enables the mod_fcgid module
 
+``apache.mod_fastcgi``
+--------------------
+
+Installs and enables the mod_fastcgi module
+
 ``apache.mod_dav_svn``
 --------------------
 
@@ -144,6 +154,11 @@ Enables the Apache module vhost_alias (Debian Only)
 
 Enables and configures the Apache module mod_remoteip using data from Pillar. (Debian Only)
 
+``apache.mod_xsendfile``
+----------------------
+
+Installs and enables mod_xsendfile module. (Debian Only)
+
 ``apache.own_default_vhost``
 --------------------------
 
@@ -187,6 +202,11 @@ Configures Apache's security.conf options by reassinging them using data from Pi
 ----------------------
 
 Installs and configures Apache on Debian and Ubuntu systems.
+
+``apache.uninstall``
+----------
+
+Stops the Apache service and uninstalls the package.
 
 These states are ordered using the ``order`` declaration. Different stages
 are divided into the following number ranges:

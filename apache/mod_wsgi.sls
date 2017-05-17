@@ -9,10 +9,11 @@ mod_wsgi:
     - require:
       - pkg: apache
 
-{% if grains.get('os_family') == 'RedHat' %}
-/etc/httpd/conf.d/wsgi.conf:
+{% if apache.conf_mod_wsgi %}
+{{ apache.conf_mod_wsgi }}:
   file.uncomment:
     - regex: LoadModule
+    - onlyif: test -f {{ apache.conf_mod_wsgi }}
     - require:
       - pkg: mod_wsgi
 {% endif %}
