@@ -88,7 +88,7 @@
 
     <Directory "{{ path }}">
         {% if dvals.get('Options') != False %}Options {{ dvals.Options }}{% endif %}
-        {% if map.use_require %}
+        {% if map.version == '2.4' %}
         {% if dvals.get('Require') != False %}Require {{dvals.Require}}{% endif %}
         {% else %}
         {% if dvals.get('Order') != False %}Order {{ dvals.Order }}{% endif %}
@@ -112,7 +112,7 @@
     } %}
 
     <Location "{{ path }}">
-        {% if map.use_require %}
+        {% if map.version == '2.4' %}
         {%- if lvals.get('Require') != False %}Require {{lvals.Require}}{% endif %}
         {% else %}
         {%- if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
