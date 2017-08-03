@@ -52,7 +52,7 @@ find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^\s*LoadModule.{{ m
       - module: apache-restart
 {% endfor %}
 
-{% elif grains['os_family']=="Suse" %}
+{% elif salt['grains.get']('os_family') == 'Suse' or salt['grains.get']('os') == 'SUSE' %}
 
 include:
   - apache
