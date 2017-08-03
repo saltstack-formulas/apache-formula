@@ -52,4 +52,31 @@ find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^\s*LoadModule.{{ m
       - module: apache-restart
 {% endfor %}
 
+{% elif grains['os_family']=="Suse" %}
+
+include:
+  - apache
+ 
+{% for module in salt['pillar.get']('apache:modules:enabled', []) %}
+a2enmod {{ module }}:
+  cmd.run:
+    - unless: egrep "^APACHE_MODULES=" /etc/sysconfig/apache2 | grep {{ module }}
+    - order: 225
+    - require:
+      - pkg: apache
+    - watch_in:
+      - module: apache-restart
+{% endfor %}
+
+{% for module in salt['pillar.get']('apache:modules:disabled', []) %}
+a2dismod -f {{ module }}:
+  cmd.run:
+    - onlyif: egrep "^APACHE_MODULES=" /etc/sysconfig/apache2 | grep {{ module }}
+    - order: 225
+    - require:
+      - pkg: apache
+    - watch_in:
+      - module: apache-restart
+{% endfor %}
+
 {% endif %}
