@@ -15,7 +15,7 @@ mod-fastcgi:
 
 repo-fastcgi:
   pkgrepo.managed:
-    - name: "deb http://httpredir.debian.org/debian jessie"
+    - name: "deb http://httpredir.debian.org/debian {{ grains['oscodename'] }}"
     - file: /etc/apt/sources.list.d/non-free.list
     - comps: non-free
 
