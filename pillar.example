@@ -212,6 +212,14 @@ apache:
         /error:
           Require: 'all granted'
 
+        /docs:
+          Order: allow,deny    # For Apache < 2.4
+          Allow: from all      # For apache < 2.4
+          Require: all granted # For apache > 2.4.
+          Formula_Append: |
+            Additional config as a
+            multi-line string here
+
       LocationMatch:
         '^[.\\/]+([Ww][Ee][Bb][Mm][Aa][Ii][Ll])[.\\/]':
           Require: False
@@ -235,15 +243,6 @@ apache:
 
       Alias:
         /docs: /usr/share/docs
-
-      Location:
-        /docs:
-          Order: allow,deny    # For Apache < 2.4
-          Allow: from all      # For apache < 2.4
-          Require: all granted # For apache > 2.4.
-          Formula_Append: |
-            Additional config as a
-            multi-line string here
 
       Formula_Append: |
         Additional config as a
