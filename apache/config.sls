@@ -57,7 +57,7 @@ include:
       - service: apache
 {% endif %}
 
-{% if grains['os_family']=="Suse" %}
+{% if grains['os_family']=="Suse" or salt['grains.get']('os') == 'SUSE' %}
 /etc/apache2/global.conf:
   file.managed:
     - template: jinja
