@@ -46,7 +46,7 @@ a2enmod php5:
 
 {% endif %}
 
-{% if grains['os_family']=="Suse" %}
+{% if grains['os_family']=="Suse" or salt['grains.get']('os') == 'SUSE' %}
 /etc/sysconfig/apache2:
   file.replace:
     - unless: grep '^APACHE_MODULES=.*php5' /etc/sysconfig/apache2
