@@ -1,6 +1,9 @@
 # ``apache`` formula configuration:
 apache:
 
+  # By default apache restart/reload states run (false skips)
+  manage_service_states: True
+
   # lookup section overrides ``map.jinja`` values
   lookup:
     server: apache2
