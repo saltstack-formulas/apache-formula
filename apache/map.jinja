@@ -111,6 +111,24 @@
         'logdir': '/var/log/',
         'wwwdir': '/usr/local/www/apache22/',
     },
+    'Arch': {
+        'server': 'apache',
+        'service': 'httpd',
+        'user': 'http',
+        'group': 'http',
+        'configfile': '/etc/httpd/conf/httpd.conf',
+
+        'mod_wsgi': 'mod_wsgi',
+
+        'vhostdir': '/etc/httpd/conf/vhosts',
+        'confdir': '/etc/httpd/conf/extra',
+        'modulesdir': '/usr/lib/httpd/modules',
+        'confext': '.conf',
+        'logdir': '/var/log/httpd',
+        'wwwdir': '/srv/http',
+        'default_site': 'default',
+        'default_site_ssl': 'default-ssl',
+    },
 }, merge=salt['grains.filter_by']({
     'precise': {
         'confext': '',
