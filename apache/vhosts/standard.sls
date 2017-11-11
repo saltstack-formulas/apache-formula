@@ -24,10 +24,12 @@ include:
 {% if site.get('DocumentRoot') != False %}
 {{ id }}-documentroot:
   file.directory:
-    - unless: test -d {{ documentroot }}
-    - name: {{ documentroot }}
+    - unless: test -d {{ documentroot.path }}
+    - name: {{ documentroot.path }}
     - makedirs: True
     - allow_symlink: True
+    - user: {{ documentroot.owner }}
+    - group: {{ documentroot.group }}
 {% endif %}
 
 {% if grains.os_family == 'Debian' %}
