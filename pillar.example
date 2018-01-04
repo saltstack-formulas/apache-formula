@@ -276,6 +276,12 @@ apache:
     # where Full conveys the most information, and Prod the least.
     ServerTokens: Prod
 
+  # [debian only] configure mod_ssl
+  ssl:
+    SSLCipherSuite: 'HIGH:!aNULL'
+    SSLHonorCipherOrder: 'Off'
+    SSLProtocol: 'all -SSLv3'
+
   # ``apache.mod_remoteip`` formula additional configuration:
   mod_remoteip:
     RemoteIPHeader: X-Forwarded-For
