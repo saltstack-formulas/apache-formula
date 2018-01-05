@@ -9,7 +9,7 @@ mod_wsgi:
     - require:
       - pkg: apache
 
-{% if apache.conf_mod_wsgi %}
+{% if 'conf_mod_wsgi' in apache %}
 {{ apache.conf_mod_wsgi }}:
   file.uncomment:
     - regex: LoadModule
