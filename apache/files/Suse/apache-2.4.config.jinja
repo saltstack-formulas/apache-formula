@@ -163,6 +163,10 @@ Include /etc/apache2/errors.conf
 # any virtual host
 Include /etc/apache2/ssl-global.conf
 
+{% if salt['pillar.get']('apache:mod_ssl:manage_tls_defaults', False) -%}
+Include /etc/apache24/conf.d/tls-defaults.conf
+{%- %}
+
 # global (server-wide) protocol configuration, that is not specific
 # to any virtual host
 Include /etc/apache2/protocols.conf
