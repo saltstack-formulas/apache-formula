@@ -526,5 +526,9 @@ TraceEnable Off
 # Well, IncludeOptional behaved lile Include
 IncludeOptional etc/apache24/extra/security.con[f]
 
+{% if salt['pillar.get']('apache:mod_ssl:manage_tls_defaults', False) -%}
+Include etc/apache24/extra/tls-defaults.conf
+{%- endif %}
+
 Include etc/apache24/Includes/*.conf
 
