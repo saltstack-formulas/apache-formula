@@ -86,6 +86,20 @@ apache:
             Additional config as a
             multi-line string here
 
+    redirectmatch.com:
+      # Use RedirectMatch Directive https://httpd.apache.org/docs/2.4/fr/mod/mod_alias.html#redirectmatch
+      # Require module mod_alias 
+      enabled: True
+      template_file: salt://apache/vhosts/redirect.tmpl
+      ServerName: www.redirectmatch.com
+      ServerAlias: www.redirectmatch.com
+      RedirectMatch: true
+      RedirectSource: '^/$'
+      RedirectTarget: '/subdirectory'
+      DocumentRoot: /var/www/html/
+      ErrorLog: ${APACHE_LOG_DIR}/error.log
+      CustomLog: ${APACHE_LOG_DIR}/access.log
+
     80-proxyexample.com:
       template_file: salt://apache/vhosts/redirect.tmpl
       ServerName: www.proxyexample.com
