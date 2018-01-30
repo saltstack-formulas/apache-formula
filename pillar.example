@@ -1,6 +1,9 @@
 # ``apache`` formula configuration:
 apache:
 
+  # By default apache restart/reload states run (false skips)
+  manage_service_states: True
+
   # lookup section overrides ``map.jinja`` values
   lookup:
     server: apache2
@@ -85,6 +88,20 @@ apache:
           Formula_Append: |
             Additional config as a
             multi-line string here
+
+    redirectmatch.com:
+      # Use RedirectMatch Directive https://httpd.apache.org/docs/2.4/fr/mod/mod_alias.html#redirectmatch
+      # Require module mod_alias 
+      enabled: True
+      template_file: salt://apache/vhosts/redirect.tmpl
+      ServerName: www.redirectmatch.com
+      ServerAlias: www.redirectmatch.com
+      RedirectMatch: true
+      RedirectSource: '^/$'
+      RedirectTarget: '/subdirectory'
+      DocumentRoot: /var/www/html/
+      ErrorLog: ${APACHE_LOG_DIR}/error.log
+      CustomLog: ${APACHE_LOG_DIR}/access.log
 
     80-proxyexample.com:
       template_file: salt://apache/vhosts/redirect.tmpl
@@ -313,4 +330,19 @@ apache:
         file: 'my name'
         path: 'salt://path/to/modsecurity/custom/file'
         enabled: True
-  
+
+  mod_ssl:
+    # set this to True if you want to override your distributions default TLS configuration
+    manage_tls_defaults: False
+    # This stuff is deliberately not configured via map.jinja resp. apache:lookup.
+    # We're unable to know sane defaults for each release of every distribution.
+    # See https://github.com/saltstack-formulas/openssh-formula/issues/102 for a related discussion
+    # Have a look at bettercrypto.org for up-to-date settings.
+    # These are default values:
+    SSLCipherSuite: EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
+    # Mitigate the CRIME attack
+    SSLCompression: Off
+    SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
+    SSLHonorCipherOrder: On
+    SSLOptions: "+StrictRequire"
+

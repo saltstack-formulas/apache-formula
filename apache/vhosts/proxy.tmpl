@@ -40,7 +40,9 @@
 
     {% if site.get('LogLevel') != False %}LogLevel {{ vals.LogLevel }}{% endif %}
     {% if site.get('ErrorLog') != False %}ErrorLog {{ vals.ErrorLog }}{% endif %}
-    {% if site.get('CustomLog') != False %}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
+    {% if site.get('LogFormat') != False -%}LogFormat {{ vals.LogFormat }}{% endif %}
+    {% if site.get('CustomLog') != False -%}LogFormat {{ vals.LogFormat }} {{ sitename }}
+    CustomLog {{ vals.CustomLog }} {{ sitename }}{% endif %}
 
     {% if site.get('SSLCertificateFile') %}SSLEngine on
     SSLCertificateFile {{ site.SSLCertificateFile }}
