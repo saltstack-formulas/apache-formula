@@ -278,7 +278,8 @@ apache:
 
   # [debian only] configure mod_ssl
   ssl:
-    SSLCipherSuite: 'HIGH:!aNULL'
+    SSLCipherSuite:
+      - 'HIGH:!aNULL'
     SSLHonorCipherOrder: 'Off'
     SSLProtocol: 'all -SSLv3'
 

@@ -56,7 +56,7 @@
 	#   ciphers(1) man page from the openssl package for list of all available
 	#   options.
 	#   Enable only secure ciphers:
-	SSLCipherSuite {{ salt['pillar.get']('apache:ssl:SSLCipherSuite', 'HIGH:!aNULL') }}
+	SSLCipherSuite {{ salt['pillar.get']('apache:ssl:SSLCipherSuite',  ('HIGH:!aNULL',))|join(':') }}
 
 	# SSL server cipher order preference:
 	# Use server priorities for cipher algorithm choice.
@@ -65,12 +65,12 @@
 	# the CPU cost, and did not override SSLCipherSuite in a way that puts
 	# insecure ciphers first.
 	# Default: Off
-	SSLHonorCipherOrder {{ salt['pillar.get']('apache:ssl:SSLHonorCipherOrder', 'Off') }}
+	SSLHonorCipherOrder {{ salt['pillar.get']('apache:ssl:SSLHonorCipherOrder', 'On') }}
 
 	#   The protocols to enable.
 	#   Available values: all, SSLv3, TLSv1, TLSv1.1, TLSv1.2
 	#   SSL v2  is no longer supported
-	SSLProtocol {{ salt['pillar.get']('apache:ssl:SSLProtocol', 'all -SSLv3') }}
+	SSLProtocol {{ salt['pillar.get']('apache:ssl:SSLProtocol', 'all -SSLv2 -SSLv3') }}
 
 	#   Allow insecure renegotiation with clients which do not yet support the
 	#   secure renegotiation protocol. Default: Off
