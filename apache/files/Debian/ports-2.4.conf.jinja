@@ -1,6 +1,7 @@
+#
+# This file is managed by Salt! Do not edit by hand!
+#
 {%- from "apache/map.jinja" import apache with context -%}
-
-# Managed by saltstack
 
 {% if salt['pillar.get']('apache:sites') is mapping %}
     {%- set listen_directives = [] %}
