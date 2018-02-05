@@ -39,8 +39,12 @@
     {% if site.get('CustomLog') != False -%}LogFormat {{ vals.LogFormat }} {{ sitename }}
     CustomLog {{ vals.CustomLog }} {{ sitename }}{% endif %}
 
+    {% if site.get('RedirectMatch') %}
+    RedirectMatch {{ vals.RedirectSource }} {{ vals.RedirectTarget }}
+    {% else %}
     Redirect {{ vals.RedirectSource }} {{ vals.RedirectTarget }}
-
+    {% endif %}
+    
     {% if site.get('Formula_Append') %}
     {{ site.Formula_Append|indent(4) }}
     {% endif %}
