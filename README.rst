@@ -103,7 +103,7 @@ Enables mod_cgi. (FreeBSD only)
 ``apache.mod_fcgid``
 --------------------
 
-Installs and enables the mod_fcgid module
+Installs and enables the mod_fcgid module (Debian only)
 
 ``apache.mod_fastcgi``
 --------------------
@@ -129,7 +129,7 @@ Allows you to install the basic Core Rules (CRS) and some basic configuration fo
 This state can create symlinks based on basic Core Rules package. (Debian only)
 Or it can distribute a mod_security rule file and place it /etc/modsecurity/
 
-``mod_socache_shmcb``
+``apache.mod_socache_shmcb``
 ---------------------
 
 Enables mod_socache_shmcb. (FreeBSD only)

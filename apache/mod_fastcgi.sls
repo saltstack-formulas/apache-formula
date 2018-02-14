@@ -15,8 +15,9 @@ mod-fastcgi:
 
 repo-fastcgi:
   pkgrepo.managed:
-    - name: "deb http://httpredir.debian.org/debian {{ grains['oscodename'] }}"
+    - name: "deb http://ftp.us.debian.org/debian {{ grains['oscodename'] }}"
     - file: /etc/apt/sources.list.d/non-free.list
+    - onlyif: grep Debian /proc/version >/dev/null 2>&1
     - comps: non-free
 
 a2enmod fastcgi:
