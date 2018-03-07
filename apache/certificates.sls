@@ -3,7 +3,7 @@
 include:
   - apache
 
-{%- for site, confcert in salt['pillar.get']('apache:sites', {}).iteritems() %}
+{%- for site, confcert in salt['pillar.get']('apache:sites', {}).items() %}
 
 {% if confcert.SSLCertificateKeyFile is defined and confcert.SSLCertificateKeyFile_content is defined %}
 # Deploy {{ site }} key file
