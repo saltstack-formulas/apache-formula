@@ -62,7 +62,7 @@ apache:
       exclude_listen_directive: True # Do not add a Listen directive in httpd.conf
 
       ServerName: example.com # uses the unique ID above unless specified
-      ServerAlias: www.example.com
+      #ServerAlias: www.example.com # Do not add ServerAlias unless defined
 
       ServerAdmin: webmaster@example.com
 
