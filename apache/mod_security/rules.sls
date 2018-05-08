@@ -13,7 +13,7 @@ include:
   file.symlink:
     - target: /usr/share/modsecurity-crs/{{ rule_set }}/{{ rule_name }}
     - user: root
-    - group: root
+    - group: 0
     - mode: 755
   {%- else %}
 /etc/modsecurity/{{ rule_name }}:
@@ -33,7 +33,7 @@ include:
   file.managed:
     - source: {{ path }}
     - user: root
-    - group: root
+    - group: 0
     - mode: 755
   {%- else %}
 /etc/modsecurity/{{ file }}:

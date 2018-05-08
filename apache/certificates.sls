@@ -14,7 +14,7 @@ apache_cert_config_{{ site }}_key_file:
     - makedirs: True
     - mode: 600
     - user: root
-    - group: root
+    - group: 0
     - watch_in:
       - module: apache-reload
 {% endif %}
@@ -28,7 +28,7 @@ apache_cert_config_{{ site }}_cert_file:
     - makedirs: True
     - mode: 600
     - user: root
-    - group: root
+    - group: 0
     - watch_in:
       - module: apache-reload
 {% endif %}
@@ -42,7 +42,7 @@ apache_cert_config_{{ site }}_bundle_file:
     - makedirs: True
     - mode: 600
     - user: root
-    - group: root
+    - group: 0
     - watch_in:
       - module: apache-reload
 {% endif %}
