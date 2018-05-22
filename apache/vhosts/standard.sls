@@ -4,7 +4,7 @@ include:
   - apache
 
 {% for id, site in salt['pillar.get']('apache:sites', {}).items() %}
-{% set documentroot = site.get('DocumentRoot', '{0}/{1}'.format(apache.wwwdir, id)) %}
+{% set documentroot = site.get('DocumentRoot', '{0}/{1}'.format(apache.wwwdir, site.get('ServerName', id))) %}
 
 {{ id }}:
   file:
