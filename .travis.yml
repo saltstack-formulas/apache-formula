@@ -1,0 +1,16 @@
+sudo: required
+language: python
+services: 
+  - docker
+
+before_install:
+  - bundle install
+
+env:
+  matrix:
+    - INSTANCE: default-centos-7
+    - INSTANCE: default-ubuntu-1604
+    - INSTANCE: default-debian-9
+
+script:
+  - bundle exec kitchen verify ${INSTANCE}

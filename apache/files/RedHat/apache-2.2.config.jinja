@@ -167,7 +167,8 @@ ServerAdmin root@localhost
 #
 <Directory />
     AllowOverride none
-    Require all denied
+    Order deny,allow
+    Deny from all
 </Directory>
 
 #
@@ -190,7 +191,8 @@ DocumentRoot "/var/www/html"
 <Directory "/var/www">
     AllowOverride None
     # Allow open access:
-    Require all granted
+    Order allow,deny
+    Allow from all
 </Directory>
 
 # Further relax access to the default document root:
@@ -219,7 +221,8 @@ DocumentRoot "/var/www/html"
     #
     # Controls who can get stuff from this server.
     #
-    Require all granted
+    Order allow,deny
+    Allow from all
 </Directory>
 
 #
@@ -235,7 +238,8 @@ DocumentRoot "/var/www/html"
 # viewed by Web clients. 
 #
 <Files ".ht*">
-    Require all denied
+    Order deny,allow
+    Deny from all
 </Files>
 
 #
@@ -324,7 +328,8 @@ LogLevel warn
 <Directory "/var/www/cgi-bin">
     AllowOverride None
     Options None
-    Require all granted
+    Order allow,deny
+    Allow from all
 </Directory>
 
 <IfModule mime_module>

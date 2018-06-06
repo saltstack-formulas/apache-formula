@@ -1,0 +1,8 @@
+{% from "apache/map.jinja" import apache with context %}
+
+<IfModule !mpm_prefork_module>
+	LoadModule cgid_module libexec/{{ apache.service }}/mod_cgid.so
+</IfModule>
+<IfModule mpm_prefork_module>
+	LoadModule cgi_module libexec/{{ apache.service }}/mod_cgi.so
+</IfModule>

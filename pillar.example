@@ -1,10 +1,15 @@
 # ``apache`` formula configuration:
 apache:
 
+  # By default apache restart/reload states run (false skips)
+  manage_service_states: True
+
   # lookup section overrides ``map.jinja`` values
   lookup:
     server: apache2
     service: apache2
+    user: some_system_user
+    group: some_system_group
 
     vhostdir: /etc/apache2/sites-available
     confdir: /etc/apache2/conf.d
@@ -39,7 +44,7 @@ apache:
 
     example.com: # must be unique; used as an ID declaration in Salt.
       enabled: True
-      template_file: salt://apache/vhosts/standard.tmpl # or redirect.tmpl or proxy.tmpl
+      template_file: salt://apache/vhosts/standard.tmpl # or minimal.tmpl or redirect.tmpl or proxy.tmpl
 
       ####################### DEFAULT VALUES BELOW ############################
       # NOTE: the values below are simply default settings that *can* be
@@ -57,7 +62,7 @@ apache:
       exclude_listen_directive: True # Do not add a Listen directive in httpd.conf
 
       ServerName: example.com # uses the unique ID above unless specified
-      ServerAlias: www.example.com
+      #ServerAlias: www.example.com # Do not add ServerAlias unless defined
 
       ServerAdmin: webmaster@example.com
 
@@ -84,25 +89,146 @@ apache:
             Additional config as a
             multi-line string here
 
-      # if template is 'redirect.tmpl'
-      # RedirectSource: '/'
-      # RedirectTarget: 'http://www.example.net'
+    redirectmatch.com:
+      # Use RedirectMatch Directive https://httpd.apache.org/docs/2.4/fr/mod/mod_alias.html#redirectmatch
+      # Require module mod_alias 
+      enabled: True
+      template_file: salt://apache/vhosts/redirect.tmpl
+      ServerName: www.redirectmatch.com
+      ServerAlias: www.redirectmatch.com
+      RedirectMatch: true
+      RedirectSource: '^/$'
+      RedirectTarget: '/subdirectory'
+      DocumentRoot: /var/www/html/
+      ErrorLog: ${APACHE_LOG_DIR}/error.log
+      CustomLog: ${APACHE_LOG_DIR}/access.log
 
-      # if template is 'proxy.tmpl'
-      # ProxyRequests: 'On'
-      # ProxyPreserveHost: 'On'
-      # ProxyRoute:
-      #   my sample route:
-      #      ProxyPassSource: '/'
-      #      ProxyPassTarget: 'http://www.example.net'
-      #      ProxyPassTargetOptions: 'connectiontimeout=5 timeout=30'
-      #      ProxyPassReverseSource: '/'
-      #      ProxyPassReverseTarget: 'http://www.example.net'
+    80-proxyexample.com:
+      template_file: salt://apache/vhosts/redirect.tmpl
+      ServerName: www.proxyexample.com
+      ServerAlias: www.proxyexample.com
+      RedirectSource: '/'
+      RedirectTarget: 'https://www.proxyexample.com/'
+      DocumentRoot: /var/www/proxy
 
-      Alias:
-        /docs: /usr/share/docs
+    443-proxyexample.com:
+      template_file: salt://apache/vhosts/proxy.tmpl
+      ServerName: www.proxyexample.com
+      ServerAlias: www.proxyexample.com
+      interface: '*'
+      port: '443'
+      DocumentRoot: /var/www/proxy
+
+      Rewrite: |
+        RewriteRule ^/webmail$ /webmail/ [R]
+        RewriteRule ^/webmail(.*) http://mail.example.com$1 [P,L]
+        RewriteRule ^/vicescws(.*) http://svc.example.com:92$1 [P,L]
+
+      SSLCertificateFile: /etc/httpd/ssl/example.com.crt
+      SSLCertificateKeyFile: /etc/httpd/ssl/example.com.key
+      SSLCertificateChainFile: /etc/httpd/ssl/example.com.cer
+
+      SSLCertificateFile_content: |
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END CERTIFICATE-----
+
+      SSLCertificateKeyFile_content: |
+        -----BEGIN PRIVATE KEY-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END PRIVATE KEY-----
+
+      SSLCertificateChainFile_content: |
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC
+        VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx
+        NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD
+        TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu
+        ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j
+        V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj
+        gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA
+        FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS
+        BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE
+        BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju
+        Wm7DCfrPNGVwFWUQOmsPue9rZBgO
+        -----END CERTIFICATE-----
+
+      ProxyRequests: 'Off'
+      ProxyPreserveHost: 'On'
+
+      ProxyRoute:
+        example prod proxy route:
+          ProxyPassSource: '/'
+          ProxyPassTarget: 'http://prod.example.com:85/'
+          ProxyPassTargetOptions: 'connectiontimeout=10 timeout=90'
+          ProxyPassReverseSource: '/'
+          ProxyPassReverseTarget: 'http://prod.example.com:85/'
+
+        example webmail proxy route:
+          ProxyPassSource: '/webmail/'
+          ProxyPassTarget: 'http://mail.example.com/'
+          ProxyPassTargetOptions: 'connectiontimeout=10 timeout=90'
+          ProxyPassReverseSource: '/webmail/'
+          ProxyPassReverseTarget: 'http://mail.example.com/'
+
+        example service proxy route:
+          ProxyPassSource: '/svc/'
+          ProxyPassTarget: 'http://svc.example.com:92/'
+          ProxyPassTargetOptions: 'connectiontimeout=10 timeout=90'
+          ProxyPassReverseSource: '/svc/'
+          ProxyPassReverseTarget: 'http://svc.example.com:92/'
 
       Location:
+        /:
+          Require: False
+          Formula_Append: |
+            SecRuleRemoveById 981231
+            SecRuleRemoveById 981173
+
+        /error:
+          Require: 'all granted'
+
         /docs:
           Order: allow,deny    # For Apache < 2.4
           Allow: from all      # For apache < 2.4
@@ -110,6 +236,30 @@ apache:
           Formula_Append: |
             Additional config as a
             multi-line string here
+
+      LocationMatch:
+        '^[.\\/]+([Ww][Ee][Bb][Mm][Aa][Ii][Ll])[.\\/]':
+          Require: False
+          Formula_Append: |
+            RequestHeader  set  Host  mail.example.com
+
+        '^[.\\/]+([Ss][Vv][Cc])[.\\/]':
+          Require: False
+          Formula_Append: |
+            Require ip 123.123.13.6 84.24.25.74
+
+      Proxy_control:
+        '*':
+          AllowAll: False
+          AllowCountry:
+            - DE
+          AllowIP:
+            - 12.5.25.32
+            - 12.5.25.33
+
+
+      Alias:
+        /docs: /usr/share/docs
 
       Formula_Append: |
         Additional config as a
@@ -164,4 +314,35 @@ apache:
     sec_pcre_match_limit: '15000'
     sec_pcre_match_limit_recursion: '15000'
     sec_debug_log_level: '3'
+
+    rules:
+      enabled:
+      modsecurity_crs_10_setup.conf:
+        rule_set: ''
+        enabled: True
+      modsecurity_crs_20_protocol_violations.conf:
+        rule_set: 'base_rules'
+        enabled: False
+
+    custom_rule_files:
+      # any name as an array index, and you can duplicate this section
+      UNIQUE_VALUE_HERE:
+        file: 'my name'
+        path: 'salt://path/to/modsecurity/custom/file'
+        enabled: True
+
+  mod_ssl:
+    # set this to True if you want to override your distributions default TLS configuration
+    manage_tls_defaults: False
+    # This stuff is deliberately not configured via map.jinja resp. apache:lookup.
+    # We're unable to know sane defaults for each release of every distribution.
+    # See https://github.com/saltstack-formulas/openssh-formula/issues/102 for a related discussion
+    # Have a look at bettercrypto.org for up-to-date settings.
+    # These are default values:
+    SSLCipherSuite: EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
+    # Mitigate the CRIME attack
+    SSLCompression: Off
+    SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
+    SSLHonorCipherOrder: On
+    SSLOptions: "+StrictRequire"
 

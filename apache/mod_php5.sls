@@ -32,4 +32,24 @@ a2enmod php5:
       - pkg: mod-php5
 {% endif %}
 
+{% elif grains['os_family']=="FreeBSD" %}
+
+{{ apache.modulesdir }}/050_mod_php5.conf:
+  file.managed:
+    - source: salt://apache/files/{{ salt['grains.get']('os_family') }}/mod_php5.conf.jinja
+    - mode: 644
+    - template: jinja
+    - require:
+      - pkg: apache
+    - watch_in:
+      - module: apache-restart
+
+{% endif %}
+
+{% if grains['os_family']=="Suse" or salt['grains.get']('os') == 'SUSE' %}
+/etc/sysconfig/apache2:
+  file.replace:
+    - unless: grep '^APACHE_MODULES=.*php5' /etc/sysconfig/apache2
+    - pattern: '^APACHE_MODULES=(.*)"'
+    - repl: 'APACHE_MODULES=\1 php5"'
 {% endif %}

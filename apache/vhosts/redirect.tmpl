@@ -1,13 +1,16 @@
+#
+# This file is managed by Salt! Do not edit by hand!
+#
 {# Define default values here so the template below can just focus on layout #}
-{% from "apache/map.jinja" import apache with context %}
-{% set sitename = site.get('ServerName', id) %}
+{%- from "apache/map.jinja" import apache with context %}
+{%- set sitename = site.get('ServerName', id) %}
 
-{% set vals = {
+{%- set vals = {
     'interfaces': site.get('interface', '*').split(),
     'port': site.get('port', '80'),
 
     'ServerName': sitename,
-    'ServerAlias': site.get('ServerAlias', 'www.{0}'.format(sitename)),
+    'ServerAlias': site.get('ServerAlias', ''),
 
     'ServerAdmin': site.get('ServerAdmin', 'webmaster@{0}'.format(sitename)),
 
@@ -19,8 +22,7 @@
     'CustomLog': site.get('CustomLog', '{0}/{1}-access.log'.format(map.logdir, sitename)),
     
     'RedirectSource': site.get('RedirectSource', '/'),
-    'RedirectTarget': site.get('RedirectTarget', 'https://{0}'.format(sitename)),
-
+    'RedirectTarget': site.get('RedirectTarget', 'https://{0}/'.format(sitename)),
 } %}
 
 <VirtualHost {%- for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
@@ -33,10 +35,16 @@
 
     {% if site.get('LogLevel') != False %}LogLevel {{ vals.LogLevel }}{% endif %}
     {% if site.get('ErrorLog') != False %}ErrorLog {{ vals.ErrorLog }}{% endif %}
-    {% if site.get('CustomLog') != False %}CustomLog {{ vals.CustomLog }} {{ vals.LogFormat }}{% endif %}
+    {% if site.get('LogFormat') != False -%}LogFormat {{ vals.LogFormat }}{% endif %}
+    {% if site.get('CustomLog') != False -%}LogFormat {{ vals.LogFormat }} {{ sitename }}
+    CustomLog {{ vals.CustomLog }} {{ sitename }}{% endif %}
 
+    {% if site.get('RedirectMatch') %}
+    RedirectMatch {{ vals.RedirectSource }} {{ vals.RedirectTarget }}
+    {% else %}
     Redirect {{ vals.RedirectSource }} {{ vals.RedirectTarget }}
-
+    {% endif %}
+    
     {% if site.get('Formula_Append') %}
     {{ site.Formula_Append|indent(4) }}
     {% endif %}

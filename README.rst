@@ -25,6 +25,11 @@ Installs the Apache package and starts the service.
 
 Configures apache based on os_family
 
+``apache.certificates``
+-----------------
+
+Deploy SSL certificates from pillars
+
 ``apache.mod_mpm``
 ------------------
 
@@ -38,17 +43,22 @@ Enables and disables Apache modules.
 ``apache.mod_rewrite``
 ----------------------
 
-Enabled the Apache module mod_rewrite (Debian only)
+Enabled the Apache module mod_rewrite (Debian and FreeBSD only)
 
 ``apache.mod_proxy``
 -------------------
 
-Enables the Apache module mod_proxy. (Debian only)
+Enables the Apache module mod_proxy. (Debian and FreeBSD only)
 
 ``apache.mod_proxy_http``
 -------------------------
 
 Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled. (Debian Only)
+
+``apache.mod_proxy_fcgi``
+-------------------------
+
+Enables the Apache module mod_proxy_fcgi and requires the Apache module mod_proxy to be enabled. (Debian Only)
 
 ``apache.mod_wsgi``
 -------------------
@@ -70,15 +80,35 @@ Enables the Apache module mod_headers. (Debian Only)
 
 Installs and Enables the mod_pagespeed module. (Debian and RedHat Only)
 
+``apache.mod_perl2``
+-------------------
+
+Installs and enables the mod_perl2 module (Debian and FreeBSD only)
+
+``apache.mod_geoip``
+-------------------
+
+Installs and enables the mod_geoIP (RedHat only)
+
 ``apache.mod_php5``
 -------------------
 
 Installs and enables the mod_php5 module
 
+``apache.mod_cgi``
+---------------------
+
+Enables mod_cgi. (FreeBSD only)
+
 ``apache.mod_fcgid``
 --------------------
 
-Installs and enables the mod_fcgid module
+Installs and enables the mod_fcgid module (Debian only)
+
+``apache.mod_fastcgi``
+--------------------
+
+Installs and enables the mod_fastcgi module
 
 ``apache.mod_dav_svn``
 --------------------
@@ -93,10 +123,26 @@ using data from Pillar. (Debian and RedHat Only)
 
 Allows you to install the basic Core Rules (CRS) and some basic configuration for mod_security2
 
+``apache.mod_security.rules``
+-----------------------------
+
+This state can create symlinks based on basic Core Rules package. (Debian only)
+Or it can distribute a mod_security rule file and place it /etc/modsecurity/
+
+``apache.mod_socache_shmcb``
+---------------------
+
+Enables mod_socache_shmcb. (FreeBSD only)
+
 ``apache.mod_ssl``
 ----------------------
 
-Installs and enables the mod_ssl module (Debian and RedHad only)
+Installs and enables the mod_ssl module (Debian, RedHat and FreeBSD only)
+
+``apache.mod_suexec``
+---------------------
+
+Enables mod_suexec. (FreeBSD only)
 
 ``apache.mod_vhost_alias``
 ----------------------
@@ -107,6 +153,11 @@ Enables the Apache module vhost_alias (Debian Only)
 ----------------------
 
 Enables and configures the Apache module mod_remoteip using data from Pillar. (Debian Only)
+
+``apache.mod_xsendfile``
+----------------------
+
+Installs and enables mod_xsendfile module. (Debian Only)
 
 ``apache.own_default_vhost``
 --------------------------
@@ -151,6 +202,11 @@ Configures Apache's security.conf options by reassinging them using data from Pi
 ----------------------
 
 Installs and configures Apache on Debian and Ubuntu systems.
+
+``apache.uninstall``
+----------
+
+Stops the Apache service and uninstalls the package.
 
 These states are ordered using the ``order`` declaration. Different stages
 are divided into the following number ranges:

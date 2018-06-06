@@ -1,4 +1,6 @@
-# Managed by saltstack
+#
+# This file is managed by Salt! Do not edit by hand!
+#
 
 # This is the main Apache server configuration file.  It contains the
 # configuration directives that give the server its instructions.
@@ -209,6 +211,10 @@ LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
 {%- for log_format in salt['pillar.get']('apache:log_formats', []) %}
 LogFormat {{ log_format }}
+{%- endfor %}
+
+{%- for directive, dvalue in salt['pillar.get']('apache:global', {}).items() %}
+{{ directive }} {{ dvalue }}
 {%- endfor %}
 
 # Include of directories ignores editors' and dpkg's backup files,

@@ -17,6 +17,7 @@ include:
 
 {{ apache.vhostdir }}:
   file.directory:
+    - makedirs: True
     - require:
       - pkg: apache
     - watch_in:
@@ -56,12 +57,36 @@ include:
       - service: apache
 {% endif %}
 
-{% if grains['os_family']=="Suse" %}
-/etc/apache2/sysconfig.d/global.conf:
+{% if grains['os_family']=="Suse" or salt['grains.get']('os') == 'SUSE' %}
+/etc/apache2/global.conf:
   file.managed:
     - template: jinja
     - source:
       - salt://apache/files/{{ salt['grains.get']('os_family') }}/global.config.jinja
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+    - context:
+      apache: {{ apache }}
+{% endif %}
+
+{% if grains['os_family']=="FreeBSD" %}
+/usr/local/etc/{{ apache.service }}/envvars.d/by_salt.env:
+  file.managed:
+    - template: jinja
+    - source:
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/envvars-{{ apache.version }}.jinja
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+
+{{ apache.portsfile }}:
+  file.managed:
+    - template: jinja
+    - source:
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/ports-{{ apache.version }}.conf.jinja
     - require:
       - pkg: apache
     - watch_in:
