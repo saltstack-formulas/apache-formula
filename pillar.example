@@ -71,6 +71,8 @@ apache:
       CustomLog: /path/to/logs/example.com-access.log # E.g.: /var/log/apache2/example.com-access.log
 
       DocumentRoot: /path/to/www/dir/example.com # E.g., /var/www/example.com
+      DocumentRootUser: www-data   # Force user if specified, leave it default if not
+      DocumentRootGroup: www-data  # Force group if specified, leave it default if not
 
       SSLCertificateFile: /etc/ssl/mycert.pem # if ssl is desired
       SSLCertificateKeyFile: /etc/ssl/mycert.pem.key # if key for cert is needed or in an extra file

@@ -27,6 +27,12 @@ include:
     - unless: test -d {{ documentroot }}
     - name: {{ documentroot }}
     - makedirs: True
+{% if site.get('DocumentRootUser') %}
+    - user: {{ site.DocumentRootUser }}
+{% endif %}
+{% if site.get('DocumentRootGroup') %}
+    - group: {{ site.DocumentRootGroup }}
+{% endif %}
     - allow_symlink: True
 {% endif %}
 
