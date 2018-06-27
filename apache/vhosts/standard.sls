@@ -24,7 +24,6 @@ include:
 {% if site.get('DocumentRoot') != False %}
 {{ id }}-documentroot:
   file.directory:
-    - unless: test -d {{ documentroot }}
     - name: {{ documentroot }}
     - makedirs: True
 {% if site.get('DocumentRootUser') %}
