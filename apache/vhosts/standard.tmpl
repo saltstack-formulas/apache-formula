@@ -58,7 +58,7 @@
     {% if site.get('LogFormat') != False -%}LogFormat {{ vals.LogFormat }}{% endif %}
     {% if site.get('CustomLog') != False -%}CustomLog {{ vals.CustomLog }}  {{ vals.LogFormat }}{% endif %}
 
-    {% if site.get('DocumentRoot') != False -%}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
+    {% if site.get('DocumentRoot') != False -%}DocumentRoot {{ vals.DocumentRoot.path }}{% endif %}
     {% if site.get('VirtualDocumentRoot') -%}VirtualDocumentRoot {{ vals.VirtualDocumentRoot }}{% endif %}
 
     {% if site.get('Timeout') != False and site.get('Timeout') != None %}Timeout {{ vals.Timeout }}{% endif %}
