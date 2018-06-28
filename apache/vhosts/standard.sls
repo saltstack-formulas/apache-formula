@@ -26,12 +26,8 @@ include:
   file.directory:
     - name: {{ documentroot }}
     - makedirs: True
-{% if site.get('DocumentRootUser') %}
-    - user: {{ site.DocumentRootUser }}
-{% endif %}
-{% if site.get('DocumentRootGroup') %}
-    - group: {{ site.DocumentRootGroup }}
-{% endif %}
+    - user: {{ site.get('DocumentRootUser', apache.get('document_root_user'))|json }}
+    - group: {{ site.get('DocumentRootGroup', apache.get('document_root_group'))|json }}
     - allow_symlink: True
 {% endif %}
 

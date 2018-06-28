@@ -26,6 +26,11 @@ apache:
     # Default value for AddDefaultCharset in RedHat configuration
     default_charset: 'UTF-8'
 
+    # Should we enforce DocumentRoot user/group?
+    # Default: do not enforce
+    document_root_user: www-data   # Force user if specified, leave it default if not
+    document_root_group: null      # Do not enforce group
+
   global:
     # global apache directives
     AllowEncodedSlashes: 'On'
@@ -71,8 +76,8 @@ apache:
       CustomLog: /path/to/logs/example.com-access.log # E.g.: /var/log/apache2/example.com-access.log
 
       DocumentRoot: /path/to/www/dir/example.com # E.g., /var/www/example.com
-      DocumentRootUser: www-data   # Force user if specified, leave it default if not
-      DocumentRootGroup: www-data  # Force group if specified, leave it default if not
+      DocumentRootUser: null       # do not enforce user, defaults to lookup:document_root_user
+      DocumentRootGroup: www-data  # Force group, defaults to lookup:document_root_group
 
       SSLCertificateFile: /etc/ssl/mycert.pem # if ssl is desired
       SSLCertificateKeyFile: /etc/ssl/mycert.pem.key # if key for cert is needed or in an extra file
