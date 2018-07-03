@@ -28,7 +28,7 @@
     'Timeout': site.get('Timeout'),
     'LimitRequestFields': site.get('LimitRequestFields'),
 
-    'Directory_default': '{0}/{1}'.format(map.wwwdir, sitename),
+    'Directory_default': site.get('DocumentRoot', '{0}/{1}'.format(map.wwwdir, sitename)),
     'Directory': {
         'Options': '-Indexes +FollowSymLinks',
         'Order': 'allow,deny',
