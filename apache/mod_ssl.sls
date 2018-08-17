@@ -15,6 +15,14 @@ a2enmod mod_ssl:
     - watch_in:
       - module: apache-restart
 
+/etc/apache2/mods-available/ssl.conf:
+  file.managed:
+    - source: salt://apache/files/{{ salt['grains.get']('os_family') }}/ssl.conf.jinja
+    - template: jinja
+    - mode: 644
+    - watch_in:
+      - module: apache-restart
+
 {% elif grains['os_family']=="RedHat" %}
 
 mod_ssl:
