@@ -24,9 +24,10 @@ include:
 {% if site.get('DocumentRoot') != False %}
 {{ id }}-documentroot:
   file.directory:
-    - unless: test -d {{ documentroot }}
     - name: {{ documentroot }}
     - makedirs: True
+    - user: {{ site.get('DocumentRootUser', apache.get('document_root_user'))|json }}
+    - group: {{ site.get('DocumentRootGroup', apache.get('document_root_group'))|json }}
     - allow_symlink: True
 {% endif %}
 
