@@ -3,6 +3,14 @@
 include:
   - apache
 
+{{ apache.logdir }}:
+  file.directory:
+    - makedirs: True
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+
 {{ apache.configfile }}:
   file.managed:
     - template: jinja
