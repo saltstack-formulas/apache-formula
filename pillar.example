@@ -291,6 +291,12 @@ apache:
     disabled:  # List modules to disable
       - rewrite
 
+  flags:
+    enabled:  # List server flags to enable
+      - SSL
+    disabled: # List server flags to disable
+      - status
+
   # KeepAlive: Whether or not to allow persistent connections (more than
   # one request per connection). Set to "Off" to deactivate.
   keepalive: 'On'
