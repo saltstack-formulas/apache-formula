@@ -84,7 +84,7 @@ apache:
       SSLCertificateChainFile: /etc/ssl/mycert.chain.pem # if you require a chain of server certificates file
 
       Directory:
-        # "default" is a special case; Adds ``/path/to/www/dir/example.com``
+        # "default" is a special case; uses DocumentRoot value
         # E.g.: /var/www/example.com
         default:
           Options: -Indexes +FollowSymLinks
