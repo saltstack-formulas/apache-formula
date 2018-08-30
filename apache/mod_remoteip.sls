@@ -14,7 +14,7 @@ a2enmod remoteip:
 
 a2enconf remoteip:
   cmd.run:
-    - unless: ls /etc/apache2/mods-enabled/remoteip.load
+    - unless: ls /etc/apache2/conf-enabled/remoteip.conf
     - order: 255
     - require:
       - pkg: apache
