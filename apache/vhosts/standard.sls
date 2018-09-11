@@ -6,7 +6,7 @@ include:
 {% for id, site in salt['pillar.get']('apache:sites', {}).items() %}
 {% set documentroot = site.get('DocumentRoot', '{0}/{1}'.format(apache.wwwdir, site.get('ServerName', id))) %}
 
-{{ id }}-vhosts:
+apache_vhosts_{{ id }}:
   file.managed:
     - name: {{ apache.vhostdir }}/{{ id }}{{ apache.confext }}
     - source: {{ site.get('template_file', 'salt://apache/vhosts/standard.tmpl') }}
