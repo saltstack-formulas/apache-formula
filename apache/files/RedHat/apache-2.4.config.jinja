@@ -50,7 +50,7 @@ ServerRoot "/etc/httpd"
         {%- set interfaces = site.get('interface', '*').split() %}
         {%- set port = site.get('port', 80) %}
         {%- for interface in interfaces %}
-            {%- if not site.get('exclude_listen_directive', False) %}
+            {%- if not site.get('exclude_listen_directive', False) and not port == '*' %}
                 {%- set listen_directive = interface ~ ':' ~ port %}
                 {%- if listen_directive not in listen_directives %}
                     {%- do listen_directives.append(listen_directive) %}
