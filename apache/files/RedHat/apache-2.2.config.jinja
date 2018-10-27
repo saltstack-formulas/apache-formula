@@ -28,7 +28,7 @@
 # same ServerRoot for multiple httpd daemons, you will need to change at
 # least PidFile.
 #
-ServerRoot "/etc/httpd"
+ServerRoot "{{ apache.get('serverroot', '/etc/httpd') }}"
 
 #
 # Listen: Allows you to bind Apache to specific IP addresses and/or
@@ -183,12 +183,12 @@ ServerAdmin root@localhost
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "/var/www/html"
+DocumentRoot "{{ apache.get('docroot', apache.wwwdir + '/html') }}"
 
 #
-# Relax access to content within /var/www.
+# Relax access to content within {{ apache.wwwdir }}.
 #
-<Directory "/var/www">
+<Directory "{{ apache.wwwdir }}">
     AllowOverride None
     # Allow open access:
     Order allow,deny
@@ -196,7 +196,7 @@ DocumentRoot "/var/www/html"
 </Directory>
 
 # Further relax access to the default document root:
-<Directory "/var/www/html">
+<Directory "{{ apache.get('docroot', apache.wwwdir + '/html') }}">
     #
     # Possible values for the Options directive are "None", "All",
     # or any combination of:
@@ -317,15 +317,15 @@ LogLevel warn
     # client.  The same rules about trailing "/" apply to ScriptAlias
     # directives as to Alias.
     #
-    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
+    ScriptAlias /cgi-bin/ "{{ apache.wwwdir }}/cgi-bin/"
 
 </IfModule>
 
 #
-# "/var/www/cgi-bin" should be changed to whatever your ScriptAliased
+# "{{ apache.wwwdir }}/cgi-bin/" should be changed to whatever your ScriptAliased
 # CGI directory exists, if you have that configured.
 #
-<Directory "/var/www/cgi-bin">
+<Directory "{{ apache.wwwdir }}/cgi-bin/">
     AllowOverride None
     Options None
     Order allow,deny
