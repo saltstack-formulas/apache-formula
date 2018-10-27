@@ -57,7 +57,7 @@ include:
 {% endif %}
 
 {% if grains['os_family']=="RedHat" %}
-/etc/httpd/conf.d/welcome.conf:
+{{ apache.confdir }}/welcome.conf:
   file.absent:
     - require:
       - pkg: apache
