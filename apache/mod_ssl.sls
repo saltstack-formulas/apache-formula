@@ -33,6 +33,13 @@ mod_ssl:
     - watch_in:
       - module: apache-restart
 
+{{ apache.confdir }}/ssl.conf:
+  file.absent:
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+
 {% elif grains['os_family']=="FreeBSD" %}
 
 include:
