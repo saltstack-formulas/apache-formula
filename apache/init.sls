@@ -15,6 +15,9 @@ apache:
   service.running:
     - name: {{ apache.service }}
     - enable: True
+    - require:
+      - module: apache-restart
+      - module: apache-reload
 
 # The following states are inert by default and can be used by other states to
 # trigger a restart or reload as needed.
@@ -22,6 +25,8 @@ apache-reload:
   module.wait:
     - name: service.reload
     - m_name: {{ apache.service }}
+    - require:
+      - module: apache-restart
 
 apache-restart:
   module.wait:
