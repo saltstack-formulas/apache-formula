@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
 default:
   version: '2.4'
 Ubuntu-12.04:

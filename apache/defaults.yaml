@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+apache:
+  manage_service_states: True
+
+  mod_security:
+    crs_install: False
+    manage_config: False
