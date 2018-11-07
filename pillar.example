@@ -311,6 +311,10 @@ apache:
     SSLCipherSuite: 'HIGH:!aNULL'
     SSLHonorCipherOrder: 'Off'
     SSLProtocol: 'all -SSLv3'
+    SSLUseStapling: 'Off'
+    SSLStaplingResponderTimeout: '5'
+    SSLStaplingReturnResponderErrors: 'Off'
+    SSLStaplingCache: 'shmcb:/var/run/ocsp(128000)'
 
   # ``apache.mod_remoteip`` formula additional configuration:
   mod_remoteip:

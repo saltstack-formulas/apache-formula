@@ -1,3 +1,6 @@
+#
+# This file is managed by Salt! Do not edit by hand!
+#
 <IfModule mod_ssl.c>
 
 	# Pseudo Random Number Generator (PRNG):
@@ -81,6 +84,18 @@
 	#   Default: Off
 	#SSLStrictSNIVHostCheck On
 
+	{% set use_stapling = salt['pillar.get']('apache:ssl:SSLUseStapling', 'Off') %}
+	{% if use_stapling == 'On' %}
+	#   Stapling configuration
+	#   Default: Off
+	#
+	#   See https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html for more details
+	#   Defaults values taken from https://mozilla.github.io/server-side-tls/ssl-config-generator/
+	SSLUseStapling {{ use_stapling }}
+	SSLStaplingResponderTimeout {{ salt['pillar.get']('SSLStaplingResponderTimeout', '5') }}
+	SSLStaplingReturnResponderErrors {{ salt['pillar.get']('SSLStaplingReturnResponderErrors', 'Off') }}
+	SSLStaplingCache {{ salt['pillar.get']('SSLStaplingCache', 'shmcb:/var/run/ocsp(128000)') }}
+	{% endif %}
 </IfModule>
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
