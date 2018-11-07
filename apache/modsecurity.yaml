@@ -1,15 +1,25 @@
-default:
-  crs_install: False
-  manage_config: False
+# -*- coding: utf-8 -*-
+# vim: ft=yam
+
 Debian:
-  crs_install: False
-  manage_config: False
-  package: libapache2-mod-security2
-  crs_package: modsecurity-crs
-  config_file: /etc/modsecurity/modsecurity.conf-recommended
+  mod_security:
+    crs_install: False
+    manage_config: False
+    package: libapache2-mod-security2
+    crs_package: modsecurity-crs
+    config_file: /etc/modsecurity/modsecurity.conf-recommended
+
 RedHat:
-  crs_install: False
-  manage_config: False
-  package: mod_security
-  crs_package: mod_security_crs
-  config_file: /etc/httpd/conf.d/mod_security.conf
+  mod_security:
+    crs_install: False
+    manage_config: False
+    package: mod_security
+    crs_package: mod_security_crs
+    config_file: /etc/httpd/conf.d/mod_security.conf
+
+Suse:
+  mod_security:
+    crs_install: False
+    manage_config: False
+    package: apache2-mod_security2
+    config_file: /etc/apache2/conf.d/mod_security2.conf
