@@ -22,7 +22,8 @@
 {% do defaults.apache.update(oscode) %}
 
 {# merge the osfingermap #}
-{% set osfinger = salt['grains.filter_by'](osfingermap, grain='oscodename') or {} %}
+{% set osfinger = salt['grains.filter_by'](osfingermap, grain='osfinger') or {} %}
+{% do defaults.apache.update(osfinger) %}
 
 {# merge all #}
 {% set apache = salt['pillar.get']('apache', default=defaults['apache'], merge=true) %}
