@@ -19,6 +19,10 @@ a2enmod php5:
       - pkg: mod-php5
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% if 'apache' in pillar and 'php-ini' in pillar['apache'] %}
 /etc/php5/apache2/php.ini:
@@ -27,6 +31,10 @@ a2enmod php5:
     - order: 225
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
     - require:
       - pkg: apache
       - pkg: mod-php5
@@ -43,6 +51,10 @@ a2enmod php5:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}
 

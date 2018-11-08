@@ -9,6 +9,12 @@ mod-security:
     - order: 180
     - require:
       - pkg: apache
+    - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% if apache.mod_security.crs_install %}
 mod-security-crs:
@@ -17,6 +23,12 @@ mod-security-crs:
     - order: 180
     - require:
       - pkg: mod-security
+    - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endif %}
 
 {% if apache.mod_security.manage_config %}
@@ -32,6 +44,10 @@ mod-security-main-config:
       - pkg: mod-security
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endif %}
 
 {% if grains['os_family']=="Debian" %}
@@ -43,4 +59,8 @@ a2enmod security2:
       - pkg: mod-security
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endif %}

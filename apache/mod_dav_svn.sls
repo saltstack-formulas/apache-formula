@@ -16,6 +16,10 @@ a2enmod dav_svn:
       - pkg: libapache2-mod-svn
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 a2enmod authz_svn:
   cmd.run:
@@ -26,5 +30,9 @@ a2enmod authz_svn:
       - pkg: libapache2-mod-svn
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}

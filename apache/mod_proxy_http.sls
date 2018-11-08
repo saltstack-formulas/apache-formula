@@ -15,6 +15,10 @@ a2enmod proxy_http:
       - cmd: a2enmod proxy
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% elif grains['os_family']=="FreeBSD" %}
 {{ apache.modulesdir }}/040_mod_proxy_http.conf:
@@ -26,5 +30,9 @@ a2enmod proxy_http:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}

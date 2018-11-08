@@ -12,6 +12,12 @@ mod-fastcgi:
     - require:
       - pkgrepo: repo-fastcgi
       - pkg: apache
+    - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 repo-fastcgi:
   pkgrepo.managed:
@@ -28,6 +34,10 @@ a2enmod fastcgi:
       - pkg: mod-fastcgi
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}
 

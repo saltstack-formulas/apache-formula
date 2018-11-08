@@ -9,6 +9,12 @@ mod-perl2:
     - order: 180
     - require:
       - pkg: apache
+    - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% if grains['os_family']=="Debian" %}
 a2enmod perl2:
@@ -19,6 +25,10 @@ a2enmod perl2:
       - pkg: mod-perl2
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% elif grains['os_family']=="FreeBSD" %}
 
@@ -31,5 +41,9 @@ a2enmod perl2:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}
