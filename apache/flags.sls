@@ -13,6 +13,10 @@ a2enflag {{ flag }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% for module in salt['pillar.get']('apache:flags:disabled', []) %}
@@ -23,6 +27,10 @@ a2disflag -f {{ flag }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% endif %}

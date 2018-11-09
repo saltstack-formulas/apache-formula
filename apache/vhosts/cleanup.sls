@@ -29,6 +29,10 @@ a2dissite {{ filename }}:
     - onlyif: "test -L {{ dirpath}}/{{ filename }} || test -f {{ dirpath}}/{{ filename }}"
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {%   endif %}
 {% endfor %}

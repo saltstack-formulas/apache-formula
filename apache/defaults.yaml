@@ -3,6 +3,8 @@
 
 apache:
   manage_service_states: True
+  service_state: running
+  service_enable: True
 
   mod_security:
     crs_install: False

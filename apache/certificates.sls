@@ -17,6 +17,10 @@ apache_cert_config_{{ site }}_key_file:
     - group: root
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endif %}
 
 {% if confcert.SSLCertificateFile is defined and confcert.SSLCertificateFile_content is defined %}
@@ -31,6 +35,10 @@ apache_cert_config_{{ site }}_cert_file:
     - group: root
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endif %}
 
 {% if confcert.SSLCertificateChainFile is defined and confcert.SSLCertificateChainFile_content is defined %}
@@ -45,6 +53,10 @@ apache_cert_config_{{ site }}_bundle_file:
     - group: root
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endif %}
 
 {%- endfor %}

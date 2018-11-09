@@ -12,6 +12,10 @@ a2enmod rewrite:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% elif grains['os_family']=="FreeBSD" %}
 
@@ -24,5 +28,9 @@ a2enmod rewrite:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}

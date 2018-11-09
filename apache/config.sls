@@ -9,6 +9,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
 
 {{ apache.configfile }}:
@@ -19,6 +23,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
     - context:
       apache: {{ apache }}
@@ -29,6 +37,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
 
 {% if grains['os_family']=="Debian" %}
@@ -40,6 +52,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
 
 {{ apache.portsfile }}:
@@ -50,6 +66,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
     - context:
       apache: {{ apache }}
@@ -62,6 +82,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
 {% endif %}
 
@@ -74,6 +98,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
     - context:
       apache: {{ apache }}
@@ -88,6 +116,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
 
 {{ apache.portsfile }}:
@@ -98,6 +130,10 @@ include:
     - require:
       - pkg: apache
     - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
       - service: apache
     - context:
       apache: {{ apache }}

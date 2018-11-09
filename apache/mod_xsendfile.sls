@@ -9,6 +9,12 @@ mod-xsendfile:
     - order: 180
     - require:
       - pkg: apache
+    - watch_in:
+      - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% if grains['os_family']=="Debian" %}
 a2enmod xsendfile:
@@ -19,6 +25,10 @@ a2enmod xsendfile:
       - pkg: mod-xsendfile
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}
 

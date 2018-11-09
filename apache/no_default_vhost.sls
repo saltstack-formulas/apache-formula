@@ -12,5 +12,9 @@ a2dissite 000-default.conf:
       - pkg: apache
     - watch_in:
       - module: apache-reload
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 
 {% endif %}

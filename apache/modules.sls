@@ -12,6 +12,10 @@ a2enmod {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
@@ -23,6 +27,10 @@ a2dismod -f {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% elif grains['os_family']=="RedHat" %}
@@ -39,6 +47,10 @@ find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^#\)\(\s*LoadModule
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
@@ -50,6 +62,10 @@ find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^\s*LoadModule.{{ m
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% elif salt['grains.get']('os_family') == 'Suse' or salt['grains.get']('os') == 'SUSE' %}
@@ -66,6 +82,10 @@ a2enmod {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
@@ -77,6 +97,10 @@ a2dismod -f {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
+    - require_in:
+      - module: apache-restart
+      - module: apache-reload
+      - service: apache
 {% endfor %}
 
 {% endif %}
