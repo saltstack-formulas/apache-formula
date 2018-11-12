@@ -1,0 +1,151 @@
+enforced_directives:
+  # httpd directives enforced in all configuration files and sections
+  # data structure :
+  #   directive:
+  #     value: numeric or string - value to enforce
+  #     add_if_absent: False (default) - True -> add it to server configuration if it is absent from pillar
+  #     onlyif_pillar_is: different (default) |greater|lower -> compare numeric values
+  #               - greater : enforce value if the pillar content is > value
+  #               - lower : enforce value if the pillar content is < value
+  #     match : regex
+  #     container : enforce only on the specified container
+  #     regex_group_position : the position of the group to substitute in regex
+  #     values : list of dict - for multiple replacements in the same directive
+
+  # Set TimeOut to 10 or less
+  Timeout:
+    value: 10
+    onlyif_pillar_is: 'greater'
+    add_if_absent: True
+  # Set Timeout Limits for Request Headers
+  RequestReadTimeout:
+    values:
+      -
+        match: '(?<=header=)(\d+-)?(\d+)'
+        value: 40
+        onlyif_pillar_is: 'greater'
+        regex_group_position: 2
+      -
+        match: '(?<=body=)(\d+-)?(\d+)'
+        value: 20
+        onlyif_pillar_is: 'greater'
+        regex_group_position: 2
+  # Disable the SSL v3.0 Protocol
+  SSLProtocol:
+    value: ''
+    match: '(?<!-)((\+)?SSLv3)'
+    regex_group_position: 1
+  # Minimize Options for Directories to NOT have a value of Includes
+  Options:
+    match: '(?<!-)((\+)?Includes)'
+    value: ''
+    regex_group_position: 1
+    container: 'Directory'
+  # Set the KeepAlive directive to On
+  KeepAlive:
+    value: 'On'
+    add_if_absent: True
+  # Set MaxKeepAliveRequests to 100 or greater
+  MaxKeepAliveRequests:
+    value: 100
+    onlyif_pillar_is: 'lower'
+    add_if_absent: True
+  # Set KeepAliveTimeout to 15 or less
+  KeepAliveTimeout:
+    value: 15
+    onlyif_pillar_is: 'greater'
+    add_if_absent: True
+  # Disable HTTP TRACE Method
+  TraceEnable:
+    value: 'off'
+    add_if_absent: True
+  # Set ServerSignature to 'Off'
+  ServerSignature:
+    value: 'off'
+    add_if_absent: True
+  # Set ServerToken to 'Prod'
+  ServerTokens:
+    value: 'Prod'
+  # Secure Core Dump Directory
+  CoreDumpDirectory:
+    value: '/var/log/httpd'
+  # Disable SSL Insecure Renegotiation
+  SSLInsecureRenegotiation:
+    value: 'off'
+  # Ensure SSL Compression is not Enabled
+  SSLCompression:
+    value: 'off'
+  # Restrict Override
+  AllowOverride:
+    value: 'None'
+  AllowOverrideList:
+    value: 'None'
+  PidFile:
+    value: '/etc/httpd/run/httpd.pid'
+  ScoreBoardFile:
+    value: '/var/run/apache_runtime_status'
+  SSLHonorCipherOrder:
+    value: 'On'
+
+enforced_containers:
+# httpd sections (containers) enforced in all configuration files and sections
+  Directory:
+    # Restrict Override for the OS Root Directory
+    -
+      item: '/'
+      directives:
+        - AllowOverride: 'None'
+        - Require: 'all denied'
+        - Options: 'None'
+
+    # Limit HTTP Request Methods
+    -
+      item: '/var/www'
+      directives:
+        - Options: 'None'
+      containers:
+        LimitExcept:
+          -
+            item: 'GET POST OPTIONS'
+            directives:
+              - Require: 'all denied'
+  FilesMatch:
+    # Restrict Access to .ht* files
+    -
+      item: '"^\.ht"'
+      directives:
+        - Require: 'all denied'
+
+containers_to_remove:
+  # Remove Default HTML Content
+  Location:
+    - '/server-info'
+    - '/server-status'
+    - '/perl-status'
+
+server_supplemental_directives:
+# httpd directives added as it in httpd.conf
+  # Restrict HTTP protocol versions
+  - RewriteEngine: 'On'
+  - RewriteCond: '%{THE_REQUEST} !HTTP/1\.1$'
+  - RewriteRule: '.* - [F]'
+
+vhost_supplemental_directives:
+# httpd directives added as it in vhost config file
+  # Inherit server options
+  - RewriteEngine: 'On'
+  - RewriteOptions: 'Inherit'
+
+modules:
+# httpd modules: enforce enabled and disabled
+  enforce_disabled:
+    - "dav"
+    - "dav_fs"
+    - "status"
+    - "autoindex"
+    - "userdir"
+    - "info"
+  enforce_enabled:
+    - "log_config"
+    - "reqtimeout"
+    - "rewrite"

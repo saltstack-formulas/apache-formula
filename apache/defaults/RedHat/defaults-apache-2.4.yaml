@@ -1,0 +1,77 @@
+# defaults for httpd.conf
+
+# The data structure is a little bit different with pillar structure
+# ``directives_multiple`` list are directives that can be present multiple time in conf file
+# if the same directive is present in pillar, it will be appended to the defaults ones
+# there will be no replacement of values
+server_apache_config:
+  directives:
+    - ServerRoot: '"/etc/httpd"'
+    - AllowEncodedSlashes: 'On'
+    - DocumentRoot: '"/var/www"'
+    - ServerAdmin: 'root@localhost'
+    - EnableSendfile: 'on'
+    - ErrorLog: '"/var/log/httpd/error.log"'
+    - LogLevel: 'warn core:info'
+    - AddDefaultCharset: 'UTF-8'
+    - ServerTokens: 'Prod'
+
+  containers:
+    Directory:
+      -
+        item: '/'
+        directives:
+          - AllowOverride: 'None'
+          - Require: 'all denied'
+      -
+        item: '/var/www'
+        directives:
+          - AllowOverride: 'None'
+          - Require: 'all granted'
+          - Options: 'Indexes FollowSymLinks'
+      -
+        item: '/var/www/cgi-bin'
+        directives:
+          - AllowOverride: 'None'
+          - Options: 'None'
+          - Require: 'all granted'
+    IfModule:
+      -
+        item: 'dir_module'
+        directives:
+          - DirectoryIndex: index.html
+      -
+        item: 'log_config_module'
+        directives:
+          - CustomLog: '"/var/log/httpd/access.log" combined'
+        directives_multiple:   # <-- Theses directives are appended as it to pillar content
+          - LogFormat: '"%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined'
+          - LogFormat: '"%h %l %u %t \"%r\" %>s %b" common'
+        containers:
+          IfModule:
+            -
+              item: 'logio_module'
+              directives:
+                - LogFormat: '"%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio'
+      -
+        item: 'alias_module'
+        directives:
+          - ScriptAlias: '/cgi-bin/ "/var/www/cgi-bin/"'
+      -
+        item: 'mime_module'
+        directives:
+          - TypesConfig: '/etc/mime.types'
+          - AddOutputFilter: 'INCLUDES .shtml'
+        directives_multiple:
+          - AddType: 'application/x-compress .Z'
+          - AddType: 'application/x-gzip .gz .tgz'
+          - AddType: 'text/html .shtml'
+      -
+        item: 'mime_magic_module'
+        directives:
+          - MIMEMagicFile: 'conf/magic'
+    FilesMatch:
+      -
+        item: '"^\.ht"'
+        directives:
+          - Require: 'all denied'

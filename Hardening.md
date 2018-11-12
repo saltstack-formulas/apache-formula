@@ -1,0 +1,44 @@
+# Hardening list
+
+
+- Enable the Log Config Module
+- Disable WebDAV Modules
+- Disable Status Module
+- Disable Autoindex Module
+- Disable User Directories Modules
+- Disable Info Module
+- Run the Apache Web Server as a non-root user;
+- Give the Apache User Account an Invalid Shell
+- Set Ownership on Apache Directories and Files
+- Secure Core Dump Directory
+- Secure the Pid File
+- Secure the ScoreBoard File
+- Restrict Group Write Access for the Apache Directories and Files
+- Restrict Group Write Access for the Document Root Directories and Files
+- Deny Access to OS Root Directory
+- Restrict Override for the OS Root Directory
+- Restrict Override for All Directories
+- Restrict Options for the OS Root Directory
+- Restrict Options for the Web Root Directory
+- Minimize Options for Other Directories
+- Remove Default HTML Content
+- Remove Default CGI Content printenv
+- Remove Default CGI Content test-cgi
+- Limit HTTP Request Methods
+- Disable HTTP TRACE Method
+- Restrict HTTP Protocol Versions
+- Restrict Access to .ht* files
+- Configure the Error Log
+- Configure the Access Log
+- Log Storage and Rotation
+- Disable the SSL v3.0 Protocol
+- Disable SSL Insecure Renegotiation
+- Ensure SSL Compression is not Enabled
+- Set ServerToken to 'Prod'
+- Set ServerSignature to 'Off'
+- Set TimeOut to 10 or less
+- Set the KeepAlive directive to On
+- Set MaxKeepAliveRequests to 100 or greater
+- Set KeepAliveTimeout Low to Mitigate Denial of Service
+- Set Timeout Limits for Request Headers
+- Set Timeout Limits for the Request Body
