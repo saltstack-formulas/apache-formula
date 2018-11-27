@@ -1,0 +1,10 @@
+<Location "/server-status">
+    SetHandler server-status
+{%- if apache.version == '2.4' %}
+    Require local
+{%- elif apache.version == '2.2' %}
+    Order deny,allow
+    Deny from all
+    Allow from localhost
+{%- endif %}
+</Location>
