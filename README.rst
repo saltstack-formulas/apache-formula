@@ -198,6 +198,11 @@ of interfaces to bind to. For example, to bind both IPv4 and IPv6:
 
 Configures Apache's security.conf options by reassinging them using data from Pillar.
 
+``apache.server_status``
+--------------------------
+
+Configures Apache's server_status handler for localhost
+
 ``apache.debian_full``
 ----------------------
 
