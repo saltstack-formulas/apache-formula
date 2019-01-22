@@ -14,7 +14,11 @@ remove_httpd_manual:
       - pkg: apache
 
 /etc/httpd/conf.d/autoindex.conf:
-  file.absent:
+  file.managed:
+    - contents: |
+        # File commented with Salt, Do NOT Edit
+        # Do NOT delete because it is contained in the rpm, so it wil re-created on the next upgrade
+        # It is emptied for hardening purpose
     - require:
       - pkg: apache
 
