@@ -85,6 +85,9 @@ include:
     - name: {{ apache.vhostdir_ng }}/{{ vhost_server_name }}{{ apache.confext }}
     - source: 'salt://apache/vhosts/vhost-ng.conf.jinja'
     - template: 'jinja'
+    - user: root
+    - group: root
+    - mode: 644
     - context:
         vhost_data: {{ vhost|json }}
     - require:

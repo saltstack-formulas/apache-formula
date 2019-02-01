@@ -67,6 +67,9 @@ include:
     - template: jinja
     - source:
       - salt://apache/files/{{ salt['grains.get']('os_family') }}/apache-{{ apache.version }}-ng.config.jinja
+    - user: root
+    - group: root
+    - mode: 644
     - require:
       - pkg: apache
     - watch_in:
@@ -84,6 +87,14 @@ include:
     - makedirs: True
     - require:
       - pkg: apache
+    - user: root
+    - group: root
+    - dir_mode: 755
+    - file_mode: 644
+    - recurse:
+      - user
+      - group
+      - mode
     - watch_in:
       - module: apache-restart
     - require_in:
@@ -96,6 +107,9 @@ include:
   file.managed:
     - source:
       - salt://apache/files/{{ salt['grains.get']('os_family') }}/welcome.conf
+    - user: root
+    - group: root
+    - mode: 644
     - require:
       - pkg: apache
     - watch_in:

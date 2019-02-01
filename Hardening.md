@@ -20,7 +20,7 @@ From ***CIS_Apache_HTTP_Server_2.4_Benchmark_v1.4.pdf*** document
 - [X] 3.2 Give the Apache User Account an Invalid Shell (**Scored**)
 - [ ] 3.3 Lock the Apache User Account (**Scored**)
 - [X] 3.4 Set Ownership on Apache Directories and Files (**Scored**)
-- [ ] 3.5 Set Group Id on Apache Directories and Files (**Scored**)
+- [X] 3.5 Set Group Id on Apache Directories and Files (**Scored**)
 - [ ] 3.6 Restrict Other Write Access on Apache Directories and Files (**Scored**)
 - [X] 3.7 Secure Core Dump Directory (**Scored**)
 - [ ] 3.8 Secure the Lock File (**Scored**)
