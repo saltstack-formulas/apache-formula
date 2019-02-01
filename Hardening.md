@@ -1,10 +1,19 @@
 # Hardening list
 
-This formula enforce security recommandations from [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/) site
+This formula enforce security recommandations from [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/) website
 
 From ***CIS_Apache_HTTP_Server_2.4_Benchmark_v1.4.pdf*** document
 
-## List of items managed in this formula with their references
+> A scoring status indicates whether compliance with the given recommendation impacts the assessed target's benchmark score.
+
+> Items in [*level 2*] profile exhibit one or more of the following characteristics:
+> - are intended for environments or use cases where security is paramount
+> - acts as defense in depth measure
+> - may negatively inhibit the utility or performance of the technology
+
+In this formula we focus on (**Scored**) [*level* ***1***] items
+
+## List of all items with their CIS references
 
 ## 2. Minimize Apache Modules
 - [ ] 2.1 Enable Only Necessary Authentication and Authorization Modules (Not Scored)
@@ -44,18 +53,18 @@ From ***CIS_Apache_HTTP_Server_2.4_Benchmark_v1.4.pdf*** document
 - [X] 5.8 Disable HTTP TRACE Method (**Scored**)
 - [X] 5.9 Restrict HTTP Protocol Versions (**Scored**)
 - [X] 5.10 Restrict Access to .ht* files (**Scored**)
-- [ ] 5.11 Restrict File Extensions (**Scored**)
-- [ ] 5.12 Deny IP Address Based Requests (**Scored**)
-- [ ] 5.13 Restrict Listen Directive (**Scored**)
-- [ ] 5.14 Restrict Browser Frame Options (**Scored**)
+- [ ] 5.11 Restrict File Extensions [*level 2*] (**Scored**)
+- [ ] 5.12 Deny IP Address Based Requests [*level 2*] (**Scored**)
+- [ ] 5.13 Restrict Listen Directive [*level 2*] (**Scored**)
+- [ ] 5.14 Restrict Browser Frame Options [*level 2*] (**Scored**)
 ## 6. Operations - Logging, Monitoring and Maintenance
 - [X] 6.1 Configure the Error Log (**Scored**)
-- [ ] 6.2 Configure a Syslog Facility for Error Logging (**Scored**)
+- [ ] 6.2 Configure a Syslog Facility for Error Logging [*level 2*] (**Scored**)
 - [X] 6.3 Configure the Access Log (**Scored**)
 - [X] 6.4 Log Storage and Rotation (**Scored**)
 - [ ] 6.5 Apply Applicable Patches (**Scored**)
-- [ ] 6.6 Install and Enable ModSecurity (**Scored**)
-- [ ] 6.7 Install and Enable OWASP ModSecurity Core Rule Set (**Scored**)
+- [ ] 6.6 Install and Enable ModSecurity [*level 2*] (**Scored**)
+- [ ] 6.7 Install and Enable OWASP ModSecurity Core Rule Set [*level 2*] (**Scored**)
 ## 7. SSL/TLS Configuration
 - [ ] 7.1 Install mod_ssl and/or mod_nss (**Scored**)
 - [ ] 7.2 Install a Valid Trusted Certificate (**Scored**)
@@ -65,14 +74,14 @@ From ***CIS_Apache_HTTP_Server_2.4_Benchmark_v1.4.pdf*** document
 - [X] 7.6 Disable SSL Insecure Renegotiation (**Scored**)
 - [X] 7.7 Ensure SSL Compression is not Enabled (**Scored**)
 - [ ] 7.8 Restrict Medium Strength SSL/TLS Ciphers (**Scored**)
-- [ ] 7.9 Disable the TLS v1.0 Protocol (**Scored**)
-- [ ] 7.10 Enable OCSP Stapling (**Scored**)
-- [ ] 7.11 Enable HTTP Strict Transport Security (**Scored**)
+- [ ] 7.9 Disable the TLS v1.0 Protocol [*level 2*] (**Scored**)
+- [ ] 7.10 Enable OCSP Stapling [*level 2*] (**Scored**)
+- [ ] 7.11 Enable HTTP Strict Transport Security [*level 2*] (**Scored**)
 ## 8. Information Leakage
 - [X] 8.1 Set ServerToken to 'Prod' (**Scored**)
 - [X] 8.2 Set ServerSignature to 'Off' (**Scored**)
-- [ ] 8.3 Information Leakage via Default Apache Content (**Scored**)
-- [ ] 8.4 Information Leakage via ETag (**Scored**)
+- [ ] 8.3 Information Leakage via Default Apache Content [*level 2*] (**Scored**)
+- [ ] 8.4 Information Leakage via ETag [*level 2*] (**Scored**)
 ## 9. Denial of Service Mitigations
 - [X] 9.1 Set TimeOut to 10 or less (**Scored**)
 - [X] 9.2 Set the KeepAlive directive to On (**Scored**)
@@ -81,16 +90,16 @@ From ***CIS_Apache_HTTP_Server_2.4_Benchmark_v1.4.pdf*** document
 - [X] 9.5 Set Timeout Limits for Request Headers (**Scored**)
 - [X] 9.6 Set Timeout Limits for the Request Body (**Scored**)
 ## 10. Request Limits
-- [ ] 10.1 Set the LimitRequestLine directive to 512 or less (**Scored**)
-- [ ] 10.2 Set the LimitRequestFields directive to 100 or less (**Scored**)
-- [ ] 10.3 Set the LimitRequestFieldsize directive to 1024 or less (**Scored**)
-- [ ] 10.4 Set the LimitRequestBody directive to 102400 or less (**Scored**)
+- [ ] 10.1 Set the LimitRequestLine directive to 512 or less [*level 2*] (**Scored**)
+- [ ] 10.2 Set the LimitRequestFields directive to 100 or less [*level 2*] (**Scored**)
+- [ ] 10.3 Set the LimitRequestFieldsize directive to 1024 or less [*level 2*] (**Scored**)
+- [ ] 10.4 Set the LimitRequestBody directive to 102400 or less [*level 2*] (**Scored**)
 ## 11. Enable SELinux to Restrict Apache Processes
-- [ ] 11.1 Enable SELinux in Enforcing Mode (**Scored**)
-- [ ] 11.2 Run Apache Processes in the httpd_t Confined Context (**Scored**)
-- [ ] 11.3 Ensure the httpd_t Type is Not in Permissive Mode (**Scored**)
-- [ ] 11.4 Ensure Only the Necessary SELinux Booleans are Enabled (Not Scored)
+- [ ] 11.1 Enable SELinux in Enforcing Mode [*level 2*] (**Scored**)
+- [ ] 11.2 Run Apache Processes in the httpd_t Confined Context [*level 2*] (**Scored**)
+- [ ] 11.3 Ensure the httpd_t Type is Not in Permissive Mode [*level 2*] (**Scored**)
+- [ ] 11.4 Ensure Only the Necessary SELinux Booleans are Enabled [*level 2*] (Not Scored)
 ## 12. Enable AppArmor to Restrict Apache Processes
-- [ ] 12.1 Enable the AppArmor Framework (**Scored**)
-- [ ] 12.2 Customize the Apache AppArmor Profile (Not Scored)
-- [ ] 12.3 Ensure Apache AppArmor Profile is in Enforce Mode (**Scored**)
+- [ ] 12.1 Enable the AppArmor Framework [*level 2*] (**Scored**)
+- [ ] 12.2 Customize the Apache AppArmor Profile [*level 2*] (Not Scored)
+- [ ] 12.3 Ensure Apache AppArmor Profile is in Enforce Mode [*level 2*] (**Scored**)
