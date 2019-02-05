@@ -4,6 +4,7 @@
 
 include:
   - apache
+  - apache.mod_ssl
   - apache.hardening
 
 {# merge defaults with pillar content #}

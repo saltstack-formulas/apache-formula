@@ -66,7 +66,7 @@ In this formula we focus on (**Scored**) [*level* ***1***] items
 - [ ] 6.6 Install and Enable ModSecurity [*level 2*] (**Scored**)
 - [ ] 6.7 Install and Enable OWASP ModSecurity Core Rule Set [*level 2*] (**Scored**)
 ## 7. SSL/TLS Configuration
-- [ ] 7.1 Install mod_ssl and/or mod_nss (**Scored**)
+- [X] 7.1 Install mod_ssl and/or mod_nss (**Scored**)
 - [ ] 7.2 Install a Valid Trusted Certificate (**Scored**)
 - [ ] 7.3 Protect the Server's Private Key (**Scored**)
 - [X] 7.4 Disable the SSL v3.0 Protocol (**Scored**)
