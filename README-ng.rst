@@ -13,7 +13,7 @@ see examples below for more explanation
 
 Also it includes and enforce some hardening rules to prevent security issues
 
-See `<apache/hardening-values.yaml>`_.
+See `<Hardening.md>`_ and `<apache/hardening-values.yaml>`_.
 
 .. note::
 
