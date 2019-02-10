@@ -29,7 +29,7 @@ include:
       - module: apache-reload
       - service: apache
     - context:
-      apache: {{ apache }}
+      apache: {{ apache | json }}
 
 {{ apache.vhostdir }}:
   file.directory:
@@ -72,7 +72,7 @@ include:
       - module: apache-reload
       - service: apache
     - context:
-      apache: {{ apache }}
+      apache: {{ apache | json }}
 
 {% endif %}
 
@@ -104,7 +104,7 @@ include:
       - module: apache-reload
       - service: apache
     - context:
-      apache: {{ apache }}
+      apache: {{ apache | json }}
 {% endif %}
 
 {% if grains['os_family']=="FreeBSD" %}
@@ -136,5 +136,5 @@ include:
       - module: apache-reload
       - service: apache
     - context:
-      apache: {{ apache }}
+      apache: {{ apache | json }}
 {% endif %}
