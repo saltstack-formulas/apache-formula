@@ -1,30 +1,23 @@
 {# vi: set ft=jinja: #}
 
-{% import_yaml "apache/defaults.yaml" as defaults %}
+{% import_yaml "apache/defaults.yaml" as default_settings %}
 {% import_yaml "apache/osfamilymap.yaml" as osfamilymap %}
 {% import_yaml "apache/oscodenamemap.yaml" as oscodenamemap %}
 {% import_yaml "apache/osfingermap.yaml" as osfingermap %}
 {% import_yaml "apache/modsecurity.yaml" as modsec %}
 
-{# merge the modsecurity #}
-{% set modsecurity = salt['grains.filter_by'](modsec, grain='os_family') or{} %}
-{% do salt['defaults.merge'](defaults['apache'], modsecurity) %}
+{% set defaults = salt['grains.filter_by'](default_settings,
+    default='apache',
+    merge=salt['grains.filter_by'](modsec, grain='os_family',
+      merge=salt['grains.filter_by'](osfamilymap, grain='os_family',
+        merge=salt['grains.filter_by'](oscodenamemap, grain='oscodename',
+          merge=salt['grains.filter_by'](osfingermap, grain='osfinger',
+            merge=salt['pillar.get']('apache:lookup', default={})
+          )
+        )
+      )
+    )
+) %}
 
-{# merge the osfamilymap #}
-{% set osfamily = salt['grains.filter_by'](osfamilymap, grain='os_family') or{} %}
-{% do salt['defaults.merge'](defaults['apache'], osfamily) %}
-
-{# merge the oscodenamemap #}
-{% set oscode = salt['grains.filter_by'](oscodenamemap, grain='oscodename') or {} %}
-{% do salt['defaults.merge'](defaults['apache'], oscode) %}
-
-{# merge the osfingermap #}
-{% set osfinger = salt['grains.filter_by'](osfingermap, grain='osfinger') or {} %}
-{% do salt['defaults.merge'](defaults['apache'], osfinger) %}
-
-{# merge the lookup #}
-{% set lookup = salt['pillar.get']('apache:lookup', default={}, merge=True) %}
-{% do salt['defaults.merge'](defaults['apache'], lookup) %}
-
-{# merge all #}
-{% set apache = salt['pillar.get']('apache', default=defaults['apache'], merge=True) %}
+{## Merge the apache pillar ##}
+{% set apache = salt['pillar.get']('apache', default=defaults, merge=True) %}
