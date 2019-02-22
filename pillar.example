@@ -1,3 +1,5 @@
+# see ``pillar-ng.example.yaml`` for new gen pillar
+
 # ``apache`` formula configuration:
 apache:
 
@@ -98,7 +100,7 @@ apache:
 
     redirectmatch.com:
       # Use RedirectMatch Directive https://httpd.apache.org/docs/2.4/fr/mod/mod_alias.html#redirectmatch
-      # Require module mod_alias 
+      # Require module mod_alias
       enabled: True
       template_file: salt://apache/vhosts/redirect.tmpl
       ServerName: www.redirectmatch.com
@@ -368,4 +370,3 @@ apache:
     SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
     SSLHonorCipherOrder: On
     SSLOptions: "+StrictRequire"
-

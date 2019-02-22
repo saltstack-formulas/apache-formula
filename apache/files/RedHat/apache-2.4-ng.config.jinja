@@ -1,0 +1,40 @@
+#
+# This file is managed by Salt! Do not edit by hand!
+#
+{%- from "apache/map.jinja" import apache with context %}
+{%- import_yaml "apache/hardening-values.yaml" as hardening_values %}
+{%- from "apache/lib.sls" import directives_output, container_output  with context %}
+
+{%- set list_interfaces_ports = [] %}
+{%- for name, vhost in salt['pillar.get']('apache:VirtualHost', {}).items() %}
+{%- set items = vhost.item.split() %}
+{%- for item in items if item not in list_interfaces_ports %}
+{%- do list_interfaces_ports.append(item) %}
+{%- endfor %}
+{%- endfor %}
+
+{%- for item in list_interfaces_ports %}
+Listen  {{ item }}
+{% else %}
+Listen  *:80
+{%- endfor %}
+
+{{ directives_output(server_config, 0) }}
+
+Include conf.modules.d/*.conf
+
+User {{ apache.user }}
+Group {{ apache.group }}
+
+
+{%- for container_name, container_data_list in server_config.get('containers', {}).items() %}
+{%- for container_data in container_data_list %}
+{{ container_output(container_name, container_data) }}
+{%- endfor %}
+{%- endfor %}
+
+
+IncludeOptional {{ apache.confdir }}/*.conf
+{%- if apache.vhostdir_ng != apache.confdir %}
+IncludeOptional {{ apache.vhostdir_ng }}/*.conf
+{%- endif %}

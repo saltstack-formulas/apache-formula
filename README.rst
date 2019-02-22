@@ -2,6 +2,9 @@
 apache
 ======
 
+
+.. note:: See `<README-ng.rst>`_ for new gen of the state.
+
 Formulas to set up and configure the Apache HTTP server.
 
 .. note::
@@ -185,14 +188,14 @@ Example Pillar:
 
 When using the provided templates, one can use a space separated list
 of interfaces to bind to. For example, to bind both IPv4 and IPv6:
-	
+
 .. code:: yaml
 
     apache:
       sites:
         example.com:
           interface: '1.2.3.4 [2001:abc:def:100::3]'
-	  
+
 ``apache.manage_security``
 --------------------------
 
