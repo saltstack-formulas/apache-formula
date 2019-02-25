@@ -1,0 +1,122 @@
+# server configuration and any vhost configuration have the same data structure
+# This data structure is similar to below :
+#
+# directives:             # list of top level directives/values
+#   - directive_1: value_1
+#   - directive_2: value_2
+#   - directive_3: value_3
+#   containers:           # any type of httpd container
+#     container_name_1:   # Files|Directory|DirectoryMatch|Proxy|location|locationMatch ...
+#       -
+#         item: 'path/to/1'  # label, path or whatever that container applies to
+#         directives:       # list of directives into this container
+#           - directive_1: value_1
+#           ...
+#       -
+#         item: '/path/to/2'
+#         direcives:
+#           - ...
+#         containers:         # nested containers in /path/to/2
+#           nested_c_1:
+#             - item: '...'
+#               directives:
+#                 - ...
+#     container_name_2:
+#       -
+#         item: '...'
+#         ...
+
+# ``apache`` formula configuration:
+apache:
+
+  # By default apache restart/reload states run (false skips)
+  manage_service_states: True
+
+  # lookup section overrides ``map.jinja`` values
+  lookup:
+    server: apache2
+    service: apache2
+    user: some_system_user
+    group: some_system_group
+
+    vhostdir: /etc/apache2/sites-available
+    confdir: /etc/apache2/conf.d
+    confext: .conf
+    logdir: /var/log/apache2
+    wwwdir: /srv/apache2
+
+    # apache version (generally '2.2' or '2.4')
+    version: '2.2'
+
+    # ``apache.mod_wsgi`` formula additional configuration:
+    mod_wsgi: mod_wsgi
+
+  # global (server) apache directives
+  server_apache_config:     # this content will populate httpd.conf
+    directives:
+    - AllowEncodedSlashes: 'On'
+    - Timeout: 5
+    containers:
+      IfModule:
+        -
+          item: 'mime_module'
+          directives:
+            - AddType: 'application/x-font-ttf ttc ttf'
+            - AddType: 'application/x-font-opentype otf'
+            - AddType: 'application/x-font-woff woff2'
+
+
+  # ``apache.vhosts.vhost-ng`` formula additional configuration:
+  VirtualHost:
+    example.com:      # <-- site_name : can be the real ServerName or a virtual name
+      item: '*:8080'    # simple example
+      directives:
+        - ServerName: 'example.com' # if not defined default is site_name
+        - ServerAdmin: 'webmaster@example.com'
+        - DocumentRoot: '/path/to/www/dir/example.com'
+        - LogLevel: 'warn'
+      containers:
+        Location:
+          -
+            item: '/test.html'
+            directives:
+              - Require: 'all granted'
+    my_reverse_proxy:     # example with a virtual site_name
+      item: '*:80'      # vhost with proxypass
+      directives:
+        - ServerName: 'rp-example.com'
+        - ServerAdmin: 'webmaster@example.com'
+        - DocumentRoot: '/path/to/www/dir/rp-example.com'
+        - LogLevel: 'warn'
+        - ProxyPass: '/ balancer://cluster_1'
+        - ProxyPassReverse: '/ balancer://cluster_1'
+        - ProxyPreserveHost: 'On'
+      containers:
+        Proxy:
+          -
+            item: 'balancer://cluster_1'
+            directives:
+              - BalancerMember: 'http://my_backend_1:8081 route=backend-1-8081 timeout=240 retry=120'
+              - BalancerMember: 'http://my_backend_2:8081 route=backend-2-8081 timeout=240 retry=120'
+              - ProxySet: 'stickysession=JSESSIONID|jsessionid nofailover=off maxattempts=1'
+    unused_vhost:
+      item: '*:80'
+      absent: True          # Delete this vhost
+      directives:
+        - ServerName: 'to-delete-example.com'
+        - ServerAdmin: 'webmaster@example.com'
+        - DocumentRoot: '/path/to/www/dir/to-delete-example.com'
+        - LogLevel: 'warn'
+      containers:
+        Location:
+          -
+            item: '/test.html'
+            directives:
+              - Require: 'all granted'
+
+  modules:
+    enabled:  # List modules to enable
+      - ldap
+      - ssl
+    disabled:  # List modules to disable
+      - rewrite
