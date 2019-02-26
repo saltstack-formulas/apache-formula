@@ -7,10 +7,12 @@
 
 {%- set list_interfaces_ports = [] %}
 {%- for name, vhost in salt['pillar.get']('apache:VirtualHost', {}).items() %}
+{%- if not vhost.get('absent', False) %}
 {%- set items = vhost.item.split() %}
 {%- for item in items if item not in list_interfaces_ports %}
 {%- do list_interfaces_ports.append(item) %}
 {%- endfor %}
+{%- endif %}
 {%- endfor %}
 
 {%- for item in list_interfaces_ports %}
