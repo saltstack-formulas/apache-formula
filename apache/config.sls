@@ -80,7 +80,7 @@ include:
       - module: apache-reload
       - service: apache
     - context:
-        apache: {{ apache }}
+        apache: {{ apache | json}}
         server_config: {{ server_config | json }}
 
 {{ apache.vhostdir }}:
