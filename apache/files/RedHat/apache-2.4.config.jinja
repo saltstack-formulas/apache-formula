@@ -35,6 +35,6 @@ Group {{ apache.group }}
 
 
 IncludeOptional {{ apache.confdir }}/*.conf
-{%- if apache.vhostdir_ng != apache.confdir %}
-IncludeOptional {{ apache.vhostdir_ng }}/*.conf
+{%- if apache.vhostdir != apache.confdir %}
+IncludeOptional {{ apache.vhostdir }}/*.conf
 {%- endif %}
