@@ -31,7 +31,7 @@ Available states
 
 Installs the Apache package and starts the service.
 
-``apache.config-ng``
+``apache.config``
 -----------------
 
 Configures apache server.
@@ -55,12 +55,12 @@ present in the state `<apache/defaults/RedHat/defaults-apache-2.4.yaml>`_
                 - AddType: 'application/x-font-woff woff2'
 
 
-``apache.modules-ng``
+``apache.modules``
 ------------------
 
 Enables and disables Apache modules.
 
-``apache.vhosts.vhost-ng``
+``apache.vhosts.vhost``
 --------------------------
 
 Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
