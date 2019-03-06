@@ -79,7 +79,7 @@ Suse:
   server: apache2
   service: apache2
   user: wwwrun
-  group: www
+  group: wwwrun
   configfile: /etc/apache2/httpd.conf
 
   mod_wsgi: apache2-mod_wsgi
