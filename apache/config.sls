@@ -104,7 +104,7 @@ include:
       - service: apache
 
 
-/etc/httpd/conf.d/welcome.conf:
+{{ apache.confdir }}/welcome.conf:
   file.managed:
     - source:
       - salt://apache/files/{{ salt['grains.get']('os_family') }}/welcome.conf
