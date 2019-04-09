@@ -14,7 +14,11 @@ apache_cert_config_{{ site }}_key_file:
     - makedirs: True
     - mode: 600
     - user: root
+{% if grains['os_family'].endswith('BSD') %}
+    - group: wheel
+{% else %}
     - group: root
+{% endif %}
     - watch_in:
       - module: apache-reload
     - require_in:
@@ -32,7 +36,11 @@ apache_cert_config_{{ site }}_cert_file:
     - makedirs: True
     - mode: 600
     - user: root
+{% if grains['os_family'].endswith('BSD') %}
+    - group: wheel
+{% else %}
     - group: root
+{% endif %}
     - watch_in:
       - module: apache-reload
     - require_in:
@@ -50,7 +58,11 @@ apache_cert_config_{{ site }}_bundle_file:
     - makedirs: True
     - mode: 600
     - user: root
+{% if grains['os_family'].endswith('BSD') %}
+    - group: wheel
+{% else %}
     - group: root
+{% endif %}
     - watch_in:
       - module: apache-reload
     - require_in:
