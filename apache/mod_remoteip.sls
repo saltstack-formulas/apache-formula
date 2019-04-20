@@ -54,7 +54,7 @@ include:
   file.managed:
     - template: jinja
     - source:
-      - salt://apache/files/{{ salt['grains.get']('os_family') }}/remoteip.conf.jinja
+      - salt://apache/files/{{ salt['grains.get']('os_family') }}/conf.modules.d/remoteip.conf.jinja
     - require:
       - pkg: apache
     - watch_in:
