@@ -1,0 +1,6 @@
+{% from "apache/lib.sls" import container_output  with context %}
+#
+# This file is managed by Salt! Do not edit by hand!
+#
+
+{{ container_output('VirtualHost', vhost_data, col=0, default_directives = []) }}

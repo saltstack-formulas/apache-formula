@@ -2,10 +2,18 @@
 apache
 ======
 
-
-.. note:: See `<README-ng.rst>`_ for new gen of the state.
-
 Formulas to set up and configure the Apache HTTP server.
+
+This Formula uses the concepts of ``directive`` and ``container`` in pillars
+
+* ``directive`` is an httpd directive https://httpd.apache.org/docs/2.4/en/mod/directives.html
+* ``container`` is what described the `configuration sections` https://httpd.apache.org/docs/2.4/en/sections.html
+
+see examples below for more explanation
+
+Also it includes and enforce some hardening rules to prevent security issues
+
+See `<Hardening.md>`_ and `<apache/hardening-values.yaml>`_.
 
 .. note::
 
@@ -26,218 +34,116 @@ Installs the Apache package and starts the service.
 ``apache.config``
 -----------------
 
-Configures apache based on os_family
+Configures apache server.
 
-``apache.certificates``
------------------
+The configuration is done by merging the pillar content with defaults
+present in the state `<apache/defaults/RedHat/defaults-apache-2.4.yaml>`_
 
-Deploy SSL certificates from pillars
+.. code:: yaml
 
-``apache.mod_mpm``
-------------------
+    apache:
+      server_apache_config:
+        directives:
+          - Timeout: 5
+        containers:
+          IfModule:
+            -
+              item: 'mime_module'
+              directives:
+                - AddType: 'application/x-font-ttf ttc ttf'
+                - AddType: 'application/x-font-opentype otf'
+                - AddType: 'application/x-font-woff woff2'
 
-Configures the apache mpm modules on Debian ``mpm_prefork``, ``mpm_worker`` or ``mpm_event`` (Debian Only)
 
 ``apache.modules``
 ------------------
 
 Enables and disables Apache modules.
 
-``apache.mod_rewrite``
-----------------------
-
-Enabled the Apache module mod_rewrite (Debian and FreeBSD only)
-
-``apache.mod_proxy``
--------------------
-
-Enables the Apache module mod_proxy. (Debian and FreeBSD only)
-
-``apache.mod_proxy_http``
--------------------------
-
-Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled. (Debian Only)
-
-``apache.mod_proxy_fcgi``
--------------------------
-
-Enables the Apache module mod_proxy_fcgi and requires the Apache module mod_proxy to be enabled. (Debian Only)
-
-``apache.mod_wsgi``
--------------------
-
-Installs the mod_wsgi package and enables the Apache module.
-
-``apache.mod_actions``
-----------------------
-
-Enables the Apache module mod_actions. (Debian Only)
-
-``apache.mod_headers``
-----------------------
-
-Enables the Apache module mod_headers. (Debian Only)
-
-``apache.mod_pagespeed``
-------------------------
-
-Installs and Enables the mod_pagespeed module. (Debian and RedHat Only)
-
-``apache.mod_perl2``
--------------------
-
-Installs and enables the mod_perl2 module (Debian and FreeBSD only)
-
-``apache.mod_geoip``
--------------------
-
-Installs and enables the mod_geoIP (RedHat only)
-
-``apache.mod_php5``
--------------------
-
-Installs and enables the mod_php5 module
-
-``apache.mod_cgi``
----------------------
-
-Enables mod_cgi. (FreeBSD only)
-
-``apache.mod_fcgid``
---------------------
-
-Installs and enables the mod_fcgid module (Debian only)
-
-``apache.mod_fastcgi``
---------------------
-
-Installs and enables the mod_fastcgi module
-
-``apache.mod_dav_svn``
---------------------
-
-Installs and enables the mod_dav_svn module (Debian only)
-
-``apache.mod_security``
-----------------------
-
-Installs an enables the `Apache mod_security2 WAF`<http://modsecurity.org/>`_
-using data from Pillar. (Debian and RedHat Only)
-
-Allows you to install the basic Core Rules (CRS) and some basic configuration for mod_security2
-
-``apache.mod_security.rules``
------------------------------
-
-This state can create symlinks based on basic Core Rules package. (Debian only)
-Or it can distribute a mod_security rule file and place it /etc/modsecurity/
-
-``apache.mod_socache_shmcb``
----------------------
-
-Enables mod_socache_shmcb. (FreeBSD only)
-
-``apache.mod_ssl``
-----------------------
-
-Installs and enables the mod_ssl module (Debian, RedHat and FreeBSD only)
-
-``apache.mod_suexec``
----------------------
-
-Enables mod_suexec. (FreeBSD only)
-
-``apache.mod_vhost_alias``
-----------------------
-
-Enables the Apache module vhost_alias (Debian Only)
-
-``apache.mod_remoteip``
-----------------------
-
-Enables and configures the Apache module mod_remoteip using data from Pillar. (Debian Only)
-
-``apache.mod_xsendfile``
-----------------------
-
-Installs and enables mod_xsendfile module. (Debian Only)
-
-``apache.own_default_vhost``
---------------------------
-
-Replace default vhost with own version. By default, it's 503 code. (Debian Only)
-
-``apache.no_default_vhost``
---------------------------
-
-Remove the default vhost. (Debian Only)
-
-``apache.vhosts.standard``
+``apache.vhosts.vhost``
 --------------------------
 
 Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
 
+All necessary data must be provided in the pillar
+
+Exceptions are :
+
+* ``CustomLog`` default is ``/path/apache/log/ServerName-access.log  combined``
+
+* if ``Logformat`` is defined in pillar, ``CustomLog`` is enforced to ``/path/apache/log/ServerName-access.log  Logformat``
+
+* ``ErrorLog`` is enforced to ``/path/apache/log/ServerName-error.log``
+
 Example Pillar:
 
-.. code:: yaml
-
-    apache:
-      sites:
-        example.com: # must be unique; used as an ID declaration in Salt; also passed to the template context as {{ id }}
-          template_file: salt://apache/vhosts/standard.tmpl
-
-When using the provided templates, one can use a space separated list
-of interfaces to bind to. For example, to bind both IPv4 and IPv6:
+Create two vhosts ``example.com.conf`` and ``test.example.com.conf``
 
 .. code:: yaml
 
     apache:
-      sites:
-        example.com:
-          interface: '1.2.3.4 [2001:abc:def:100::3]'
+      VirtualHost:
+        example.com:  # <-- this is an id decalaration used in salt and default ServerName
+          item: '*:80'
+          directives:
+            - RewriteEngine: 'on'
+            - Header: 'set Access-Control-Allow-Methods GET,PUT,POST,DELETE,OPTIONS'
+          containers:
+            Location:
+              item: '/test.html'
+              directives:
+                - Require: 'all granted'
+        site_id_declaration:
+          item: '10.10.1.1:8080'
+          directives:
+            - ServerName: 'test.example.com'
+            - LogFormat: '"%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\" %{ms}T"'
 
-``apache.manage_security``
---------------------------
+Files produced by these pillars :
 
-Configures Apache's security.conf options by reassinging them using data from Pillar.
+``example.com.conf``
 
-``apache.server_status``
---------------------------
+.. code:: bash
 
-Configures Apache's server_status handler for localhost
+    <VirtualHost *:80>
+      ServerName example.com
+      CustomLog /var/log/httpd/example.com-access.log  combined
+      ErrorLog /var/log/httpd/example.com-error.log
+      RewriteEngine on
+      Header set Access-Control-Allow-Methods GET,PUT,POST,DELETE,OPTIONS
+      <Location /test.html>
+        Require all granted
+      </Location>
+    </VirtualHost>
 
-``apache.debian_full``
-----------------------
 
-Installs and configures Apache on Debian and Ubuntu systems.
+``test.example.com.conf``
+
+.. code:: bash
+
+    <VirtualHost 10.10.1.1:8080>
+      ServerName test.example.com
+      CustomLog /var/log/httpd/test.example.com-access.log "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\" %{ms}T"
+      ErrorLog /var/log/httpd/test.example.com-error.log
+    </VirtualHost>
+
+
+
+this will delete ``test.example.com.conf``
+
+.. code:: yaml
+
+    apache:
+      VirtualHost:
+        test.example.com:
+          item: '10.10.1.1:8080'
+          absent: True  # <-- delete test.example.com.conf
+          directives:
+            - ServerName: 'test.example.com'
+
+
 
 ``apache.uninstall``
 ----------
 
 Stops the Apache service and uninstalls the package.
-
-These states are ordered using the ``order`` declaration. Different stages
-are divided into the following number ranges:
-
-1)  apache will use 1-500 for ordering
-2)  apache will reserve 1  -100 as unused
-3)  apache will reserve 101-150 for pre pkg install
-4)  apache will reserve 151-200 for pkg install
-5)  apache will reserve 201-250 for pkg configure
-6)  apache will reserve 251-300 for downloads, git stuff, load data
-7)  apache will reserve 301-400 for unknown purposes
-8)  apache will reserve 401-450 for service restart-reloads
-9)  apache WILL reserve 451-460 for service.running
-10) apache will reserve 461-500 for cmd requiring operational services
-
-Example Pillar:
-
-.. code:: yaml
-
-    apache:
-      register-site:
-        # any name as an array index, and you can duplicate this section
-        {{UNIQUE}}:
-          name: 'my name'
-          path: 'salt://path/to/sites-available/conf/file'
-          state: 'enabled'

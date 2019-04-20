@@ -1,3 +1,5 @@
+{%- import_yaml "apache/hardening-values.yaml" as hardening_values %}
+
 {% if grains['os_family']=="Debian" %}
 
 include:
@@ -12,10 +14,6 @@ a2enmod {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
-    - require_in:
-      - module: apache-restart
-      - module: apache-reload
-      - service: apache
 {% endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
@@ -27,18 +25,14 @@ a2dismod -f {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
-    - require_in:
-      - module: apache-restart
-      - module: apache-reload
-      - service: apache
 {% endfor %}
 
 {% elif grains['os_family']=="RedHat" %}
 
 include:
   - apache
- 
-{% for module in salt['pillar.get']('apache:modules:enabled', []) %}
+
+{% for module in salt['pillar.get']('apache:modules:enabled', default=hardening_values.modules.enforce_enabled, merge=True) if module not in hardening_values.modules.enforce_disabled %}
 find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^#\)\(\s*LoadModule.{{ module }}_module\)/\2/g' {} \;:
   cmd.run:
     - unless: httpd -M 2> /dev/null | grep "[[:space:]]{{ module }}_module"
@@ -47,13 +41,9 @@ find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^#\)\(\s*LoadModule
       - pkg: apache
     - watch_in:
       - module: apache-restart
-    - require_in:
-      - module: apache-restart
-      - module: apache-reload
-      - service: apache
 {% endfor %}
 
-{% for module in salt['pillar.get']('apache:modules:disabled', []) %}
+{% for module in salt['pillar.get']('apache:modules:disabled', default=hardening_values.modules.enforce_disabled, merge=True) if module not in hardening_values.modules.enforce_enabled %}
 find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^\s*LoadModule.{{ module }}_module\)/#\1/g' {} \;:
   cmd.run:
     - onlyif: httpd -M 2> /dev/null | grep "[[:space:]]{{ module }}_module"
@@ -62,17 +52,15 @@ find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^\s*LoadModule.{{ m
       - pkg: apache
     - watch_in:
       - module: apache-restart
-    - require_in:
-      - module: apache-restart
-      - module: apache-reload
-      - service: apache
 {% endfor %}
+
+
 
 {% elif salt['grains.get']('os_family') == 'Suse' or salt['grains.get']('os') == 'SUSE' %}
 
 include:
   - apache
- 
+
 {% for module in salt['pillar.get']('apache:modules:enabled', []) %}
 a2enmod {{ module }}:
   cmd.run:
@@ -82,10 +70,6 @@ a2enmod {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
-    - require_in:
-      - module: apache-restart
-      - module: apache-reload
-      - service: apache
 {% endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:disabled', []) %}
@@ -97,10 +81,6 @@ a2dismod -f {{ module }}:
       - pkg: apache
     - watch_in:
       - module: apache-restart
-    - require_in:
-      - module: apache-restart
-      - module: apache-reload
-      - service: apache
 {% endfor %}
 
 {% endif %}

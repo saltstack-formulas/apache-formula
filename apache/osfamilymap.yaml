@@ -44,8 +44,7 @@ RedHat:
   mod_geoip: mod_geoip
   mod_geoip_database: GeoIP
 
-  vhostdir: /etc/httpd/vhosts.d
-  vhostdir_ng: /etc/httpd/conf.d
+  vhostdir: /etc/httpd/conf.d
   confdir: /etc/httpd/conf.d
   confext: .conf
   default_site: default
