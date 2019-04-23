@@ -31,27 +31,47 @@ a2dismod -f {{ module }}:
 
 include:
   - apache
+  - apache.config
+  - apache.vhosts.vhost
 
-{% for module in salt['pillar.get']('apache:modules:enabled', default=hardening_values.modules.enforce_enabled, merge=True) if module not in hardening_values.modules.enforce_disabled %}
-find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^#\)\(\s*LoadModule.{{ module }}_module\)/\2/g' {} \;:
-  cmd.run:
-    - unless: httpd -M 2> /dev/null | grep "[[:space:]]{{ module }}_module"
-    - order: 225
+{% set modules_enabled = salt['pillar.get']('apache:modules:enabled', default=hardening_values.modules.enforce_enabled, merge=True) %}
+{% set conf_files = salt['file.find'](path='/etc/httpd/', type='f', name='*.conf') %}
+
+{% for module in modules_enabled if module not in hardening_values.modules.enforce_disabled %}
+
+{% for conf_file in conf_files if salt['file.search'](path=conf_file, pattern='LoadModule.' ~ module ) %}
+
+enable_{{ module }}_{{ conf_file }}:
+  file.uncomment:
+    - name: {{ conf_file }}
+    - regex: LoadModule.{{ module }}
     - require:
       - pkg: apache
+      - sls: apache.config
+      - sls: apache.vhosts.vhost
     - watch_in:
       - module: apache-restart
+
+{% endfor %}
 {% endfor %}
 
-{% for module in salt['pillar.get']('apache:modules:disabled', default=hardening_values.modules.enforce_disabled, merge=True) if module not in hardening_values.modules.enforce_enabled %}
-find /etc/httpd/ -name '*.conf' -type f -exec sed -i -e 's/\(^\s*LoadModule.{{ module }}_module\)/#\1/g' {} \;:
-  cmd.run:
-    - onlyif: httpd -M 2> /dev/null | grep "[[:space:]]{{ module }}_module"
-    - order: 225
+{% set modules_disabled = salt['pillar.get']('apache:modules:disabled', default=hardening_values.modules.enforce_disabled, merge=True) %}
+
+{% for module in modules_disabled if module not in hardening_values.modules.enforce_enabled %}
+{% for conf_file in conf_files if salt['file.search'](path=conf_file, pattern='LoadModule.' ~ module ) %}
+
+disable_{{ module }}_{{ conf_file }}:
+  file.comment:
+    - name: {{ conf_file }}
+    - regex: LoadModule.{{ module }}
     - require:
       - pkg: apache
+      - sls: apache.config
+      - sls: apache.vhosts.vhost
     - watch_in:
       - module: apache-restart
+
+{% endfor %}
 {% endfor %}
 
 
