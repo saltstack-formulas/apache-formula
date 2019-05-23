@@ -387,7 +387,11 @@ LogLevel warn
 # in HTML content to override this choice, comment out this
 # directive:
 #
-AddDefaultCharset UTF-8
+{%- if apache.get('default_charset', False) is none %}
+# AddDefaultCharset UTF-8
+{%- else %}
+AddDefaultCharset {{ apache.get('default_charset', 'UTF-8') }}
+{%- endif %}
 
 <IfModule mime_magic_module>
     #
