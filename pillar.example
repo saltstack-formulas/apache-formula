@@ -20,6 +20,9 @@ apache:
     # apache version (generally '2.2' or '2.4')
     version: '2.2'
 
+    # mod_ssl package name
+    mod_ssl_pkg: mod_ssl
+
     # ``apache.mod_wsgi`` formula additional configuration:
     mod_wsgi: mod_wsgi
 

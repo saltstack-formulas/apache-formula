@@ -31,7 +31,7 @@ a2enmod mod_ssl:
 
 mod_ssl:
   pkg.installed:
-    - name: {{ apache.mod_ssl }}
+    - name: {{ apache.mod_ssl_pkg }}
     - require:
       - pkg: apache
     - watch_in:
