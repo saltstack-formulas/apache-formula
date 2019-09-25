@@ -8,6 +8,8 @@ include:
   file.managed:
     - source: salt://apache/files/server-status.conf.jinja
     - template: jinja
+    - context:
+        apache: {{ apache | json }}
     - require:
       - pkg: apache
     - watch_in:
