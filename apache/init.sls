@@ -12,7 +12,7 @@ apache:
     - system: True
   {# By default run apache service states (unless pillar is false) #}
   {% if salt['pillar.get']('apache:manage_service_states', True) %}
-  service.{{apache.service_state}}:
+  service.{{ apache.service_state }}:
     - name: {{ apache.service }}
     {% if apache.service_state in [ 'running', 'dead' ] %}
     - enable: True
@@ -27,7 +27,7 @@ apache-reload:
     - m_name: {{ apache.service }}
 {% else %}
     - name: cmd.run
-    - cmd: {{apache.custom_reload_command|default('apachectl graceful')}}
+    - cmd: {{ apache.custom_reload_command|default('apachectl graceful') }}
     - python_shell: True
 {% endif %}
 
@@ -38,7 +38,7 @@ apache-restart:
     - m_name: {{ apache.service }}
 {% else %}
     - name: cmd.run
-    - cmd: {{apache.custom_reload_command|default('apachectl graceful')}}
+    - cmd: {{ apache.custom_reload_command|default('apachectl graceful') }}
     - python_shell: True
 {% endif %}
 
