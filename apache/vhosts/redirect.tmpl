@@ -20,12 +20,12 @@
     'ErrorLog': site.get('ErrorLog', '{0}/{1}-error.log'.format(map.logdir, sitename)),
     'LogFormat': site.get('LogFormat', '"%h %l %u %t \\\"%r\\\" %>s %O"'),
     'CustomLog': site.get('CustomLog', '{0}/{1}-access.log'.format(map.logdir, sitename)),
-    
+
     'RedirectSource': site.get('RedirectSource', '/'),
     'RedirectTarget': site.get('RedirectTarget', 'https://{0}/'.format(sitename)),
 } %}
 
-<VirtualHost {%- for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
+<VirtualHost {%- for intf in vals.interfaces %} {{ intf }}:{{ vals.port }}{% endfor -%}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
 
@@ -44,7 +44,7 @@
     {% else %}
     Redirect {{ vals.RedirectSource }} {{ vals.RedirectTarget }}
     {% endif %}
-    
+
     {% if site.get('Formula_Append') %}
     {{ site.Formula_Append|indent(4) }}
     {% endif %}
