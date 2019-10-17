@@ -26,7 +26,7 @@ include:
 
 a2dissite {{ filename }}:
   cmd.run:
-    - onlyif: "test -L {{ dirpath}}/{{ filename }} || test -f {{ dirpath}}/{{ filename }}"
+    - onlyif: "test -L {{ dirpath }}/{{ filename }} || test -f {{ dirpath }}/{{ filename }}"
     - watch_in:
       - module: apache-reload
     - require_in:
