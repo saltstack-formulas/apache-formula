@@ -4,7 +4,7 @@ include:
   - apache
   - apache.config
 
-{{apache.confdir}}/server-status{{apache.confext}}:
+{{ apache.confdir }}/server-status{{ apache.confext }}:
   file.managed:
     - source: salt://apache/files/server-status.conf.jinja
     - template: jinja
