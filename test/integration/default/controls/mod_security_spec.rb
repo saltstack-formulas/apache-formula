@@ -1,5 +1,3 @@
-require_relative '../../../kitchen/data/spec_helper'
-
 describe 'apache.mod_security' do
 
   case os[:family]
