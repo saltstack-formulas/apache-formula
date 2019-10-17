@@ -2,10 +2,10 @@
 # vim: ft=yaml
 ---
 apache:
-  manage_service_states: False
+  manage_service_states: false
   mod_security:
-    crs_install: True
-    manage_config: True
+    crs_install: true
+    manage_config: true
     sec_rule_engine: 'On'
     sec_request_body_access: 'On'
     sec_request_body_limit: '14000000'

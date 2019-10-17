@@ -1,53 +1,53 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
-
-trusty: 
+---
+trusty:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-utopic: 
+utopic:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-vivid: 
+vivid:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-wily: 
+wily:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-xenial: 
+xenial:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-yakkety: 
+yakkety:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-zesty: 
+zesty:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-artful: 
+artful:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-jessie: 
+jessie:
   wwwdir: /var/www
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
 
-stretch: 
+stretch:
   wwwdir: /var/www
   confext: .conf
   default_site: 000-default.conf
@@ -58,4 +58,3 @@ buster:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
-

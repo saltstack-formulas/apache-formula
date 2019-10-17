@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
-
+---
 Debian:
   server: apache2
   service: apache2
@@ -13,6 +13,7 @@ Debian:
   mod_php5: libapache2-mod-php5
   mod_perl2: libapache2-mod-perl2
   mod_fcgid: libapache2-mod-fcgid
+  # yamllint disable-line rule:line-length
   mod_pagespeed_source: https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb
   mod_xsendfile: libapache2-mod-xsendfile
   mod_fastcgi: libapache2-mod-fastcgi
@@ -40,6 +41,7 @@ RedHat:
   conf_mod_wsgi: /etc/httpd/conf.d/wsgi.conf
   mod_php5: php
   mod_fcgid: mod_fcgid
+  # yamllint disable-line rule:line-length
   mod_pagespeed_source: https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_x86_64.rpm
   mod_geoip: mod_geoip
   mod_geoip_database: GeoIP
@@ -53,7 +55,7 @@ RedHat:
   logrotatedir: /etc/logrotate.d/httpd
   wwwdir: /var/www
   default_charset: UTF-8
-  use_require: False
+  use_require: false
   moddir: /etc/httpd/conf.modules.d
 
 Gentoo:
@@ -111,7 +113,7 @@ FreeBSD:
   modulesdir: /usr/local/etc/apache24/modules.d
   global_document_root: /usr/local/www/apache24/data
 
-  confext: 
+  confext: ''
   default_site: default
   default_site_ssl: default-ssl
   logdir: /var/log/
