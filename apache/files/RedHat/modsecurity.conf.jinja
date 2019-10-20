@@ -23,7 +23,7 @@ LoadModule security2_module modules/mod_security2.so
     # ModSecurity Core Rules Set configuration
 	Include modsecurity.d/*.conf
 	Include modsecurity.d/activated_rules/*.conf
-    
+
     # Default recommended configuration
     SecRuleEngine {{ sec_rule_engine }}
     SecRequestBodyAccess {{ sec_request_body_access }}

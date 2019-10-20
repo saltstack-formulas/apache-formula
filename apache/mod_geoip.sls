@@ -27,7 +27,7 @@ geoip conf:
     - user: root
     - group: root
     - mode: 644
-    - source: 
+    - source:
       - salt://apache/files/{{ salt['grains.get']('os_family') }}/geoip.conf
 
 geoip database:

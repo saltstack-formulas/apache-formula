@@ -35,7 +35,7 @@
         'Require': 'all granted',
     },
 } %}
-<VirtualHost {%- for intf in vals.interfaces %} {{intf}}:{{ vals.port }}{% endfor -%}>
+<VirtualHost {%- for intf in vals.interfaces %} {{ intf }}:{{ vals.port }}{% endfor -%}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
     {% if site.get('ServerAdmin') != False %}ServerAdmin {{ vals.ServerAdmin }}{% endif %}
@@ -50,7 +50,7 @@
     {% if site.get('SSLCertificateFile') %}SSLEngine on
     SSLCertificateFile {{ site.SSLCertificateFile }}
     {% if site.get('SSLCertificateKeyFile') %}SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}{% endif %}
-    {% if site.get('SSLCertificateChainFile') %}SSLCertificateChainFile {{ site.SSLCertificateChainFile}}{% endif %}
+    {% if site.get('SSLCertificateChainFile') %}SSLCertificateChainFile {{ site.SSLCertificateChainFile }}{% endif %}
     {% endif %}
     {% if site.get('Rewrite') %}RewriteEngine on
     {{ site.Rewrite }}
@@ -82,7 +82,7 @@
     } %}
     <Location "{{ path }}">
       {% if apache.version == '2.4' %}
-      {%- if lvals.get('Require') != False %}Require {{lvals.Require}}{% endif %}
+      {%- if lvals.get('Require') != False %}Require {{ lvals.Require }}{% endif %}
       {% else %}
       {%- if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
       {%- if lvals.get('Allow') != False %}Allow {{ lvals.Allow }}{% endif %}
@@ -99,7 +99,7 @@
     } %}
     <LocationMatch "{{ regpath }}">
       {% if apache.version == '2.4' %}
-      {%- if lmvals.get('Require') != False %}Require {{lmvals.Require}}{% endif %}
+      {%- if lmvals.get('Require') != False %}Require {{ lmvals.Require }}{% endif %}
       {% else %}
       {%- if lmvals.get('Order') != False %}Order {{ lmvals.Order }}{% endif %}
       {%- if lmvals.get('Allow') != False %}Allow {{ lmvals.Allow }}{% endif %}

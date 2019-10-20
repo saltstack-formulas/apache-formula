@@ -4,7 +4,7 @@
 
 include:
   - apache
- 
+
 {% for flag in salt['pillar.get']('apache:flags:enabled', []) %}
 a2enflag {{ flag }}:
   cmd.run:

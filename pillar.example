@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 # ``apache`` formula configuration:
 apache:
 
   # By default apache restart/reload states run (false skips)
-  manage_service_states: True
+  manage_service_states: true
 
   # lookup section overrides ``map.jinja`` values
   lookup:
@@ -47,9 +50,10 @@ apache:
     example.net:
       template_file: salt://apache/vhosts/minimal.tmpl
 
-    example.com: # must be unique; used as an ID declaration in Salt.
-      enabled: True
-      template_file: salt://apache/vhosts/standard.tmpl # or minimal.tmpl or redirect.tmpl or proxy.tmpl
+    example.com:  # must be unique; used as an ID declaration in Salt.
+      enabled: true
+      # or minimal.tmpl or redirect.tmpl or proxy.tmpl
+      template_file: salt://apache/vhosts/standard.tmpl
 
       ####################### DEFAULT VALUES BELOW ############################
       # NOTE: the values below are simply default settings that *can* be
@@ -64,42 +68,51 @@ apache:
       interface: '*'
       port: '80'
 
-      exclude_listen_directive: True # Do not add a Listen directive in httpd.conf
+      exclude_listen_directive: true  # Do not add a Listen directive in httpd.conf
 
-      ServerName: example.com # uses the unique ID above unless specified
-      #ServerAlias: www.example.com # Do not add ServerAlias unless defined
+      ServerName: example.com  # uses the unique ID above unless specified
+      # ServerAlias: www.example.com  # Do not add ServerAlias unless defined
 
       ServerAdmin: webmaster@example.com
 
       LogLevel: warn
-      ErrorLog: /path/to/logs/example.com-error.log # E.g.: /var/log/apache2/example.com-error.log
-      CustomLog: /path/to/logs/example.com-access.log # E.g.: /var/log/apache2/example.com-access.log
+      # E.g.: /var/log/apache2/example.com-error.log
+      ErrorLog: /path/to/logs/example.com-error.log
+      # E.g.: /var/log/apache2/example.com-access.log
+      CustomLog: /path/to/logs/example.com-access.log
 
-      DocumentRoot: /path/to/www/dir/example.com # E.g., /var/www/example.com
-      DocumentRootUser: null       # do not enforce user, defaults to lookup:document_root_user
-      DocumentRootGroup: www-data  # Force group, defaults to lookup:document_root_group
+      # E.g., /var/www/example.com
+      DocumentRoot: /path/to/www/dir/example.com
+      # do not enforce user, defaults to lookup:document_root_user
+      DocumentRootUser: null
+      # Force group, defaults to lookup:document_root_group
+      DocumentRootGroup: www-data
 
-      SSLCertificateFile: /etc/ssl/mycert.pem # if ssl is desired
-      SSLCertificateKeyFile: /etc/ssl/mycert.pem.key # if key for cert is needed or in an extra file
-      SSLCertificateChainFile: /etc/ssl/mycert.chain.pem # if you require a chain of server certificates file
+      # if ssl is desired
+      SSLCertificateFile: /etc/ssl/mycert.pem
+      # if key for cert is needed or in an extra file
+      SSLCertificateKeyFile: /etc/ssl/mycert.pem.key
+      # if you require a chain of server certificates file
+      SSLCertificateChainFile: /etc/ssl/mycert.chain.pem
 
       Directory:
         # "default" is a special case; uses DocumentRoot value
         # E.g.: /var/www/example.com
         default:
           Options: -Indexes +FollowSymLinks
-          Order: allow,deny    # For Apache < 2.4
-          Allow: from all      # For apache < 2.4
-          Require: all granted # For apache > 2.4.
+          Order: allow,deny     # For Apache < 2.4
+          Allow: from all       # For apache < 2.4
+          Require: all granted  # For apache > 2.4.
           AllowOverride: None
           Formula_Append: |
             Additional config as a
             multi-line string here
 
     redirectmatch.com:
-      # Use RedirectMatch Directive https://httpd.apache.org/docs/2.4/fr/mod/mod_alias.html#redirectmatch
-      # Require module mod_alias 
-      enabled: True
+      # Use RedirectMatch Directive
+      # - https://httpd.apache.org/docs/2.4/fr/mod/mod_alias.html#redirectmatch
+      # Require module mod_alias
+      enabled: true
       template_file: salt://apache/vhosts/redirect.tmpl
       ServerName: www.redirectmatch.com
       ServerAlias: www.redirectmatch.com
@@ -228,7 +241,7 @@ apache:
 
       Location:
         /:
-          Require: False
+          Require: false
           Formula_Append: |
             SecRuleRemoveById 981231
             SecRuleRemoveById 981173
@@ -237,27 +250,27 @@ apache:
           Require: 'all granted'
 
         /docs:
-          Order: allow,deny    # For Apache < 2.4
-          Allow: from all      # For apache < 2.4
-          Require: all granted # For apache > 2.4.
+          Order: allow,deny     # For Apache < 2.4
+          Allow: from all       # For apache < 2.4
+          Require: all granted  # For apache > 2.4.
           Formula_Append: |
             Additional config as a
             multi-line string here
 
       LocationMatch:
         '^[.\\/]+([Ww][Ee][Bb][Mm][Aa][Ii][Ll])[.\\/]':
-          Require: False
+          Require: false
           Formula_Append: |
             RequestHeader  set  Host  mail.example.com
 
         '^[.\\/]+([Ss][Vv][Cc])[.\\/]':
-          Require: False
+          Require: false
           Formula_Append: |
             Require ip 123.123.13.6 84.24.25.74
 
       Proxy_control:
         '*':
-          AllowAll: False
+          AllowAll: false
           AllowCountry:
             - DE
           AllowIP:
@@ -280,21 +293,21 @@ apache:
       path: 'salt://path/to/sites-available/conf/file'
       state: 'enabled'
       # Optional - use managed file as Jinja Template
-      #template: true
-      #defaults:
-      #  custom_var: "default value"
+      # template: true
+      # defaults:
+      #   custom_var: "default value"
 
   modules:
-    enabled:  # List modules to enable
+    enabled:   # List modules to enable
       - ldap
       - ssl
     disabled:  # List modules to disable
       - rewrite
 
   flags:
-    enabled:  # List server flags to enable
+    enabled:   # List server flags to enable
       - SSL
-    disabled: # List server flags to disable
+    disabled:  # List server flags to disable
       - status
 
   # KeepAlive: Whether or not to allow persistent connections (more than
@@ -325,9 +338,9 @@ apache:
 
   # ``apache.mod_security`` formula additional configuration:
   mod_security:
-    crs_install: True
+    crs_install: true
     # If not set, default distro's configuration is installed as is
-    manage_config: True
+    manage_config: true
     sec_rule_engine: 'On'
     sec_request_body_access: 'On'
     sec_request_body_limit: '14000000'
@@ -339,33 +352,36 @@ apache:
     sec_debug_log_level: '3'
 
     rules:
-      enabled:
+      enabled: ~
       modsecurity_crs_10_setup.conf:
         rule_set: ''
-        enabled: True
+        enabled: true
       modsecurity_crs_20_protocol_violations.conf:
         rule_set: 'base_rules'
-        enabled: False
+        enabled: false
 
     custom_rule_files:
       # any name as an array index, and you can duplicate this section
       UNIQUE_VALUE_HERE:
         file: 'my name'
         path: 'salt://path/to/modsecurity/custom/file'
-        enabled: True
+        enabled: true
 
   mod_ssl:
-    # set this to True if you want to override your distributions default TLS configuration
-    manage_tls_defaults: False
-    # This stuff is deliberately not configured via map.jinja resp. apache:lookup.
-    # We're unable to know sane defaults for each release of every distribution.
-    # See https://github.com/saltstack-formulas/openssh-formula/issues/102 for a related discussion
-    # Have a look at bettercrypto.org for up-to-date settings.
+    # set this to true if you want to override your distributions default TLS
+    # configuration
+    manage_tls_defaults: false
+    # This stuff is deliberately not configured via map.jinja resp.
+    # apache:lookup.  We're unable to know sane defaults for each release of
+    # every distribution.
+    # See https://github.com/saltstack-formulas/openssh-formula/issues/102 for
+    # a related discussion Have a look at bettercrypto.org for up-to-date
+    # settings.
     # These are default values:
+    # yamllint disable-line rule:line-length
     SSLCipherSuite: EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
     # Mitigate the CRIME attack
-    SSLCompression: Off
+    SSLCompression: 'Off'
     SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
-    SSLHonorCipherOrder: On
+    SSLHonorCipherOrder: 'On'
     SSLOptions: "+StrictRequire"
-
