@@ -1,20 +1,25 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-exclude_paths:
-  # Violation: [203] Most files should not contain tabs
-  # Violation: [204] Lines should be no longer that 160 chars
-  - apache/files/Debian/apache-2.4.config.jinja           # 203
-  - apache/files/Debian/mpm/mpm_event.conf.jinja          # 203
-  - apache/files/Debian/mpm/mpm_prefork.conf.jinja        # 203
-  - apache/files/Debian/mpm/mpm_worker.conf.jinja         # 203
-  - apache/files/Debian/ssl.conf.jinja                    # 203,204
-  - apache/files/FreeBSD/mod_cgi.conf.jinja               # 203
-  - apache/files/FreeBSD/mod_ssl.conf.jinja               # 203,204
-  - apache/files/RedHat/conf.modules.d/00-mpm.conf.jinja  # 203
-  - apache/files/RedHat/modsecurity.conf.jinja            # 203
-  - apache/files/tls-defaults.conf.jinja                  # 204
-  - apache/logrotate.sls                                  # 203
+exclude_paths: []
+rules:
+  203:  # Most files should not contain tabs
+    ignore: |
+      apache/files/Debian/apache-2.4.config.jinja
+      apache/files/Debian/mpm/mpm_event.conf.jinja
+      apache/files/Debian/mpm/mpm_prefork.conf.jinja
+      apache/files/Debian/mpm/mpm_worker.conf.jinja
+      apache/files/Debian/ssl.conf.jinja
+      apache/files/FreeBSD/mod_cgi.conf.jinja
+      apache/files/FreeBSD/mod_ssl.conf.jinja
+      apache/files/RedHat/conf.modules.d/00-mpm.conf.jinja
+      apache/files/RedHat/modsecurity.conf.jinja
+      apache/logrotate.sls
+  204:  # Lines should be no longer that 160 chars
+    ignore: |
+      apache/files/Debian/ssl.conf.jinja
+      apache/files/FreeBSD/mod_ssl.conf.jinja
+      apache/files/tls-defaults.conf.jinja
 skip_list:
   # Using `salt-lint` for linting other files as well, such as Jinja macros/templates
   - 205  # Use ".sls" as a Salt State file extension
