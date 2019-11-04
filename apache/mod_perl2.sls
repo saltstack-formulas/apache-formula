@@ -17,9 +17,9 @@ mod-perl2:
       - service: apache
 
 {% if grains['os_family']=="Debian" %}
-a2enmod perl2:
+a2enmod perl:
   cmd.run:
-    - unless: ls /etc/apache2/mods-enabled/perl2.load
+    - unless: ls /etc/apache2/mods-enabled/perl.load
     - order: 225
     - require:
       - pkg: mod-perl2
