@@ -11,7 +11,8 @@ include:
 {%- endfor %}
 
 {% for module in salt['pillar.get']('apache:modules:enabled', []) %}
-{% if module not in existing_states %}
+{%- set mod_state = 'apache.mod_{}'.format(module) %}
+{% if mod_state not in existing_states %}
 a2enmod {{ module }}:
   cmd.run:
     - unless: ls /etc/apache2/mods-enabled/{{ module }}.load
