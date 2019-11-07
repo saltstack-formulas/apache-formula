@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`0.38.2 <https://github.com/saltstack-formulas/apache-formula/compare/v0.38.1...v0.38.2>`_ (2019-11-07)
+-----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **apache/modules.sls:** fix duplicated ID (\ `57afd71 <https://github.com/saltstack-formulas/apache-formula/commit/57afd71627eb554138c8d5ec9cc790d899ed80ff>`_\ )
+
 `0.38.1 <https://github.com/saltstack-formulas/apache-formula/compare/v0.38.0...v0.38.1>`_ (2019-11-05)
 -----------------------------------------------------------------------------------------------------------
 
