@@ -2,9 +2,19 @@
     SetHandler server-status
 {%- if apache.version == '2.4' %}
     Require local
+{%- for require_type,values in apache.get('server_status_require', {}).items() %}
+{%- for value in values %}
+    Require {{ require_type }} {{ value }}
+{%- endfor %}
+{%- endfor %}
 {%- elif apache.version == '2.2' %}
     Order deny,allow
     Deny from all
     Allow from localhost
+{%- for require_type,values in apache.get('server_status_require', {}).items() %}
+{%- for value in values %}
+    Allow from {{ value }}
+{%- endfor %}
+{%- endfor %}
 {%- endif %}
 </Location>
