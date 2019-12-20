@@ -385,3 +385,8 @@ apache:
     SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
     SSLHonorCipherOrder: 'On'
     SSLOptions: "+StrictRequire"
+  server_status_require:
+    ip:
+      - 10.8.8.0/24
+    host:
+      - foo.example.com
