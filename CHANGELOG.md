@@ -1,5 +1,22 @@
 # Changelog
 
+# [0.39.0](https://github.com/saltstack-formulas/apache-formula/compare/v0.38.2...v0.39.0) (2019-12-20)
+
+
+### Continuous Integration
+
+* **gemfile:** restrict `train` gem version until upstream fix [skip ci] ([13be6f9](https://github.com/saltstack-formulas/apache-formula/commit/13be6f9fac5aae55c48f74c784335c61d7fbaaf2))
+* **travis:** apply changes from build config validation [skip ci] ([0aac479](https://github.com/saltstack-formulas/apache-formula/commit/0aac479c253f95b7fdcb1505476638c2d703bc77))
+* **travis:** opt-in to `dpl v2` to complete build config validation ([19e90ea](https://github.com/saltstack-formulas/apache-formula/commit/19e90ea2d6ef91118ebf59817ef4c91ad876af54))
+* **travis:** quote pathspecs used with `git ls-files` [skip ci] ([6608ddf](https://github.com/saltstack-formulas/apache-formula/commit/6608ddf8c5a361b93e6a44658ab1e306953566bf))
+* **travis:** run `shellcheck` during lint job [skip ci] ([2ff6b2f](https://github.com/saltstack-formulas/apache-formula/commit/2ff6b2f17e1fd48b5f0a4156c2dbd90f07f27025))
+* **travis:** use build config validation (beta) [skip ci] ([73160b2](https://github.com/saltstack-formulas/apache-formula/commit/73160b249124df6bbd36b113df71724c019a118f))
+
+
+### Features
+
+* **server-status:** allow remote servers to reach server-status page ([a3c0022](https://github.com/saltstack-formulas/apache-formula/commit/a3c0022d7988eee0ec43d939bced91dee9fec0e1))
+
 ## [0.38.2](https://github.com/saltstack-formulas/apache-formula/compare/v0.38.1...v0.38.2) (2019-11-07)
 
 
