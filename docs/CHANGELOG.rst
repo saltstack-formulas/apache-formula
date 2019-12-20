@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`0.39.1 <https://github.com/saltstack-formulas/apache-formula/compare/v0.39.0...v0.39.1>`_ (2019-12-20)
+-----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **mod_mpm:** cast to int to avoid Jinja type mismatch error (\ `21045c7 <https://github.com/saltstack-formulas/apache-formula/commit/21045c7a7b46d639c2d81c5793ad6e6d9d34b66b>`_\ )
+
 `0.39.0 <https://github.com/saltstack-formulas/apache-formula/compare/v0.38.2...v0.39.0>`_ (2019-12-20)
 -----------------------------------------------------------------------------------------------------------
 
