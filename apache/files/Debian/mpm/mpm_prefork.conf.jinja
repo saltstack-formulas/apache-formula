@@ -14,7 +14,7 @@
 <IfModule mpm_prefork_module>
 	StartServers {{ mpm_param['start_servers'] | d('5') }}
 	MaxRequestWorkers {{ mpm_param['max_request_workers'] | d('150') }}
-{%- if mpm_param['max_request_workers'] | d('150') >= 256 %}
+{%- if mpm_param['max_request_workers'] | d('150') | int >= 256 %}
 	ServerLimit {{ mpm_param['max_request_workers'] | d('150') }}
 {%- endif %}
 	MinSpareServers {{ mpm_param['min_spare_servers'] | d('5') }}
