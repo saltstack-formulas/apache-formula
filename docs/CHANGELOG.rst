@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`0.39.2 <https://github.com/saltstack-formulas/apache-formula/compare/v0.39.1...v0.39.2>`_ (2019-12-20)
+-----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **redhat:** add user & group lookup to configs (\ `36ad2b2 <https://github.com/saltstack-formulas/apache-formula/commit/36ad2b24424936a4badeb7b4b2b26ee0d39e55f2>`_\ )
+
 `0.39.1 <https://github.com/saltstack-formulas/apache-formula/compare/v0.39.0...v0.39.1>`_ (2019-12-20)
 -----------------------------------------------------------------------------------------------------------
 

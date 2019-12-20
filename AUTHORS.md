@@ -5,7 +5,7 @@ This list is sorted by the number of commits per contributor in _descending_ ord
 Avatar|Contributor|Contributions
 :-:|---|:-:
 <img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/1920805?v=4' width='36' height='36' alt='@alxwr'>|[@alxwr](https://github.com/alxwr)|40
-<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/10231489?v=4' width='36' height='36' alt='@myii'>|[@myii](https://github.com/myii)|37
+<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/10231489?v=4' width='36' height='36' alt='@myii'>|[@myii](https://github.com/myii)|38
 <img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/1396878?v=4' width='36' height='36' alt='@gravyboat'>|[@gravyboat](https://github.com/gravyboat)|36
 <img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/1800660?v=4' width='36' height='36' alt='@aboe76'>|[@aboe76](https://github.com/aboe76)|32
 <img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/91293?v=4' width='36' height='36' alt='@whiteinge'>|[@whiteinge](https://github.com/whiteinge)|31
@@ -56,6 +56,7 @@ Avatar|Contributor|Contributions
 <img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/20441?v=4' width='36' height='36' alt='@iggy'>|[@iggy](https://github.com/iggy)|1
 <img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/130219?v=4' width='36' height='36' alt='@corywright'>|[@corywright](https://github.com/corywright)|1
 <img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/1640672?v=4' width='36' height='36' alt='@ev0rtex'>|[@ev0rtex](https://github.com/ev0rtex)|1
+<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/42472863?v=4' width='36' height='36' alt='@dimitry-unified-streaming'>|[@dimitry-unified-streaming](https://github.com/dimitry-unified-streaming)|1
 <img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/1194646?v=4' width='36' height='36' alt='@fintanmm'>|[@fintanmm](https://github.com/fintanmm)|1
 <img class='float-left rounded-1' src='https://avatars3.githubusercontent.com/u/215487?v=4' width='36' height='36' alt='@fcrozat'>|[@fcrozat](https://github.com/fcrozat)|1
 <img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/38090329?v=4' width='36' height='36' alt='@SynPrime'>|[@SynPrime](https://github.com/SynPrime)|1
