@@ -42,6 +42,7 @@ a2enconf remoteip:
       - module: apache-restart
       - module: apache-reload
       - service: apache
+      - cmd: a2enconf remoteip
 {% endif %}
 
 
