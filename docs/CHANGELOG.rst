@@ -2,6 +2,22 @@
 Changelog
 =========
 
+`0.39.3 <https://github.com/saltstack-formulas/apache-formula/compare/v0.39.2...v0.39.3>`_ (2020-04-02)
+-----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **debian:** generate remoteip conf before a2enconf (\ `1ed69f6 <https://github.com/saltstack-formulas/apache-formula/commit/1ed69f6c6fab0eb583949105e9e29e58b6ba32a3>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **kitchen:** avoid using bootstrap for ``master`` instances [skip ci] (\ `275b5d5 <https://github.com/saltstack-formulas/apache-formula/commit/275b5d5e69fa79f1010852d65f0fcb65cadf735d>`_\ )
+* **travis:** use ``major.minor`` for ``semantic-release`` version [skip ci] (\ `08cced2 <https://github.com/saltstack-formulas/apache-formula/commit/08cced29134ca47824e82ee6afa794233cdb5faa>`_\ )
+
 `0.39.2 <https://github.com/saltstack-formulas/apache-formula/compare/v0.39.1...v0.39.2>`_ (2019-12-20)
 -----------------------------------------------------------------------------------------------------------
 
