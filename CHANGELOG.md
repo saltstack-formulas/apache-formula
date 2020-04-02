@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.39.4](https://github.com/saltstack-formulas/apache-formula/compare/v0.39.3...v0.39.4) (2020-04-02)
+
+
+### Bug Fixes
+
+* **mod_ssl:** update mod_ssl package variable to prevent clashes ([5591be2](https://github.com/saltstack-formulas/apache-formula/commit/5591be26fddd234ebaed0e024969c45b6536ba82))
+
 ## [0.39.3](https://github.com/saltstack-formulas/apache-formula/compare/v0.39.2...v0.39.3) (2020-04-02)
 
 

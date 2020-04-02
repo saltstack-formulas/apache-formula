@@ -15,7 +15,7 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - Contributions
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/10231489?v=4' width='36' height='36' alt='@myii'>`
      - `@myii <https://github.com/myii>`_
-     - 42
+     - 43
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/1920805?v=4' width='36' height='36' alt='@alxwr'>`
      - `@alxwr <https://github.com/alxwr>`_
      - 40
@@ -52,6 +52,9 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/117961?v=4' width='36' height='36' alt='@babilen5'>`
      - `@babilen5 <https://github.com/babilen5>`_
      - 8
+   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/214768?v=4' width='36' height='36' alt='@ixs'>`
+     - `@ixs <https://github.com/ixs>`_
+     - 7
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/445200?v=4' width='36' height='36' alt='@arthurlogilab'>`
      - `@arthurlogilab <https://github.com/arthurlogilab>`_
      - 7
@@ -61,9 +64,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/17673243?v=4' width='36' height='36' alt='@porunov'>`
      - `@porunov <https://github.com/porunov>`_
      - 7
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/214768?v=4' width='36' height='36' alt='@ixs'>`
-     - `@ixs <https://github.com/ixs>`_
-     - 6
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars3.githubusercontent.com/u/3119969?v=4' width='36' height='36' alt='@genuss'>`
      - `@genuss <https://github.com/genuss>`_
      - 6
@@ -81,6 +81,9 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - 5
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/1013915?v=4' width='36' height='36' alt='@rhertzog'>`
      - `@rhertzog <https://github.com/rhertzog>`_
+     - 4
+   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/20515?v=4' width='36' height='36' alt='@scambra'>`
+     - `@scambra <https://github.com/scambra>`_
      - 4
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/2094680?v=4' width='36' height='36' alt='@daschatten'>`
      - `@daschatten <https://github.com/daschatten>`_
@@ -102,9 +105,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - 3
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/964610?v=4' width='36' height='36' alt='@Wenzel'>`
      - `@Wenzel <https://github.com/Wenzel>`_
-     - 3
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/20515?v=4' width='36' height='36' alt='@scambra'>`
-     - `@scambra <https://github.com/scambra>`_
      - 3
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/228723?v=4' width='36' height='36' alt='@abednarik'>`
      - `@abednarik <https://github.com/abednarik>`_
