@@ -21,8 +21,9 @@ include:
 {% endfor %}
 
 
-{% for filename in salt['file.readdir']('/etc/apache2/sites-enabled/') %}
-{%   if filename not in valid_sites %}
+{% if salt['file.directory_exists'](dirpath) %}
+{%   for filename in salt['file.readdir'](dirpath) %}
+{%     if filename not in valid_sites %}
 
 a2dissite {{ filename }}:
   cmd.run:
@@ -34,8 +35,9 @@ a2dissite {{ filename }}:
       - module: apache-reload
       - service: apache
 
-{%   endif %}
-{% endfor %}
+{%     endif %}
+{%   endfor %}
+{% endif %}
 
 
 {% endif %}{# Debian #}
