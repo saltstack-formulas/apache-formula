@@ -2,6 +2,25 @@
 Changelog
 =========
 
+`0.39.5 <https://github.com/saltstack-formulas/apache-formula/compare/v0.39.4...v0.39.5>`_ (2020-06-21)
+-----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **vhosts/cleanup:** check ``sites-enabled`` dir exists before listing it (\ `88373e3 <https://github.com/saltstack-formulas/apache-formula/commit/88373e38f55eab61cf1c4edc68324f3da48f7646>`_\ ), closes `#278 <https://github.com/saltstack-formulas/apache-formula/issues/278>`_
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile.lock:** add to repo with updated ``Gemfile`` [skip ci] (\ `61b903e <https://github.com/saltstack-formulas/apache-formula/commit/61b903e7803eb80b50130834b90ca86d26b9d6c8>`_\ )
+* **kitchen:** use ``saltimages`` Docker Hub where available [skip ci] (\ `6895fb9 <https://github.com/saltstack-formulas/apache-formula/commit/6895fb9764e9cebcbbff05763e367401d6cad959>`_\ )
+* **kitchen+travis:** remove ``master-py2-arch-base-latest`` [skip ci] (\ `16bb1b0 <https://github.com/saltstack-formulas/apache-formula/commit/16bb1b06e351efdf9994676de38dec7b0ecd639d>`_\ )
+* **travis:** add notifications => zulip [skip ci] (\ `2417a75 <https://github.com/saltstack-formulas/apache-formula/commit/2417a75fe218bd04c719f8eb2e2a7e402a20928e>`_\ )
+* **workflows/commitlint:** add to repo [skip ci] (\ `2ce966d <https://github.com/saltstack-formulas/apache-formula/commit/2ce966d031e9044e8794dc93f605ce780fd99f12>`_\ )
+
 `0.39.4 <https://github.com/saltstack-formulas/apache-formula/compare/v0.39.3...v0.39.4>`_ (2020-04-02)
 -----------------------------------------------------------------------------------------------------------
 
