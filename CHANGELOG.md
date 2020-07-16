@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.41.0](https://github.com/saltstack-formulas/apache-formula/compare/v0.40.0...v0.41.0) (2020-07-16)
+
+
+### Features
+
+* **vhosts/standard:** add support for ScriptAlias in standard vhost ([b88b437](https://github.com/saltstack-formulas/apache-formula/commit/b88b437308ff5d6bc504dabf9b69153db89f5b10))
+
 # [0.40.0](https://github.com/saltstack-formulas/apache-formula/compare/v0.39.5...v0.40.0) (2020-07-16)
 
 
