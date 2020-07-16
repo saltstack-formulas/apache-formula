@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.40.0](https://github.com/saltstack-formulas/apache-formula/compare/v0.39.5...v0.40.0) (2020-07-16)
+
+
+### Features
+
+* **redhat/apache-2.x.config.jinja:** allow override of default_charset ([648f589](https://github.com/saltstack-formulas/apache-formula/commit/648f589cc30684550c972d9cc4087e9e8b3fdc80))
+
 ## [0.39.5](https://github.com/saltstack-formulas/apache-formula/compare/v0.39.4...v0.39.5) (2020-06-21)
 
 
