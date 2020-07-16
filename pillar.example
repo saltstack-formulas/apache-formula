@@ -284,6 +284,9 @@ apache:
       Alias:
         /docs: /usr/share/docs
 
+      ScriptAlias:
+        /cgi-bin/: /var/www/cgi-bin/
+
       Formula_Append: |
         Additional config as a
         multi-line string here
