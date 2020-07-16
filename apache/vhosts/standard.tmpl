@@ -78,6 +78,10 @@
     Alias {{ loc }} {{ path }}
     {%- endfor %}
 
+    {%- for loc, path in site.get('ScriptAlias', {}).items() %}
+    ScriptAlias {{ loc }} {{ path }}
+    {%- endfor %}
+
     {%- for path, dir in site.get('Directory', {}).items() -%}
     {%- set dvals = {
         'Options': dir.get('Options', vals.Directory.Options),
