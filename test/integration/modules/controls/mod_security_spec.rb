@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-control 'Apache mod_security configuration' do
+control 'apache mod_security configuration' do
   title 'should match desired lines'
 
   modspec_file =
