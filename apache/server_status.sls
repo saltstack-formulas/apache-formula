@@ -19,16 +19,10 @@ include:
       - module: apache-reload
       - service: apache
 
-{% if grains['os_family']=="Debian" %}
-a2endisconf server-status:
+{%- if grains['os_family'] == "Debian" %}
+a2enconf server-status:
   cmd.run:
-{%   if apache.get('server_status_require') is defined %}
-    - name: a2enconf server-status
-    - unless: test -L /etc/apache2/conf-enabled/server-status.conf
-{%   else %}
-    - name: a2disconf server-status
-    - onlyif: test -L /etc/apache2/conf-enabled/server-status.conf
-{%   endif %}
+    - unless: 'test -L /etc/apache2/conf-enabled/server-status.conf'
     - order: 225
     - require:
       - pkg: apache

@@ -3,14 +3,14 @@
 control 'apache server_status configuration' do
   title 'should match desired lines'
 
-  server_status_stanza = <<-SS_STANZA
-<Location "/server-status">
-    SetHandler server-status
-    Require local
-    Require host foo.example.com
-    Require ip 10.8.8.0/24
-</Location>
-SS_STANZA
+  server_status_stanza = <<~SS_STANZA
+    <Location "/server-status">
+        SetHandler server-status
+        Require local
+        Require host foo.example.com
+        Require ip 10.8.8.0/24
+    </Location>
+  SS_STANZA
 
   confdir =
     case platform[:family]
@@ -20,7 +20,8 @@ SS_STANZA
       '/etc/httpd/conf.d'
     when 'suse'
       '/etc/apache2/conf.d'
-    when 'arch'
+    # `linux` here is sufficient for `arch`
+    when 'linux'
       '/etc/httpd/conf/extra'
     end
 

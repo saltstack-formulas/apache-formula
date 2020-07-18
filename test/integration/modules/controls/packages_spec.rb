@@ -5,12 +5,12 @@ control 'apache mod_security package' do
 
   package_name =
     case platform[:family]
-    when 'debian', 'suse'
-        'libapache2-mod-security2'
+    when 'debian'
+      'libapache2-mod-security2'
     when 'redhat', 'fedora'
-        'mod_security'
+      'mod_security'
     when 'suse'
-        'apache2-mod_security2'
+      'apache2-mod_security2'
     end
 
   describe package(package_name) do

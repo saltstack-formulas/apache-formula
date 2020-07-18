@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-# Overide by OS
-service_name = 'apache2'
-service_name = 'httpd' if (os[:name] == 'centos')
-
 control 'apache service' do
   impact 0.5
   title 'should be running and enabled'
+
+  service_name =
+    case platform[:family]
+    when 'debian', 'suse'
+      'apache2'
+    when 'redhat', 'fedora', 'linux'
+      'httpd'
+    end
 
   describe service(service_name) do
     it { should be_enabled }
