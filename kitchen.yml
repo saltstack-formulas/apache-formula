@@ -157,7 +157,7 @@ suites:
         base:
           '*':
             - apache
-            - apache.mod_security
+            - apache.config
       pillars:
         top.sls:
           base:
@@ -168,3 +168,21 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/default
+  - name: modules
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - apache
+            - apache.mod_security
+            - apache.server_status
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - apache
+      pillars_from_files:
+        apache.sls: test/salt/pillar/modules.sls
+    verifier:
+      inspec_tests:
+        - path: test/integration/modules

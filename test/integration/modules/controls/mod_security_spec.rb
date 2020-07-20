@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-control 'Apache mod_security configuration' do
+control 'apache mod_security configuration' do
   title 'should match desired lines'
 
   modspec_file =
@@ -9,6 +9,8 @@ control 'Apache mod_security configuration' do
       '/etc/httpd/conf.d/mod_security.conf'
     when 'debian'
       '/etc/modsecurity/modsecurity.conf-recommended'
+    when 'suse'
+      '/etc/apache2/conf.d/mod_security2.conf'
     end
 
   describe file(modspec_file) do
