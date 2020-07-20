@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.41.1](https://github.com/saltstack-formulas/apache-formula/compare/v0.41.0...v0.41.1) (2020-07-20)
+
+
+### Bug Fixes
+
+* **server-status:** enable module in Debian family ([632802a](https://github.com/saltstack-formulas/apache-formula/commit/632802a5a946d2f05c40d9038d6f2ad596fafc58))
+* **server-status:** manage module in debian ([eafa419](https://github.com/saltstack-formulas/apache-formula/commit/eafa4196d9495bc975c7e1e7036969bdaba1441d))
+
+
+### Tests
+
+* **default+modules:** add modules' tests suite ([b253625](https://github.com/saltstack-formulas/apache-formula/commit/b25362535ae01dd140218b131a8e991d3a10cbe5))
+
 # [0.41.0](https://github.com/saltstack-formulas/apache-formula/compare/v0.40.0...v0.41.0) (2020-07-16)
 
 
