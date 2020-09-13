@@ -53,154 +53,165 @@ Installs the Apache package and starts the service.
 ``apache.config``
 ^^^^^^^^^^^^^^^^^
 
+Metastate to apply all apache configuration
+
+
+``apache.config.file``
+^^^^^^^^^^^^^^^^^^^^^^
+
 Configures apache based on os_family
 
-``apache.certificates``
+``apache.config.flags``
 ^^^^^^^^^^^^^^^^^^^^^^^
+
+Configures apache flags on SuSE
+
+``apache.config.certificates``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Deploy SSL certificates from pillars
 
-``apache.mod_mpm``
-^^^^^^^^^^^^^^^^^^
+``apache.config.modules``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Metastate to Enable and disable Apache modules.
+
+``apache.config.modules.mod_mpm``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configures the apache mpm modules on Debian ``mpm_prefork``, ``mpm_worker`` or ``mpm_event`` (Debian Only)
 
-``apache.modules``
-^^^^^^^^^^^^^^^^^^
-
-Enables and disables Apache modules.
-
-``apache.mod_rewrite``
-^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_rewrite``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enabled the Apache module mod_rewrite (Debian and FreeBSD only)
 
-``apache.mod_proxy``
-^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_proxy``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables the Apache module mod_proxy. (Debian and FreeBSD only)
 
-``apache.mod_proxy_http``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_proxy_http``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables the Apache module mod_proxy_http and requires the Apache module mod_proxy to be enabled. (Debian Only)
 
-``apache.mod_proxy_fcgi``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_proxy_fcgi``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables the Apache module mod_proxy_fcgi and requires the Apache module mod_proxy to be enabled. (Debian Only)
 
-``apache.mod_wsgi``
-^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_wsgi``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs the mod_wsgi package and enables the Apache module.
 
-``apache.mod_actions``
-^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_actions``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables the Apache module mod_actions. (Debian Only)
 
-``apache.mod_headers``
-^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_headers``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables the Apache module mod_headers. (Debian Only)
 
-``apache.mod_pagespeed``
-^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_pagespeed``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and Enables the mod_pagespeed module. (Debian and RedHat Only)
 
-``apache.mod_perl2``
-^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_perl2``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables the mod_perl2 module (Debian and FreeBSD only)
 
-``apache.mod_geoip``
-^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_geoip``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables the mod_geoIP (RedHat only)
 
-``apache.mod_php5``
-^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_php5``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables the mod_php5 module
 
-``apache.mod_cgi``
-^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_cgi``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables mod_cgi. (FreeBSD only)
 
-``apache.mod_fcgid``
-^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_fcgid``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables the mod_fcgid module (Debian only)
 
-``apache.mod_fastcgi``
-^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_fastcgi``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables the mod_fastcgi module
 
-``apache.mod_dav_svn``
-^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_dav_svn``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables the mod_dav_svn module (Debian only)
 
-``apache.mod_security``
-^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_security``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs an enables the `Apache mod_security2 WAF`<http://modsecurity.org/>`_
 using data from Pillar. (Debian and RedHat Only)
 
 Allows you to install the basic Core Rules (CRS) and some basic configuration for mod_security2
 
-``apache.mod_security.rules``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_security.rules``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state can create symlinks based on basic Core Rules package. (Debian only)
 Or it can distribute a mod_security rule file and place it /etc/modsecurity/
 
-``apache.mod_socache_shmcb``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_socache_shmcb``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables mod_socache_shmcb. (FreeBSD only)
 
-``apache.mod_ssl``
-^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_ssl``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables the mod_ssl module (Debian, RedHat and FreeBSD only)
 
-``apache.mod_suexec``
-^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_suexec``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables mod_suexec. (FreeBSD only)
 
-``apache.mod_vhost_alias``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_vhost_alias``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables the Apache module vhost_alias (Debian Only)
 
-``apache.mod_remoteip``
-^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_remoteip``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Enables and configures the Apache module mod_remoteip using data from Pillar. (Debian Only)
 
-``apache.mod_xsendfile``
-^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_xsendfile``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and enables mod_xsendfile module. (Debian Only)
 
-``apache.own_default_vhost``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.own_default_vhost``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Replace default vhost with own version. By default, it's 503 code. (Debian Only)
 
-``apache.no_default_vhost``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.no_default_vhost``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Remove the default vhost. (Debian Only)
 
-``apache.vhosts.standard``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.vhosts.standard``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configures Apache name-based virtual hosts and creates virtual host directories using data from Pillar.
 
@@ -223,23 +234,29 @@ of interfaces to bind to. For example, to bind both IPv4 and IPv6:
         example.com:
           interface: '1.2.3.4 [2001:abc:def:100::3]'
 	  
-``apache.manage_security``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.manage_security``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configures Apache's security.conf options by reassinging them using data from Pillar.
 
-``apache.server_status``
-^^^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.modules.mod_status``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configures Apache's server_status handler for localhost
 
-``apache.debian_full``
-^^^^^^^^^^^^^^^^^^^^^^
+``apache.config.debian_full``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installs and configures Apache on Debian and Ubuntu systems.
 
-``apache.uninstall``
-^^^^^^^^^^^^^^^^^^^^
+``apache.config.clean``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Metastate to cleanup all apache configuration.
+
+
+``apache.clean``
+^^^^^^^^^^^^^^^^
 
 Stops the Apache service and uninstalls the package.
 
@@ -284,7 +301,8 @@ Requirements
 
    $ gem install bundler
    $ bundle install
-   $ bin/kitchen test [platform]
+   :1
+  $ bin/kitchen test [platform]
 
 Where ``[platform]`` is the platform name defined in ``kitchen.yml``,
 e.g. ``debian-9-2019-2-py3``.
