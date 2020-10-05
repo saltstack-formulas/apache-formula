@@ -19,7 +19,8 @@ rules:
     ignore: |
       apache/files/Debian/ssl.conf.jinja
       apache/files/FreeBSD/mod_ssl.conf.jinja
-      apache/files/tls-defaults.conf.jinja
+      apache/files/ssl/tls-defaults.conf.jinja
+      test/salt/pillar/modules.sls
 skip_list:
   # Using `salt-lint` for linting other files as well, such as Jinja macros/templates
   - 205  # Use ".sls" as a Salt State file extension

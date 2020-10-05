@@ -12,6 +12,9 @@ ignore: |
   node_modules/
   test/**/states/**/*.sls
   .kitchen/
+  test/salt/pillar/modules.sls
+  test/salt/pillar/default.sls
+  pillar.example
 
 yaml-files:
   # Default settings

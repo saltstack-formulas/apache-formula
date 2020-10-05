@@ -1,6 +1,21 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+#
+# Setup variables using grains['osfinger'] based logic.
+# You just need to add the key:values for an `osfinger` that differ
+# from `defaults.yaml` + `osarch.yaml` + `os_family.yaml` + `osmap.yaml`.
+# Only add an `osfinger` which is/will be supported by the formula.
+#
+# If you do not need to provide defaults via the `os_finger` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# oscodenamemap: {}
+
 ---
+Default:
+  confext: .conf
+  default_site: 000-default.conf
+  default_site_ssl: default-ssl.conf
+
 trusty:
   confext: .conf
   default_site: 000-default.conf
@@ -58,3 +73,7 @@ buster:
   confext: .conf
   default_site: 000-default.conf
   default_site_ssl: default-ssl.conf
+
+openSUSE Leap 42.3:
+  version: 2.2
+  group: www
