@@ -1,5 +1,37 @@
 # Changelog
 
+# [1.0.0](https://github.com/saltstack-formulas/apache-formula/compare/v0.41.1...v1.0.0) (2020-10-05)
+
+
+### Code Refactoring
+
+* **formula:** align to template-formula & improve ci features ([47818fc](https://github.com/saltstack-formulas/apache-formula/commit/47818fc360fc87c94f51f2c2c7ff9317d4ecf875))
+
+
+### Continuous Integration
+
+* **pre-commit:** add to formula [skip ci] ([5532ed7](https://github.com/saltstack-formulas/apache-formula/commit/5532ed7a5b1c9afb5ca4348d3984c5ff357bacad))
+* **pre-commit:** enable/disable `rstcheck` as relevant [skip ci] ([233111a](https://github.com/saltstack-formulas/apache-formula/commit/233111af11dd25b573928e746f19b06bcdbf19b9))
+
+
+### BREAKING CHANGES
+
+* **formula:** 'apache.sls' converted to new style 'init.ssl'
+* **formula:** "logrotate.sls" became "config/logrotate.sls"
+* **formula:** "debian_full.sls" became "config/debian_full.sls"
+* **formula:** "flags.sls" became "config/flags.sls"
+* **formula:** "manage_security" became "config/manage_security.sls"
+* **formula:** "mod_*.sls" became "config/mod_*.sls"
+* **formula:** "no_default_host.sls" became "config/no_default_host.sls"
+* **formula:** "own_default_host.sls" became "config/own_default_host.sls"
+* **formula:** "register_site.sls" became "config/register_site.sls"
+* **formula:** "server_status.sls" became "config/server_status.sls"
+* **formula:** "vhosts/" became "config/vhosts/"
+* **formula:** "mod_security/" became "config/mod_security/"
+
+NOT-BREAKING CHANGE: 'config.sls' became 'config/init.sls'
+NOT-BREAKING CHANGE: 'uninstall.sls' symlinked to 'clean.sls'
+
 ## [0.41.1](https://github.com/saltstack-formulas/apache-formula/compare/v0.41.0...v0.41.1) (2020-07-20)
 
 
