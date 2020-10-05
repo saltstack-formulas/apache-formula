@@ -14,7 +14,7 @@ apache
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-Formulas to set up and configure the Apache HTTP server.
+Formulas to set up and configure the Apache HTTP server on GNU/Linux, FreeBSD, and Windows OS.
 
 .. contents:: **Table of Contents**
 
@@ -285,6 +285,21 @@ Example Pillar:
           name: 'my name'
           path: 'salt://path/to/sites-available/conf/file'
           state: 'enabled'
+
+      sites:
+        # Force SSL: Redirect from 80 to 443
+        example.com:
+          port: 80
+          template_file: salt://apache/vhosts/redirect.tmpl
+          RedirectSource: 'permanent /'
+          # Trailing slash is important
+          RedirectTarget: 'https://example.com/'
+        example.com_ssl:
+          port: 443
+          ServerName: example.com
+          SSLCertificateFile: /path/to/ssl.crt
+          SSLCertificateKeyFile: /path/to/ssl.key
+          SSLCertificateChainFile: /path/to/ssl.ca.crt
 
 Testing
 -------
