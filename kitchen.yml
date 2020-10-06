@@ -188,6 +188,10 @@ suites:
       inspec_tests:
         - path: test/integration/modules
   - name: arch
+    includes:
+      - arch-base-latest-2019-2-py2
+      - arch-base-latest-2018-3-py2
+      - arch-base-latest-2017-7-py2
     provisioner:
       state_top:
         base:
