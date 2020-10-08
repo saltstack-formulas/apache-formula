@@ -159,7 +159,7 @@ Installs and enables the mod_dav_svn module (Debian only)
 ``apache.config.modules.mod_security``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Installs an enables the `Apache mod_security2 WAF`<http://modsecurity.org/>`_
+Installs an enables the `Apache mod_security2 WAF <http://modsecurity.org/>`_
 using data from Pillar. (Debian and RedHat Only)
 
 Allows you to install the basic Core Rules (CRS) and some basic configuration for mod_security2
