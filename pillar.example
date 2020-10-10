@@ -391,6 +391,7 @@ apache:
       - dav_lock
       - auth_digest
       - socache_shmcb
+      - watchdog
       - xml2enc
       - ldap
     disabled:  # List modules to disable
