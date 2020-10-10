@@ -47,3 +47,10 @@ repos:
       - id: salt-lint
         name: Check Salt files using salt-lint
         files: ^.*\.(sls|jinja|j2|tmpl|tst)$
+  - repo: https://github.com/myint/rstcheck
+    rev: 3f929574
+    hooks:
+      - id: rstcheck
+        name: Check reST files using rstcheck
+        exclude: 'docs/CHANGELOG.rst'
+        args: [--report=warning]
