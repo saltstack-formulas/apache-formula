@@ -2,6 +2,22 @@
 Changelog
 =========
 
+`1.0.1 <https://github.com/saltstack-formulas/apache-formula/compare/v1.0.0...v1.0.1>`_ (2020-10-10)
+--------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **pre-commit:** finalise ``rstcheck`` configuration [skip ci] (\ `1c2125c <https://github.com/saltstack-formulas/apache-formula/commit/1c2125c251016097e7d2c0694bf0245a3644605e>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **example:** document redirect 80->443 fix `#226 <https://github.com/saltstack-formulas/apache-formula/issues/226>`_ (\ `e15803b <https://github.com/saltstack-formulas/apache-formula/commit/e15803b4b12df2b6e625673409bc854b1d1dd751>`_\ )
+* **readme:** fix ``rstcheck`` violation [skip ci] (\ `2747e35 <https://github.com/saltstack-formulas/apache-formula/commit/2747e35ce1e49d46a1fd5f8613ce73517aaed095>`_\ ), closes `/travis-ci.org/github/myii/apache-formula/builds/731605038#L255 <https://github.com//travis-ci.org/github/myii/apache-formula/builds/731605038/issues/L255>`_
+
 `1.0.0 <https://github.com/saltstack-formulas/apache-formula/compare/v0.41.1...v1.0.0>`_ (2020-10-05)
 ---------------------------------------------------------------------------------------------------------
 
