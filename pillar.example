@@ -165,8 +165,22 @@ apache:
           #   Additional config as a
           #   multi-line string here
 
+    # Force SSL: Redirect from 80 to 443
+    example2.com:
+      port: 80
+      template_file: salt://apache/vhosts/redirect.tmpl
+      RedirectSource: 'permanent /'
+      # Trailing slash is important
+      RedirectTarget: 'https://example.com/'
+    example2.com_ssl:
+      port: 443
+      ServerName: example.com
+      SSLCertificateFile: /path/to/ssl.crt
+      SSLCertificateKeyFile: /path/to/ssl.key
+      SSLCertificateChainFile: /path/to/ssl.ca.crt
+
+    # Use RedirectMatch Directive
     redirectmatch.com:
-      # Use RedirectMatch Directive
       # - https://httpd.apache.org/docs/2.4/fr/mod/mod_alias.html#redirectmatch
       # Require module mod_alias
       enabled: true
