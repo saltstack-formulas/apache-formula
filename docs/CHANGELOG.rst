@@ -2,6 +2,16 @@
 Changelog
 =========
 
+`1.0.2 <https://github.com/saltstack-formulas/apache-formula/compare/v1.0.1...v1.0.2>`_ (2020-10-12)
+--------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **package:** remove own_default_vhost and debian_full from config.init (\ `7691b58 <https://github.com/saltstack-formulas/apache-formula/commit/7691b589d7a1b0a87aaf9b13282e6ca154c5787c>`_\ )
+* **package:** remove own_default_vhost and debian_full from config.init (\ `441459e <https://github.com/saltstack-formulas/apache-formula/commit/441459e56f3a8b091671839042efae2d7020380d>`_\ )
+
 `1.0.1 <https://github.com/saltstack-formulas/apache-formula/compare/v1.0.0...v1.0.1>`_ (2020-10-10)
 --------------------------------------------------------------------------------------------------------
 
