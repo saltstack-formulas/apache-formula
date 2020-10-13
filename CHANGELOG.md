@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/saltstack-formulas/apache-formula/compare/v1.0.2...v1.0.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **config:** fix old apache.service usage ([32f05e5](https://github.com/saltstack-formulas/apache-formula/commit/32f05e5a66940ad86ce21831598c478b7099ed3a))
+
 ## [1.0.2](https://github.com/saltstack-formulas/apache-formula/compare/v1.0.1...v1.0.2) (2020-10-12)
 
 
