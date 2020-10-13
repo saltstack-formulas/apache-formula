@@ -19,8 +19,8 @@ apache-config-logrotate-file-managed:
                 create 640 root adm
                 sharedscripts
                 postrotate
-                    if /etc/init.d/{{ apache.service }} status >/dev/null; then \
-                        /etc/init.d/{{ apache.service }} reload >/dev/null; \
+                    if /etc/init.d/{{ apache.service.name }} status >/dev/null; then \
+                        /etc/init.d/{{ apache.service.name }} reload >/dev/null; \
                     fi;
                 endscript
                 prerotate
