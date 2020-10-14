@@ -15,12 +15,9 @@ apache-config-clean-file-absent:
       - {{ apache.config }}
       - {{ apache.logdir }}
       - {{ apache.vhostdir }}
-      - /etc/apache2/envvars
       # apache.portsfile
-      - /etc/apache2/global.conf
-      - /etc/httpd/conf.modules.d
-      - /etc/httpd/sites-enabled
-      - /etc/httpd/var
+      - /etc/apache2
+      - /etc/httpd
       - {{ apache.confdir }}/server-status{{ apache.confext }}
     - require:
       - sls: {{ sls_service_clean }}
