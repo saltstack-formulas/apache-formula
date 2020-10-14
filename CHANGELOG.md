@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.0.5](https://github.com/saltstack-formulas/apache-formula/compare/v1.0.4...v1.0.5) (2020-10-14)
+
+
+### Bug Fixes
+
+* **clean:** remove entire apache config directory ([cac5f35](https://github.com/saltstack-formulas/apache-formula/commit/cac5f357a47d1bdd40371aca97181b490430c158))
+
+
+### Code Refactoring
+
+* **package:** remove unnecessary state ([fb81d8e](https://github.com/saltstack-formulas/apache-formula/commit/fb81d8e69450702bcd3eaa6e5243fce02715c819))
+
+
+### Documentation
+
+* **readme:** add mod watchdog to pillar example ([e0043dd](https://github.com/saltstack-formulas/apache-formula/commit/e0043dd7bafcab1b87822d0c831b91e10936b291))
+
 ## [1.0.4](https://github.com/saltstack-formulas/apache-formula/compare/v1.0.3...v1.0.4) (2020-10-14)
 
 
