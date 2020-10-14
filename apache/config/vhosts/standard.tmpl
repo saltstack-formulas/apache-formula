@@ -43,7 +43,7 @@
     },
 } -%}
 
-<VirtualHost {% for intf in vals.interfaces %} {{ intf }}:{{ vals.port }}{% endfor -%}>
+<VirtualHost {%- for intf in vals.interfaces %} {{ intf }}:{{ vals.port }}{% endfor -%}>
     ServerName {{ vals.ServerName }}
     {% if site.get('ServerAlias') != False %}ServerAlias {{ vals.ServerAlias }}{% endif %}
 
@@ -68,22 +68,22 @@
     SSLCertificateFile {{ site.SSLCertificateFile }}
     {% if site.get('SSLCertificateKeyFile') %}SSLCertificateKeyFile {{ site.SSLCertificateKeyFile }}{% endif %}
     {% if site.get('SSLCertificateChainFile') %}SSLCertificateChainFile {{ site.SSLCertificateChainFile }}{% endif %}
-    {% endif %}
+    {%- endif %}
 
     {% if site.get('Rewrite') %}RewriteEngine on
-    {{ site.Rewrite }}
-    {%  endif %}
+    {{ site.Rewrite|indent(4) }}
+    {%- endif %}
 
-    {% for loc, path in site.get('Alias', {}).items() %}
+    {%- for loc, path in site.get('Alias', {}).items() %}
     Alias {{ loc }} {{ path }}
-    {% endfor %}
+    {%- endfor %}
 
-    {% for loc, path in site.get('ScriptAlias', {}).items() %}
+    {%- for loc, path in site.get('ScriptAlias', {}).items() %}
     ScriptAlias {{ loc }} {{ path }}
-    {% endfor %}
+    {%- endfor %}
 
-    {% for path, dir in site.get('Directory', {}).items() -%}
-    {% set dvals = {
+    {%- for path, dir in site.get('Directory', {}).items() %}
+    {%- set dvals = {
         'Options': dir.get('Options', vals.Directory.Options),
         'Order': dir.get('Order', vals.Directory.Order),
         'Allow': dir.get('Allow', vals.Directory.Allow),
@@ -92,28 +92,27 @@
         'Dav': dir.get('Dav', False),
     } %}
 
-    {% if path == 'default' %}{% set path = vals.Directory_default %}{% endif %}
+    {%- if path == 'default' %}{% set path = vals.Directory_default %}{% endif %}
 
     <Directory "{{ path }}">
         {% if dvals.get('Options') != False %}Options {{ dvals.Options }}{% endif %}
-        {% if map.version == '2.4' %}
+        {%- if map.version == '2.4' %}
         {% if dvals.get('Require') != False %}Require {{ dvals.Require }}{% endif %}
-        {% else %}
+        {%- else %}
         {% if dvals.get('Order') != False %}Order {{ dvals.Order }}{% endif %}
-
         {% if dvals.get('Allow') != False %}Allow {{ dvals.Allow }}{% endif %}
-        {% endif %}
+        {%- endif %}
         {% if dvals.get('AllowOverride') != False %}AllowOverride {{ dvals.AllowOverride }}{% endif %}
         {% if dvals.get('Dav') != False %}Dav On{% endif %}
 
-        {% if dir.get('Formula_Append') %}
+        {%- if dir.get('Formula_Append') %}
         {{ dir.Formula_Append|indent(8) }}
-        {% endif %}
+        {%- endif %}
     </Directory>
-    {% endfor %}
+    {%- endfor %}
 
-    {% for path, loc in site.get('Location', {}).items() %}
-    {% set lvals = {
+    {%- for path, loc in site.get('Location', {}).items() %}
+    {%- set lvals = {
         'Order': loc.get('Order', vals.Location.Order),
         'Allow': loc.get('Allow', vals.Location.Allow),
         'Require': loc.get('Require', vals.Location.Require),
@@ -121,21 +120,21 @@
     } %}
 
     <Location "{{ path }}">
-        {% if map.version == '2.4' %}
+        {%- if map.version == '2.4' %}
         {% if lvals.get('Require') != False %}Require {{ lvals.Require }}{% endif %}
-        {% else %}
+        {%- else %}
         {% if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
         {% if lvals.get('Allow') != False %}Allow {{ lvals.Allow }}{% endif %}
-        {% endif %}
+        {%- endif %}
         {% if lvals.get('Dav') != False %}Dav On{% endif %}
 
-        {% if loc.get('Formula_Append') %}
+        {%- if loc.get('Formula_Append') %}
         {{ loc.Formula_Append|indent(8) }}
-        {% endif %}
+        {%- endif %}
     </Location>
-    {% endfor %}
+    {%- endfor %}
 
-    {% if site.get('Formula_Append') %}
+    {%- if site.get('Formula_Append') %}
     {{ site.Formula_Append|indent(4) }}
-    {% endif %}
+    {%- endif %}
 </VirtualHost>
