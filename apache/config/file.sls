@@ -16,9 +16,6 @@ apache-config-file-directory-logdir:
     - name: {{ apache.logdir }}
     - user: {{ apache.user }}
     - group: {{ apache.group }}
-    - recurse:
-      - user
-      - group
     - makedirs: True
     - require:
       - sls: {{ sls_package_install }}
