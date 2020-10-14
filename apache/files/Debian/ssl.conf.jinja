@@ -96,6 +96,13 @@
 	SSLStaplingReturnResponderErrors {{ salt['pillar.get']('apache:ssl:SSLStaplingReturnResponderErrors', 'Off') }}
 	SSLStaplingCache {{ salt['pillar.get']('apache:ssl:SSLStaplingCache', 'shmcb:/var/run/ocsp(128000)') }}
 	{%- endif %}
+
+	{% set ssl_session_ticket = salt['pillar.get']('apache:ssl:SSLSessionTickets') -%}
+	{% if ssl_session_ticket -%}
+	#   Enable or disable use of TLS session tickets
+	#   Default: On
+	SSLSessionTickets {{ ssl_session_ticket }}
+	{%- endif %}
 </IfModule>
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
