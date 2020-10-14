@@ -2,6 +2,28 @@
 Changelog
 =========
 
+`1.1.0 <https://github.com/saltstack-formulas/apache-formula/compare/v1.0.5...v1.1.0>`_ (2020-10-14)
+--------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **ssl.conf:** fix pillar keys for SSLStapling in ssl.conf on debian (\ `65043f8 <https://github.com/saltstack-formulas/apache-formula/commit/65043f8a6142f7b9988cd406988b524aa9f0a1f2>`_\ )
+
+Code Refactoring
+^^^^^^^^^^^^^^^^
+
+
+* **ssl.conf:** reduce newlines in ssl.conf on debian (\ `b99b7b7 <https://github.com/saltstack-formulas/apache-formula/commit/b99b7b71add9fc1102d1b62eafada8358dfd5e68>`_\ )
+* **vhosts:** reduce empty lines in standard.tmpl and proxy.tmpl (\ `4b79c1d <https://github.com/saltstack-formulas/apache-formula/commit/4b79c1dddb1999452b618153792a8710bedbb76e>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **ssl.conf:** add SSLSessionTickets to ssl.conf on debian (\ `41a7a83 <https://github.com/saltstack-formulas/apache-formula/commit/41a7a83af0bf1bf4d4dde0f8ea522135dd721738>`_\ )
+
 `1.0.5 <https://github.com/saltstack-formulas/apache-formula/compare/v1.0.4...v1.0.5>`_ (2020-10-14)
 --------------------------------------------------------------------------------------------------------
 

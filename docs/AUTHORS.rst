@@ -33,13 +33,16 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - 27
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/13322818?v=4' width='36' height='36' alt='@noelmcloughlin'>`
      - `@noelmcloughlin <https://github.com/noelmcloughlin>`_
-     - 25
+     - 27
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars0.githubusercontent.com/u/3374962?v=4' width='36' height='36' alt='@nmadhok'>`
      - `@nmadhok <https://github.com/nmadhok>`_
      - 20
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/528061?v=4' width='36' height='36' alt='@puneetk'>`
      - `@puneetk <https://github.com/puneetk>`_
      - 20
+   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars3.githubusercontent.com/u/458548?v=4' width='36' height='36' alt='@SuperTux88'>`
+     - `@SuperTux88 <https://github.com/SuperTux88>`_
+     - 10
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars1.githubusercontent.com/u/287147?v=4' width='36' height='36' alt='@techhat'>`
      - `@techhat <https://github.com/techhat>`_
      - 10
@@ -64,9 +67,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars2.githubusercontent.com/u/17673243?v=4' width='36' height='36' alt='@porunov'>`
      - `@porunov <https://github.com/porunov>`_
      - 7
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars3.githubusercontent.com/u/458548?v=4' width='36' height='36' alt='@SuperTux88'>`
-     - `@SuperTux88 <https://github.com/SuperTux88>`_
-     - 6
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars3.githubusercontent.com/u/3119969?v=4' width='36' height='36' alt='@genuss'>`
      - `@genuss <https://github.com/genuss>`_
      - 6
