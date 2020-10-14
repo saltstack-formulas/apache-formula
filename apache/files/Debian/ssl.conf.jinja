@@ -92,9 +92,9 @@
 	#   See https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html for more details
 	#   Defaults values taken from https://mozilla.github.io/server-side-tls/ssl-config-generator/
 	SSLUseStapling {{ use_stapling }}
-	SSLStaplingResponderTimeout {{ salt['pillar.get']('SSLStaplingResponderTimeout', '5') }}
-	SSLStaplingReturnResponderErrors {{ salt['pillar.get']('SSLStaplingReturnResponderErrors', 'Off') }}
-	SSLStaplingCache {{ salt['pillar.get']('SSLStaplingCache', 'shmcb:/var/run/ocsp(128000)') }}
+	SSLStaplingResponderTimeout {{ salt['pillar.get']('apache:ssl:SSLStaplingResponderTimeout', '5') }}
+	SSLStaplingReturnResponderErrors {{ salt['pillar.get']('apache:ssl:SSLStaplingReturnResponderErrors', 'Off') }}
+	SSLStaplingCache {{ salt['pillar.get']('apache:ssl:SSLStaplingCache', 'shmcb:/var/run/ocsp(128000)') }}
 	{%- endif %}
 </IfModule>
 
