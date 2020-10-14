@@ -18,7 +18,7 @@ apache-config-modules-{{ module }}-enable:
 
   cmd.run:
     - name: a2enmod -f {{ module }}
-    - onlyif: ls {{ apache.moddir }}/{{ module }}.load
+    - unless: ls {{ apache.moddir }}/{{ module }}.load
 
         {% elif grains.os_family in ('RedHat', 'Arch') %}
 

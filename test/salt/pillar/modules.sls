@@ -377,7 +377,6 @@ apache:
   modules:
     enabled:   # List modules to enable
       - ssl
-      - prefork
       - rewrite
       - proxy
       - proxy_ajp
@@ -385,7 +384,6 @@ apache:
       - headers
       # geoip
       - status
-      - logio
       - dav
       - dav_fs
       - dav_lock
