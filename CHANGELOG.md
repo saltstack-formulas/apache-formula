@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.4](https://github.com/saltstack-formulas/apache-formula/compare/v1.0.3...v1.0.4) (2020-10-14)
+
+
+### Bug Fixes
+
+* **debian:** don't execute a2enmod on every run ([5844322](https://github.com/saltstack-formulas/apache-formula/commit/5844322de46b82cad6beedd2b99c8808df8f2485))
+* **debian:** fix default moddir on debian ([c17601e](https://github.com/saltstack-formulas/apache-formula/commit/c17601ee42cc4aa0222ec60e8ec3176d902b32f1))
+* **logs:** don't change owners of logfiles with salt ([382e053](https://github.com/saltstack-formulas/apache-formula/commit/382e053c58c1b4e4f3ceb1af8fd75e2f56f6d153))
+* **vhosts:** replace %O with %b in default LogFormat ([2b52e11](https://github.com/saltstack-formulas/apache-formula/commit/2b52e11a8a91b0837a442bac816e7383dbe6fb13))
+
+
+### Tests
+
+* **pillar:** remove modules that aren't installed from being enabled ([47ec5fc](https://github.com/saltstack-formulas/apache-formula/commit/47ec5fcc343ea889898e2418cd7c03a4a75c8f87))
+
 ## [1.0.3](https://github.com/saltstack-formulas/apache-formula/compare/v1.0.2...v1.0.3) (2020-10-13)
 
 
