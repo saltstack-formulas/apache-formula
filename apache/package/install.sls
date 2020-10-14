@@ -10,11 +10,6 @@ apache-package-install-deps-pkg-installed:
     - names: {{ apache.pkg.deps|json }}
     - require:
       - apache-package-install-pkg-installed
-        {%- if grains.os_family == 'Debian' %}
-  cmd.run:
-    # because pkg.installed returns error during dpkg postinstall
-    - name: apt install libapache2-mod-security2 || true
-        {%- endif %}
     {%- endif %}
 
 apache-package-install-pkg-installed:
