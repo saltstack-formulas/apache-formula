@@ -444,6 +444,9 @@ apache:
     RemoteIPTrustedProxy:
       - 10.0.8.0/24
       - 127.0.0.1
+    RemoteIPInternalProxy
+      - 10.10.8.0/24
+      - 127.0.0.1
 
   # ``apache.mod_security`` formula additional configuration:
   mod_security:
