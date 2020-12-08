@@ -19,7 +19,7 @@ apache-config-modules-cgi-cmd-run:
     - template: {{ apache.get('template_engine', 'jinja') }}
     - makedirs: True
     - context:
-      apache: {{ apache|json }}
+        svcname: {{ apache.service.name }}
     - require:
       - pkg: apache-package-install-pkg-installed
     - watch_in:

@@ -42,7 +42,7 @@ apache-config-modules-php5-pkg:
     - makedirs: True
     - template: {{ apache.get('template_engine', 'jinja') }}
     - context:
-      apache: {{ apache|json }}
+        svcname: {{ apache.service.name }}
     - watch_in:
       - module: apache-service-running-restart
     - require_in:
@@ -63,7 +63,7 @@ apache-config-modules-php5-pkg:
     - makedirs: True
     - template: {{ apache.get('template_engine', 'jinja') }}
     - context:
-      apache: {{ apache|json }}
+        svcname: {{ apache.service.name }}
     - require:
       - pkg: apache-package-install-pkg-installed
     - watch_in:
