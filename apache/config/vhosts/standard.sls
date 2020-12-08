@@ -5,6 +5,10 @@
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- set sls_service_running = tplroot ~ '.service.running' %}
 {%- from tplroot ~ "/map.jinja" import apache with context %}
+{#- The apache variable can grow _very_ large, especially the sites subkey.
+    Create a trimmed copy with config variables. #}
+{%- set map = apache %}
+{%- do map.pop('sites', None) %}
 
 include:
   - {{ sls_package_install }}
@@ -20,10 +24,9 @@ apache-config-vhosts-standard-{{ id }}:
     - template: {{ apache.get('template_engine', 'jinja') }}
     - makedirs: True
     - context:
-      apache: {{ apache|json }}
-      id: {{ id|json }}
-      site: {{ site|json }}
-      map: {{ apache|json }}
+        id: {{ id|json }}
+        site: {{ site|json }}
+        map: {{ map|json }}
     - require:
       - pkg: apache-package-install-pkg-installed
     - watch_in:

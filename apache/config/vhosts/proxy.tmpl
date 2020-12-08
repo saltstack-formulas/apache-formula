@@ -81,7 +81,7 @@
         'Dav': loc.get('Dav', False),
     } %}
     <Location "{{ path }}">
-      {%- if apache.version == '2.4' %}
+      {%- if map.version == '2.4' %}
       {% if lvals.get('Require') != False %}Require {{ lvals.Require }}{% endif %}
       {%- else %}
       {% if lvals.get('Order') != False %}Order {{ lvals.Order }}{% endif %}
@@ -98,7 +98,7 @@
         'Dav': locmat.get('Dav', False),
     } %}
     <LocationMatch "{{ regpath }}">
-      {%- if apache.version == '2.4' %}
+      {%- if map.version == '2.4' %}
       {% if lmvals.get('Require') != False %}Require {{ lmvals.Require }}{% endif %}
       {%- else %}
       {% if lmvals.get('Order') != False %}Order {{ lmvals.Order }}{% endif %}
