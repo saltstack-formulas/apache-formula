@@ -38,7 +38,7 @@ apache-config-modules-proxy_http-file-managed:
     - makedirs: True
     - template: {{ apache.get('template_engine', 'jinja') }}
     - context:
-      apache: {{ apache|json }}
+        svcname: {{ apache.service.name }}
     - require:
       - pkg: apache-package-install-pkg-installed
     - watch_in:

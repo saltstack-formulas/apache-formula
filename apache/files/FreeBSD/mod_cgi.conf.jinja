@@ -1,6 +1,6 @@
 <IfModule !mpm_prefork_module>
-	LoadModule cgid_module libexec/{{ apache.service.name }}/mod_cgid.so
+	LoadModule cgid_module libexec/{{ svcname }}/mod_cgid.so
 </IfModule>
 <IfModule mpm_prefork_module>
-	LoadModule cgi_module libexec/{{ apache.service.name }}/mod_cgi.so
+	LoadModule cgi_module libexec/{{ svcname }}/mod_cgi.so
 </IfModule>
