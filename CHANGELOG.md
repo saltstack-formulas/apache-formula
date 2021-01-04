@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.1](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.0...v1.1.1) (2021-01-04)
+
+
+### Bug Fixes
+
+* **memory:** pass variable not dict ([2830081](https://github.com/saltstack-formulas/apache-formula/commit/28300814fc0a83244ab64a4a87f104d67de4ac53))
+
+
+### Continuous Integration
+
+* **commitlint:** ensure `upstream/master` uses main repo URL [skip ci] ([0145922](https://github.com/saltstack-formulas/apache-formula/commit/0145922b52f21469c00c85bf46503411ffd11c56))
+* **gitlab-ci:** add `rubocop` linter (with `allow_failure`) [skip ci] ([bbf012b](https://github.com/saltstack-formulas/apache-formula/commit/bbf012b82eed50db3c35cb25a10d9ca36e40487b))
+* **gitlab-ci:** use GitLab CI as Travis CI replacement ([26208c4](https://github.com/saltstack-formulas/apache-formula/commit/26208c47c644608b00adfa8474616305e7a55e36))
+
 # [1.1.0](https://github.com/saltstack-formulas/apache-formula/compare/v1.0.5...v1.1.0) (2020-10-14)
 
 
