@@ -444,7 +444,7 @@ apache:
     RemoteIPTrustedProxy:
       - 10.0.8.0/24
       - 127.0.0.1
-    RemoteIPInternalProxy
+    RemoteIPInternalProxy:
       - 10.10.8.0/24
       - 127.0.0.1
 
