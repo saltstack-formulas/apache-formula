@@ -312,6 +312,7 @@ suites:
       state_top:
         base:
           '*':
+            - apache._mapdata
             - apache
       pillars:
         top.sls:
@@ -328,6 +329,7 @@ suites:
       state_top:
         base:
           '*':
+            - apache._mapdata
             - apache
             - apache.config.modules
             - apache.config.certificates
