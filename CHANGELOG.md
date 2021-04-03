@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.1.2](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.1...v1.1.2) (2021-04-03)
+
+
+### Bug Fixes
+
+* **freebsd:** fix `default` suite implementation and tests ([0a0f69e](https://github.com/saltstack-formulas/apache-formula/commit/0a0f69ee2fc8168696f9f9c4ae786389ff894615))
+* **freebsd:** fix `modsecurity` suite implementation and tests ([bc9aa78](https://github.com/saltstack-formulas/apache-formula/commit/bc9aa78437d14cf26605f58a3c1e17caed8f05bc))
+
+
+### Continuous Integration
+
+* enable Vagrant-based testing using GitHub Actions ([6e094e2](https://github.com/saltstack-formulas/apache-formula/commit/6e094e2527748cd4d72690b9289836b17f9289c7))
+* **gemfile+lock:** use `ssf` customised `kitchen-docker` repo [skip ci] ([53ac463](https://github.com/saltstack-formulas/apache-formula/commit/53ac4638f3b902c1fd65a64d4344387e26c466c1))
+* **gitlab-ci:** reset after update hook for `rubocop` [skip ci] ([6d40ab7](https://github.com/saltstack-formulas/apache-formula/commit/6d40ab7634a42048a0f2b3f2e1173cf2da2a8716))
+* **kitchen+ci:** use latest pre-salted images (after CVE) [skip ci] ([69e9d30](https://github.com/saltstack-formulas/apache-formula/commit/69e9d304fb7d637df1856e0d8ab66be7ddce86c4))
+* **kitchen+gitlab-ci:** use latest pre-salted images [skip ci] ([21cb59d](https://github.com/saltstack-formulas/apache-formula/commit/21cb59daa2f70ce6cc46f8d241fb6032c932746c))
+* **pre-commit:** update hook for `rubocop` ([2c090c3](https://github.com/saltstack-formulas/apache-formula/commit/2c090c3a835e42bd07f0788f4b0965f1c3405662))
+
+
+### Documentation
+
+* **readme:** add `Testing with Vagrant` section ([5a6b203](https://github.com/saltstack-formulas/apache-formula/commit/5a6b203bb18f9f28146f33af8175fc3b8c059077))
+
+
+### Tests
+
+* standardise use of `share` suite & `_mapdata` state [skip ci] ([e7c2d20](https://github.com/saltstack-formulas/apache-formula/commit/e7c2d20f06f23a5ce8a5edaae513775aca0914ab))
+* **nomodsecurity:** use adjusted `modules` suite instead ([838b917](https://github.com/saltstack-formulas/apache-formula/commit/838b9172217c5e067ea0e4a6d2f155ecd1a4b053))
+
 ## [1.1.1](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.0...v1.1.1) (2021-01-04)
 
 
