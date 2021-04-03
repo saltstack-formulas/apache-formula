@@ -8,20 +8,30 @@ control 'apache mod_security configuration' do
   end
 
   modspec_file =
-    case platform[:family]
+    case system.platform[:family]
     when 'redhat', 'fedora'
       '/etc/httpd/conf.d/mod_security.conf'
     when 'debian'
       '/etc/modsecurity/modsecurity.conf-recommended'
     when 'suse'
       '/etc/apache2/conf.d/mod_security2.conf'
+    when 'bsd'
+      '/usr/local/etc/modsecurity/modsecurity.conf'
+    end
+
+  modspec_file_group =
+    case system.platform[:family]
+    when 'bsd'
+      'wheel'
+    else
+      'root'
     end
 
   describe file(modspec_file) do
     it { should be_file }
     its('mode')  { should cmp '0644' }
     its('owner') { should eq 'root' }
-    its('group') { should eq 'root' }
+    its('group') { should eq modspec_file_group }
     its('content') { should match(/SecRuleEngine On/) }
     its('content') { should match(/SecRequestBodyAccess On/) }
     its('content') { should match(/SecRequestBodyLimit 14000000/) }
