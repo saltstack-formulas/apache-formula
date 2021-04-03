@@ -28,9 +28,11 @@ control 'apache configuration' do
     sitesdir = '/etc/httpd/sites-enabled'
   when 'bsd'
     vhostdir = '/usr/local/etc/apache24/Includes'
-    # logrotatedir = ?
-    # moddir = '?'
-    # sitesdir = '?'
+    logrotatedir = '/usr/local/etc/logrotate.d/apache2'
+    moddir = '/usr/local/etc/apache24/modules.d'
+    # https://docs.freebsd.org/en/books/handbook/network-servers/#_virtual_hosting
+    # All done under `/usr/local/etc/apache24/httpd.conf`
+    sitesdir = '/usr/local/etc/apache24'
   end
   describe file(vhostdir) do
     it { should exist }
@@ -56,6 +58,7 @@ end
 control 'apache configuration (unique)' do
   title 'should be valid'
 
+  config_file_group = 'root'
   case platform[:family]
   when 'debian'
     config_file = '/etc/apache2/apache2.conf'
@@ -74,11 +77,12 @@ control 'apache configuration (unique)' do
     wwwdir = '/srv/http'
   when 'bsd'
     config_file = '/usr/local/etc/apache24/httpd.conf'
+    config_file_group = 'wheel'
     wwwdir = '/usr/local/www/apache24/'
   end
   describe file(config_file) do
     it { should be_file }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into config_file_group }
     its('mode') { should cmp '0644' }
     its('content') do
       should include(

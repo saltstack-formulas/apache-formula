@@ -202,7 +202,9 @@ FreeBSD:
   confext: ''
   default_site: default
   default_site_ssl: default-ssl
+  moddir: /usr/local/etc/apache24/modules.d
   logdir: /var/log/
+  logrotatedir: /usr/local/etc/logrotate.d/apache2
   wwwdir: /usr/local/www/apache24/
 
 OpenBSD:
