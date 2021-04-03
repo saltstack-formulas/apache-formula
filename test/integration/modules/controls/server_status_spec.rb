@@ -13,22 +13,31 @@ control 'apache server_status configuration' do
   SS_STANZA
 
   confdir =
-    case platform[:family]
+    case system.platform[:family]
     when 'debian'
       '/etc/apache2/conf-available'
     when 'redhat', 'fedora'
       '/etc/httpd/conf.d'
     when 'suse'
       '/etc/apache2/conf.d'
-    # `linux` here is sufficient for `arch`
-    when 'linux'
+    when 'arch'
       '/etc/httpd/conf/extra'
+    when 'bsd'
+      '/usr/local/etc/apache24/extra'
     end
 
-  describe file("#{confdir}/server-status.conf") do
+  conffile, conffile_group =
+    case system.platform[:family]
+    when 'bsd'
+      %W[#{confdir}/server-status wheel]
+    else
+      %W[#{confdir}/server-status.conf root]
+    end
+
+  describe file(conffile) do
     it { should be_file }
     it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into conffile_group }
     its('mode') { should cmp '0644' }
     its('content') { should include '# File managed by Salt' }
     its('content') { should include server_status_stanza }

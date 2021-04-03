@@ -23,3 +23,10 @@ Suse:
     manage_config: false
     package: apache2-mod_security2
     config_file: /etc/apache2/conf.d/mod_security2.conf
+
+FreeBSD:
+  mod_security:
+    crs_install: false
+    manage_config: false
+    package: ap24-mod_security
+    config_file: /usr/local/etc/modsecurity/modsecurity.conf
