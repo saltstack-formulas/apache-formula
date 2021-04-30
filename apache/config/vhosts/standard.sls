@@ -67,7 +67,7 @@ apache-config-vhosts-standard-{{ id }}-cmd-run-a2en:
 
 apache-config-vhosts-standard-{{ id }}-cmd-run-a2dis:
   cmd.run:
-    - name: a2dissite {{ id }}{{ apache.confext }}:
+    - name: a2dissite {{ id }}{{ apache.confext }}
     - onlyif: test -f /etc/apache2/sites-enabled/{{ id }}{{ apache.confext }}
     - require:
       - file: apache-config-vhosts-standard-{{ id }}
