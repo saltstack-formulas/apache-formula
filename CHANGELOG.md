@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.3](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.2...v1.1.3) (2021-04-30)
+
+
+### Bug Fixes
+
+* **config/vhosts/standard:** remove erroneous trailing colon ([dedb9e2](https://github.com/saltstack-formulas/apache-formula/commit/dedb9e2f400aa9d391ae39c22f8a4fec1e7bc220)), closes [#302](https://github.com/saltstack-formulas/apache-formula/issues/302)
+
+
+### Continuous Integration
+
+* **kitchen+gitlab:** adjust matrix to add `3003` [skip ci] ([3c21740](https://github.com/saltstack-formulas/apache-formula/commit/3c21740ba52fa5c2b5cf39cddce6a42d13d17988))
+* **vagrant:** add FreeBSD 13.0 [skip ci] ([298fdf4](https://github.com/saltstack-formulas/apache-formula/commit/298fdf4fb569a3d1d4a9dadedb4c3924bcb8cc9a))
+* **vagrant:** use pre-salted boxes & conditional local settings [skip ci] ([f354ace](https://github.com/saltstack-formulas/apache-formula/commit/f354ace8e7d328580a60dbc09703ddc54a6af0a0))
+
 ## [1.1.2](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.1...v1.1.2) (2021-04-03)
 
 
