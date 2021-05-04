@@ -316,8 +316,7 @@ Requirements
 
    $ gem install bundler
    $ bundle install
-   :1
-  $ bin/kitchen test [platform]
+   $ bin/kitchen test [platform]
 
 Where ``[platform]`` is the platform name defined in ``kitchen.yml``,
 e.g. ``debian-9-2019-2-py3``.
