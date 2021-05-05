@@ -1,0 +1,8 @@
+.Repo documentation
+
+* xref:README.adoc[README]
+** xref:README.adoc#_available_states[Available states]
+
+* xref:CHANGELOG.adoc[]
+
+* xref:AUTHORS.adoc[Contributors]
