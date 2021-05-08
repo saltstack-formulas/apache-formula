@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`2.0.3 <https://github.com/saltstack-formulas/apache-formula/compare/v2.0.2...v2.0.3>`_ (2021-05-08)
+--------------------------------------------------------------------------------------------------------
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **changelog:** regenerate via. ``semantic-release`` (\ `198d525 <https://github.com/saltstack-formulas/apache-formula/commit/198d525a6a552c8c83842c26f6c74a43ffcd4b79>`_\ )
+
 `1.1.4 <https://github.com/saltstack-formulas/apache-formula/compare/v1.1.3...v1.1.4>`_ (2021-05-08)
 --------------------------------------------------------------------------------------------------------
 
