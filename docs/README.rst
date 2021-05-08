@@ -1,5 +1,3 @@
-.. _readme:
-
 apache
 ======
 
