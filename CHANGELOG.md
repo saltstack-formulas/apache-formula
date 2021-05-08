@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.6](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.5...v1.1.6) (2021-05-08)
+
+
+### Documentation
+
+* **changelog:** regenerate via. `semantic-release` ([de8c82c](https://github.com/saltstack-formulas/apache-formula/commit/de8c82c7533e36e720cf2e44c46154cd8cd3f540))
+
 ## [1.1.5](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.4...v1.1.5) (2021-05-08)
 
 
