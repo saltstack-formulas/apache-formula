@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.3](https://github.com/saltstack-formulas/apache-formula/compare/v2.0.2...v2.0.3) (2021-05-08)
+## [1.1.5](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.4...v1.1.5) (2021-05-08)
 
 
 ### Documentation
