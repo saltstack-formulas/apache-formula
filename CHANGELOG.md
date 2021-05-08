@@ -1,17 +1,5 @@
 # Changelog
 
-## [2.0.2](https://github.com/saltstack-formulas/apache-formula/compare/v2.0.1...v2.0.2) (2021-05-08)
-
-
-### Continuous Integration
-
-* **gitlab-ci:** remove adjustments made during Antora test [skip ci] ([0c7082f](https://github.com/saltstack-formulas/apache-formula/commit/0c7082f8d911185390e8ab03077f61c6027461f7))
-
-
-### Documentation
-
-* **changelog:** regenerate via. `semantic-release` ([56efd35](https://github.com/saltstack-formulas/apache-formula/commit/56efd35f85fe049b4cdcbd082e38d547bd306a39))
-
 ## [1.1.3](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.2...v1.1.3) (2021-04-30)
 
 
