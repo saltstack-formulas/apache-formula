@@ -1,17 +1,40 @@
-= Changelog
+Changelog
 
 :sectnums!:
+---------
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.2...v1.1.3++[1.1.3^] (2021-04-30)
+https://github.com/saltstack-formulas/apache-formula/compare/v2.0.0...v2.0.1[2.0.1^]
+(2021-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+* *antora:* convert `.rst` files to `.adoc` during `semantic-release`
+(https://github.com/saltstack-formulas/apache-formula/commit/9cf428ab493bd4ee6cc93147487cbe8cd02e6513[9cf428a^])
+* *gitlab-ci:* make adjustments to test Antora more efficiently
+(https://github.com/saltstack-formulas/apache-formula/commit/12c0a0f1b209b6666f5b0919a16149e46471b34c[12c0a0f^])
+
+Documentation
+^^^^^^^^^^^^^
+
+* *readme:* remove unused Sphinx `readme` anchor
+(https://github.com/saltstack-formulas/apache-formula/commit/155cd69d6b29a13c6d3d47c846242eb9961fa007[155cd69^])
+
+https://github.com/saltstack-formulas/apache-formula/compare/v1.1.2...v1.1.3[1.1.3^]
+(2021-04-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Bug Fixes
+^^^^^^^^^
 
 * *config/vhosts/standard:* remove erroneous trailing colon
 (https://github.com/saltstack-formulas/apache-formula/commit/dedb9e2f400aa9d391ae39c22f8a4fec1e7bc220[dedb9e2^]),
 closes
 https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *kitchen+gitlab:* adjust matrix to add `3003` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/3c21740ba52fa5c2b5cf39cddce6a42d13d17988[3c21740^])
@@ -20,16 +43,20 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 * *vagrant:* use pre-salted boxes & conditional local settings [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/f354ace8e7d328580a60dbc09703ddc54a6af0a0[f354ace^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.1...v1.1.2++[1.1.2^] (2021-04-03)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.1.1...v1.1.2[1.1.2^]
+(2021-04-03)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *freebsd:* fix `default` suite implementation and tests
 (https://github.com/saltstack-formulas/apache-formula/commit/0a0f69ee2fc8168696f9f9c4ae786389ff894615[0a0f69e^])
 * *freebsd:* fix `modsecurity` suite implementation and tests
 (https://github.com/saltstack-formulas/apache-formula/commit/bc9aa78437d14cf26605f58a3c1e17caed8f05bc[bc9aa78^])
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * enable Vagrant-based testing using GitHub Actions
 (https://github.com/saltstack-formulas/apache-formula/commit/6e094e2527748cd4d72690b9289836b17f9289c7[6e094e2^])
@@ -44,26 +71,32 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 * *pre-commit:* update hook for `rubocop`
 (https://github.com/saltstack-formulas/apache-formula/commit/2c090c3a835e42bd07f0788f4b0965f1c3405662[2c090c3^])
 
-=== Documentation
+Documentation
+^^^^^^^^^^^^^
 
 * *readme:* add `Testing with Vagrant` section
 (https://github.com/saltstack-formulas/apache-formula/commit/5a6b203bb18f9f28146f33af8175fc3b8c059077[5a6b203^])
 
-=== Tests
+Tests
+^^^^^
 
 * standardise use of `share` suite & `_mapdata` state [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/e7c2d20f06f23a5ce8a5edaae513775aca0914ab[e7c2d20^])
 * *nomodsecurity:* use adjusted `modules` suite instead
 (https://github.com/saltstack-formulas/apache-formula/commit/838b9172217c5e067ea0e4a6d2f155ecd1a4b053[838b917^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.0...v1.1.1++[1.1.1^] (2021-01-04)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.1.0...v1.1.1[1.1.1^]
+(2021-01-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *memory:* pass variable not dict
 (https://github.com/saltstack-formulas/apache-formula/commit/28300814fc0a83244ab64a4a87f104d67de4ac53[2830081^])
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *commitlint:* ensure `upstream/master` uses main repo URL [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/0145922b52f21469c00c85bf46503411ffd11c56[0145922^])
@@ -72,45 +105,58 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 * *gitlab-ci:* use GitLab CI as Travis CI replacement
 (https://github.com/saltstack-formulas/apache-formula/commit/26208c47c644608b00adfa8474616305e7a55e36[26208c4^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.0.5...v1.1.0++[1.1.0^] (2020-10-14)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.0.5...v1.1.0[1.1.0^]
+(2020-10-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *ssl.conf:* fix pillar keys for SSLStapling in ssl.conf on debian
 (https://github.com/saltstack-formulas/apache-formula/commit/65043f8a6142f7b9988cd406988b524aa9f0a1f2[65043f8^])
 
-=== Code Refactoring
+Code Refactoring
+^^^^^^^^^^^^^^^^
 
 * *ssl.conf:* reduce newlines in ssl.conf on debian
 (https://github.com/saltstack-formulas/apache-formula/commit/b99b7b71add9fc1102d1b62eafada8358dfd5e68[b99b7b7^])
 * *vhosts:* reduce empty lines in standard.tmpl and proxy.tmpl
 (https://github.com/saltstack-formulas/apache-formula/commit/4b79c1dddb1999452b618153792a8710bedbb76e[4b79c1d^])
 
-=== Features
+Features
+^^^^^^^^
 
 * *ssl.conf:* add SSLSessionTickets to ssl.conf on debian
 (https://github.com/saltstack-formulas/apache-formula/commit/41a7a83af0bf1bf4d4dde0f8ea522135dd721738[41a7a83^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.0.4...v1.0.5++[1.0.5^] (2020-10-14)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.0.4...v1.0.5[1.0.5^]
+(2020-10-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *clean:* remove entire apache config directory
 (https://github.com/saltstack-formulas/apache-formula/commit/cac5f357a47d1bdd40371aca97181b490430c158[cac5f35^])
 
-=== Code Refactoring
+Code Refactoring
+^^^^^^^^^^^^^^^^
 
 * *package:* remove unnecessary state
 (https://github.com/saltstack-formulas/apache-formula/commit/fb81d8e69450702bcd3eaa6e5243fce02715c819[fb81d8e^])
 
-=== Documentation
+Documentation
+^^^^^^^^^^^^^
 
 * *readme:* add mod watchdog to pillar example
 (https://github.com/saltstack-formulas/apache-formula/commit/e0043dd7bafcab1b87822d0c831b91e10936b291[e0043dd^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.0.3...v1.0.4++[1.0.4^] (2020-10-14)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.0.3...v1.0.4[1.0.4^]
+(2020-10-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *debian:* don't execute a2enmod on every run
 (https://github.com/saltstack-formulas/apache-formula/commit/5844322de46b82cad6beedd2b99c8808df8f2485[5844322^])
@@ -121,35 +167,46 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 * *vhosts:* replace %O with %b in default LogFormat
 (https://github.com/saltstack-formulas/apache-formula/commit/2b52e11a8a91b0837a442bac816e7383dbe6fb13[2b52e11^])
 
-=== Tests
+Tests
+^^^^^
 
 * *pillar:* remove modules that aren't installed from being enabled
 (https://github.com/saltstack-formulas/apache-formula/commit/47ec5fcc343ea889898e2418cd7c03a4a75c8f87[47ec5fc^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.0.2...v1.0.3++[1.0.3^] (2020-10-13)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.0.2...v1.0.3[1.0.3^]
+(2020-10-13)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *config:* fix old apache.service usage
 (https://github.com/saltstack-formulas/apache-formula/commit/32f05e5a66940ad86ce21831598c478b7099ed3a[32f05e5^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.0.1...v1.0.2++[1.0.2^] (2020-10-12)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.0.1...v1.0.2[1.0.2^]
+(2020-10-12)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *package:* remove own_default_vhost and debian_full from config.init
 (https://github.com/saltstack-formulas/apache-formula/commit/7691b589d7a1b0a87aaf9b13282e6ca154c5787c[7691b58^])
 * *package:* remove own_default_vhost and debian_full from config.init
 (https://github.com/saltstack-formulas/apache-formula/commit/441459e56f3a8b091671839042efae2d7020380d[441459e^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.0.0...v1.0.1++[1.0.1^] (2020-10-10)
+https://github.com/saltstack-formulas/apache-formula/compare/v1.0.0...v1.0.1[1.0.1^]
+(2020-10-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *pre-commit:* finalise `rstcheck` configuration [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/1c2125c251016097e7d2c0694bf0245a3644605e[1c2125c^])
 
-=== Documentation
+Documentation
+^^^^^^^^^^^^^
 
 * *example:* document redirect 80->443 fix
 https://github.com/saltstack-formulas/apache-formula/issues/226[#226^]
@@ -159,21 +216,26 @@ https://github.com/saltstack-formulas/apache-formula/issues/226[#226^]
 closes
 https://github.com//travis-ci.org/github/myii/apache-formula/builds/731605038/issues/L255[/travis-ci.org/github/myii/apache-formula/builds/731605038#L255^]
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.41.1...v1.0.0++[1.0.0^] (2020-10-05)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.41.1...v1.0.0[1.0.0^]
+(2020-10-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Code Refactoring
+Code Refactoring
+^^^^^^^^^^^^^^^^
 
 * *formula:* align to template-formula & improve ci features
 (https://github.com/saltstack-formulas/apache-formula/commit/47818fc360fc87c94f51f2c2c7ff9317d4ecf875[47818fc^])
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *pre-commit:* add to formula [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/5532ed7a5b1c9afb5ca4348d3984c5ff357bacad[5532ed7^])
 * *pre-commit:* enable/disable `rstcheck` as relevant [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/233111af11dd25b573928e746f19b06bcdbf19b9[233111a^])
 
-=== BREAKING CHANGES
+BREAKING CHANGES
+^^^^^^^^^^^^^^^^
 
 * *formula:* 'apache.sls' converted to new style 'init.ssl'
 * *formula:* "logrotate.sls" became "config/logrotate.sls"
@@ -191,44 +253,58 @@ https://github.com//travis-ci.org/github/myii/apache-formula/builds/731605038/is
 NOT-BREAKING CHANGE: 'config.sls' became 'config/init.sls' NOT-BREAKING
 CHANGE: 'uninstall.sls' symlinked to 'clean.sls'
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.41.0...v0.41.1++[0.41.1^] (2020-07-20)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.41.0...v0.41.1[0.41.1^]
+(2020-07-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *server-status:* enable module in Debian family
 (https://github.com/saltstack-formulas/apache-formula/commit/632802a5a946d2f05c40d9038d6f2ad596fafc58[632802a^])
 * *server-status:* manage module in debian
 (https://github.com/saltstack-formulas/apache-formula/commit/eafa4196d9495bc975c7e1e7036969bdaba1441d[eafa419^])
 
-=== Tests
+Tests
+^^^^^
 
 * *default+modules:* add modules' tests suite
 (https://github.com/saltstack-formulas/apache-formula/commit/b25362535ae01dd140218b131a8e991d3a10cbe5[b253625^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.40.0...v0.41.0++[0.41.0^] (2020-07-16)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.40.0...v0.41.0[0.41.0^]
+(2020-07-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Features
+Features
+^^^^^^^^
 
 * *vhosts/standard:* add support for ScriptAlias in standard vhost
 (https://github.com/saltstack-formulas/apache-formula/commit/b88b437308ff5d6bc504dabf9b69153db89f5b10[b88b437^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.39.5...v0.40.0++[0.40.0^] (2020-07-16)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.39.5...v0.40.0[0.40.0^]
+(2020-07-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Features
+Features
+^^^^^^^^
 
 * *redhat/apache-2.x.config.jinja:* allow override of default_charset
 (https://github.com/saltstack-formulas/apache-formula/commit/648f589cc30684550c972d9cc4087e9e8b3fdc80[648f589^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.39.4...v0.39.5++[0.39.5^] (2020-06-21)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.39.4...v0.39.5[0.39.5^]
+(2020-06-21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *vhosts/cleanup:* check `sites-enabled` dir exists before listing it
 (https://github.com/saltstack-formulas/apache-formula/commit/88373e38f55eab61cf1c4edc68324f3da48f7646[88373e3^]),
 closes
 https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *gemfile.lock:* add to repo with updated `Gemfile` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/61b903e7803eb80b50130834b90ca86d26b9d6c8[61b903e^])
@@ -241,44 +317,60 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 * *workflows/commitlint:* add to repo [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/2ce966d031e9044e8794dc93f605ce780fd99f12[2ce966d^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.39.3...v0.39.4++[0.39.4^] (2020-04-02)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.39.3...v0.39.4[0.39.4^]
+(2020-04-02)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *mod_ssl:* update mod_ssl package variable to prevent clashes
 (https://github.com/saltstack-formulas/apache-formula/commit/5591be26fddd234ebaed0e024969c45b6536ba82[5591be2^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.39.2...v0.39.3++[0.39.3^] (2020-04-02)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.39.2...v0.39.3[0.39.3^]
+(2020-04-02)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *debian:* generate remoteip conf before a2enconf
 (https://github.com/saltstack-formulas/apache-formula/commit/1ed69f6c6fab0eb583949105e9e29e58b6ba32a3[1ed69f6^])
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *kitchen:* avoid using bootstrap for `master` instances [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/275b5d5e69fa79f1010852d65f0fcb65cadf735d[275b5d5^])
 * *travis:* use `major.minor` for `semantic-release` version [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/08cced29134ca47824e82ee6afa794233cdb5faa[08cced2^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.39.1...v0.39.2++[0.39.2^] (2019-12-20)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.39.1...v0.39.2[0.39.2^]
+(2019-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *redhat:* add user & group lookup to configs
 (https://github.com/saltstack-formulas/apache-formula/commit/36ad2b24424936a4badeb7b4b2b26ee0d39e55f2[36ad2b2^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.39.0...v0.39.1++[0.39.1^] (2019-12-20)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.39.0...v0.39.1[0.39.1^]
+(2019-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *mod_mpm:* cast to int to avoid Jinja type mismatch error
 (https://github.com/saltstack-formulas/apache-formula/commit/21045c7a7b46d639c2d81c5793ad6e6d9d34b66b[21045c7^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.38.2...v0.39.0++[0.39.0^] (2019-12-20)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.38.2...v0.39.0[0.39.0^]
+(2019-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *gemfile:* restrict `train` gem version until upstream fix [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/13be6f9fac5aae55c48f74c784335c61d7fbaaf2[13be6f9^])
@@ -293,28 +385,36 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 * *travis:* use build config validation (beta) [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/73160b249124df6bbd36b113df71724c019a118f[73160b2^])
 
-=== Features
+Features
+^^^^^^^^
 
 * *server-status:* allow remote servers to reach server-status page
 (https://github.com/saltstack-formulas/apache-formula/commit/a3c0022d7988eee0ec43d939bced91dee9fec0e1[a3c0022^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.38.1...v0.38.2++[0.38.2^] (2019-11-07)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.38.1...v0.38.2[0.38.2^]
+(2019-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *apache/modules.sls:* fix duplicated ID
 (https://github.com/saltstack-formulas/apache-formula/commit/57afd71627eb554138c8d5ec9cc790d899ed80ff[57afd71^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.38.0...v0.38.1++[0.38.1^] (2019-11-05)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.38.0...v0.38.1[0.38.1^]
+(2019-11-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *mod_perl2.sls:* fix a2enmod perl2 error
 (https://github.com/saltstack-formulas/apache-formula/commit/fba8d217944c8b5a0abf19cdbae7d41d1ec5bf2e[fba8d21^])
 * *release.config.js:* use full commit hash in commit link [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/dc5593cfdf775e065ea5f680f2ed2b6b7c80d8ed[dc5593c^])
 
-=== Continuous Integration
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
 
 * *kitchen:* use `debian-10-master-py3` instead of `develop` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/09d82a581caa09298d3d99ded215c5e45c5b619f[09d82a5^])
@@ -326,14 +426,18 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 * *travis:* update `salt-lint` config for `v0.0.10` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/2622d48b4ccb01cd70555d46759d79d82d1db7bf[2622d48^])
 
-=== Performance Improvements
+Performance Improvements
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 * *travis:* improve `salt-lint` invocation [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/bf7577022040a155de8b3ab4f557dd05484d278c[bf75770^])
 
-== link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.37.4...v0.38.0++[0.38.0^] (2019-10-20)
+https://github.com/saltstack-formulas/apache-formula/compare/v0.37.4...v0.38.0[0.38.0^]
+(2019-10-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=== Bug Fixes
+Bug Fixes
+^^^^^^^^^
 
 * *apache-2.2.config.jinja:* fix `salt-lint` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/f4045ef[f4045ef^])
@@ -368,19 +472,22 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 * *yamllint:* fix all errors
 (https://github.com/saltstack-formulas/apache-formula/commit/97f6ead[97f6ead^])
 
-=== Documentation
+Documentation
+^^^^^^^^^^^^^
 
 * *formula:* use standard structure
 (https://github.com/saltstack-formulas/apache-formula/commit/701929d[701929d^])
 * *readme:* move to `docs/` directory and modify accordingly
 (https://github.com/saltstack-formulas/apache-formula/commit/6933f0e[6933f0e^])
 
-=== Features
+Features
+^^^^^^^^
 
 * *semantic-release:* implement for this formula
 (https://github.com/saltstack-formulas/apache-formula/commit/34d1f7c[34d1f7c^])
 
-=== Tests
+Tests
+^^^^^
 
 * *mod_security_spec:* convert from Serverspec to InSpec
 (https://github.com/saltstack-formulas/apache-formula/commit/68b971b[68b971b^])

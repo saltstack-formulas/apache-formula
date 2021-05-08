@@ -13,39 +13,30 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - Avatar
      - Contributor
      - Contributions
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/10231489?v=4' width='36' height='36' alt='@myii'>`
-     - `@myii <https://github.com/myii>`_
-     - 89
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1920805?v=4' width='36' height='36' alt='@alxwr'>`
      - `@alxwr <https://github.com/alxwr>`_
-     - 40
+     - 39
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1396878?v=4' width='36' height='36' alt='@gravyboat'>`
      - `@gravyboat <https://github.com/gravyboat>`_
      - 36
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1800660?v=4' width='36' height='36' alt='@aboe76'>`
-     - `@aboe76 <https://github.com/aboe76>`_
-     - 32
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/91293?v=4' width='36' height='36' alt='@whiteinge'>`
      - `@whiteinge <https://github.com/whiteinge>`_
      - 31
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/13322818?v=4' width='36' height='36' alt='@noelmcloughlin'>`
-     - `@noelmcloughlin <https://github.com/noelmcloughlin>`_
-     - 29
+   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1800660?v=4' width='36' height='36' alt='@aboe76'>`
+     - `@aboe76 <https://github.com/aboe76>`_
+     - 30
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/242396?v=4' width='36' height='36' alt='@javierbertoli'>`
      - `@javierbertoli <https://github.com/javierbertoli>`_
-     - 27
+     - 23
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/3374962?v=4' width='36' height='36' alt='@nmadhok'>`
      - `@nmadhok <https://github.com/nmadhok>`_
      - 20
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/528061?v=4' width='36' height='36' alt='@puneetk'>`
      - `@puneetk <https://github.com/puneetk>`_
      - 20
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/214768?v=4' width='36' height='36' alt='@ixs'>`
-     - `@ixs <https://github.com/ixs>`_
-     - 10
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/458548?v=4' width='36' height='36' alt='@SuperTux88'>`
-     - `@SuperTux88 <https://github.com/SuperTux88>`_
-     - 10
+   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/13322818?v=4' width='36' height='36' alt='@noelmcloughlin'>`
+     - `@noelmcloughlin <https://github.com/noelmcloughlin>`_
+     - 11
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/287147?v=4' width='36' height='36' alt='@techhat'>`
      - `@techhat <https://github.com/techhat>`_
      - 10
@@ -73,6 +64,9 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/5759396?v=4' width='36' height='36' alt='@kadogo'>`
      - `@kadogo <https://github.com/kadogo>`_
      - 6
+   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/214768?v=4' width='36' height='36' alt='@ixs'>`
+     - `@ixs <https://github.com/ixs>`_
+     - 5
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/637990?v=4' width='36' height='36' alt='@bmwiedemann'>`
      - `@bmwiedemann <https://github.com/bmwiedemann>`_
      - 5
@@ -85,9 +79,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1013915?v=4' width='36' height='36' alt='@rhertzog'>`
      - `@rhertzog <https://github.com/rhertzog>`_
      - 4
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/20515?v=4' width='36' height='36' alt='@scambra'>`
-     - `@scambra <https://github.com/scambra>`_
-     - 4
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/2094680?v=4' width='36' height='36' alt='@daschatten'>`
      - `@daschatten <https://github.com/daschatten>`_
      - 4
@@ -99,9 +90,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - 3
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1507504?v=4' width='36' height='36' alt='@arnisoph'>`
      - `@arnisoph <https://github.com/arnisoph>`_
-     - 3
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/4195158?v=4' width='36' height='36' alt='@dafyddj'>`
-     - `@dafyddj <https://github.com/dafyddj>`_
      - 3
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/312493?v=4' width='36' height='36' alt='@opdude'>`
      - `@opdude <https://github.com/opdude>`_
@@ -129,9 +117,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - 2
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/4313010?v=4' width='36' height='36' alt='@thornycrackers'>`
      - `@thornycrackers <https://github.com/thornycrackers>`_
-     - 2
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/29622411?v=4' width='36' height='36' alt='@gaetanars'>`
-     - `@gaetanars <https://github.com/gaetanars>`_
      - 2
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/7060082?v=4' width='36' height='36' alt='@msciciel'>`
      - `@msciciel <https://github.com/msciciel>`_
@@ -172,29 +157,17 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/20441?v=4' width='36' height='36' alt='@iggy'>`
      - `@iggy <https://github.com/iggy>`_
      - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/47893434?v=4' width='36' height='36' alt='@chorne-togetherwork'>`
-     - `@chorne-togetherwork <https://github.com/chorne-togetherwork>`_
-     - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/130219?v=4' width='36' height='36' alt='@corywright'>`
      - `@corywright <https://github.com/corywright>`_
      - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1233212?v=4' width='36' height='36' alt='@baby-gnu'>`
-     - `@baby-gnu <https://github.com/baby-gnu>`_
-     - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1640672?v=4' width='36' height='36' alt='@ev0rtex'>`
      - `@ev0rtex <https://github.com/ev0rtex>`_
-     - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/42472863?v=4' width='36' height='36' alt='@dimitry-unified-streaming'>`
-     - `@dimitry-unified-streaming <https://github.com/dimitry-unified-streaming>`_
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1194646?v=4' width='36' height='36' alt='@fintanmm'>`
      - `@fintanmm <https://github.com/fintanmm>`_
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/215487?v=4' width='36' height='36' alt='@fcrozat'>`
      - `@fcrozat <https://github.com/fcrozat>`_
-     - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/38090329?v=4' width='36' height='36' alt='@genaumann'>`
-     - `@genaumann <https://github.com/genaumann>`_
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/41886?v=4' width='36' height='36' alt='@jbouse'>`
      - `@jbouse <https://github.com/jbouse>`_
@@ -213,9 +186,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/22311?v=4' width='36' height='36' alt='@madssj'>`
      - `@madssj <https://github.com/madssj>`_
-     - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/201711?v=4' width='36' height='36' alt='@mariusvw'>`
-     - `@mariusvw <https://github.com/mariusvw>`_
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1106959?v=4' width='36' height='36' alt='@mpeeters'>`
      - `@mpeeters <https://github.com/mpeeters>`_
@@ -247,17 +217,11 @@ This list is sorted by the number of commits per contributor in *descending* ord
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/326786?v=4' width='36' height='36' alt='@wido'>`
      - `@wido <https://github.com/wido>`_
      - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/751889?v=4' width='36' height='36' alt='@Yoda-BZH'>`
-     - `@Yoda-BZH <https://github.com/Yoda-BZH>`_
-     - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/9978732?v=4' width='36' height='36' alt='@abehling'>`
      - `@abehling <https://github.com/abehling>`_
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1021809?v=4' width='36' height='36' alt='@ardin'>`
      - `@ardin <https://github.com/ardin>`_
-     - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/17029228?v=4' width='36' height='36' alt='@mcarlton00'>`
-     - `@mcarlton00 <https://github.com/mcarlton00>`_
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/924183?v=4' width='36' height='36' alt='@mschiff'>`
      - `@mschiff <https://github.com/mschiff>`_
@@ -267,9 +231,6 @@ This list is sorted by the number of commits per contributor in *descending* ord
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/55587680?v=4' width='36' height='36' alt='@srse'>`
      - `@srse <https://github.com/srse>`_
-     - 1
-   * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/46799934?v=4' width='36' height='36' alt='@sticky-note'>`
-     - `@sticky-note <https://github.com/sticky-note>`_
      - 1
    * - :raw-html-m2r:`<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/18380701?v=4' width='36' height='36' alt='@tsenay'>`
      - `@tsenay <https://github.com/tsenay>`_
@@ -281,4 +242,4 @@ This list is sorted by the number of commits per contributor in *descending* ord
 
 ----
 
-Auto-generated by a `forked version <https://github.com/myii/maintainer>`_ of `gaocegege/maintainer <https://github.com/gaocegege/maintainer>`_ on 2021-04-30.
+Auto-generated by a `forked version <https://github.com/myii/maintainer>`_ of `gaocegege/maintainer <https://github.com/gaocegege/maintainer>`_ on 2021-05-08.

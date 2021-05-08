@@ -2,6 +2,22 @@
 Changelog
 =========
 
+`2.0.1 <https://github.com/saltstack-formulas/apache-formula/compare/v2.0.0...v2.0.1>`_ (2021-05-08)
+--------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **antora:** convert ``.rst`` files to ``.adoc`` during ``semantic-release`` (\ `9cf428a <https://github.com/saltstack-formulas/apache-formula/commit/9cf428ab493bd4ee6cc93147487cbe8cd02e6513>`_\ )
+* **gitlab-ci:** make adjustments to test Antora more efficiently (\ `12c0a0f <https://github.com/saltstack-formulas/apache-formula/commit/12c0a0f1b209b6666f5b0919a16149e46471b34c>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **readme:** remove unused Sphinx ``readme`` anchor (\ `155cd69 <https://github.com/saltstack-formulas/apache-formula/commit/155cd69d6b29a13c6d3d47c846242eb9961fa007>`_\ )
+
 `1.1.3 <https://github.com/saltstack-formulas/apache-formula/compare/v1.1.2...v1.1.3>`_ (2021-04-30)
 --------------------------------------------------------------------------------------------------------
 
