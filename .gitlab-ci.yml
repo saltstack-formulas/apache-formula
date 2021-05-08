@@ -45,59 +45,59 @@ stages:
 variables:
   DOCKER_DRIVER: 'overlay2'
 
-###############################################################################
-# `lint` stage: `commitlint`, `pre-commit` & `rubocop` (latest, failure allowed)
-###############################################################################
-commitlint:
-  stage: *stage_lint
-  image: *image_commitlint
-  script:
-    # Add `upstream` remote to get access to `upstream/master`
-    - 'git remote add upstream
-       https://gitlab.com/saltstack-formulas/apache-formula.git'
-    - 'git fetch --all'
-    # Set default commit hashes for `--from` and `--to`
-    - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
-    - 'export COMMITLINT_TO="${CI_COMMIT_SHA}"'
-    # `coqbot` adds a merge commit to test PRs on top of the latest commit in
-    # the repo; amend this merge commit message to avoid failure
-    - |
-      if [ "${GITLAB_USER_LOGIN}" = "coqbot" ] \
-      && [ "${CI_COMMIT_BRANCH}" != "master" ]; then
-        git commit --amend -m \
-          'chore: reword coqbot merge commit message for commitlint'
-        export COMMITLINT_TO=HEAD
-      fi
-    # Run `commitlint`
-    - 'commitlint --from "${COMMITLINT_FROM}"
-                  --to   "${COMMITLINT_TO}"
-                  --verbose'
-
-pre-commit:
-  stage: *stage_lint
-  image: *image_precommit
-  # https://pre-commit.com/#gitlab-ci-example
-  variables:
-    PRE_COMMIT_HOME: '${CI_PROJECT_DIR}/.cache/pre-commit'
-  cache:
-    key: '${CI_JOB_NAME}'
-    paths:
-      - '${PRE_COMMIT_HOME}'
-  script:
-    - 'pre-commit run --all-files --color always --verbose'
-
-# Use a separate job for `rubocop` other than the one potentially run by `pre-commit`
-# - The `pre-commit` check will only be available for formulas that pass the default
-#   `rubocop` check -- and must continue to do so
-# - This job is allowed to fail, so can be used for all formulas
-# - Furthermore, this job uses all of the latest `rubocop` features & cops,
-#   which will help when upgrading the `rubocop` linter used in `pre-commit`
-rubocop:
-  allow_failure: true
-  stage: *stage_lint
-  image: *image_rubocop
-  script:
-    - 'rubocop -d -P -S --enable-pending-cops'
+# ###############################################################################
+# # `lint` stage: `commitlint`, `pre-commit` & `rubocop` (latest, failure allowed)
+# ###############################################################################
+# commitlint:
+#   stage: *stage_lint
+#   image: *image_commitlint
+#   script:
+#     # Add `upstream` remote to get access to `upstream/master`
+#     - 'git remote add upstream
+#        https://gitlab.com/saltstack-formulas/apache-formula.git'
+#     - 'git fetch --all'
+#     # Set default commit hashes for `--from` and `--to`
+#     - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
+#     - 'export COMMITLINT_TO="${CI_COMMIT_SHA}"'
+#     # `coqbot` adds a merge commit to test PRs on top of the latest commit in
+#     # the repo; amend this merge commit message to avoid failure
+#     - |
+#       if [ "${GITLAB_USER_LOGIN}" = "coqbot" ] \
+#       && [ "${CI_COMMIT_BRANCH}" != "master" ]; then
+#         git commit --amend -m \
+#           'chore: reword coqbot merge commit message for commitlint'
+#         export COMMITLINT_TO=HEAD
+#       fi
+#     # Run `commitlint`
+#     - 'commitlint --from "${COMMITLINT_FROM}"
+#                   --to   "${COMMITLINT_TO}"
+#                   --verbose'
+#
+# pre-commit:
+#   stage: *stage_lint
+#   image: *image_precommit
+#   # https://pre-commit.com/#gitlab-ci-example
+#   variables:
+#     PRE_COMMIT_HOME: '${CI_PROJECT_DIR}/.cache/pre-commit'
+#   cache:
+#     key: '${CI_JOB_NAME}'
+#     paths:
+#       - '${PRE_COMMIT_HOME}'
+#   script:
+#     - 'pre-commit run --all-files --color always --verbose'
+#
+# # Use a separate job for `rubocop` other than the one potentially run by `pre-commit`
+# # - The `pre-commit` check will only be available for formulas that pass the default
+# #   `rubocop` check -- and must continue to do so
+# # - This job is allowed to fail, so can be used for all formulas
+# # - Furthermore, this job uses all of the latest `rubocop` features & cops,
+# #   which will help when upgrading the `rubocop` linter used in `pre-commit`
+# rubocop:
+#   allow_failure: true
+#   stage: *stage_lint
+#   image: *image_rubocop
+#   script:
+#     - 'rubocop -d -P -S --enable-pending-cops'
 
 ###############################################################################
 # Define `test` template
@@ -135,42 +135,42 @@ rubocop:
 # default-oraclelinux-7-tiamat-py3: {extends: '.test_instance'}
 # default-debian-10-master-py3: {extends: '.test_instance'}
 # modules-debian-10-master-py3: {extends: '.test_instance'}
-debian-10-master-py3: {extends: '.test_instance'}
+# debian-10-master-py3: {extends: '.test_instance'}
 # default-debian-9-master-py3: {extends: '.test_instance'}
 # modules-debian-9-master-py3: {extends: '.test_instance'}
 # debian-9-master-py3: {extends: '.test_instance'}
 # default-ubuntu-2004-master-py3: {extends: '.test_instance'}
 # modules-ubuntu-2004-master-py3: {extends: '.test_instance'}
-ubuntu-2004-master-py3: {extends: '.test_instance'}
+# ubuntu-2004-master-py3: {extends: '.test_instance'}
 # default-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # modules-ubuntu-1804-master-py3: {extends: '.test_instance'}
-ubuntu-1804-master-py3: {extends: '.test_instance'}
+# ubuntu-1804-master-py3: {extends: '.test_instance'}
 # default-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # modules-ubuntu-1604-master-py3: {extends: '.test_instance'}
-ubuntu-1604-master-py3: {extends: '.test_instance'}
+# ubuntu-1604-master-py3: {extends: '.test_instance'}
 # default-centos-8-master-py3: {extends: '.test_instance'}
 # modules-centos-8-master-py3: {extends: '.test_instance'}
-centos-8-master-py3: {extends: '.test_instance'}
+# centos-8-master-py3: {extends: '.test_instance'}
 # default-centos-7-master-py3: {extends: '.test_instance'}
 # modules-centos-7-master-py3: {extends: '.test_instance'}
-centos-7-master-py3: {extends: '.test_instance'}
+# centos-7-master-py3: {extends: '.test_instance'}
 # default-fedora-34-master-py3: {extends: '.test_instance'}
 # modules-fedora-34-master-py3: {extends: '.test_instance'}
-fedora-34-master-py3: {extends: '.test_instance'}
+# fedora-34-master-py3: {extends: '.test_instance'}
 # default-fedora-33-master-py3: {extends: '.test_instance'}
 # modules-fedora-33-master-py3: {extends: '.test_instance'}
-fedora-33-master-py3: {extends: '.test_instance'}
+# fedora-33-master-py3: {extends: '.test_instance'}
 # default-fedora-32-master-py3: {extends: '.test_instance'}
 # modules-fedora-32-master-py3: {extends: '.test_instance'}
-fedora-32-master-py3: {extends: '.test_instance'}
+# fedora-32-master-py3: {extends: '.test_instance'}
 # default-opensuse-leap-152-master-py3: {extends: '.test_instance'}
 # modules-opensuse-leap-152-master-py3: {extends: '.test_instance'}
-opensuse-leap-152-master-py3: {extends: '.test_instance'}
-default-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# default-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
 # modules-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
 # opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
 # https://community.letsencrypt.org/t/localhost-crt-does-not-exist-or-is-empty/103979
-default-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# default-amazonlinux-2-master-py3: {extends: '.test_instance'}
 # modules-amazonlinux-2-master-py3: {extends: '.test_instance'}
 # amazonlinux-2-master-py3: {extends: '.test_instance'}
 # default-oraclelinux-8-master-py3: {extends: '.test_instance'}
@@ -178,7 +178,7 @@ default-amazonlinux-2-master-py3: {extends: '.test_instance'}
 # oraclelinux-8-master-py3: {extends: '.test_instance'}
 # default-oraclelinux-7-master-py3: {extends: '.test_instance'}
 # modules-oraclelinux-7-master-py3: {extends: '.test_instance'}
-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# oraclelinux-7-master-py3: {extends: '.test_instance'}
 # default-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
 # modules-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
 # gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
@@ -198,7 +198,7 @@ oraclelinux-7-master-py3: {extends: '.test_instance'}
 # default-oraclelinux-8-3003-0-py3: {extends: '.test_instance'}
 # default-oraclelinux-7-3003-0-py3: {extends: '.test_instance'}
 # default-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
-modules-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
+# modules-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
 # arch-base-latest-3003-0-py3: {extends: '.test_instance'}
 # default-gentoo-stage3-latest-3003-0-py3: {extends: '.test_instance'}
 # default-gentoo-stage3-systemd-3003-0-py3: {extends: '.test_instance'}
@@ -258,7 +258,6 @@ modules-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
 # `release` stage: `semantic-release`
 ###############################################################################
 semantic-release:
-  only: *only_branch_master_parent_repo
   stage: *stage_release
   image: *image_semanticrelease
   variables:
