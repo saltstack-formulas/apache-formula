@@ -34,7 +34,7 @@ apache-config-modules-pagespeed-pkg:
         {%- for dir in ['/var/cache/mod_pagespeed', '/var/log/pagespeed'] %}
 
 apache-config-modules-pagespeed-{{ dir }}-file-directory:
-  file.directory
+  file.directory:
     - name: {{ dir }}
     - makedirs: true
     - user: {{ apache.user }}
