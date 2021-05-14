@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.7](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.6...v1.1.7) (2021-05-14)
+
+
+### Bug Fixes
+
+* **mod_pagespeed:** add missing colon to `file.directory` ([a8b87a5](https://github.com/saltstack-formulas/apache-formula/commit/a8b87a583e91b7f69cff8485cb56249c3707ce74))
+
+
+### Continuous Integration
+
+* add `arch-master` to matrix and update `.travis.yml` [skip ci] ([069388b](https://github.com/saltstack-formulas/apache-formula/commit/069388be3a624a91b955227188ddee7c3650045e))
+
 ## [1.1.6](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.5...v1.1.6) (2021-05-08)
 
 
