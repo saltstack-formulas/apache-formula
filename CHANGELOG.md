@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.8](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.7...v1.1.8) (2021-06-28)
+
+
+### Bug Fixes
+
+* **register_site:** correct semicolon to colon ([4cf848d](https://github.com/saltstack-formulas/apache-formula/commit/4cf848da05eb558012a465bd6996749982908667))
+
+
+### Continuous Integration
+
+* **gitlab-ci:** ignore line to avoid `yamllint` violation [skip ci] ([a742f4e](https://github.com/saltstack-formulas/apache-formula/commit/a742f4ee00c08e7db34c2f3adcb8c90a58c851aa))
+* **gitlab-ci:** use `pandoc`-enabled `semantic-release` image [skip ci] ([3bf9c6e](https://github.com/saltstack-formulas/apache-formula/commit/3bf9c6e6a942b86fd16ca4b222bb6a1781f4e09d))
+* **kitchen+gitlab:** remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci] ([10ce382](https://github.com/saltstack-formulas/apache-formula/commit/10ce3822dd7ea9868ee986a08e2ccd48bd0026ee))
+* **kitchen+gitlab:** remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci] ([57e9873](https://github.com/saltstack-formulas/apache-formula/commit/57e98736247b196ad650528b705379fecf58c835))
+
 ## [1.1.7](https://github.com/saltstack-formulas/apache-formula/compare/v1.1.6...v1.1.7) (2021-05-14)
 
 
