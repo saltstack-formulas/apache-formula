@@ -63,7 +63,7 @@ apache-config-register-site-file-managed:
     - watch_in:
       - module: apache-service-running-reload
     - require_in:
-      - module; apache-service-running-reload
+      - module: apache-service-running-reload
   cmd.run:
     - name: echo dummy state to workaround requisite issue >/dev/null 2>&1
     - require_in:
