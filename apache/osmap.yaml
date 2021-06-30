@@ -38,6 +38,26 @@ Amazon-2:
       - GeoIP
       - mod_geoip
 
+AlmaLinux:
+  version: '2.4'
+  pkg:
+    deps:
+      - epel-release
+      - mod_ssl
+      - mod_security
+      - GeoIP
+      # mod_geoip
+
+Rocky:
+  version: '2.4'
+  pkg:
+    deps:
+      - epel-release
+      - mod_ssl
+      - mod_security
+      - GeoIP
+      # mod_geoip
+
 # os_family: Suse
 SUSE: {}
 openSUSE: {}
