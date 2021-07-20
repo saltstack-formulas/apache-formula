@@ -1,3 +1,0 @@
-.Explanations
-
-* xref:explanation-.adoc[...]

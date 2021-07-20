@@ -1,3 +1,0 @@
-.References
-
-* xref:reference-.adoc[...]
