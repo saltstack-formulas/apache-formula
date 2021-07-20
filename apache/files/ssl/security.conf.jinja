@@ -1,3 +1,0 @@
-{% for option, value in salt['pillar.get']('apache:security', {}).items() -%}
-{{ option }} {{ value }}
-{% endfor %}

@@ -1,4 +1,0 @@
-{%- for directive, dvalue in salt['pillar.get']('apache:global', {}).items() %}
-{{ directive }} {{ dvalue }}
-{%- endfor %}
-
