@@ -1,7 +1,0 @@
-RemoteIPHeader {{ salt['pillar.get']('apache:mod_remoteip:RemoteIPHeader', 'X-Forwarded-For') }}
-{%- for trusted_proxy in salt['pillar.get']('apache:mod_remoteip:RemoteIPTrustedProxy', []) %}
-RemoteIPTrustedProxy {{ trusted_proxy }}
-{%- endfor %}
-{%- for trusted_proxy in salt['pillar.get']('apache:mod_remoteip:RemoteIPInternalProxy', []) %}
-RemoteIPInternalProxy {{ trusted_proxy }}
-{%- endfor %}
