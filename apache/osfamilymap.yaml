@@ -109,7 +109,7 @@ Suse:
   mod_geoip: apache2-mod_geoip
   mod_geoip_database: GeoIP-data
 
-  vhostdir: /etc/apache2/sites-available
+  vhostdir: /etc/apache2/vhosts.d
   confdir: /etc/apache2/conf.d
   modulesdir: /usr/lib64/apache2/modules
   confext: .conf
@@ -119,7 +119,7 @@ Suse:
   logrotatedir: /etc/logrotate.d/apache2
   wwwdir: /srv/www
   moddir: /etc/apache2/mods-enabled
-  sitesdir: /etc/apache2/sites-enabled
+  sitesdir: /etc/apache2/vhosts.d
 
 Gentoo:
   pkg:
