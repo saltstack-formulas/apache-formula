@@ -2,6 +2,36 @@
 
 :sectnums!:
 
+== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.8...v1.2.0++[1.2.0^] (2021-08-28)
+
+=== Bug Fixes
+
+* *suse:* use correct vhostdir and sitesdir for suse family
+(https://github.com/saltstack-formulas/apache-formula/issues/369[#369^])
+(https://github.com/saltstack-formulas/apache-formula/commit/fe0ceb78b7d4e9f67bc4d5b684b847bdcc604b20[fe0ceb7^]),
+closes
+https://github.com//documentation.suse.com/sles/15-SP3/html/SLES-all/cha-apache2.html/issues/sec-apache2[/documentation.suse.com/sles/15-SP3/html/SLES-all/cha-apache2.html#sec-apache2^]
+
+=== Continuous Integration
+
+* *3003.1:* update inc. AlmaLinux, Rocky & `rst-lint` [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/2e116ec4123b846edd85b651c9634e03cb102abf[2e116ec^])
+* *freebsd:* update with latest pre-salted Vagrant boxes [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/d67958043df41515350a4b02c5de81e0d83eb813[d679580^])
+* *gemfile+lock:* use `ssf` customised `inspec` repo [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/5dd700944b413411fc3557063125f22c1eb6f62a[5dd7009^])
+* *kitchen:* move `provisioner` block & update `run_command` [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/0d1a6dc75d1a781518bf4d7262dbfb4cfbc2c0b9[0d1a6dc^])
+* *kitchen+ci:* update with latest `3003.2` pre-salted images [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/d3641d7f0d427d9e8be9d20bd03f84977d1cba22[d3641d7^])
+* add Debian 11 Bullseye & update `yamllint` configuration [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/7741b90ff66719c1abfca3fb306d07ee47cbd4c8[7741b90^])
+
+=== Features
+
+* *alma+rocky:* add platforms (based on CentOS 8) [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/4353e57a1b652186f552472f16f1b06f8fb4f0a1[4353e57^])
+
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.7...v1.1.8++[1.1.8^] (2021-06-28)
 
 === Bug Fixes
