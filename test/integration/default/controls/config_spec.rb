@@ -5,11 +5,16 @@ control 'apache configuration' do
   title 'should match desired lines'
 
   case platform[:family]
-  when 'debian', 'suse'
+  when 'debian'
     vhostdir = '/etc/apache2/sites-available'
     logrotatedir = '/etc/logrotate.d/apache2'
     moddir = '/etc/apache2/mods-enabled'
     sitesdir = '/etc/apache2/sites-enabled'
+  when 'suse'
+    vhostdir = '/etc/apache2/vhosts.d'
+    logrotatedir = '/etc/logrotate.d/apache2'
+    moddir = '/etc/apache2/mods-enabled'
+    sitesdir = '/etc/apache2/vhosts.d'
   when 'redhat', 'fedora'
     vhostdir = '/etc/httpd/vhosts.d'
     logrotatedir = '/etc/logrotate.d/httpd'
