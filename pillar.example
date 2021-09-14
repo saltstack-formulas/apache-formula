@@ -175,9 +175,9 @@ apache:
     example2.com_ssl:
       port: 443
       ServerName: example.com
-      SSLCertificateFile: /path/to/ssl.crt
-      SSLCertificateKeyFile: /path/to/ssl.key
-      SSLCertificateChainFile: /path/to/ssl.ca.crt
+      # SSLCertificateFile: /path/to/ssl.crt
+      # SSLCertificateKeyFile: /path/to/ssl.key
+      # SSLCertificateChainFile: /path/to/ssl.ca.crt
 
     # Use RedirectMatch Directive
     redirectmatch.com:
@@ -391,7 +391,7 @@ apache:
   modules:
     enabled:   # List modules to enable
       - ssl
-      - prefork
+      # - prefork
       - rewrite
       - proxy
       - proxy_ajp
@@ -399,13 +399,13 @@ apache:
       - headers
       # geoip
       - status
-      - logio
+      # - logio
       - dav
       - dav_fs
       - dav_lock
       - auth_digest
       - socache_shmcb
-      - watchdog
+      # - watchdog
       - xml2enc
       - ldap
     disabled:  # List modules to disable

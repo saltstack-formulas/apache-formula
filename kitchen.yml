@@ -506,11 +506,11 @@ suites:
             - apache.config.modules.mod_actions
             - apache.config.modules.mod_cgi
             - apache.config.modules.mod_dav_svn
-            - apache.config.modules.mod_fastcgi
+            # - apache.config.modules.mod_fastcgi
             - apache.config.modules.mod_fcgid
             - apache.config.modules.mod_geoip
             - apache.config.modules.mod_headers
-            - apache.config.modules.mod_logio
+            # - apache.config.modules.mod_logio
             - apache.config.modules.mod_mpm
             - apache.config.modules.mod_pagespeed
             - apache.config.modules.mod_perl2

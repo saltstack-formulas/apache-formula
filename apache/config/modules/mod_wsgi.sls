@@ -14,7 +14,7 @@ apache-config-modules-wsgi-pkg:
   pkg.installed:
     - name: {{ apache.pkg.mod_wsgi }}
     - require:
-      - pkg: apache
+      - pkg: apache-package-install-pkg-installed
     - watch_in:
       - module: apache-service-running-restart
     - require_in:

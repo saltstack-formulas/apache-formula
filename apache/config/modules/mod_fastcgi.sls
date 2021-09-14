@@ -38,7 +38,7 @@ apache-config-modules-fastcgi_cmd-run:
     - unless: ls {{ apache.moddir }}/fastcgi.load
     - order: 225
     - require:
-      - pkg: mod-fastcgi
+      - pkg: apache-config-modules-fastcgi-pkg
     - watch_in:
       - module: apache-service-running-restart
     - require_in:

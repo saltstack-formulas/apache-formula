@@ -26,7 +26,7 @@ Debian:
   portsfile: /etc/apache2/ports.conf
 
   mod_wsgi: libapache2-mod-wsgi
-  mod_php5: libapache2-mod-php5
+  mod_php5: libapache2-mod-php
   mod_perl2: libapache2-mod-perl2
   mod_fcgid: libapache2-mod-fcgid
   mod_upload_progress: libapache2-mod-upload-progress

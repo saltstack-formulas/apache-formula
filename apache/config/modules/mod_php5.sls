@@ -25,7 +25,7 @@ apache-config-modules-php5-pkg:
     - unless: ls {{ apache.moddir }}/php5.load || egrep "^APACHE_MODULES=" /etc/sysconfig/apache2 | grep ' php5'
     - order: 225
     - require:
-      - pkg: mod-php5
+      - pkg: apache-config-modules-php5-pkg
     - watch_in:
       - module: apache-service-running-restart
     - require_in:
