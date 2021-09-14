@@ -464,7 +464,7 @@ apache:
     sec_debug_log_level: '3'
 
     rules:
-      enabled: ~
+      # enabled: ~
       modsecurity_crs_10_setup.conf:
         rule_set: ''
         enabled: true

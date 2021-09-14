@@ -13,7 +13,7 @@ include:
   - {{ sls_package_install }}
 
 apache-config-modules-upload_progress-pkg:
-  pkg.installed
+  pkg.installed:
     - name: {{ apache.mod_upload_progress }}
   cmd.run:
     - name: a2enmod upload_progress

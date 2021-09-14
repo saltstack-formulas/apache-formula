@@ -1,9 +1,11 @@
-{%- set apache = pillar.get('apache', {}) %}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import apache with context %}
+{#- set apache = pillar.get('apache', {}) #}
 {%- set mod_security = apache.get('mod_security', {}) %}
 {%- if mod_security.get('manage_config', False) %}
 
 include:
-  - apache.mod_security
+  - apache.config.modules.mod_security
 
 {%- for rule_name, rule_details in mod_security.get('rules', {}).items() %}
   {%- set rule_set = rule_details.get('rule_set', '') %}
