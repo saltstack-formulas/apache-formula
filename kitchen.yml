@@ -545,18 +545,18 @@ suites:
             # - apache.vhosts
             # - apache.vhosts.standard
 
-            ### Need these handled separately
-            # - apache.vhosts.clean
-            # - apache.vhosts.cleanup
-            # - apache.certificates.clean
-            - apache.service.clean
-            # - apache.config.vhosts.clean  # this is a symlink!
-            - apache.config.vhosts.cleanup
-            - apache.config.modules.clean
-            - apache.config.certificates.clean
-            - apache.config.clean
-            - apache.package.clean
-            - apache.clean
+            # ### Need these handled separately
+            # # - apache.vhosts.clean
+            # # - apache.vhosts.cleanup
+            # # - apache.certificates.clean
+            # - apache.service.clean
+            # # - apache.config.vhosts.clean  # this is a symlink!
+            # - apache.config.vhosts.cleanup
+            # - apache.config.modules.clean
+            # - apache.config.certificates.clean
+            # - apache.config.clean
+            # - apache.package.clean
+            # - apache.clean
       pillars:
         top.sls:
           base:
