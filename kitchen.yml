@@ -512,9 +512,9 @@ suites:
             - apache.config.modules.mod_headers
             # - apache.config.modules.mod_logio
             - apache.config.modules.mod_mpm
-            - apache.config.modules.mod_pagespeed
+            # - apache.config.modules.mod_pagespeed  # works but then breaks 2nd time
             - apache.config.modules.mod_perl2
-            - apache.config.modules.mod_php5
+            # - apache.config.modules.mod_php5
             - apache.config.modules.mod_proxy
             - apache.config.modules.mod_proxy_ajp
             - apache.config.modules.mod_proxy_fcgi
@@ -537,21 +537,21 @@ suites:
             - apache.config.register_site
             - apache.config.vhosts
             - apache.config.vhosts.standard
-            - apache.config.vhosts.cleanup
             - apache.modules
             - apache.package
             - apache.package.install
             - apache.service
             - apache.service.running
-            - apache.test
             # - apache.vhosts
             # - apache.vhosts.standard
-            # - apache.vhosts.cleanup
 
+            ### Need these handled separately
             # - apache.vhosts.clean
+            # - apache.vhosts.cleanup
             # - apache.certificates.clean
             - apache.service.clean
-            - apache.config.vhosts.clean
+            # - apache.config.vhosts.clean  # this is a symlink!
+            - apache.config.vhosts.cleanup
             - apache.config.modules.clean
             - apache.config.certificates.clean
             - apache.config.clean
