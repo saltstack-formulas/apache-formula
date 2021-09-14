@@ -8,6 +8,9 @@ driver:
   privileged: true
   run_command: /usr/lib/systemd/systemd
 
+# Using the commit title as a comment to guarantee change for new commit/push:
+# ci: test for upstream Salt regressions in '`'master'`' instances (2021-W37a)
+
 provisioner:
   name: salt_solo
   log_level: debug
