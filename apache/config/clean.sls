@@ -3,6 +3,7 @@
 
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_service_clean = tplroot ~ '.service.clean' %}
+{%- set sls_modules_clean = tplroot ~ '.config.modules.clean' %}
 {%- from tplroot ~ "/map.jinja" import apache with context %}
 
 include:
@@ -21,3 +22,4 @@ apache-config-clean-file-absent:
       - {{ apache.confdir }}/server-status{{ apache.confext }}
     - require:
       - sls: {{ sls_service_clean }}
+      - sls: {{ sls_modules_clean }}

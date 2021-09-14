@@ -2,11 +2,11 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- set sls_service_running = tplroot ~ '.service.running' %}
+{%- set sls_service_clean = tplroot ~ '.service.clean' %}
 {%- from tplroot ~ "/map.jinja" import apache with context %}
 
 include:
-  - {{ sls_service_running }}
+  - {{ sls_service_clean }}
 
 {%- for site, cert in salt['pillar.get']('apache:sites', {}).items() %}
 
@@ -15,12 +15,8 @@ include:
 apache_cert_config_clean_{{ site }}_key_file:
   file.absent:
     - name: {{ cert.SSLCertificateKeyFile }}
-    - watch_in:
-      - module: apache-service-running-reload
-    - require_in:
-      - module: apache-service-running-restart
-      - module: apache-service-running-reload
-      - service: apache-service-running
+    - require:
+      - sls: {{ sls_service_clean }}
 
     {%- endif %}
     {%- if cert.SSLCertificateFile is defined %}
@@ -28,25 +24,17 @@ apache_cert_config_clean_{{ site }}_key_file:
 apache_cert_config_clean_{{ site }}_cert_file:
   file.absent:
     - name: {{ cert.SSLCertificateFile }}
-    - watch_in:
-      - module: apache-service-running-reload
-    - require_in:
-      - module: apache-service-running-restart
-      - module: apache-service-running-reload
-      - service: apache-service-running
+    - require:
+      - sls: {{ sls_service_clean }}
 
     {%- endif %}
     {%- if cert.SSLCertificateChainFile is defined %}
 
 apache_cert_config_clean_{{ site }}_bundle_file:
-  file.managed:
+  file.absent:
     - name: {{ cert.SSLCertificateChainFile }}
-    - watch_in:
-      - module: apache-service-running-reload
-    - require_in:
-      - module: apache-service-running-restart
-      - module: apache-service-running-reload
-      - service: apache-service-running
+    - require:
+      - sls: {{ sls_service_clean }}
 
     {%- endif %}
 {%- endfor %}

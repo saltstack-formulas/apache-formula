@@ -3,11 +3,11 @@
 
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_package_clean = tplroot ~ '.package.clean' %}
-{%- set sls_service_dead = tplroot ~ '.service.clean' %}
+{%- set sls_service_clean = tplroot ~ '.service.clean' %}
 {%- from tplroot ~ "/map.jinja" import apache with context %}
 
 include:
-  - {{ sls_service_dead }}
+  - {{ sls_service_clean }}
 
     {%- set existing_states = salt['cp.list_states']() %}
     {%- for module in salt['pillar.get']('apache:modules:disabled', []) %}
@@ -45,8 +45,6 @@ apache-config-modules-{{ module }}-disable:
 
     - order: 225
     - require:
-      - sls: {{ sls_service_dead }}
-    - require_in:
-      - pkg: apache-package-clean-pkg-removed
+      - sls: {{ sls_service_clean }}
 
     {%- endfor %}
