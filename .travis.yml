@@ -24,10 +24,6 @@ cache: 'bundler'
 services:
   - docker
 
-## Use the latest gems for this `master` run
-## https://docs.travis-ci.com/user/job-lifecycle/
-before_install: bundle update
-
 ## Script to run for the test stage
 script:
   - bin/kitchen verify "${INSTANCE}"
@@ -41,6 +37,48 @@ stages:
   #   if: 'branch = master AND type != pull_request'
 jobs:
   include:
+    ## Define the test stage that runs the linters (and testing matrix, if applicable)
+
+    # Run all of the linters in a single job
+    - language: 'node_js'
+      node_js: 'lts/*'
+      env: 'Lint'
+      name: 'Lint: salt-lint, yamllint, rubocop, shellcheck & commitlint'
+      before_install: 'skip'
+      script:
+        # Install and run `salt-lint`
+        - pip install --user salt-lint
+        - git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst'
+                        | xargs salt-lint
+        # Install and run `yamllint`
+        # Need at least `v1.17.0` for the `yaml-files` setting
+        - pip install --user yamllint>=1.17.0
+        - yamllint -s .
+        # Install and run `rubocop`
+        - gem install rubocop
+        - rubocop -d
+        # Run `shellcheck` (already pre-installed in Travis)
+        - shellcheck --version
+        - git ls-files -- '*.sh' '*.bash' '*.ksh'
+                        | xargs shellcheck
+        # Install and run `commitlint`
+        - npm i -D @commitlint/config-conventional
+                   @commitlint/travis-cli
+        - commitlint-travis
+
+    # Run `pre-commit` linters in a single job
+    - language: 'python'
+      env: 'Lint_pre-commit'
+      name: 'Lint: pre-commit'
+      before_install: 'skip'
+      cache:
+        directories:
+          - $HOME/.cache/pre-commit
+      script:
+        # Install and run `pre-commit`
+        - pip install pre-commit==2.7.1
+        - pre-commit run --all-files --color always --verbose
+        - pre-commit run --color always --hook-stage manual --verbose commitlint-travis
 
     ## Define the rest of the matrix based on Kitchen testing
     # Make sure the instances listed below match up with
@@ -216,16 +254,14 @@ jobs:
         # Run `semantic-release`
         script: 'npx semantic-release@15.14'
 
-# yamllint disable rule:line-length
 # Notification options: `always`, `never` or `change`
 notifications:
   webhooks:
-    if: 'repo = saltstack-formulas/apache-formula OR repo = myii/apache-formula'
+    if: 'repo = saltstack-formulas/apache-formula'
     urls:
-      - https://saltstack-formulas.zulipchat.com/api/v1/external/travis?api_key=HsIq3o5QmLxdnVCKF9is0FUIpkpAY79P&stream=CI&topic=master%2F2021-W37a&ignore_pull_requests=true
+      - https://saltstack-formulas.zulipchat.com/api/v1/external/travis?api_key=HsIq3o5QmLxdnVCKF9is0FUIpkpAY79P&stream=CI&topic=saltstack-formulas%2Fapache-formula&ignore_pull_requests=true
     on_success: always  # default: always
     on_failure: always  # default: always
-    on_start: never     # default: never
+    on_start: always    # default: never
     on_cancel: always   # default: always
     on_error: always    # default: always
-# yamllint enable rule:line-length

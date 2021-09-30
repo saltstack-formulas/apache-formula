@@ -15,7 +15,7 @@ module.exports = {
         prepareCmd: 'sh ./pre-commit_semantic-release.sh ${nextRelease.version}',
       }],
       ['@semantic-release/git', {
-        assets: ['*.md', 'docs/*.rst', 'FORMULA', 'docs/antora.yml', 'docs/modules/ROOT/pages/*.adoc'],
+        assets: ['*.md', 'docs/*.rst', 'FORMULA'],
       }],
       '@semantic-release/github',
   ],

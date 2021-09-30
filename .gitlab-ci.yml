@@ -19,8 +19,7 @@
     name: 'myii/ssf-pre-commit:2.9.2'
     entrypoint: ['/bin/bash', '-c']
   image_rubocop: &image_rubocop 'pipelinecomponents/rubocop:latest'
-  # yamllint disable-line rule:line-length
-  image_semantic-release: &image_semanticrelease 'myii/ssf-semantic-release-pandoc:15.14'
+  image_semantic-release: &image_semanticrelease 'myii/ssf-semantic-release:15.14'
   # `services`
   services_docker_dind: &services_docker_dind
     - 'docker:dind'
@@ -49,58 +48,56 @@ variables:
 ###############################################################################
 # `lint` stage: `commitlint`, `pre-commit` & `rubocop` (latest, failure allowed)
 ###############################################################################
-# commitlint:
-#   allow_failure: true
-#   stage: *stage_lint
-#   image: *image_commitlint
-#   script:
-#     # Add `upstream` remote to get access to `upstream/master`
-#     - 'git remote add upstream
-#        https://gitlab.com/saltstack-formulas/apache-formula.git'
-#     - 'git fetch --all'
-#     # Set default commit hashes for `--from` and `--to`
-#     - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
-#     - 'export COMMITLINT_TO="${CI_COMMIT_SHA}"'
-#     # `coqbot` adds a merge commit to test PRs on top of the latest commit in
-#     # the repo; amend this merge commit message to avoid failure
-#     - |
-#       if [ "${GITLAB_USER_LOGIN}" = "coqbot" ] \
-#       && [ "${CI_COMMIT_BRANCH}" != "master" ]; then
-#         git commit --amend -m \
-#           'chore: reword coqbot merge commit message for commitlint'
-#         export COMMITLINT_TO=HEAD
-#       fi
-#     # Run `commitlint`
-#     - 'commitlint --from "${COMMITLINT_FROM}"
-#                   --to   "${COMMITLINT_TO}"
-#                   --verbose'
-#
-# pre-commit:
-#   allow_failure: true
-#   stage: *stage_lint
-#   image: *image_precommit
-#   # https://pre-commit.com/#gitlab-ci-example
-#   variables:
-#     PRE_COMMIT_HOME: '${CI_PROJECT_DIR}/.cache/pre-commit'
-#   cache:
-#     key: '${CI_JOB_NAME}'
-#     paths:
-#       - '${PRE_COMMIT_HOME}'
-#   script:
-#     - 'pre-commit run --all-files --color always --verbose'
-#
-# # Use a separate job for `rubocop` other than the one potentially run by `pre-commit`
-# # - The `pre-commit` check will only be available for formulas that pass the default
-# #   `rubocop` check -- and must continue to do so
-# # - This job is allowed to fail, so can be used for all formulas
-# # - Furthermore, this job uses all of the latest `rubocop` features & cops,
-# #   which will help when upgrading the `rubocop` linter used in `pre-commit`
-# rubocop:
-#   allow_failure: true
-#   stage: *stage_lint
-#   image: *image_rubocop
-#   script:
-#     - 'rubocop -d -P -S --enable-pending-cops'
+commitlint:
+  stage: *stage_lint
+  image: *image_commitlint
+  script:
+    # Add `upstream` remote to get access to `upstream/master`
+    - 'git remote add upstream
+       https://gitlab.com/saltstack-formulas/apache-formula.git'
+    - 'git fetch --all'
+    # Set default commit hashes for `--from` and `--to`
+    - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
+    - 'export COMMITLINT_TO="${CI_COMMIT_SHA}"'
+    # `coqbot` adds a merge commit to test PRs on top of the latest commit in
+    # the repo; amend this merge commit message to avoid failure
+    - |
+      if [ "${GITLAB_USER_LOGIN}" = "coqbot" ] \
+      && [ "${CI_COMMIT_BRANCH}" != "master" ]; then
+        git commit --amend -m \
+          'chore: reword coqbot merge commit message for commitlint'
+        export COMMITLINT_TO=HEAD
+      fi
+    # Run `commitlint`
+    - 'commitlint --from "${COMMITLINT_FROM}"
+                  --to   "${COMMITLINT_TO}"
+                  --verbose'
+
+pre-commit:
+  stage: *stage_lint
+  image: *image_precommit
+  # https://pre-commit.com/#gitlab-ci-example
+  variables:
+    PRE_COMMIT_HOME: '${CI_PROJECT_DIR}/.cache/pre-commit'
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - '${PRE_COMMIT_HOME}'
+  script:
+    - 'pre-commit run --all-files --color always --verbose'
+
+# Use a separate job for `rubocop` other than the one potentially run by `pre-commit`
+# - The `pre-commit` check will only be available for formulas that pass the default
+#   `rubocop` check -- and must continue to do so
+# - This job is allowed to fail, so can be used for all formulas
+# - Furthermore, this job uses all of the latest `rubocop` features & cops,
+#   which will help when upgrading the `rubocop` linter used in `pre-commit`
+rubocop:
+  allow_failure: true
+  stage: *stage_lint
+  image: *image_rubocop
+  script:
+    - 'rubocop -d -P -S --enable-pending-cops'
 
 ###############################################################################
 # Define `test` template
@@ -116,7 +113,6 @@ variables:
     - 'bundle config set path "${BUNDLE_CACHE_PATH}"'
     - 'bundle config set without "${BUNDLE_WITHOUT}"'
     - 'bundle install'
-    # - 'bundle update --all'
   script:
     # Alternative value to consider: `${CI_JOB_NAME}`
     - 'bin/kitchen verify "${DOCKER_ENV_CI_JOB_NAME}"'

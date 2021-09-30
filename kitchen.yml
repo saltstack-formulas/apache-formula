@@ -8,9 +8,6 @@ driver:
   privileged: true
   run_command: /usr/lib/systemd/systemd
 
-# Using the commit title as a comment to guarantee change for new commit/push:
-# ci: test for upstream Salt regressions in '`'master'`' instances (2021-W37a)
-
 provisioner:
   name: salt_solo
   log_level: debug
@@ -484,84 +481,3 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/modules
-  - name: all
-    provisioner:
-      state_top:
-        base:
-          '*':
-            - apache._mapdata
-            - apache
-            # - apache.certificates
-            # - apache.certificates.install
-            - apache.config
-            - apache.config.certificates
-            - apache.config.certificates.install
-            - apache.config.debian_full
-            - apache.config.file
-            - apache.config.flags
-            - apache.config.logrotate
-            - apache.config.manage_security
-            - apache.config.modules
-            - apache.config.modules.install
-            - apache.config.modules.mod_actions
-            - apache.config.modules.mod_cgi
-            - apache.config.modules.mod_dav_svn
-            # - apache.config.modules.mod_fastcgi
-            - apache.config.modules.mod_fcgid
-            - apache.config.modules.mod_geoip
-            - apache.config.modules.mod_headers
-            # - apache.config.modules.mod_logio
-            - apache.config.modules.mod_mpm
-            # - apache.config.modules.mod_pagespeed  # works but then breaks 2nd time
-            - apache.config.modules.mod_perl2
-            # - apache.config.modules.mod_php5
-            - apache.config.modules.mod_proxy
-            - apache.config.modules.mod_proxy_ajp
-            - apache.config.modules.mod_proxy_fcgi
-            - apache.config.modules.mod_proxy_http
-            - apache.config.modules.mod_remoteip
-            - apache.config.modules.mod_rewrite
-            - apache.config.modules.mod_security
-            - apache.config.modules.mod_security.rules
-            - apache.config.modules.mod_socache_shmcb
-            - apache.config.modules.mod_ssl
-            - apache.config.modules.mod_status
-            - apache.config.modules.mod_suexec
-            - apache.config.modules.mod_upload_progress
-            - apache.config.modules.mod_vhost_alias
-            - apache.config.modules.mod_wsgi
-            - apache.config.modules.mod_xsendfile
-            # - apache.config.modules.server_status
-            - apache.config.no_default_vhost
-            - apache.config.own_default_vhost
-            - apache.config.register_site
-            - apache.config.vhosts
-            - apache.config.vhosts.standard
-            - apache.modules
-            - apache.package
-            - apache.package.install
-            - apache.service
-            - apache.service.running
-            # - apache.vhosts
-            # - apache.vhosts.standard
-
-            # ### Need these handled separately
-            # # - apache.vhosts.clean
-            # # - apache.vhosts.cleanup
-            # # - apache.certificates.clean
-            # - apache.service.clean
-            # # - apache.config.vhosts.clean  # this is a symlink!
-            # - apache.config.vhosts.cleanup
-            # - apache.config.modules.clean
-            # - apache.config.certificates.clean
-            # - apache.config.clean
-            # - apache.package.clean
-            # - apache.clean
-      pillars:
-        top.sls:
-          base:
-            '*':
-              - apache
-      pillars_from_files:
-        apache.sls: pillar.example
-    verifier: {}
