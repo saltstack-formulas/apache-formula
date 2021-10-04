@@ -40,9 +40,9 @@ cd ..
 sed -i -e "/^\(version: '\).*\('\)$/s//\1${1}\2/" docs/antora.yml
 
 # Convert the files from `.rst` to `.adoc` using `pandoc`
-FROM=rst && FN=CHANGELOG && pandoc -t asciidoc -f ${FROM} -o docs/modules/ROOT/pages/${FN}.adoc docs/${FN}.${FROM}
-FROM=rst && FN=AUTHORS && pandoc -t asciidoc -f ${FROM} -o docs/modules/ROOT/pages/${FN}.adoc docs/${FN}.${FROM}
-FROM=rst && FN=README && pandoc -t asciidoc -f ${FROM} -o docs/modules/ROOT/pages/${FN}.adoc docs/${FN}.${FROM}
+FROM=rst && FN=CHANGELOG && pandoc -t asciidoctor -f ${FROM} -o docs/modules/ROOT/pages/${FN}.adoc docs/${FN}.${FROM}
+FROM=rst && FN=AUTHORS && pandoc -t asciidoctor -f ${FROM} -o docs/modules/ROOT/pages/${FN}.adoc docs/${FN}.${FROM}
+FROM=rst && FN=README && pandoc -t asciidoctor -f ${FROM} -o docs/modules/ROOT/pages/${FN}.adoc docs/${FN}.${FROM}
 
 # Adjust `CHANGELOG.adoc`
 ADOC="docs/modules/ROOT/pages/CHANGELOG.adoc"
