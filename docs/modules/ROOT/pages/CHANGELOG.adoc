@@ -2,6 +2,28 @@
 
 :sectnums!:
 
+== link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.2.0...v1.2.1++[1.2.1^] (2021-10-20)
+
+=== Bug Fixes
+
+* *vhosts:* reset `+cleanup+` to previous and use dedicated `+clean+`
+SLS
+(https://github.com/saltstack-formulas/apache-formula/commit/0c6c1d36e261ae6f851cb9b6ed2d1319af460a73[0c6c1d3^])
+
+=== Continuous Integration
+
+* *kitchen+ci:* update with latest CVE pre-salted images [skip ci]
+(https://github.com/saltstack-formulas/apache-formula/commit/a3d49f185274efc6d1530580daf03b1ad2be0e2d[a3d49f1^])
+* test for upstream Salt regressions in `+master+` instances (2021-W37a)
+(https://github.com/saltstack-formulas/apache-formula/commit/69dcfd9c3bf49416e6c77d8e982446d99af3b95c[69dcfd9^])
+
+=== Documentation
+
+* *readme:* document vhosts clean/cleanup
+(https://github.com/saltstack-formulas/apache-formula/commit/2d72dff82bdcf9c0d30f6735c315a655ebea483d[2d72dff^]),
+closes
+https://github.com/saltstack-formulas/apache-formula/issues/372[#372^]
+
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.8...v1.2.0++[1.2.0^] (2021-08-28)
 
 === Bug Fixes
@@ -14,17 +36,19 @@ https://github.com//documentation.suse.com/sles/15-SP3/html/SLES-all/cha-apache2
 
 === Continuous Integration
 
-* *3003.1:* update inc. AlmaLinux, Rocky & `rst-lint` [skip ci]
+* *3003.1:* update inc. AlmaLinux, Rocky & `+rst-lint+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/2e116ec4123b846edd85b651c9634e03cb102abf[2e116ec^])
 * *freebsd:* update with latest pre-salted Vagrant boxes [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/d67958043df41515350a4b02c5de81e0d83eb813[d679580^])
-* *gemfile+lock:* use `ssf` customised `inspec` repo [skip ci]
+* *gemfile+lock:* use `+ssf+` customised `+inspec+` repo [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/5dd700944b413411fc3557063125f22c1eb6f62a[5dd7009^])
-* *kitchen:* move `provisioner` block & update `run_command` [skip ci]
+* *kitchen:* move `+provisioner+` block & update `+run_command+` [skip
+ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/0d1a6dc75d1a781518bf4d7262dbfb4cfbc2c0b9[0d1a6dc^])
-* *kitchen+ci:* update with latest `3003.2` pre-salted images [skip ci]
+* *kitchen+ci:* update with latest `+3003.2+` pre-salted images [skip
+ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/d3641d7f0d427d9e8be9d20bd03f84977d1cba22[d3641d7^])
-* add Debian 11 Bullseye & update `yamllint` configuration [skip ci]
+* add Debian 11 Bullseye & update `+yamllint+` configuration [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/7741b90ff66719c1abfca3fb306d07ee47cbd4c8[7741b90^])
 
 === Features
@@ -41,9 +65,10 @@ https://github.com//documentation.suse.com/sles/15-SP3/html/SLES-all/cha-apache2
 
 === Continuous Integration
 
-* *gitlab-ci:* ignore line to avoid `yamllint` violation [skip ci]
+* *gitlab-ci:* ignore line to avoid `+yamllint+` violation [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/a742f4ee00c08e7db34c2f3adcb8c90a58c851aa[a742f4e^])
-* *gitlab-ci:* use `pandoc`-enabled `semantic-release` image [skip ci]
+* *gitlab-ci:* use `+pandoc+`-enabled `+semantic-release+` image [skip
+ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/3bf9c6e6a942b86fd16ca4b222bb6a1781f4e09d[3bf9c6e^])
 * *kitchen+gitlab:* remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/10ce3822dd7ea9868ee986a08e2ccd48bd0026ee[10ce382^])
@@ -54,26 +79,26 @@ https://github.com//documentation.suse.com/sles/15-SP3/html/SLES-all/cha-apache2
 
 === Bug Fixes
 
-* *mod_pagespeed:* add missing colon to `file.directory`
+* *mod_pagespeed:* add missing colon to `+file.directory+`
 (https://github.com/saltstack-formulas/apache-formula/commit/a8b87a583e91b7f69cff8485cb56249c3707ce74[a8b87a5^])
 
 === Continuous Integration
 
-* add `arch-master` to matrix and update `.travis.yml` [skip ci]
+* add `+arch-master+` to matrix and update `+.travis.yml+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/069388be3a624a91b955227188ddee7c3650045e[069388b^])
 
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.5...v1.1.6++[1.1.6^] (2021-05-08)
 
 === Documentation
 
-* *changelog:* regenerate via. `semantic-release`
+* *changelog:* regenerate via. `+semantic-release+`
 (https://github.com/saltstack-formulas/apache-formula/commit/de8c82c7533e36e720cf2e44c46154cd8cd3f540[de8c82c^])
 
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.4...v1.1.5++[1.1.5^] (2021-05-08)
 
 === Documentation
 
-* *changelog:* regenerate via. `semantic-release`
+* *changelog:* regenerate via. `+semantic-release+`
 (https://github.com/saltstack-formulas/apache-formula/commit/198d525a6a552c8c83842c26f6c74a43ffcd4b79[198d525^])
 
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.3...v1.1.4++[1.1.4^] (2021-05-08)
@@ -85,11 +110,11 @@ https://github.com//documentation.suse.com/sles/15-SP3/html/SLES-all/cha-apache2
 
 === Documentation
 
-* *changelog:* regenerate via. `semantic-release`
+* *changelog:* regenerate via. `+semantic-release+`
 (https://github.com/saltstack-formulas/apache-formula/commit/e1f1fa7d8f3ea5a8c307badcfe890f96f57c580f[e1f1fa7^])
-* *changelog:* regenerate via. `semantic-release`
+* *changelog:* regenerate via. `+semantic-release+`
 (https://github.com/saltstack-formulas/apache-formula/commit/a1be1d21dceb304278e680a5ade56c51882e4a0b[a1be1d2^])
-* *changelog:* regenerate via. `semantic-release`
+* *changelog:* regenerate via. `+semantic-release+`
 (https://github.com/saltstack-formulas/apache-formula/commit/56efd35f85fe049b4cdcbd082e38d547bd306a39[56efd35^])
 
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.2...v1.1.3++[1.1.3^] (2021-04-30)
@@ -103,7 +128,7 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 
 === Continuous Integration
 
-* *kitchen+gitlab:* adjust matrix to add `3003` [skip ci]
+* *kitchen+gitlab:* adjust matrix to add `+3003+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/3c21740ba52fa5c2b5cf39cddce6a42d13d17988[3c21740^])
 * *vagrant:* add FreeBSD 13.0 [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/298fdf4fb569a3d1d4a9dadedb4c3924bcb8cc9a[298fdf4^])
@@ -114,36 +139,37 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 
 === Bug Fixes
 
-* *freebsd:* fix `default` suite implementation and tests
+* *freebsd:* fix `+default+` suite implementation and tests
 (https://github.com/saltstack-formulas/apache-formula/commit/0a0f69ee2fc8168696f9f9c4ae786389ff894615[0a0f69e^])
-* *freebsd:* fix `modsecurity` suite implementation and tests
+* *freebsd:* fix `+modsecurity+` suite implementation and tests
 (https://github.com/saltstack-formulas/apache-formula/commit/bc9aa78437d14cf26605f58a3c1e17caed8f05bc[bc9aa78^])
 
 === Continuous Integration
 
 * enable Vagrant-based testing using GitHub Actions
 (https://github.com/saltstack-formulas/apache-formula/commit/6e094e2527748cd4d72690b9289836b17f9289c7[6e094e2^])
-* *gemfile+lock:* use `ssf` customised `kitchen-docker` repo [skip ci]
+* *gemfile+lock:* use `+ssf+` customised `+kitchen-docker+` repo [skip
+ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/53ac4638f3b902c1fd65a64d4344387e26c466c1[53ac463^])
-* *gitlab-ci:* reset after update hook for `rubocop` [skip ci]
+* *gitlab-ci:* reset after update hook for `+rubocop+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/6d40ab7634a42048a0f2b3f2e1173cf2da2a8716[6d40ab7^])
 * *kitchen+ci:* use latest pre-salted images (after CVE) [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/69e9d304fb7d637df1856e0d8ab66be7ddce86c4[69e9d30^])
 * *kitchen+gitlab-ci:* use latest pre-salted images [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/21cb59daa2f70ce6cc46f8d241fb6032c932746c[21cb59d^])
-* *pre-commit:* update hook for `rubocop`
+* *pre-commit:* update hook for `+rubocop+`
 (https://github.com/saltstack-formulas/apache-formula/commit/2c090c3a835e42bd07f0788f4b0965f1c3405662[2c090c3^])
 
 === Documentation
 
-* *readme:* add `Testing with Vagrant` section
+* *readme:* add `+Testing with Vagrant+` section
 (https://github.com/saltstack-formulas/apache-formula/commit/5a6b203bb18f9f28146f33af8175fc3b8c059077[5a6b203^])
 
 === Tests
 
-* standardise use of `share` suite & `_mapdata` state [skip ci]
+* standardise use of `+share+` suite & `+_mapdata+` state [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/e7c2d20f06f23a5ce8a5edaae513775aca0914ab[e7c2d20^])
-* *nomodsecurity:* use adjusted `modules` suite instead
+* *nomodsecurity:* use adjusted `+modules+` suite instead
 (https://github.com/saltstack-formulas/apache-formula/commit/838b9172217c5e067ea0e4a6d2f155ecd1a4b053[838b917^])
 
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v1.1.0...v1.1.1++[1.1.1^] (2021-01-04)
@@ -155,9 +181,9 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 
 === Continuous Integration
 
-* *commitlint:* ensure `upstream/master` uses main repo URL [skip ci]
+* *commitlint:* ensure `+upstream/master+` uses main repo URL [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/0145922b52f21469c00c85bf46503411ffd11c56[0145922^])
-* *gitlab-ci:* add `rubocop` linter (with `allow_failure`) [skip ci]
+* *gitlab-ci:* add `+rubocop+` linter (with `+allow_failure+`) [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/bbf012b82eed50db3c35cb25a10d9ca36e40487b[bbf012b^])
 * *gitlab-ci:* use GitLab CI as Travis CI replacement
 (https://github.com/saltstack-formulas/apache-formula/commit/26208c47c644608b00adfa8474616305e7a55e36[26208c4^])
@@ -236,7 +262,7 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 
 === Continuous Integration
 
-* *pre-commit:* finalise `rstcheck` configuration [skip ci]
+* *pre-commit:* finalise `+rstcheck+` configuration [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/1c2125c251016097e7d2c0694bf0245a3644605e[1c2125c^])
 
 === Documentation
@@ -244,7 +270,7 @@ https://github.com/saltstack-formulas/apache-formula/issues/302[#302^]
 * *example:* document redirect 80->443 fix
 https://github.com/saltstack-formulas/apache-formula/issues/226[#226^]
 (https://github.com/saltstack-formulas/apache-formula/commit/e15803b4b12df2b6e625673409bc854b1d1dd751[e15803b^])
-* *readme:* fix `rstcheck` violation [skip ci]
+* *readme:* fix `+rstcheck+` violation [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/2747e35ce1e49d46a1fd5f8613ce73517aaed095[2747e35^]),
 closes
 https://github.com//travis-ci.org/github/myii/apache-formula/builds/731605038/issues/L255[/travis-ci.org/github/myii/apache-formula/builds/731605038#L255^]
@@ -260,7 +286,7 @@ https://github.com//travis-ci.org/github/myii/apache-formula/builds/731605038/is
 
 * *pre-commit:* add to formula [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/5532ed7a5b1c9afb5ca4348d3984c5ff357bacad[5532ed7^])
-* *pre-commit:* enable/disable `rstcheck` as relevant [skip ci]
+* *pre-commit:* enable/disable `+rstcheck+` as relevant [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/233111af11dd25b573928e746f19b06bcdbf19b9[233111a^])
 
 === BREAKING CHANGES
@@ -313,18 +339,18 @@ CHANGE: 'uninstall.sls' symlinked to 'clean.sls'
 
 === Bug Fixes
 
-* *vhosts/cleanup:* check `sites-enabled` dir exists before listing it
+* *vhosts/cleanup:* check `+sites-enabled+` dir exists before listing it
 (https://github.com/saltstack-formulas/apache-formula/commit/88373e38f55eab61cf1c4edc68324f3da48f7646[88373e3^]),
 closes
 https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 
 === Continuous Integration
 
-* *gemfile.lock:* add to repo with updated `Gemfile` [skip ci]
+* *gemfile.lock:* add to repo with updated `+Gemfile+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/61b903e7803eb80b50130834b90ca86d26b9d6c8[61b903e^])
-* *kitchen:* use `saltimages` Docker Hub where available [skip ci]
+* *kitchen:* use `+saltimages+` Docker Hub where available [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/6895fb9764e9cebcbbff05763e367401d6cad959[6895fb9^])
-* *kitchen+travis:* remove `master-py2-arch-base-latest` [skip ci]
+* *kitchen+travis:* remove `+master-py2-arch-base-latest+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/16bb1b06e351efdf9994676de38dec7b0ecd639d[16bb1b0^])
 * *travis:* add notifications => zulip [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/2417a75fe218bd04c719f8eb2e2a7e402a20928e[2417a75^])
@@ -347,9 +373,10 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 
 === Continuous Integration
 
-* *kitchen:* avoid using bootstrap for `master` instances [skip ci]
+* *kitchen:* avoid using bootstrap for `+master+` instances [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/275b5d5e69fa79f1010852d65f0fcb65cadf735d[275b5d5^])
-* *travis:* use `major.minor` for `semantic-release` version [skip ci]
+* *travis:* use `+major.minor+` for `+semantic-release+` version [skip
+ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/08cced29134ca47824e82ee6afa794233cdb5faa[08cced2^])
 
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.39.1...v0.39.2++[0.39.2^] (2019-12-20)
@@ -370,15 +397,15 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 
 === Continuous Integration
 
-* *gemfile:* restrict `train` gem version until upstream fix [skip ci]
+* *gemfile:* restrict `+train+` gem version until upstream fix [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/13be6f9fac5aae55c48f74c784335c61d7fbaaf2[13be6f9^])
 * *travis:* apply changes from build config validation [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/0aac479c253f95b7fdcb1505476638c2d703bc77[0aac479^])
-* *travis:* opt-in to `dpl v2` to complete build config validation
+* *travis:* opt-in to `+dpl v2+` to complete build config validation
 (https://github.com/saltstack-formulas/apache-formula/commit/19e90ea2d6ef91118ebf59817ef4c91ad876af54[19e90ea^])
-* *travis:* quote pathspecs used with `git ls-files` [skip ci]
+* *travis:* quote pathspecs used with `+git ls-files+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/6608ddf8c5a361b93e6a44658ab1e306953566bf[6608ddf^])
-* *travis:* run `shellcheck` during lint job [skip ci]
+* *travis:* run `+shellcheck+` during lint job [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/2ff6b2f17e1fd48b5f0a4156c2dbd90f07f27025[2ff6b2f^])
 * *travis:* use build config validation (beta) [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/73160b249124df6bbd36b113df71724c019a118f[73160b2^])
@@ -406,54 +433,55 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 
 === Continuous Integration
 
-* *kitchen:* use `debian-10-master-py3` instead of `develop` [skip ci]
+* *kitchen:* use `+debian-10-master-py3+` instead of `+develop+` [skip
+ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/09d82a581caa09298d3d99ded215c5e45c5b619f[09d82a5^])
-* *kitchen:* use `develop` image until `master` is ready (`amazonlinux`)
- [skip ci]
+* *kitchen:* use `+develop+` image until `+master+` is ready
+(`+amazonlinux+`) [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/d0bf6f37969a9a97a6e368278e0f9eb40431f2f1[d0bf6f3^])
-* *kitchen+travis:* upgrade matrix after `2019.2.2` release [skip ci]
+* *kitchen+travis:* upgrade matrix after `+2019.2.2+` release [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/fc0f869b78ef56369e1cfb6ff3d62179f703efa0[fc0f869^])
-* *travis:* update `salt-lint` config for `v0.0.10` [skip ci]
+* *travis:* update `+salt-lint+` config for `+v0.0.10+` [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/2622d48b4ccb01cd70555d46759d79d82d1db7bf[2622d48^])
 
 === Performance Improvements
 
-* *travis:* improve `salt-lint` invocation [skip ci]
+* *travis:* improve `+salt-lint+` invocation [skip ci]
 (https://github.com/saltstack-formulas/apache-formula/commit/bf7577022040a155de8b3ab4f557dd05484d278c[bf75770^])
 
 == link:++https://github.com/saltstack-formulas/apache-formula/compare/v0.37.4...v0.38.0++[0.38.0^] (2019-10-20)
 
 === Bug Fixes
 
-* *apache-2.2.config.jinja:* fix `salt-lint` errors
+* *apache-2.2.config.jinja:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/f4045ef[f4045ef^])
-* *apache-2.4.config.jinja:* fix `salt-lint` errors
+* *apache-2.4.config.jinja:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/e2c1c2e[e2c1c2e^])
-* *flags.sls:* fix `salt-lint` errors
+* *flags.sls:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/a146c59[a146c59^])
-* *init.sls:* fix `salt-lint` errors
+* *init.sls:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/8465eb4[8465eb4^])
-* *map.jinja:* fix `salt-lint` errors
+* *map.jinja:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/d011324[d011324^])
-* *mod_geoip.sls:* fix `salt-lint` errors
+* *mod_geoip.sls:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/e55ef9b[e55ef9b^])
-* *modsecurity.conf.jinja:* fix `salt-lint` errors
+* *modsecurity.conf.jinja:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/2a79d05[2a79d05^])
-* *modules.sls:* fix `salt-lint` errors
+* *modules.sls:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/55d11f8[55d11f8^])
-* *server_status.sls:* fix `salt-lint` errors
+* *server_status.sls:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/da9a592[da9a592^])
-* *uninstall.sls:* fix `salt-lint` errors
+* *uninstall.sls:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/ed7dc7b[ed7dc7b^])
-* *vhosts/cleanup.sls:* fix `salt-lint` errors
+* *vhosts/cleanup.sls:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/b0bbd0b[b0bbd0b^])
-* *vhosts/minimal.tmpl:* fix `salt-lint` errors
+* *vhosts/minimal.tmpl:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/146dc67[146dc67^])
-* *vhosts/proxy.tmpl:* fix `salt-lint` errors
+* *vhosts/proxy.tmpl:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/e7c9fbb[e7c9fbb^])
-* *vhosts/redirect.tmpl:* fix `salt-lint` errors
+* *vhosts/redirect.tmpl:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/0a41b19[0a41b19^])
-* *vhosts/standard.tmpl:* fix `salt-lint` errors
+* *vhosts/standard.tmpl:* fix `+salt-lint+` errors
 (https://github.com/saltstack-formulas/apache-formula/commit/1bad58d[1bad58d^])
 * *yamllint:* fix all errors
 (https://github.com/saltstack-formulas/apache-formula/commit/97f6ead[97f6ead^])
@@ -462,7 +490,7 @@ https://github.com/saltstack-formulas/apache-formula/issues/278[#278^]
 
 * *formula:* use standard structure
 (https://github.com/saltstack-formulas/apache-formula/commit/701929d[701929d^])
-* *readme:* move to `docs/` directory and modify accordingly
+* *readme:* move to `+docs/+` directory and modify accordingly
 (https://github.com/saltstack-formulas/apache-formula/commit/6933f0e[6933f0e^])
 
 === Features

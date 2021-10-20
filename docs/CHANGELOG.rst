@@ -2,6 +2,28 @@
 Changelog
 =========
 
+`1.2.1 <https://github.com/saltstack-formulas/apache-formula/compare/v1.2.0...v1.2.1>`_ (2021-10-20)
+--------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **vhosts:** reset ``cleanup`` to previous and use dedicated ``clean`` SLS (\ `0c6c1d3 <https://github.com/saltstack-formulas/apache-formula/commit/0c6c1d36e261ae6f851cb9b6ed2d1319af460a73>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **kitchen+ci:** update with latest CVE pre-salted images [skip ci] (\ `a3d49f1 <https://github.com/saltstack-formulas/apache-formula/commit/a3d49f185274efc6d1530580daf03b1ad2be0e2d>`_\ )
+* test for upstream Salt regressions in ``master`` instances (2021-W37a) (\ `69dcfd9 <https://github.com/saltstack-formulas/apache-formula/commit/69dcfd9c3bf49416e6c77d8e982446d99af3b95c>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **readme:** document vhosts clean/cleanup (\ `2d72dff <https://github.com/saltstack-formulas/apache-formula/commit/2d72dff82bdcf9c0d30f6735c315a655ebea483d>`_\ ), closes `#372 <https://github.com/saltstack-formulas/apache-formula/issues/372>`_
+
 `1.2.0 <https://github.com/saltstack-formulas/apache-formula/compare/v1.1.8...v1.2.0>`_ (2021-08-28)
 --------------------------------------------------------------------------------------------------------
 
