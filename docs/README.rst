@@ -299,6 +299,17 @@ Example Pillar:
           SSLCertificateKeyFile: /path/to/ssl.key
           SSLCertificateChainFile: /path/to/ssl.ca.crt
 
+``apache.config.vhosts.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove non-declared virtual hosts, and deactivates the service.
+
+``apache.config.vhosts.cleanup``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Remove non-declared virtual hosts, but keeps the service running.
+
+
 Testing
 -------
 
