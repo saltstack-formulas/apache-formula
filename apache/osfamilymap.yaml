@@ -74,19 +74,19 @@ RedHat:
   mod_geoip: mod_geoip
   mod_geoip_database: GeoIP
 
-  vhostdir: /etc/httpd/vhosts.d
+  vhostdir: /etc/httpd/conf.d
   confdir: /etc/httpd/conf.d
   modulesdir: /usr/lib64/httpd/modules
   confext: .conf
   default_site: default
-  default_site_ssl: default-ssl
+  default_site_ssl: ssl
   logdir: /var/log/httpd
   logrotatedir: /etc/logrotate.d/httpd
   wwwdir: /var/www
   default_charset: UTF-8
   use_require: false
   moddir: /etc/httpd/conf.modules.d
-  sitesdir: /etc/httpd/sites-enabled
+  sitesdir: /etc/httpd/conf.d
 
 Suse:
   pkg:
