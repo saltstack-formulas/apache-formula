@@ -16,7 +16,7 @@ apache-config-logrotate-file-managed:
             sharedscripts
             delaycompress
             postrotate
-                /bin/systemctl reload {{ apache.service.name }} > /dev/null 2>/dev/null || true
+                /bin/systemctl reload {{ apache.service.name }}.service > /dev/null 2>/dev/null || true
             endscript
          }
     {% else %}
