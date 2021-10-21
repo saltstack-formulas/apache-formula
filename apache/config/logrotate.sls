@@ -11,13 +11,13 @@ apache-config-logrotate-file-managed:
     {%- if grains.os_family == "RedHat" %}
     - contents: |
         {{ apache.logdir }}/*log {
-                missingok
-                notifempty
-                sharedscripts
-                delaycompress
-                postrotate
-                    /bin/systemctl reload {{ apache.service.name }} > /dev/null 2>/dev/null || true
-                endscript
+            missingok
+            notifempty
+            sharedscripts
+            delaycompress
+            postrotate
+                /bin/systemctl reload {{ apache.service.name }} > /dev/null 2>/dev/null || true
+            endscript
          }
     {% else %}
     - contents: |
