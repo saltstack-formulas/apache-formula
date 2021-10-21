@@ -87,6 +87,16 @@ RedHat:
   use_require: false
   moddir: /etc/httpd/conf.modules.d
   sitesdir: /etc/httpd/conf.d
+  logrotatecontents: |
+      {{ apache.logdir }}/*log {
+    missingok
+    notifempty
+    sharedscripts
+    delaycompress
+    postrotate
+        /bin/systemctl reload {{ apache.service.name }} > /dev/null 2>/dev/null || true
+    endscript
+    }
 
 Suse:
   pkg:
