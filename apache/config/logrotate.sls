@@ -8,6 +8,18 @@ apache-config-logrotate-file-managed:
   file.managed:
     - name: {{ apache.logrotatedir }}
     - makedirs: True
+    {%- if grains.os_family == "RedHat" %}
+    - contents: |
+        {{ apache.logdir }}/*log {
+            missingok
+            notifempty
+            sharedscripts
+            delaycompress
+            postrotate
+                /bin/systemctl reload {{ apache.service.name }}.service > /dev/null 2>/dev/null || true
+            endscript
+         }
+    {% else %}
     - contents: |
         {{ apache.logdir }}/*.log {
                 daily
@@ -29,3 +41,4 @@ apache-config-logrotate-file-managed:
                     fi; \
                 endscript
         }
+    {% endif %}
