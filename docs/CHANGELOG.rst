@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`1.2.2 <https://github.com/saltstack-formulas/apache-formula/compare/v1.2.1...v1.2.2>`_ (2021-10-28)
+--------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **redhat:** use correct vhostdir, sitesdir and logrotate script for redhat family (\ `#376 <https://github.com/saltstack-formulas/apache-formula/issues/376>`_\ ) (\ `c4b8538 <https://github.com/saltstack-formulas/apache-formula/commit/c4b85381288ae878207ffa5d2cc36cabc916e8f1>`_\ )
+
 `1.2.1 <https://github.com/saltstack-formulas/apache-formula/compare/v1.2.0...v1.2.1>`_ (2021-10-20)
 --------------------------------------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 ---
 name: 'apache-formula'
 title: 'apache-formula'
-version: '1.2.1'
+version: '1.2.2'
 start_page: 'README.adoc'
 nav:
   - 'modules/ROOT/nav-repo-docs.adoc'

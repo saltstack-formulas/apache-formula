@@ -1,7 +1,7 @@
 name: apache
 os: RedHat, Fedora, CentOS, Debian, Ubuntu, Suse, FreeBSD
 os_family: RedHat, Debian, Suse, FreeBSD
-version: 1.2.1
+version: 1.2.2
 release: 1
 minimum_version: 2015.8
 summary: Formula for installing Apache
