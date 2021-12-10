@@ -189,6 +189,7 @@ FreeBSD:
   group: www
   config: /usr/local/etc/apache24/httpd.conf
   portsfile: /usr/local/etc/apache24/ports.conf
+  envvarsfile: /usr/local/etc/apache24/envvars.d/by_salt.env
 
   mod_php5: mod_php56
   mod_perl2: ap24-mod_perl2
@@ -203,7 +204,9 @@ FreeBSD:
   default_site: default
   default_site_ssl: default-ssl
   moddir: /usr/local/etc/apache24/modules.d
-  logdir: /var/log/
+  logdir: /var/log
+  logdir_user: root
+  logdir_group: wheel
   logrotatedir: /usr/local/etc/logrotate.d/apache2
   wwwdir: /usr/local/www/apache24/
 

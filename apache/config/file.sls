@@ -14,8 +14,8 @@ include:
 apache-config-file-directory-logdir:
   file.directory:
     - name: {{ apache.logdir }}
-    - user: {{ apache.user }}
-    - group: {{ apache.group }}
+    - user: {{ apache.get('logdir_user', apache.user) }}
+    - group: {{ apache.get('logdir_group', apache.group) }}
     - makedirs: True
     - require:
       - sls: {{ sls_package_install }}
@@ -102,7 +102,7 @@ apache-config-file-managed:
 
 apache-config-file-managed-{{ grains.os }}-env:
   file.managed:
-    - name: /etc/apache2/envvars
+    - name: {{ apache.envvarsfile }}
     - source: 'salt://apache/files/{{ grains.os_family }}/envvars-{{ apache.version }}.jinja'
     - mode: 644
     - user: {{ apache.rootuser }}

@@ -19,6 +19,27 @@ apache-config-logrotate-file-managed:
                 /bin/systemctl reload {{ apache.service.name }}.service > /dev/null 2>/dev/null || true
             endscript
          }
+    {% elif grains.os_family == "FreeBSD" %}
+    - contents: |
+        {{ apache.logdir }}/httpd-*.log {
+                daily
+                missingok
+                rotate 14
+                compress
+                delaycompress
+                notifempty
+                create 640 root wheel
+                sharedscripts
+                postrotate
+                    if service {{ apache.service.name }} status >/dev/null; then \
+                        service {{ apache.service.name }} reload >/dev/null; \
+                    fi;
+                endscript
+                prerotate
+                    if [ -d /usr/local/etc/logrotate.d/httpd-prerotate ]; then \
+                       run-parts /usr/local/etc/logrotate.d/httpd-prerotate; \
+                    fi; \
+                endscript
     {% else %}
     - contents: |
         {{ apache.logdir }}/*.log {
