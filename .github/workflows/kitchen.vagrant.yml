@@ -17,11 +17,11 @@ jobs:
           # - default-freebsd-130-master-py3
           # - modules-freebsd-130-master-py3
           - freebsd-130-master-py3
-          # - default-freebsd-122-master-py3
-          # - modules-freebsd-122-master-py3
-          - freebsd-122-master-py3
+          # - default-freebsd-123-master-py3
+          # - modules-freebsd-123-master-py3
+          - freebsd-123-master-py3
           # - default-freebsd-130-3004-0-py3
-          # - default-freebsd-122-3004-0-py3
+          # - default-freebsd-123-3004-0-py3
     steps:
       - name: 'Check out code'
         uses: 'actions/checkout@v2'
