@@ -90,6 +90,7 @@
         'Require': dir.get('Require', vals.Directory.Require),
         'AllowOverride': dir.get('AllowOverride', vals.Directory.AllowOverride),
         'Dav': dir.get('Dav', False),
+        'Rewrite': dir.get('Rewrite', False),
     } %}
 
     {%- if path == 'default' %}{% set path = vals.Directory_default %}{% endif %}
@@ -104,6 +105,10 @@
         {%- endif %}
         {% if dvals.get('AllowOverride') != False %}AllowOverride {{ dvals.AllowOverride }}{% endif %}
         {% if dvals.get('Dav') != False %}Dav On{% endif %}
+
+        {% if dvals.get('Rewrite') %}RewriteEngine on
+        {{ dvals.Rewrite|indent(8) }}
+        {%- endif %}
 
         {%- if dir.get('Formula_Append') %}
         {{ dir.Formula_Append|indent(8) }}
