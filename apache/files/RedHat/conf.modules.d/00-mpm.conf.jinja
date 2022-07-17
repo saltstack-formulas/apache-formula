@@ -4,7 +4,7 @@
 
 {% set mpm_module = 'mpm_prefork' -%}
 {% set mpm_param = salt['pillar.get']('apache:mod_mpm_prefork', {}) -%}
-{% if pillar.get('apache:mod_mpm_worker') is defined -%}
+{% if pillar.get('apache:mod_mpm_worker', None) -%}
 {% set mpm_module = 'mpm_worker' -%}
 {% set mpm_param = salt['pillar.get']('apache:mod_mpm_worker', {}) -%}
 {% else -%}
