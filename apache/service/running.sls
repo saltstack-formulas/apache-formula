@@ -16,8 +16,6 @@ apache-service-running:
   service.running:
     - name: {{ apache.service.name }}
     - enable: True
-    - watch:
-      - sls: {{ sls_config_file }}
     - retry: {{ apache.retry_option|json }}
   cmd.run:
     - names:
@@ -41,10 +39,7 @@ apache-service-running-restart:
     - cmd: {{ apache.custom_reload_command|default('apachectl graceful') }}
     - python_shell: True
          {%- endif %}
-    - watch:
-      - sls: {{ sls_config_file }}
-    - require:
-      - sls: {{ sls_config_file }}
+    - after:
       - service: apache-service-running
 
 apache-service-running-reload:
@@ -57,8 +52,5 @@ apache-service-running-reload:
     - cmd: {{ apache.custom_reload_command|default('apachectl graceful') }}
     - python_shell: True
          {%- endif %}
-    - watch:
-      - sls: {{ sls_config_file }}
-    - require:
-      - sls: {{ sls_config_file }}
+    - after:
       - service: apache-service-running

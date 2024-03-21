@@ -19,7 +19,7 @@ apache-config-file-directory-logdir:
     - makedirs: True
     - require:
       - sls: {{ sls_package_install }}
-    - require_in:
+    - watch_in:
       - service: apache-service-running
 
 apache-config-file-directory-vhostdir:
@@ -28,7 +28,7 @@ apache-config-file-directory-vhostdir:
     - makedirs: True
     - require:
       - sls: {{ sls_package_install }}
-    - require_in:
+    - watch_in:
       - service: apache-service-running
 
 apache-config-file-directory-moddir:
@@ -37,7 +37,7 @@ apache-config-file-directory-moddir:
     - makedirs: True
     - require:
       - sls: {{ sls_package_install }}
-    - require_in:
+    - watch_in:
       - service: apache-service-running
 
     {%- if apache.davlockdbdir %}
@@ -53,7 +53,7 @@ apache-config-file-directory-davlockdbdir:
       - group
     - require:
       - sls: {{ sls_package_install }}
-    - require_in:
+    - watch_in:
       - service: apache-service-running
 
     {%- endif %}
@@ -65,7 +65,7 @@ apache-config-file-directory-sites-enabled:
     - makedirs: True
     - require:
       - sls: {{ sls_package_install }}
-    - require_in:
+    - watch_in:
       - service: apache-service-running
 
     {%- endif %}
@@ -77,7 +77,7 @@ apache-config-file-directory-conf-enabled:
     - makedirs: True
     - require:
       - sls: {{ sls_package_install }}
-    - require_in:
+    - watch_in:
       - service: apache-service-running
 
     {%- endif %}
@@ -111,7 +111,7 @@ apache-config-file-managed-{{ grains.os }}-env:
     - template: {{ apache.get('template_engine', 'jinja') }}
     - context:
       apache: {{ apache | json }}
-    - require_in:
+    - watch_in:
       - file: apache-config-file-managed-{{ grains.os }}-ports
 
 apache-config-file-managed-{{ grains.os }}-ports:
@@ -157,7 +157,5 @@ apache-config-file-managed-skip:
     - require:
       - sls: {{ sls_package_install }}
     - watch_in:
-      - module: apache-service-running-restart
-    - require_in:
       - module: apache-service-running-restart
       - service: apache-service-running
