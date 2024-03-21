@@ -17,6 +17,7 @@ apache:
     name: apache
   user: www-data
   group: www-data
+  envvarsfile: /etc/apache2/envvars
   vhostdir: /etc/apache2/sites-available
   confdir: /etc/apache2/conf.d
   davlockdbdir: null
