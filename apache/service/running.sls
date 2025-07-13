@@ -16,12 +16,10 @@ apache-service-running:
   service.running:
     - name: {{ apache.service.name }}
     - enable: True
-    - watch:
-      - sls: {{ sls_config_file }}
     - retry: {{ apache.retry_option|json }}
   cmd.run:
     - names:
-      - journalctl -xe -u {{ apache.service.name }} || tail -20 /var/log/messages || true
+      - journalctl -n20 -e -u {{ apache.service.name }} || tail -20 /var/log/messages || true
       - (service {{ apache.service.name }} restart && service {{ apache.service.name }} status) || true
       - cat {{ apache.config }}
     - onfail:
@@ -41,10 +39,7 @@ apache-service-running-restart:
     - cmd: {{ apache.custom_reload_command|default('apachectl graceful') }}
     - python_shell: True
          {%- endif %}
-    - watch:
-      - sls: {{ sls_config_file }}
-    - require:
-      - sls: {{ sls_config_file }}
+    - after:
       - service: apache-service-running
 
 apache-service-running-reload:
@@ -57,8 +52,5 @@ apache-service-running-reload:
     - cmd: {{ apache.custom_reload_command|default('apachectl graceful') }}
     - python_shell: True
          {%- endif %}
-    - watch:
-      - sls: {{ sls_config_file }}
-    - require:
-      - sls: {{ sls_config_file }}
+    - after:
       - service: apache-service-running

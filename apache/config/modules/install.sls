@@ -41,7 +41,7 @@ apache-config-modules-{{ module }}-enable:
         {%- endif %}
     - order: 225
     - require:
-      - sls: {{ sls_config_file }}
+      - file: apache-config-file-directory-moddir
     - watch_in:
       - module: apache-service-running-restart
     - require_in:
