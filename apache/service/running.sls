@@ -19,7 +19,7 @@ apache-service-running:
     - retry: {{ apache.retry_option|json }}
   cmd.run:
     - names:
-      - journalctl -xe -u {{ apache.service.name }} || tail -20 /var/log/messages || true
+      - journalctl -n20 -e -u {{ apache.service.name }} || tail -20 /var/log/messages || true
       - (service {{ apache.service.name }} restart && service {{ apache.service.name }} status) || true
       - cat {{ apache.config }}
     - onfail:
