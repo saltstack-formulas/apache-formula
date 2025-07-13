@@ -97,6 +97,8 @@ apache-config-file-managed:
       - sls: {{ sls_package_install }}
     - context:
         apache: {{ apache | json }}
+    - watch_in:
+      - service: apache-service-running
 
   {%- if grains.os_family in ('Debian', 'FreeBSD') %}
 
