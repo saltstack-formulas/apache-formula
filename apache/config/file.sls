@@ -2,13 +2,11 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- set sls_service_running = tplroot ~ '.service.running' %}
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import apache with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
 include:
-  - {{ sls_service_running }}
   - {{ sls_package_install }}
 
 apache-config-file-directory-logdir:
